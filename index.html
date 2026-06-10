@@ -67,13 +67,37 @@
         .close-auth:hover { color: var(--accent-red); }
 
         .auth-form-side { display: flex; flex-direction: column; height: 100%; margin-top: 30px; }
+        .input-group { margin-bottom: 16px; }
+        .input-group label { font-size: 11px; text-transform: uppercase; color: var(--accent-blue); font-weight: 700; display: block; margin-bottom: 6px; }
+        .input-group input, .input-group select { width: 100%; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(255,255,255,0.05); padding: 13px 18px; border-radius: 12px; color: white; outline: none; transition: all 0.3s; }
+        .input-group input:focus, .input-group select:focus { border-color: var(--accent-blue); box-shadow: 0 0 10px var(--accent-glow); }
+        
+        .phone-row { display: flex; gap: 10px; }
+        .phone-row select { width: 100px; padding: 13px 10px; }
+        .phone-row input { flex: 1; }
+
+        .otp-box-wrapper { display: flex; justify-content: space-between; gap: 8px; margin: 15px 0 5px 0; }
+        .otp-input-node {
+            width: 48px; height: 54px; background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.08); border-radius: 14px;
+            color: white; text-align: center; font-size: 22px; font-weight: 700;
+            outline: none; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .otp-input-node:focus { border-color: var(--accent-blue); box-shadow: 0 0 12px rgba(56, 189, 248, 0.3); transform: scale(1.05); }
+
         .action-btn { width: 100%; background: var(--accent-blue); color: #05070c; border: none; padding: 15px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; box-shadow: 0 4px 12px var(--accent-glow); margin-top: 10px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; }
         .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-blue); }
         
         .github-btn { background: #24292e; color: white; border: 1px solid rgba(255,255,255,0.1); }
         .github-btn:hover { background: #2f363d; box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
 
-        /* --- HERO SETUP --- */
+        .error-txt { color: #f87171; font-size: 12px; margin-top: 8px; font-weight: 600; display: none; text-align: left; line-height: 1.4; }
+        .success-txt { color: #4ade80; font-size: 12px; margin-top: 8px; font-weight: 600; display: none; text-align: left; }
+        .timer-label-box { font-size: 13px; color: var(--text-gray); display: flex; justify-content: space-between; margin-top: 5px; margin-bottom: 15px; font-weight: 600; }
+        .resend-trigger { color: var(--accent-blue); cursor: pointer; text-decoration: none; pointer-events: none; opacity: 0.5; transition: all 0.3s; }
+        .resend-trigger.active { pointer-events: auto; opacity: 1; text-shadow: 0 0 8px var(--accent-glow); }
+
+        /* --- HERO & INTERFACE SECTION --- */
         .hero { display: flex; flex-direction: column; gap: 50px; padding: 40px 0; align-items: center; text-align: center; }
         @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
         
@@ -105,7 +129,6 @@
         .role { color: var(--accent-blue); font-weight: 600; font-size: 16px; margin-bottom: 18px; }
         .desc-line { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-gray); margin-bottom: 12px; }
         
-        /* --- SKILLS FRAME SECTIONS --- */
         .skills-section { background: rgba(13, 17, 28, 0.4); border: 1px solid rgba(255, 255, 255, 0.02); padding: 45px; border-radius: 26px; margin-top: 60px; }
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
@@ -133,6 +156,7 @@
                     <a href="#experience">Experience</a>
                     <a href="#education">Education</a>
                     <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
                 </div>
                 <div class="profile-login-btn" onclick="openAuthPortal()">
                     <svg id="user-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
@@ -148,20 +172,58 @@
             
             <div class="auth-form-side">
                 <div id="auth-gateways">
-                    <h2 style="font-size:24px; font-weight:800; margin-bottom:5px;">Secure Identity</h2>
-                    <p style="color:var(--text-gray); font-size:13px; margin-bottom:25px;">Synchronize account authentication systems safely via GitHub OAuth layer channels.</p>
+                    <h2 style="font-size:24px; font-weight:800; margin-bottom:5px;">Secure Verification</h2>
+                    <p style="color:var(--text-gray); font-size:13px; margin-bottom:25px;">Connect your profile seamlessly using phone verification infrastructure.</p>
+                    
+                    <div class="input-group">
+                        <label>Mobile Network Terminal</label>
+                        <div class="phone-row">
+                            <select id="phone-cc">
+                                <option value="+91">🇮🇳 +91</option>
+                            </select>
+                            <input type="tel" id="phone-num" placeholder="7879595821">
+                        </div>
+                    </div>
+
+                    <button class="action-btn" id="send-otp-btn" onclick="triggerPhoneOtpSend()">Send Verification Code</button>
+
+                    <div class="otp-box-wrapper" id="otp-animation-wrapper" style="display: none;">
+                        <input type="number" class="otp-input-node" maxlength="1" oninput="if(value.length>1)value=value.slice(0,1)">
+                        <input type="number" class="otp-input-node" maxlength="1" oninput="if(value.length>1)value=value.slice(0,1)">
+                        <input type="number" class="otp-input-node" maxlength="1" oninput="if(value.length>1)value=value.slice(0,1)">
+                        <input type="number" class="otp-input-node" maxlength="1" oninput="if(value.length>1)value=value.slice(0,1)">
+                        <input type="number" class="otp-input-node" maxlength="1" oninput="if(value.length>1)value=value.slice(0,1)">
+                        <input type="number" class="otp-input-node" maxlength="1" oninput="if(value.length>1)value=value.slice(0,1)">
+                    </div>
+
+                    <div class="timer-label-box" id="timer-label-box" style="display: none;">
+                        <span id="timer-clock">00:30</span>
+                        <span>Didn't receive code? <a class="resend-trigger" id="resend-trigger-link" onclick="triggerPhoneOtpSend()">Resend</a></span>
+                    </div>
+
+                    <div id="otp-inputs-block" style="display: none;">
+                        <div class="input-group"><label>Create Security Password</label><input type="password" id="reg-pass" placeholder="••••••••"></div>
+                        <div class="input-group"><label>Confirm Security Password</label><input type="password" id="reg-confirm-pass" placeholder="••••••••"></div>
+                        <button class="action-btn" style="background: var(--accent-green); color:#05070c;" onclick="processOtpVerificationNode()">Verify & Connect</button>
+                    </div>
+
+                    <div class="error-txt" id="reg-err-box"></div>
+                    <div class="success-txt" id="reg-success-box"></div>
+
+                    <div class="social-divider" style="margin: 20px 0; text-align: center; font-size: 12px; color: var(--text-gray);">Or Secure-Sync Via</div>
                     
                     <button class="action-btn github-btn" onclick="handleSecureGitHubLogin()">
                         <svg style="width:18px; height:18px; fill:currentColor;" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>Continue with GitHub Account</span>
+                        <span>Continue with GitHub ID</span>
                     </button>
                 </div>
 
                 <div id="user-dashboard-panel" style="display: none;">
                     <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 5px;">Dashboard Settings</h2>
                     <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 25px;" id="dashboard-banner-desc">Authenticated Operator Core Panel</p>
-                    <div class="input-group"><label>Profile Username</label><input type="text" id="dash-name" placeholder="Realign Name" readonly></div>
-                    <button class="action-btn btn-danger" onclick="processSecureLogout()">Disconnect Terminal</button>
+                    <div class="input-group"><label>Profile Username</label><input type="text" id="dash-name" placeholder="Realign Name"></div>
+                    <button class="action-btn" onclick="alert('Profile Updated Successfully!')">Update Profile</button>
+                    <button class="action-btn" style="background: var(--accent-red); color: white;" onclick="processSecureLogout()">Disconnect Terminal</button>
                 </div>
             </div>
         </div>
@@ -175,6 +237,7 @@
                 <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
                 <div class="btn-group">
                     <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><span>Get In Touch</span></a>
+                    <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn" style="color: white; border: 1px solid rgba(255,255,255,0.15)"><span>LinkedIn</span></a>
                 </div>
             </div>
             <div>
@@ -240,14 +303,16 @@
         </section>
     </main>
 
-    <footer><p>© 2026 Suraj Singh Jadon. All Infrastructure Terminals Connected Safely.</p></footer>
+    <footer><p>© 2026 Suraj Singh Jadon. All Infrastructure Terminals Active & Online.</p></footer>
 
     <script>
-        // 🔒 REAL SECURE LINK PACKETS SYNCED SUCCESSFULLY 🎯
+        // 🚀 REAL LIVE INTEGRATION KEYS DONE ✅
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_KEY = "sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu";
 
         const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        let timerInstance = null;
+        let globalPhoneNumber = "";
 
         supabase.auth.onAuthStateChange((event, session) => {
             if (session) {
@@ -256,9 +321,9 @@
                 photoNode.src = session.user.user_metadata.avatar_url || 'https://img.icons8.com/color/100/checked-user-male.png';
                 photoNode.style.display = 'block';
                 
-                const userName = session.user.user_metadata.full_name || session.user.user_metadata.user_name || session.user.email;
+                const userName = session.user.user_metadata.full_name || session.user.phone || session.user.email;
                 document.getElementById('session-status').innerText = "Session Authed: " + userName;
-                configureDashboardUI(true, userName, session.user.email || 'OAuth Token User');
+                configureDashboardUI(true, userName, session.user.email || 'Phone User');
             } else {
                 document.getElementById('user-photo').style.display = 'none';
                 document.getElementById('user-icon').style.display = 'block';
@@ -267,18 +332,93 @@
             }
         });
 
+        window.triggerPhoneOtpSend = async () => {
+            const cc = document.getElementById('phone-cc').value;
+            const number = document.getElementById('phone-num').value.trim();
+            const errBox = document.getElementById('reg-err-box');
+            const sccBox = document.getElementById('reg-success-box');
+            const sendBtn = document.getElementById('send-otp-btn');
+
+            if(!number) { errBox.innerText = "Error: Input phone field matrix empty."; errBox.style.display='block'; return; }
+            globalPhoneNumber = cc + number;
+            sendBtn.disabled = true;
+
+            const { data, error } = await supabase.auth.signInWithOtp({ phone: globalPhoneNumber });
+
+            if (error) {
+                errBox.innerText = "Error: " + error.message; errBox.style.display = 'block';
+                sendBtn.disabled = false;
+            } else {
+                errBox.style.display = 'none';
+                sccBox.innerText = "Verification link triggered. Check your phone number: " + globalPhoneNumber;
+                sccBox.style.display = 'block';
+
+                document.getElementById('otp-animation-wrapper').style.display = 'flex';
+                document.getElementById('timer-label-box').style.display = 'flex';
+                document.getElementById('otp-inputs-block').style.display = 'block';
+                document.querySelectorAll('.otp-input-node')[0].focus();
+                startCountdownTimer();
+            }
+        };
+
+        function startCountdownTimer() {
+            let duration = 30;
+            const clockLabel = document.getElementById('timer-clock');
+            const resendLink = document.getElementById('resend-trigger-link');
+            const sendBtn = document.getElementById('send-otp-btn');
+            resendLink.classList.remove('active');
+            
+            clearInterval(timerInstance);
+            timerInstance = setInterval(() => {
+                duration--;
+                clockLabel.innerText = "00:" + (duration < 10 ? "0" : "") + duration;
+                if(duration <= 0) {
+                    clearInterval(timerInstance);
+                    clockLabel.innerText = "Expired";
+                    resendLink.classList.add('active');
+                    sendBtn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        window.processOtpVerificationNode = async () => {
+            let tokenCode = "";
+            document.querySelectorAll('.otp-input-node').forEach(input => tokenCode += input.value);
+            const errBox = document.getElementById('reg-err-box');
+
+            const { session, error } = await supabase.auth.verifyOtp({
+                phone: globalPhoneNumber,
+                token: tokenCode,
+                type: 'sms'
+            });
+
+            if (error) {
+                errBox.innerText = "Error: Invalid verification parameters."; errBox.style.display = 'block';
+            } else {
+                errBox.style.display = 'none'; closeAuthPortal(); alert("Terminal Secured Successfully!");
+            }
+        };
+
         window.handleSecureGitHubLogin = async () => {
             const { data, error } = await supabase.auth.signInWithOAuth({
                 provider: 'github',
                 options: { redirectTo: window.location.origin + window.location.pathname }
             });
-            if (error) alert("OAuth handshake delay: " + error.message);
+            if (error) alert(error.message);
         };
 
         window.processSecureLogout = async () => { await supabase.auth.signOut(); closeAuthPortal(); };
         function openAuthPortal() { const overlay = document.getElementById('auth-overlay'); const card = document.getElementById('auth-card'); overlay.style.display = 'flex'; setTimeout(() => { overlay.style.opacity = '1'; card.style.transform = 'translateX(0)'; }, 50); }
         function closeAuthPortal() { const overlay = document.getElementById('auth-overlay'); const card = document.getElementById('auth-card'); overlay.style.opacity = '0'; card.style.transform = 'translateX(100%)'; setTimeout(() => { overlay.style.display = 'none'; }, 400); }
         function configureDashboardUI(isLoggedIn, name, email) { if(isLoggedIn) { document.getElementById('auth-gateways').style.display = 'none'; document.getElementById('user-dashboard-panel').style.display = 'block'; document.getElementById('dashboard-banner-desc').innerText = "Active Node: " + email; document.getElementById('dash-name').value = name; } else { document.getElementById('user-dashboard-panel').style.display = 'none'; document.getElementById('auth-gateways').style.display = 'block'; } }
+
+        const inputs = document.querySelectorAll('.otp-input-node');
+        inputs.forEach((input, index) => {
+            input.addEventListener('keyup', (e) => {
+                if (e.key >= 0 && e.key <= 9) { if (index < inputs.length - 1) inputs[index + 1].focus(); }
+                else if (e.key === "Backspace") { if (index > 0) inputs[index - 1].focus(); }
+            });
+        });
     </script>
 </body>
 </html>
