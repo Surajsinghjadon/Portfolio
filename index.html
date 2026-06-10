@@ -3,61 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suraj Singh Jadon | Portfolio</title>
+    <title>Suraj Singh Jadon - Executive Portfolio</title>
     <style>
-        body { background: #05070c; color: white; font-family: sans-serif; margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: auto; }
+        :root {
+            --bg-main: #05070c;
+            --bg-card: #0d111c;
+            --accent-blue: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.4);
+            --border-matrix: rgba(56, 189, 248, 0.08);
+            --text-white: #f8fafc;
+            --text-gray: #94a3b8;
+            --accent-red: #ef4444;
+            --accent-green: #22c55e;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; padding-top: 110px; }
+        .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- NAVIGATION HEADER --- */
+        header {
+            background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0;
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); }
+        .logo span { color: var(--text-white); }
         
-        /* Logo Styling */
-        .logo-box { text-align: center; margin-bottom: 20px; }
-        .logo-text { font-size: 36px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 2px; }
+        .right-menu { display: flex; align-items: center; gap: 25px; }
+        .nav-links { display: flex; gap: 20px; }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+        .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-blue); }
+
+        /* CORNER PROFILE BUTTON */
+        .profile-login-btn {
+            background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2);
+            width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
+            position: relative; overflow: hidden;
+        }
+        .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
+        .profile-login-btn svg { width: 20px; height: 20px; fill: var(--accent-blue); }
+        .profile-login-btn img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 50%; }
+
+        /* --- SLIDE OUT DRAWER PANELS --- */
+        #auth-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(6px);
+            z-index: 9999; display: none; justify-content: flex-end;
+            opacity: 0; transition: all 0.4s ease;
+        }
+        .auth-container {
+            background: var(--bg-card); border-left: 1px solid var(--border-matrix);
+            width: 100%; max-width: 440px; height: 100%; padding: 40px 30px;
+            box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6);
+            display: flex; flex-direction: column; position: relative;
+            transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+        }
+        .close-auth { position: absolute; top: 25px; left: 25px; background: none; border: none; color: var(--text-gray); font-size: 28px; cursor: pointer; z-index: 10; }
+        .close-auth:hover { color: var(--accent-red); }
+
+        .auth-form-side { display: flex; flex-direction: column; height: 100%; margin-top: 30px; }
+        .action-btn { width: 100%; background: var(--accent-blue); color: #05070c; border: none; padding: 15px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; box-shadow: 0 4px 12px var(--accent-glow); margin-top: 10px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-blue); }
         
-        .card { background: #111827; padding: 25px; border-radius: 16px; border: 1px solid #38bdf8; margin-bottom: 20px; }
+        .github-btn { background: #24292e; color: white; border: 1px solid rgba(255,255,255,0.1); }
+        .github-btn:hover { background: #2f363d; box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+
+        /* --- HERO SETUP --- */
+        .hero { display: flex; flex-direction: column; gap: 50px; padding: 40px 0; align-items: center; text-align: center; }
+        @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
         
-        /* Earth Animation */
-        .earth { width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #38bdf8, #000); 
-                 margin: 20px auto; animation: rotate 5s linear infinite; box-shadow: inset -15px -15px 20px #000; }
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 13px; font-weight: 600; padding: 6px 18px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
+        .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
         
-        button { width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; background: #38bdf8; }
+        h1 { font-size: 44px; font-weight: 800; margin-bottom: 20px; color: var(--text-white); line-height: 1.2; }
+        .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
+        .hero-p { font-size: 16px; color: var(--text-gray); margin-bottom: 35px; max-width: 540px; line-height: 1.7; }
+        
+        .btn-group { display: flex; gap: 15px; justify-content: center; }
+        @media (min-width: 768px) { .btn-group { justify-content: flex-start; } }
+        .btn { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; padding: 15px 30px; font-weight: 700; border-radius: 12px; font-size: 15px; transition: all 0.3s; text-transform: uppercase; }
+        .btn-blue { background: var(--accent-blue); color: #05070c; box-shadow: 0 5px 15px var(--accent-glow); }
+        .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--accent-blue); }
+
+        .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; }
+        .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
+        .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+        .section-title { font-size: 28px; font-weight: 800; margin: 70px 0 35px 0; display: flex; align-items: center; }
+        .section-title::before { content: ""; display: inline-block; width: 5px; height: 28px; background: var(--accent-blue); border-radius: 2px; margin-right: 14px; box-shadow: 0 0 15px var(--accent-blue); }
+        
+        .card { background: var(--bg-card); padding: 30px; border-radius: 22px; border: 1px solid rgba(255, 255, 255, 0.03); margin-bottom: 25px; transition: all 0.4s; text-align: left; }
+        .card:hover { transform: translateY(-5px); border-color: rgba(56, 189, 248, 0.25); box-shadow: 0 15px 40px rgba(0,0,0,0.6); }
+        .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 12px; flex-wrap: wrap; gap: 10px; }
+        .company { color: var(--text-white); font-size: 20px; }
+        .tag { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); font-size: 12px; padding: 5px 15px; border-radius: 50px; border: 1px solid rgba(56, 189, 248, 0.1); }
+        .role { color: var(--accent-blue); font-weight: 600; font-size: 16px; margin-bottom: 18px; }
+        .desc-line { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-gray); margin-bottom: 12px; }
+        
+        /* --- SKILLS FRAME SECTIONS --- */
+        .skills-section { background: rgba(13, 17, 28, 0.4); border: 1px solid rgba(255, 255, 255, 0.02); padding: 45px; border-radius: 26px; margin-top: 60px; }
+        .skills-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
+        @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
+        .sub-title { color: var(--accent-blue); font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; letter-spacing: 1.5px; text-align: left; }
+        
+        .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+        @media (max-width: 480px) { .badge-grid { grid-template-columns: 1fr; } }
+        .skill-tag { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); padding: 18px; border-radius: 16px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 14px; }
+        
+        .lang-item { margin-bottom: 22px; font-size: 14px; text-align: left; }
+        .bar { background: rgba(255,255,255,0.05); height: 9px; border-radius: 5px; margin-top: 12px; overflow: hidden; }
+        .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
+        
+        footer { border-top: 1px solid rgba(255, 255, 255, 0.03); padding: 50px 0; text-align: center; color: var(--text-gray); font-size: 13px; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-<div class="container">
-    <div class="logo-box">
-        <div class="logo-text">SSJ</div>
-        <div style="color: #9ca3af;">Data Analyst & SAP Expert</div>
+
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
+            <div class="right-menu">
+                <div class="nav-links">
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
+                    <a href="#skills">Skills</a>
+                </div>
+                <div class="profile-login-btn" onclick="openAuthPortal()">
+                    <svg id="user-icon" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"/></svg>
+                    <img id="user-photo" src="" alt="User Profile">
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div id="auth-overlay" onclick="if(event.target===this) closeAuthPortal()">
+        <div class="auth-container" id="auth-card">
+            <button class="close-auth" onclick="closeAuthPortal()">×</button>
+            
+            <div class="auth-form-side">
+                <div id="auth-gateways">
+                    <h2 style="font-size:24px; font-weight:800; margin-bottom:5px;">Secure Identity</h2>
+                    <p style="color:var(--text-gray); font-size:13px; margin-bottom:25px;">Synchronize account authentication systems safely via GitHub OAuth layer channels.</p>
+                    
+                    <button class="action-btn github-btn" onclick="handleSecureGitHubLogin()">
+                        <svg style="width:18px; height:18px; fill:currentColor;" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                        <span>Continue with GitHub Account</span>
+                    </button>
+                </div>
+
+                <div id="user-dashboard-panel" style="display: none;">
+                    <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 5px;">Dashboard Settings</h2>
+                    <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 25px;" id="dashboard-banner-desc">Authenticated Operator Core Panel</p>
+                    <div class="input-group"><label>Profile Username</label><input type="text" id="dash-name" placeholder="Realign Name" readonly></div>
+                    <button class="action-btn btn-danger" onclick="processSecureLogout()">Disconnect Terminal</button>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="earth"></div>
+    <main class="container">
+        <section class="hero">
+            <div>
+                <div class="badge"><span class="badge-dot"></span><span id="session-status">Public Visitor Mode</span></div>
+                <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
+                <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
+                <div class="btn-group">
+                    <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><span>Get In Touch</span></a>
+                </div>
+            </div>
+            <div>
+                <div class="image-wrapper">
+                    <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
+                </div>
+            </div>
+        </section>
 
-    <div class="card">
-        <h3>Terminal Access</h3>
-        <p id="status">Status: Guest User</p>
-        <button onclick="login()">Login with GitHub</button>
-    </div>
+        <section id="experience">
+            <h2 class="section-title">Professional Journey</h2>
+            <div class="card">
+                <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
+                <div class="role">Invoice SAP Executive</div>
+                <div class="desc-line"><span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
+                <div class="desc-line"><span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
+            </div>
+            <div class="card">
+                <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
+                <div class="role">Store Data Analysis Operations</div>
+                <div class="desc-line"><span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
+            </div>
+            <div class="card">
+                <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
+                <div class="role">Machine Operator</div>
+                <div class="desc-line"><span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
+            </div>
+        </section>
 
-    <div class="card">
-        <h3>Professional Experience</h3>
-        <p>• <strong>Polyhose India:</strong> Invoice SAP Executive</p>
-        <p>• <strong>Hettich:</strong> Store Data Analysis</p>
-        <p>• <strong>Rahul Precision:</strong> Machine Operator</p>
-    </div>
+        <section id="education">
+            <h2 class="section-title">Education Details</h2>
+            <div class="card">
+                <div class="card-top"><span class="company">Diploma in Computer Applications (DCA)</span><span class="tag">2023</span></div>
+                <p style="color: var(--text-gray); font-size: 14px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</p>
+            </div>
+            <div class="card">
+                <div class="card-top"><span class="company">12th Grade</span><span class="tag">2022</span></div>
+                <p style="color: var(--text-gray); font-size: 14px;">Madhya Pradesh Board</p>
+            </div>
+            <div class="card">
+                <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
+                <p style="color: var(--text-gray); font-size: 14px;">Madhya Pradesh Board</p>
+            </div>
+        </section>
 
-    <div class="card">
-        <h3>Contact</h3>
-        <p>📧 surajsinghrajput5040@gmail.com</p>
-        <p>🔗 LinkedIn: /in/suraj-singh-jadon</p>
-    </div>
-</div>
+        <section id="skills" class="skills-section">
+            <div class="skills-grid">
+                <div>
+                    <div class="sub-title">Data Analytics Expertise</div>
+                    <div class="badge-grid">
+                        <div class="skill-tag"><span>SAP Operations</span></div>
+                        <div class="skill-tag"><span>Advanced Excel</span></div>
+                        <div class="skill-tag"><span>MS Office Suite</span></div>
+                        <div class="skill-tag"><span>Data Analysis Speed</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="sub-title">Communication Systems</div>
+                    <div class="lang-item"><div>Hindi (Native) - 100%</div><div class="bar"><div class="fill" style="width: 100%;"></div></div></div>
+                    <div class="lang-item"><div>English (Corporate) - 85%</div><div class="bar"><div class="fill" style="width: 85%;"></div></div></div>
+                </div>
+            </div>
+        </section>
+    </main>
 
-<script>
-    const supabase = window.supabase.createClient("https://ypoxybmhdpxmxcmiimjf.supabase.co", "sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu");
-    async function login() { await supabase.auth.signInWithOAuth({ provider: 'github' }); }
-    supabase.auth.onAuthStateChange((event, session) => {
-        if (session) document.getElementById('status').innerText = "Logged in: " + session.user.email;
-    });
-</script>
+    <footer><p>© 2026 Suraj Singh Jadon. All Infrastructure Terminals Connected Safely.</p></footer>
+
+    <script>
+        // 🔒 REAL SECURE LINK PACKETS SYNCED SUCCESSFULLY 🎯
+        const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
+        const SUPABASE_KEY = "sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu";
+
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        supabase.auth.onAuthStateChange((event, session) => {
+            if (session) {
+                document.getElementById('user-icon').style.display = 'none';
+                const photoNode = document.getElementById('user-photo');
+                photoNode.src = session.user.user_metadata.avatar_url || 'https://img.icons8.com/color/100/checked-user-male.png';
+                photoNode.style.display = 'block';
+                
+                const userName = session.user.user_metadata.full_name || session.user.user_metadata.user_name || session.user.email;
+                document.getElementById('session-status').innerText = "Session Authed: " + userName;
+                configureDashboardUI(true, userName, session.user.email || 'OAuth Token User');
+            } else {
+                document.getElementById('user-photo').style.display = 'none';
+                document.getElementById('user-icon').style.display = 'block';
+                document.getElementById('session-status').innerText = "Public Visitor Mode";
+                configureDashboardUI(false, null, null);
+            }
+        });
+
+        window.handleSecureGitHubLogin = async () => {
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: 'github',
+                options: { redirectTo: window.location.origin + window.location.pathname }
+            });
+            if (error) alert("OAuth handshake delay: " + error.message);
+        };
+
+        window.processSecureLogout = async () => { await supabase.auth.signOut(); closeAuthPortal(); };
+        function openAuthPortal() { const overlay = document.getElementById('auth-overlay'); const card = document.getElementById('auth-card'); overlay.style.display = 'flex'; setTimeout(() => { overlay.style.opacity = '1'; card.style.transform = 'translateX(0)'; }, 50); }
+        function closeAuthPortal() { const overlay = document.getElementById('auth-overlay'); const card = document.getElementById('auth-card'); overlay.style.opacity = '0'; card.style.transform = 'translateX(100%)'; setTimeout(() => { overlay.style.display = 'none'; }, 400); }
+        function configureDashboardUI(isLoggedIn, name, email) { if(isLoggedIn) { document.getElementById('auth-gateways').style.display = 'none'; document.getElementById('user-dashboard-panel').style.display = 'block'; document.getElementById('dashboard-banner-desc').innerText = "Active Node: " + email; document.getElementById('dash-name').value = name; } else { document.getElementById('user-dashboard-panel').style.display = 'none'; document.getElementById('auth-gateways').style.display = 'block'; } }
+    </script>
 </body>
 </html>
