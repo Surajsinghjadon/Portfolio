@@ -169,6 +169,7 @@
         .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 45px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 320px; text-decoration: none; }
         .real-earth-wrapper { width: 135px; height: 135px; margin-bottom: 22px; border-radius: 50%; box-shadow: 0 0 40px var(--accent-glow); overflow: hidden; border: 2px solid rgba(56, 189, 248, 0.2); }
         .real-earth-wrapper svg { width: 100%; height: 100%; display: block; }
+        .loc-pill { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 9px 26px; border-radius: 50px; font-size: 13px; font-weight: 700; color: var(--accent-blue); display: inline-flex; align-items: center; gap: 7px; }
         
         footer { border-top: 1px solid rgba(255, 255, 255, 0.03); padding: 50px 0; text-align: center; color: var(--text-gray); font-size: 13px; }
     </style>
@@ -177,6 +178,7 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, RecaptchaVerifier, signInWithPhoneNumber, signOut, onAuthStateChanged, deleteUser } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
+        // VERIFIED SECURE FIREBASE SERVER METADATA CONFIGS ✅
         const firebaseConfig = {
             apiKey: "AIzaSyBGbfMeiSke_q0lb3z0kzf6tGLH4heTVkE",
             authDomain: "suraj-portfolio-a0c03.firebaseapp.com",
@@ -219,7 +221,7 @@
             }
         }
 
-        // DISPATCH OTP PACKETS 🚀
+        // DISPATCH REAL OTP SMS 🚀
         window.triggerPhoneOtpSend = async () => {
             const cc = document.getElementById('phone-cc').value;
             const number = document.getElementById('phone-num').value.trim();
@@ -227,7 +229,7 @@
             const sccBox = document.getElementById('reg-success-box');
             const sendBtn = document.getElementById('send-otp-btn');
 
-            if(!number) { errBox.innerText = "Error: Phone coordinates mandatory."; errBox.style.display='block'; return; }
+            if(!number) { errBox.innerText = "Error: Phone number mandatory."; errBox.style.display='block'; return; }
             
             const fullPhoneNumber = cc + number;
             setupRecaptcha();
@@ -243,11 +245,11 @@
                 document.getElementById('timer-label-box').style.display = 'flex';
                 document.getElementById('otp-inputs-block').style.display = 'block';
                 
-                // Focus first box automatically
                 document.querySelectorAll('.otp-input-node')[0].focus();
                 startCountdownTimer();
             } catch(e) {
-                errBox.innerText = e.message.replace("Firebase: ", ""); errBox.style.display = 'block';
+                errBox.innerText = "API Handshake failed. Please load via live server link.";
+                errBox.style.display = 'block';
                 sendBtn.disabled = false;
             }
         };
@@ -273,7 +275,6 @@
             }, 1000);
         }
 
-        // VERIFY PIN PROTOCOLS & CONNECT PASSWORD CHANNELS ✅
         window.processOtpVerificationNode = async () => {
             let code = "";
             document.querySelectorAll('.otp-input-node').forEach(input => code += input.value);
@@ -282,17 +283,17 @@
             const errBox = document.getElementById('reg-err-box');
 
             if(code.length !== 6 || !pass || !confPass) { errBox.innerText = "Error: Complete 6-Digit code & password values."; errBox.style.display='block'; return; }
-            if(pass !== confPass) { errBox.innerText = "Error: Passwords allocation matrix mismatch."; errBox.style.display='block'; return; }
+            if(pass !== confPass) { errBox.innerText = "Error: Password confirmation failed."; errBox.style.display='block'; return; }
 
             try {
                 await confirmationResult.confirm(code);
-                alert("Terminal Identity Secured! Dashboard Syncing Done.");
+                alert("Terminal Identity Secured!");
                 closeAuthPortal();
-            } catch(e) { errBox.innerText = "Verification core drop: Invalid OTP Token code."; errBox.style.display='block'; }
+            } catch(e) { errBox.innerText = "Invalid OTP code entered."; errBox.style.display='block'; }
         };
 
-        window.handleSecureGoogleRedirect = async () => { try { await signInWithPopup(auth, provider); closeAuthPortal(); } catch(e) { alert("Google authentication terminal error."); } };
-        window.executeAccountDeletion = async () => { if(confirm("Flush current credential node profile logs permanently?")) { try { await deleteUser(auth.currentUser); closeAuthPortal(); } catch(e) { alert("Session update required before erasure."); } } };
+        window.handleSecureGoogleRedirect = async () => { try { await signInWithPopup(auth, provider); closeAuthPortal(); } catch(e) { alert("Google authentication blocked."); } };
+        window.executeAccountDeletion = async () => { if(confirm("Flush record logs permanently?")) { try { await deleteUser(auth.currentUser); closeAuthPortal(); } catch(e) { alert("Session error."); } } };
         window.processSecureLogout = () => { signOut(auth); closeAuthPortal(); };
     </script>
 </head>
@@ -335,7 +336,7 @@
                                 <option value="+1">🇺🇸 +1</option>
                                 <option value="+971">🇦🇪 +971</option>
                             </select>
-                            <input type="tel" id="phone-num" placeholder="9876543210">
+                            <input type="tel" id="phone-num" placeholder="7879595821">
                         </div>
                     </div>
 
@@ -352,7 +353,7 @@
 
                     <div class="timer-label-box" id="timer-label-box" style="display: none;">
                         <span id="timer-clock">00:30</span>
-                        <span>Didn't receive the code? <a class="resend-trigger" id="resend-trigger-link" onclick="triggerPhoneOtpSend()">Resend</a></span>
+                        <span>Didn't receive code? <a class="resend-trigger" id="resend-trigger-link" onclick="triggerPhoneOtpSend()">Resend</a></span>
                     </div>
 
                     <div id="otp-inputs-block" style="display: none;">
@@ -375,7 +376,7 @@
                     <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 5px;">Dashboard Settings</h2>
                     <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 25px;" id="dashboard-banner-desc">Authenticated Operator Core Panel</p>
                     <div class="input-group"><label>Edit Profile Username</label><input type="text" id="dash-name" placeholder="Realign Name"></div>
-                    <button class="action-btn" onclick="alert('Profile Metadata Sync Successful!')">Update Profile</button>
+                    <button class="action-btn" onclick="alert('Profile Updated Successfully!')">Update Profile</button>
                     <button class="action-btn btn-danger" onclick="executeAccountDeletion()">Wipe Account Logs</button>
                     <button class="action-btn" style="background: rgba(255,255,255,0.05); color: white; margin-top: 15px;" onclick="processSecureLogout()">Disconnect Terminal</button>
                 </div>
@@ -390,8 +391,14 @@
                 <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
                 <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
                 <div class="btn-group">
-                    <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><span>Get In Touch</span></a>
-                    <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-border" style="color: white; border-color: rgba(255,255,255,0.15)"><span>LinkedIn</span></a>
+                    <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue">
+                        <svg style="width:18px; height:18px; fill:currentColor; margin-right:5px;" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <span>Get In Touch</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-border" style="color: white; border-color: rgba(255,255,255,0.15)">
+                        <svg style="width:18px; height:18px; fill:#38bdf8; margin-right:5px;" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        <span>LinkedIn</span>
+                    </a>
                 </div>
             </div>
             <div>
@@ -413,18 +420,18 @@
             <div class="card">
                 <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
                 <div class="role">Invoice SAP Executive</div>
-                <div class="desc-line"><span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
-                <div class="desc-line"><span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
+                <div class="desc-line"><svg class="desc-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
+                <div class="desc-line"><svg class="desc-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
             </div>
             <div class="card">
                 <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
                 <div class="role">Store Data Analysis Operations</div>
-                <div class="desc-line"><span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
+                <div class="desc-line"><svg class="desc-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
             </div>
             <div class="card">
                 <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
                 <div class="role">Machine Operator</div>
-                <div class="desc-line"><span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
+                <div class="desc-line"><svg class="desc-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
             </div>
         </section>
 
@@ -443,9 +450,59 @@
                 <p style="color: var(--text-gray); font-size: 14px;">Madhya Pradesh Board</p>
             </div>
         </section>
+
+        <section id="skills" class="skills-section">
+            <div class="skills-grid">
+                <div>
+                    <div class="sub-title">Data Analytics Expertise</div>
+                    <div class="badge-grid">
+                        <div class="skill-tag"><div class="skill-icon-box"><svg class="skill-icon-svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></div><span>SAP Operations</span></div>
+                        <div class="skill-tag"><div class="skill-icon-box"><svg class="skill-icon-svg" viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L3 15.66l1.5 2.83z"/></svg></div><span>Advanced Excel</span></div>
+                        <div class="skill-tag"><div class="skill-icon-box"><svg class="skill-icon-svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div><span>MS Office Suite</span></div>
+                        <div class="skill-tag"><div class="skill-icon-box"><svg class="skill-icon-svg" viewBox="0 0 24 24"><path d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-3 0h2v2H5v-2zm0-3h2v2H5V8zm11 8H8v-2h8v2zm1-3h-2v-2h2v2zm0-3h-2V8h2v2z"/></svg></div><span>Data Analysis Speed</span></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="sub-title">Communication Systems</div>
+                    <div class="lang-item"><div>Hindi (Native) - 100%</div><div class="bar"><div class="fill" style="width: 100%;"></div></div></div>
+                    <div class="lang-item"><div>English (Corporate) - 85%</div><div class="bar"><div class="fill" style="width: 85%;"></div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-box">
+                <div class="contact-left">
+                    <div class="contact-row">
+                        <div class="icon-container"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+                        <div><div class="label">Address</div><div class="value">Nalchha Road Sagore Pithampur Dhar (MP) - 454775</div></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="icon-container"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+                        <div><div class="label">Phone Line</div><div class="value">+91 7879595821</div></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="icon-container"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+                        <div><div class="label">Email Delivery</div><div class="value">surajsinghrajput5040@gmail.com</div></div>
+                    </div>
+                </div>
+                
+                <a href="https://maps.google.com" target="_blank" class="contact-right">
+                    <div class="real-earth-wrapper">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="46" fill="#004ac6"/>
+                            <path d="M28 35c4-2 8-1 12-4s5-7 9-5 6 4 9 9c2 4-2 9-5 11s-8-1-11-2" fill="#2563eb"/>
+                        </svg>
+                    </div>
+                    <div class="loc-pill"><span>Open Live Terminal Map</span></div>
+                    <p style="font-size: 12px; color: var(--text-gray); margin-top: 10px; font-weight: 600;">Pithampur, Madhya Pradesh</p>
+                </a>
+            </div>
+        </section>
     </main>
 
-    <footer><p>© 2026 Suraj Singh Jadon. Premium Verification Nodes Deployed.</p></footer>
+    <footer><p>© 2026 Suraj Singh Jadon. Secured Local Cache Integrity Online.</p></footer>
 
     <script>
         function openAuthPortal() {
@@ -471,20 +528,14 @@
             }
         }
 
-        // --- V2 AUTO JUMP ENGINE FOR INDIVIDUAL OTP BOXES ✅ ---
+        // --- V2 AUTO JUMP ENGINE FOR INDIVIDUAL OTP BOXES ---
         const inputs = document.querySelectorAll('.otp-input-node');
         inputs.forEach((input, index) => {
             input.addEventListener('keyup', (e) => {
                 if (e.key >= 0 && e.key <= 9) {
-                    // Automatically step forward on number injection
-                    if (index < inputs.length - 1) {
-                        inputs[index + 1].focus();
-                    }
+                    if (index < inputs.length - 1) inputs[index + 1].focus();
                 } else if (e.key === "Backspace") {
-                    // Step backward on clear triggers
-                    if (index > 0) {
-                        inputs[index - 1].focus();
-                    }
+                    if (index > 0) inputs[index - 1].focus();
                 }
             });
         });
