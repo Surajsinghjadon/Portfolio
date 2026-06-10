@@ -5,66 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon | Executive Portfolio</title>
     <style>
-        :root {
-            --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
-            --text-white: #f8fafc; --text-gray: #94a3b8; --accent-red: #ef4444;
-        }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-white); padding: 40px 20px; }
-        .container { max-width: 800px; margin: auto; }
-        
-        /* Layout */
-        header { text-align: center; margin-bottom: 40px; }
-        .logo { font-size: 32px; font-weight: 800; color: var(--accent-blue); }
-        .card { background: var(--bg-card); padding: 30px; border-radius: 20px; border: 1px solid #222; margin-bottom: 20px; }
-        
-        /* Buttons */
-        .btn-group { display: flex; gap: 10px; margin-top: 20px; }
-        .action-btn { flex: 1; padding: 15px; border-radius: 10px; border: none; font-weight: bold; cursor: pointer; text-transform: uppercase; }
-        .login-btn { background: var(--accent-blue); color: #05070c; }
-        .logout-btn { background: var(--accent-red); color: white; }
-        
-        /* Skills */
-        .bar-container { margin: 15px 0; }
-        .bar { background: #1e293b; height: 10px; border-radius: 5px; margin-top: 5px; overflow: hidden; }
-        .fill { background: var(--accent-blue); height: 100%; }
+        body { background-color: #05070c; color: #ffffff; font-family: sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        .card { background: #111827; padding: 25px; border-radius: 16px; border: 1px solid #1f2937; margin-bottom: 20px; }
+        h1 { color: #38bdf8; font-size: 24px; text-align: center; margin-bottom: 5px; }
+        p.subtitle { text-align: center; color: #9ca3af; margin-bottom: 25px; }
+        .btn-container { display: flex; gap: 10px; margin-top: 20px; }
+        button { flex: 1; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
+        .btn-login { background: #38bdf8; color: #000; }
+        .btn-logout { background: #ef4444; color: #fff; }
+        .hidden { display: none; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <div class="logo">Suraj Singh Jadon</div>
-        <p>Data Analyst | SAP Executive</p>
-    </header>
+    <h1>Suraj Singh Jadon</h1>
+    <p class="subtitle">Data Analyst | SAP Executive</p>
 
     <div class="card">
-        <h2 id="user-info">Login to Terminal</h2>
-        <p id="status">Status: Guest User</p>
-        <div class="btn-group">
-            <button class="action-btn login-btn" onclick="login()">Login with GitHub</button>
-            <button class="action-btn logout-btn" onclick="logout()">Logout</button>
+        <h2 id="auth-title">Terminal Access</h2>
+        <p id="auth-status">Status: Awaiting Authentication</p>
+        <div class="btn-container">
+            <button class="btn-login" onclick="login()">Login with GitHub</button>
+            <button class="btn-logout" onclick="logout()">Logout</button>
         </div>
     </div>
 
     <div class="card">
         <h3>Professional Journey</h3>
-        <div style="margin-top:15px;">
-            <p><strong>Polyhose India:</strong> Invoice SAP Executive</p>
-            <p><strong>Hettich:</strong> Store Data Analysis</p>
-            <p><strong>Rahul Precision:</strong> Machine Operator</p>
-        </div>
-    </div>
-
-    <div class="card">
-        <h3>Communication Matrix</h3>
-        <div class="bar-container">Hindi (Native)
-            <div class="bar"><div class="fill" style="width: 100%;"></div></div>
-        </div>
-        <div class="bar-container">English (Corporate)
-            <div class="bar"><div class="fill" style="width: 85%;"></div></div>
-        </div>
+        <p>• Polyhose India: Invoice SAP Executive</p>
+        <p>• Hettich: Store Data Analysis</p>
+        <p>• Rahul Precision: Machine Operator</p>
     </div>
 </div>
 
@@ -73,22 +46,23 @@
     const SUPABASE_KEY = "sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu";
     const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    async function login() { 
-        await supabase.auth.signInWithOAuth({ 
-            provider: 'github', 
-            options: { redirectTo: window.location.origin + window.location.pathname } 
-        }); 
+    async function login() {
+        const { error } = await supabase.auth.signInWithOAuth({ 
+            provider: 'github',
+            options: { redirectTo: window.location.origin + window.location.pathname }
+        });
+        if (error) alert("Login error: " + error.message);
     }
 
-    async function logout() { 
-        await supabase.auth.signOut(); 
-        window.location.reload(); 
+    async function logout() {
+        await supabase.auth.signOut();
+        window.location.reload();
     }
 
     supabase.auth.onAuthStateChange((event, session) => {
         if (session) {
-            document.getElementById('user-info').innerText = "Hello, " + (session.user.user_metadata.full_name || "Operator");
-            document.getElementById('status').innerText = "Status: Authenticated (" + session.user.email + ")";
+            document.getElementById('auth-title').innerText = "Hello, " + (session.user.user_metadata.full_name || "User");
+            document.getElementById('auth-status').innerText = "Status: Authenticated";
         }
     });
 </script>
