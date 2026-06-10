@@ -3,69 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suraj Singh Jadon | Executive Portfolio</title>
+    <title>Suraj Singh Jadon | Portfolio</title>
     <style>
-        body { background-color: #05070c; color: #ffffff; font-family: sans-serif; margin: 0; padding: 20px; }
-        .container { max-width: 600px; margin: 0 auto; }
-        .card { background: #111827; padding: 25px; border-radius: 16px; border: 1px solid #1f2937; margin-bottom: 20px; }
-        h1 { color: #38bdf8; font-size: 24px; text-align: center; margin-bottom: 5px; }
-        p.subtitle { text-align: center; color: #9ca3af; margin-bottom: 25px; }
-        .btn-container { display: flex; gap: 10px; margin-top: 20px; }
-        button { flex: 1; padding: 15px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; }
-        .btn-login { background: #38bdf8; color: #000; }
-        .btn-logout { background: #ef4444; color: #fff; }
-        .hidden { display: none; }
+        body { background: #05070c; color: white; font-family: sans-serif; margin: 0; padding: 20px; }
+        .container { max-width: 600px; margin: auto; }
+        
+        /* Logo Styling */
+        .logo-box { text-align: center; margin-bottom: 20px; }
+        .logo-text { font-size: 36px; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .card { background: #111827; padding: 25px; border-radius: 16px; border: 1px solid #38bdf8; margin-bottom: 20px; }
+        
+        /* Earth Animation */
+        .earth { width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle at 30% 30%, #38bdf8, #000); 
+                 margin: 20px auto; animation: rotate 5s linear infinite; box-shadow: inset -15px -15px 20px #000; }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        
+        button { width: 100%; padding: 14px; border: none; border-radius: 8px; font-weight: bold; cursor: pointer; background: #38bdf8; }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-
 <div class="container">
-    <h1>Suraj Singh Jadon</h1>
-    <p class="subtitle">Data Analyst | SAP Executive</p>
+    <div class="logo-box">
+        <div class="logo-text">SSJ</div>
+        <div style="color: #9ca3af;">Data Analyst & SAP Expert</div>
+    </div>
+
+    <div class="earth"></div>
 
     <div class="card">
-        <h2 id="auth-title">Terminal Access</h2>
-        <p id="auth-status">Status: Awaiting Authentication</p>
-        <div class="btn-container">
-            <button class="btn-login" onclick="login()">Login with GitHub</button>
-            <button class="btn-logout" onclick="logout()">Logout</button>
-        </div>
+        <h3>Terminal Access</h3>
+        <p id="status">Status: Guest User</p>
+        <button onclick="login()">Login with GitHub</button>
     </div>
 
     <div class="card">
-        <h3>Professional Journey</h3>
-        <p>• Polyhose India: Invoice SAP Executive</p>
-        <p>• Hettich: Store Data Analysis</p>
-        <p>• Rahul Precision: Machine Operator</p>
+        <h3>Professional Experience</h3>
+        <p>• <strong>Polyhose India:</strong> Invoice SAP Executive</p>
+        <p>• <strong>Hettich:</strong> Store Data Analysis</p>
+        <p>• <strong>Rahul Precision:</strong> Machine Operator</p>
+    </div>
+
+    <div class="card">
+        <h3>Contact</h3>
+        <p>📧 surajsinghrajput5040@gmail.com</p>
+        <p>🔗 LinkedIn: /in/suraj-singh-jadon</p>
     </div>
 </div>
 
 <script>
-    const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu";
-    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-
-    async function login() {
-        const { error } = await supabase.auth.signInWithOAuth({ 
-            provider: 'github',
-            options: { redirectTo: window.location.origin + window.location.pathname }
-        });
-        if (error) alert("Login error: " + error.message);
-    }
-
-    async function logout() {
-        await supabase.auth.signOut();
-        window.location.reload();
-    }
-
+    const supabase = window.supabase.createClient("https://ypoxybmhdpxmxcmiimjf.supabase.co", "sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu");
+    async function login() { await supabase.auth.signInWithOAuth({ provider: 'github' }); }
     supabase.auth.onAuthStateChange((event, session) => {
-        if (session) {
-            document.getElementById('auth-title').innerText = "Hello, " + (session.user.user_metadata.full_name || "User");
-            document.getElementById('auth-status').innerText = "Status: Authenticated";
-        }
+        if (session) document.getElementById('status').innerText = "Logged in: " + session.user.email;
     });
 </script>
-
 </body>
 </html>
