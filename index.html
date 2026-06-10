@@ -146,7 +146,7 @@
         .desc-line { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-gray); margin-bottom: 12px; }
         .desc-icon { width: 17px; height: 17px; margin-top: 4px; fill: var(--accent-blue); flex-shrink: 0; }
         
-        /* Skills & Score architecture */
+        /* Skills section design style */
         .skills-section { background: rgba(13, 17, 28, 0.4); border: 1px solid rgba(255, 255, 255, 0.02); padding: 45px; border-radius: 26px; margin-top: 60px; }
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
@@ -174,14 +174,22 @@
         .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 45px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 320px; text-decoration: none; }
         .real-earth-wrapper { width: 135px; height: 135px; margin-bottom: 22px; border-radius: 50%; box-shadow: 0 0 40px var(--accent-glow); overflow: hidden; border: 2px solid rgba(56, 189, 248, 0.2); }
         .real-earth-wrapper svg { width: 100%; height: 100%; display: block; }
-        .loc-pill { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 9px 26px; border-radius: 50px; font-size: 13px; font-weight: 700; color: var(--accent-blue); display: inline-flex; align-items: center; gap: 7px; }
         
         footer { border-top: 1px solid rgba(255, 255, 255, 0.03); padding: 50px 0; text-align: center; color: var(--text-gray); font-size: 13px; }
     </style>
 
+    <script type="importmap">
+      {
+        "imports": {
+          "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+          "firebase/auth": "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js"
+        }
+      }
+    </script>
+
     <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getAuth, signInWithPopup, GoogleAuthProvider, RecaptchaVerifier, signInWithPhoneNumber, signOut, onAuthStateChanged, deleteUser } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { initializeApp } from "firebase/app";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, RecaptchaVerifier, signInWithPhoneNumber, signOut, onAuthStateChanged, deleteUser } from "firebase/auth";
 
         const firebaseConfig = {
             apiKey: "AIzaSyBGbfMeiSke_q0lb3z0kzf6tGLH4heTVkE",
@@ -219,12 +227,17 @@
             }
         });
 
-        function setupRecaptcha() {
+        // 100% REAL GOOGLE BACKEND INITIALIZATION RECAPTCHA VERIFIER NODES ✅
+        window.initRecaptchaTerminal = () => {
             if (!window.recaptchaVerifier) {
-                window.recaptchaVerifier = new RecaptVerifier(auth, 'recaptcha-container', { 'size': 'invisible' });
+                window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-anchor-node', {
+                    'size': 'invisible',
+                    'callback': (response) => { console.log("Recaptcha network resolved."); }
+                });
             }
-        }
+        };
 
+        // DISPATCH 100% REAL CLOUD NETWORK SMS OTP PACKETS 🚀
         window.triggerPhoneOtpSend = async () => {
             const cc = document.getElementById('phone-cc').value;
             const number = document.getElementById('phone-num').value.trim();
@@ -232,16 +245,21 @@
             const sccBox = document.getElementById('reg-success-box');
             const sendBtn = document.getElementById('send-otp-btn');
 
-            if(!number) { errBox.innerText = "Error: Phone number mandatory."; errBox.style.display='block'; return; }
+            if(!number) { errBox.innerText = "Error: Input phone coordinates empty."; errBox.style.display='block'; return; }
             const fullPhoneNumber = cc + number;
-            setupRecaptcha();
+            
+            window.initRecaptchaTerminal();
 
             try {
                 sendBtn.disabled = true;
-                confirmationResult = await signInWithPhoneNumber(auth, fullPhoneNumber, window.recaptchaVerifier);
                 errBox.style.display = 'none';
-                sccBox.innerText = "Let's verify your number. Code sent safely to " + fullPhoneNumber;
+                sccBox.innerText = "Initializing security protocols. Please wait...";
                 sccBox.style.display = 'block';
+
+                // Real Google Network phone SMS trigger function
+                confirmationResult = await signInWithPhoneNumber(auth, fullPhoneNumber, window.recaptchaVerifier);
+                
+                sccBox.innerText = "Let's verify your number. 6-Digit Real SMS OTP dispatched to " + fullPhoneNumber;
                 
                 document.getElementById('otp-animation-wrapper').style.display = 'flex';
                 document.getElementById('timer-label-box').style.display = 'flex';
@@ -250,9 +268,11 @@
                 document.querySelectorAll('.otp-input-node')[0].focus();
                 startCountdownTimer();
             } catch(e) {
-                errBox.innerText = "API Handshake failed. Please load via live server link.";
+                console.error(e);
+                errBox.innerText = "Error: " + e.message.replace("Firebase: ", "") + " (Please host via live GitHub domain).";
                 errBox.style.display = 'block';
                 sendBtn.disabled = false;
+                sccBox.style.display = 'none';
             }
         };
 
@@ -262,8 +282,8 @@
             const resendLink = document.getElementById('resend-trigger-link');
             const sendBtn = document.getElementById('send-otp-btn');
             resendLink.classList.remove('active');
-            clearInterval(timerInstance);
             
+            clearInterval(timerInstance);
             timerInstance = setInterval(() => {
                 duration--;
                 clockLabel.innerText = "00:" + (duration < 10 ? "0" : "") + duration;
@@ -276,6 +296,7 @@
             }, 1000);
         }
 
+        // VERIFY REAL SMS CODE NODES INTERFACE VALIDATION ✅
         window.processOtpVerificationNode = async () => {
             let code = "";
             document.querySelectorAll('.otp-input-node').forEach(input => code += input.value);
@@ -283,18 +304,18 @@
             const confPass = document.getElementById('reg-confirm-pass').value.trim();
             const errBox = document.getElementById('reg-err-box');
 
-            if(code.length !== 6 || !pass || !confPass) { errBox.innerText = "Error: Complete 6-Digit code & password values."; errBox.style.display='block'; return; }
-            if(pass !== confPass) { errBox.innerText = "Error: Password confirmation failed."; errBox.style.display='block'; return; }
+            if(code.length !== 6 || !pass || !confPass) { errBox.innerText = "Error: Fill 6-Digit OTP and matching password frames."; errBox.style.display='block'; return; }
+            if(pass !== confPass) { errBox.innerText = "Error: Password strings mismatch."; errBox.style.display='block'; return; }
 
             try {
                 await confirmationResult.confirm(code);
-                alert("Terminal Identity Secured!");
+                alert("Identity Authenticated Safely! Master session initialized.");
                 closeAuthPortal();
-            } catch(e) { errBox.innerText = "Invalid OTP code entered."; errBox.style.display='block'; }
+            } catch(e) { errBox.innerText = "Error: Invalid real SMS OTP verification code code token."; errBox.style.display='block'; }
         };
 
-        window.handleSecureGoogleRedirect = async () => { try { await signInWithPopup(auth, provider); closeAuthPortal(); } catch(e) { alert("Google authentication blocked."); } };
-        window.executeAccountDeletion = async () => { if(confirm("Flush record logs permanently?")) { try { await deleteUser(auth.currentUser); closeAuthPortal(); } catch(e) { alert("Session error."); } } };
+        window.handleSecureGoogleRedirect = async () => { try { await signInWithPopup(auth, provider); closeAuthPortal(); } catch(e) { alert("Google connection error."); } };
+        window.executeAccountDeletion = async () => { if(confirm("Flush credentials permanently?")) { try { await deleteUser(auth.currentUser); closeAuthPortal(); } catch(e) { alert("Session update key mandatory."); } } };
         window.processSecureLogout = () => { signOut(auth); closeAuthPortal(); };
     </script>
 </head>
@@ -318,7 +339,7 @@
         </div>
     </header>
 
-    <div id="recaptcha-container"></div>
+    <div id="recaptcha-anchor-node"></div>
 
     <div id="auth-overlay" onclick="if(event.target===this) closeAuthPortal()">
         <div class="auth-container" id="auth-card">
@@ -392,14 +413,8 @@
                 <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
                 <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
                 <div class="btn-group">
-                    <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue">
-                        <svg style="width:18px; height:18px; fill:currentColor; margin-right:5px;" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                        <span>Get In Touch</span>
-                    </a>
-                    <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-border" style="color: white; border-color: rgba(255,255,255,0.15)">
-                        <svg style="width:18px; height:18px; fill:#38bdf8; margin-right:5px;" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
-                        <span>LinkedIn</span>
-                    </a>
+                    <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><span>Get In Touch</span></a>
+                    <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-border" style="color: white; border-color: rgba(255,255,255,0.15)"><span>LinkedIn</span></a>
                 </div>
             </div>
             <div>
@@ -489,21 +504,18 @@
                     </div>
                 </div>
                 
-                <a href="https://maps.google.com" target="_blank" class="contact-right">
+                <div class="contact-right">
                     <div class="real-earth-wrapper">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="50" cy="50" r="46" fill="#004ac6"/>
-                            <path d="M28 35c4-2 8-1 12-4s5-7 9-5 6 4 9 9c2 4-2 9-5 11s-8-1-11-2" fill="#2563eb"/>
-                        </svg>
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="46" fill="#004ac6"/><path d="M28 35c4-2 8-1 12-4s5-7 9-5 6 4 9 9c2 4-2 9-5 11s-8-1-11-2" fill="#2563eb"/></svg>
                     </div>
                     <div class="loc-pill"><span>Open Live Terminal Map</span></div>
                     <p style="font-size: 12px; color: var(--text-gray); margin-top: 10px; font-weight: 600;">Pithampur, Madhya Pradesh</p>
-                </a>
+                </div>
             </div>
         </section>
     </main>
 
-    <footer><p>© 2026 Suraj Singh Jadon. Local Matrix Realigned.</p></footer>
+    <footer><p>© 2026 Suraj Singh Jadon. Real Dynamic Authorization Environment Enabled.</p></footer>
 
     <script>
         function openAuthPortal() {
