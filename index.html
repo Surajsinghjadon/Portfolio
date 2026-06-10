@@ -146,6 +146,7 @@
         .desc-line { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-gray); margin-bottom: 12px; }
         .desc-icon { width: 17px; height: 17px; margin-top: 4px; fill: var(--accent-blue); flex-shrink: 0; }
         
+        /* Skills & Score architecture */
         .skills-section { background: rgba(13, 17, 28, 0.4); border: 1px solid rgba(255, 255, 255, 0.02); padding: 45px; border-radius: 26px; margin-top: 60px; }
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
@@ -156,6 +157,10 @@
         .skill-tag { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); padding: 18px; border-radius: 16px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 14px; }
         .skill-icon-box { background: rgba(56, 189, 248, 0.06); width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
         .skill-icon-svg { width: 19px; height: 19px; fill: var(--accent-blue); }
+        
+        .lang-item { margin-bottom: 22px; font-size: 14px; text-align: left; }
+        .bar { background: rgba(255,255,255,0.05); height: 9px; border-radius: 5px; margin-top: 12px; overflow: hidden; }
+        .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
 
         .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 26px; display: flex; flex-direction: column; overflow: hidden; margin-top: 40px; margin-bottom: 100px; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
@@ -178,7 +183,6 @@
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
         import { getAuth, signInWithPopup, GoogleAuthProvider, RecaptchaVerifier, signInWithPhoneNumber, signOut, onAuthStateChanged, deleteUser } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
-        // VERIFIED SECURE FIREBASE SERVER METADATA CONFIGS ✅
         const firebaseConfig = {
             apiKey: "AIzaSyBGbfMeiSke_q0lb3z0kzf6tGLH4heTVkE",
             authDomain: "suraj-portfolio-a0c03.firebaseapp.com",
@@ -217,11 +221,10 @@
 
         function setupRecaptcha() {
             if (!window.recaptchaVerifier) {
-                window.recaptchaVerifier = new RecaptchaVerifier(auth, 'recaptcha-container', { 'size': 'invisible' });
+                window.recaptchaVerifier = new RecaptVerifier(auth, 'recaptcha-container', { 'size': 'invisible' });
             }
         }
 
-        // DISPATCH REAL OTP SMS 🚀
         window.triggerPhoneOtpSend = async () => {
             const cc = document.getElementById('phone-cc').value;
             const number = document.getElementById('phone-num').value.trim();
@@ -230,7 +233,6 @@
             const sendBtn = document.getElementById('send-otp-btn');
 
             if(!number) { errBox.innerText = "Error: Phone number mandatory."; errBox.style.display='block'; return; }
-            
             const fullPhoneNumber = cc + number;
             setupRecaptcha();
 
@@ -259,7 +261,6 @@
             const clockLabel = document.getElementById('timer-clock');
             const resendLink = document.getElementById('resend-trigger-link');
             const sendBtn = document.getElementById('send-otp-btn');
-            
             resendLink.classList.remove('active');
             clearInterval(timerInstance);
             
@@ -502,7 +503,7 @@
         </section>
     </main>
 
-    <footer><p>© 2026 Suraj Singh Jadon. Secured Local Cache Integrity Online.</p></footer>
+    <footer><p>© 2026 Suraj Singh Jadon. Local Matrix Realigned.</p></footer>
 
     <script>
         function openAuthPortal() {
@@ -528,7 +529,6 @@
             }
         }
 
-        // --- V2 AUTO JUMP ENGINE FOR INDIVIDUAL OTP BOXES ---
         const inputs = document.querySelectorAll('.otp-input-node');
         inputs.forEach((input, index) => {
             input.addEventListener('keyup', (e) => {
