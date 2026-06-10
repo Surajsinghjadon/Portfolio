@@ -48,7 +48,7 @@
         .profile-login-btn svg { width: 20px; height: 20px; fill: var(--accent-blue); }
         .profile-login-btn img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 50%; }
 
-        /* --- SLIDE OUT DRAWER PANELS --- */
+        /* --- MODERN RIGHT SLIDE OUT PANEL GATEWAY --- */
         #auth-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(6px);
@@ -76,6 +76,7 @@
         .phone-row select { width: 100px; padding: 13px 10px; }
         .phone-row input { flex: 1; }
 
+        /* --- V2 SEPARATE BOX ANIMATED OTP INTERFACE PANEL --- */
         .otp-box-wrapper { display: flex; justify-content: space-between; gap: 8px; margin: 15px 0 5px 0; }
         .otp-input-node {
             width: 48px; height: 54px; background: rgba(0, 0, 0, 0.4);
@@ -83,13 +84,26 @@
             color: white; text-align: center; font-size: 22px; font-weight: 700;
             outline: none; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .otp-input-node:focus { border-color: var(--accent-blue); box-shadow: 0 0 12px rgba(56, 189, 248, 0.3); transform: scale(1.05); }
+        .otp-input-node:focus {
+            border-color: var(--accent-blue);
+            box-shadow: 0 0 12px rgba(56, 189, 248, 0.3);
+            transform: scale(1.05);
+        }
 
-        .action-btn { width: 100%; background: var(--accent-blue); color: #05070c; border: none; padding: 15px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; box-shadow: 0 4px 12px var(--accent-glow); margin-top: 10px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .action-btn { width: 100%; background: var(--accent-blue); color: #05070c; border: none; padding: 15px; border-radius: 12px; font-size: 14px; font-weight: 700; cursor: pointer; transition: all 0.3s; text-transform: uppercase; box-shadow: 0 4px 12px var(--accent-glow); margin-top: 10px; margin-bottom: 12px; }
         .action-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px var(--accent-blue); }
+        .action-btn:disabled { background: #1e293b; color: var(--text-gray); box-shadow: none; cursor: not-allowed; }
         
-        .github-btn { background: #24292e; color: white; border: 1px solid rgba(255,255,255,0.1); }
-        .github-btn:hover { background: #2f363d; box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+        .btn-danger { background: var(--accent-red); color: white; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.3); }
+        .btn-danger:hover { box-shadow: 0 6px 20px var(--accent-red); }
+
+        .social-divider { display: flex; align-items: center; text-align: center; color: var(--text-gray); font-size: 11px; margin: 20px 0; text-transform: uppercase; letter-spacing: 0.5px; }
+        .social-divider::before, .social-divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .social-divider:not(:empty)::before { margin-right: .5em; } .social-divider:not(:empty)::after { margin-left: .5em; }
+
+        .google-btn { width: 100%; background: rgba(255,255,255,0.02); color: white; border: 1px solid rgba(255,255,255,0.06); padding: 13px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; }
+        .google-btn:hover { background: rgba(255,255,255,0.06); border-color: var(--accent-blue); }
+        .google-btn svg { width: 16px; height: 16px; }
 
         .error-txt { color: #f87171; font-size: 12px; margin-top: 8px; font-weight: 600; display: none; text-align: left; line-height: 1.4; }
         .success-txt { color: #4ade80; font-size: 12px; margin-top: 8px; font-weight: 600; display: none; text-align: left; }
@@ -97,11 +111,11 @@
         .resend-trigger { color: var(--accent-blue); cursor: pointer; text-decoration: none; pointer-events: none; opacity: 0.5; transition: all 0.3s; }
         .resend-trigger.active { pointer-events: auto; opacity: 1; text-shadow: 0 0 8px var(--accent-glow); }
 
-        /* --- HERO & INTERFACE SECTION --- */
+        /* --- HERO SETUP --- */
         .hero { display: flex; flex-direction: column; gap: 50px; padding: 40px 0; align-items: center; text-align: center; }
         @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
         
-        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 13px; font-weight: 600; padding: 6px 18px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 13px; font-weight: 600; padding: 6px 18px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; animation: pulseGlow 2.5s infinite alternate; }
         .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
         
         h1 { font-size: 44px; font-weight: 800; margin-bottom: 20px; color: var(--text-white); line-height: 1.2; }
@@ -117,6 +131,8 @@
         .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; }
         .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 12px; z-index: 10; }
+        .badge-check { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
 
         .section-title { font-size: 28px; font-weight: 800; margin: 70px 0 35px 0; display: flex; align-items: center; }
         .section-title::before { content: ""; display: inline-block; width: 5px; height: 28px; background: var(--accent-blue); border-radius: 2px; margin-right: 14px; box-shadow: 0 0 15px var(--accent-blue); }
@@ -128,7 +144,9 @@
         .tag { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); font-size: 12px; padding: 5px 15px; border-radius: 50px; border: 1px solid rgba(56, 189, 248, 0.1); }
         .role { color: var(--accent-blue); font-weight: 600; font-size: 16px; margin-bottom: 18px; }
         .desc-line { display: flex; align-items: flex-start; gap: 12px; font-size: 14px; color: var(--text-gray); margin-bottom: 12px; }
+        .desc-icon { width: 17px; height: 17px; margin-top: 4px; fill: var(--accent-blue); flex-shrink: 0; }
         
+        /* Skills & Score architecture */
         .skills-section { background: rgba(13, 17, 28, 0.4); border: 1px solid rgba(255, 255, 255, 0.02); padding: 45px; border-radius: 26px; margin-top: 60px; }
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 50px; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
@@ -137,14 +155,148 @@
         .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
         @media (max-width: 480px) { .badge-grid { grid-template-columns: 1fr; } }
         .skill-tag { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); padding: 18px; border-radius: 16px; font-size: 14px; font-weight: 600; display: flex; align-items: center; gap: 14px; }
+        .skill-icon-box { background: rgba(56, 189, 248, 0.06); width: 36px; height: 36px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .skill-icon-svg { width: 19px; height: 19px; fill: var(--accent-blue); }
         
         .lang-item { margin-bottom: 22px; font-size: 14px; text-align: left; }
         .bar { background: rgba(255,255,255,0.05); height: 9px; border-radius: 5px; margin-top: 12px; overflow: hidden; }
         .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
+
+        .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 26px; display: flex; flex-direction: column; overflow: hidden; margin-top: 40px; margin-bottom: 100px; }
+        @media (min-width: 768px) { .contact-box { flex-direction: row; } }
+        .contact-left { padding: 45px; flex: 1.2; text-align: left; }
+        .contact-row { display: flex; align-items: center; gap: 22px; margin-bottom: 35px; }
+        .icon-container { background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.1); width: 50px; height: 50px; border-radius: 14px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .icon-container svg { width: 19px; height: 19px; fill: var(--accent-blue); }
+        .label { font-size: 11px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
+        .value { font-size: 15px; font-weight: 700; color: var(--text-white); margin-top: 5px; }
+        
+        .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 45px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 320px; text-decoration: none; }
+        .real-earth-wrapper { width: 135px; height: 135px; margin-bottom: 22px; border-radius: 50%; box-shadow: 0 0 40px var(--accent-glow); overflow: hidden; border: 2px solid rgba(56, 189, 248, 0.2); }
+        .real-earth-wrapper svg { width: 100%; height: 100%; display: block; }
+        .loc-pill { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 9px 26px; border-radius: 50px; font-size: 13px; font-weight: 700; color: var(--accent-blue); display: inline-flex; align-items: center; gap: 7px; }
         
         footer { border-top: 1px solid rgba(255, 255, 255, 0.03); padding: 50px 0; text-align: center; color: var(--text-gray); font-size: 13px; }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, RecaptchaVerifier, signInWithPhoneNumber, signOut, onAuthStateChanged, deleteUser } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyBGbfMeiSke_q0lb3z0kzf6tGLH4heTVkE",
+            authDomain: "suraj-portfolio-a0c03.firebaseapp.com",
+            projectId: "suraj-portfolio-a0c03",
+            storageBucket: "suraj-portfolio-a0c03.appspot.com",
+            messagingSenderId: "96020665421",
+            appId: "1:96020665421:web:7866ec81be04e6000cb804",
+            measurementId: "G-VT83MXRCRP"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const provider = new GoogleAuthProvider();
+        provider.setCustomParameters({ prompt: 'select_account' });
+
+        let confirmationResult = null;
+        let timerInstance = null;
+
+        const userIcon = document.getElementById('user-icon');
+        const userPhoto = document.getElementById('user-photo');
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                userIcon.style.display = 'none';
+                userPhoto.src = user.photoURL || 'https://img.icons8.com/color/100/checked-user-male.png';
+                userPhoto.style.display = 'block';
+                document.getElementById('session-status').innerText = "Session Authed: " + (user.displayName || user.phoneNumber);
+                configureDashboardUI(true, user);
+            } else {
+                userPhoto.style.display = 'none';
+                userIcon.style.display = 'block';
+                document.getElementById('session-status').innerText = "Public Visitor Mode";
+                configureDashboardUI(false, null);
+            }
+        });
+
+        function setupRecaptcha() {
+            if (!window.recaptchaVerifier) {
+                window.recaptchaVerifier = new RecaptVerifier(auth, 'recaptcha-container', { 'size': 'invisible' });
+            }
+        }
+
+        window.triggerPhoneOtpSend = async () => {
+            const cc = document.getElementById('phone-cc').value;
+            const number = document.getElementById('phone-num').value.trim();
+            const errBox = document.getElementById('reg-err-box');
+            const sccBox = document.getElementById('reg-success-box');
+            const sendBtn = document.getElementById('send-otp-btn');
+
+            if(!number) { errBox.innerText = "Error: Phone number mandatory."; errBox.style.display='block'; return; }
+            const fullPhoneNumber = cc + number;
+            setupRecaptcha();
+
+            try {
+                sendBtn.disabled = true;
+                confirmationResult = await signInWithPhoneNumber(auth, fullPhoneNumber, window.recaptchaVerifier);
+                errBox.style.display = 'none';
+                sccBox.innerText = "Let's verify your number. Code sent safely to " + fullPhoneNumber;
+                sccBox.style.display = 'block';
+                
+                document.getElementById('otp-animation-wrapper').style.display = 'flex';
+                document.getElementById('timer-label-box').style.display = 'flex';
+                document.getElementById('otp-inputs-block').style.display = 'block';
+                
+                document.querySelectorAll('.otp-input-node')[0].focus();
+                startCountdownTimer();
+            } catch(e) {
+                errBox.innerText = "API Handshake failed. Please load via live server link.";
+                errBox.style.display = 'block';
+                sendBtn.disabled = false;
+            }
+        };
+
+        function startCountdownTimer() {
+            let duration = 30;
+            const clockLabel = document.getElementById('timer-clock');
+            const resendLink = document.getElementById('resend-trigger-link');
+            const sendBtn = document.getElementById('send-otp-btn');
+            resendLink.classList.remove('active');
+            clearInterval(timerInstance);
+            
+            timerInstance = setInterval(() => {
+                duration--;
+                clockLabel.innerText = "00:" + (duration < 10 ? "0" : "") + duration;
+                if(duration <= 0) {
+                    clearInterval(timerInstance);
+                    clockLabel.innerText = "Expired";
+                    resendLink.classList.add('active');
+                    sendBtn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        window.processOtpVerificationNode = async () => {
+            let code = "";
+            document.querySelectorAll('.otp-input-node').forEach(input => code += input.value);
+            const pass = document.getElementById('reg-pass').value.trim();
+            const confPass = document.getElementById('reg-confirm-pass').value.trim();
+            const errBox = document.getElementById('reg-err-box');
+
+            if(code.length !== 6 || !pass || !confPass) { errBox.innerText = "Error: Complete 6-Digit code & password values."; errBox.style.display='block'; return; }
+            if(pass !== confPass) { errBox.innerText = "Error: Password confirmation failed."; errBox.style.display='block'; return; }
+
+            try {
+                await confirmationResult.confirm(code);
+                alert("Terminal Identity Secured!");
+                closeAuthPortal();
+            } catch(e) { errBox.innerText = "Invalid OTP code entered."; errBox.style.display='block'; }
+        };
+
+        window.handleSecureGoogleRedirect = async () => { try { await signInWithPopup(auth, provider); closeAuthPortal(); } catch(e) { alert("Google authentication blocked."); } };
+        window.executeAccountDeletion = async () => { if(confirm("Flush record logs permanently?")) { try { await deleteUser(auth.currentUser); closeAuthPortal(); } catch(e) { alert("Session error."); } } };
+        window.processSecureLogout = () => { signOut(auth); closeAuthPortal(); };
+    </script>
 </head>
 <body>
 
@@ -166,20 +318,24 @@
         </div>
     </header>
 
+    <div id="recaptcha-container"></div>
+
     <div id="auth-overlay" onclick="if(event.target===this) closeAuthPortal()">
         <div class="auth-container" id="auth-card">
             <button class="close-auth" onclick="closeAuthPortal()">×</button>
             
             <div class="auth-form-side">
                 <div id="auth-gateways">
-                    <h2 style="font-size:24px; font-weight:800; margin-bottom:5px;">Secure Verification</h2>
-                    <p style="color:var(--text-gray); font-size:13px; margin-bottom:25px;">Connect your profile seamlessly using phone verification infrastructure.</p>
+                    <h2 style="font-size:24px; font-weight:800; margin-bottom:5px;">OTP Verification</h2>
+                    <p style="color:var(--text-gray); font-size:13px; margin-bottom:25px;">Authenticate secure link terminals via text verification logs.</p>
                     
                     <div class="input-group">
                         <label>Mobile Network Terminal</label>
                         <div class="phone-row">
                             <select id="phone-cc">
                                 <option value="+91">🇮🇳 +91</option>
+                                <option value="+1">🇺🇸 +1</option>
+                                <option value="+971">🇦🇪 +971</option>
                             </select>
                             <input type="tel" id="phone-num" placeholder="7879595821">
                         </div>
@@ -204,26 +360,26 @@
                     <div id="otp-inputs-block" style="display: none;">
                         <div class="input-group"><label>Create Security Password</label><input type="password" id="reg-pass" placeholder="••••••••"></div>
                         <div class="input-group"><label>Confirm Security Password</label><input type="password" id="reg-confirm-pass" placeholder="••••••••"></div>
-                        <button class="action-btn" style="background: var(--accent-green); color:#05070c;" onclick="processOtpVerificationNode()">Verify & Connect</button>
+                        <button class="action-btn" style="background: var(--accent-green); color:#05070c;" onclick="processOtpVerificationNode()">Verify & Deploy</button>
                     </div>
 
                     <div class="error-txt" id="reg-err-box"></div>
                     <div class="success-txt" id="reg-success-box"></div>
 
-                    <div class="social-divider" style="margin: 20px 0; text-align: center; font-size: 12px; color: var(--text-gray);">Or Secure-Sync Via</div>
-                    
-                    <button class="action-btn github-btn" onclick="handleSecureGitHubLogin()">
-                        <svg style="width:18px; height:18px; fill:currentColor;" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-                        <span>Continue with GitHub ID</span>
+                    <div class="social-divider">Or Secure-Sync Via</div>
+                    <button class="google-btn" onclick="handleSecureGoogleRedirect()">
+                        <svg viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.47 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                        <span>Continue with Google ID</span>
                     </button>
                 </div>
 
                 <div id="user-dashboard-panel" style="display: none;">
                     <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 5px;">Dashboard Settings</h2>
                     <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 25px;" id="dashboard-banner-desc">Authenticated Operator Core Panel</p>
-                    <div class="input-group"><label>Profile Username</label><input type="text" id="dash-name" placeholder="Realign Name"></div>
+                    <div class="input-group"><label>Edit Profile Username</label><input type="text" id="dash-name" placeholder="Realign Name"></div>
                     <button class="action-btn" onclick="alert('Profile Updated Successfully!')">Update Profile</button>
-                    <button class="action-btn" style="background: var(--accent-red); color: white;" onclick="processSecureLogout()">Disconnect Terminal</button>
+                    <button class="action-btn btn-danger" onclick="executeAccountDeletion()">Wipe Account Logs</button>
+                    <button class="action-btn" style="background: rgba(255,255,255,0.05); color: white; margin-top: 15px;" onclick="processSecureLogout()">Disconnect Terminal</button>
                 </div>
             </div>
         </div>
@@ -236,13 +392,26 @@
                 <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
                 <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
                 <div class="btn-group">
-                    <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><span>Get In Touch</span></a>
-                    <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn" style="color: white; border: 1px solid rgba(255,255,255,0.15)"><span>LinkedIn</span></a>
+                    <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue">
+                        <svg style="width:18px; height:18px; fill:currentColor; margin-right:5px;" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                        <span>Get In Touch</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-border" style="color: white; border-color: rgba(255,255,255,0.15)">
+                        <svg style="width:18px; height:18px; fill:#38bdf8; margin-right:5px;" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        <span>LinkedIn</span>
+                    </a>
                 </div>
             </div>
             <div>
                 <div class="image-wrapper">
                     <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
+                    <div class="floating-badge">
+                        <div class="badge-check">✓</div>
+                        <div>
+                            <p style="font-size: 9px; text-transform: uppercase; color: var(--accent-blue); font-weight: 800;">Experience</p>
+                            <p style="font-size: 15px; font-weight: 800; color: white;">4+ Years</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -252,18 +421,18 @@
             <div class="card">
                 <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
                 <div class="role">Invoice SAP Executive</div>
-                <div class="desc-line"><span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
-                <div class="desc-line"><span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
+                <div class="desc-line"><svg class="desc-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
+                <div class="desc-line"><svg class="desc-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
             </div>
             <div class="card">
                 <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
                 <div class="role">Store Data Analysis Operations</div>
-                <div class="desc-line"><span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
+                <div class="desc-line"><svg class="desc-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
             </div>
             <div class="card">
                 <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
                 <div class="role">Machine Operator</div>
-                <div class="desc-line"><span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
+                <div class="desc-line"><svg class="desc-icon" viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg><span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
             </div>
         </section>
 
@@ -288,10 +457,10 @@
                 <div>
                     <div class="sub-title">Data Analytics Expertise</div>
                     <div class="badge-grid">
-                        <div class="skill-tag"><span>SAP Operations</span></div>
-                        <div class="skill-tag"><span>Advanced Excel</span></div>
-                        <div class="skill-tag"><span>MS Office Suite</span></div>
-                        <div class="skill-tag"><span>Data Analysis Speed</span></div>
+                        <div class="skill-tag"><div class="skill-icon-box"><svg class="skill-icon-svg" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg></div><span>SAP Operations</span></div>
+                        <div class="skill-tag"><div class="skill-icon-box"><svg class="skill-icon-svg" viewBox="0 0 24 24"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L3 15.66l1.5 2.83z"/></svg></div><span>Advanced Excel</span></div>
+                        <div class="skill-tag"><div class="skill-icon-box"><svg class="skill-icon-svg" viewBox="0 0 24 24"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div><span>MS Office Suite</span></div>
+                        <div class="skill-tag"><div class="skill-icon-box"><svg class="skill-icon-svg" viewBox="0 0 24 24"><path d="M20 5H4c-1.1 0-1.99.9-1.99 2L2 17c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm-9 3h2v2h-2V8zm0 3h2v2h-2v-2zM8 8h2v2H8V8zm0 3h2v2H8v-2zm-3 0h2v2H5v-2zm0-3h2v2H5V8zm11 8H8v-2h8v2zm1-3h-2v-2h2v2zm0-3h-2V8h2v2z"/></svg></div><span>Data Analysis Speed</span></div>
                     </div>
                 </div>
                 <div>
@@ -301,122 +470,73 @@
                 </div>
             </div>
         </section>
+
+        <section id="contact">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-box">
+                <div class="contact-left">
+                    <div class="contact-row">
+                        <div class="icon-container"><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>
+                        <div><div class="label">Address</div><div class="value">Nalchha Road Sagore Pithampur Dhar (MP) - 454775</div></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="icon-container"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></div>
+                        <div><div class="label">Phone Line</div><div class="value">+91 7879595821</div></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="icon-container"><svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg></div>
+                        <div><div class="label">Email Delivery</div><div class="value">surajsinghrajput5040@gmail.com</div></div>
+                    </div>
+                </div>
+                
+                <a href="https://maps.google.com" target="_blank" class="contact-right">
+                    <div class="real-earth-wrapper">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <circle cx="50" cy="50" r="46" fill="#004ac6"/>
+                            <path d="M28 35c4-2 8-1 12-4s5-7 9-5 6 4 9 9c2 4-2 9-5 11s-8-1-11-2" fill="#2563eb"/>
+                        </svg>
+                    </div>
+                    <div class="loc-pill"><span>Open Live Terminal Map</span></div>
+                    <p style="font-size: 12px; color: var(--text-gray); margin-top: 10px; font-weight: 600;">Pithampur, Madhya Pradesh</p>
+                </a>
+            </div>
+        </section>
     </main>
 
-    <footer><p>© 2026 Suraj Singh Jadon. All Infrastructure Terminals Active & Online.</p></footer>
+    <footer><p>© 2026 Suraj Singh Jadon. Local Matrix Realigned.</p></footer>
 
     <script>
-        // 🚀 REAL LIVE INTEGRATION KEYS DONE ✅
-        const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
-        const SUPABASE_KEY = "sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu";
-
-        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-        let timerInstance = null;
-        let globalPhoneNumber = "";
-
-        supabase.auth.onAuthStateChange((event, session) => {
-            if (session) {
-                document.getElementById('user-icon').style.display = 'none';
-                const photoNode = document.getElementById('user-photo');
-                photoNode.src = session.user.user_metadata.avatar_url || 'https://img.icons8.com/color/100/checked-user-male.png';
-                photoNode.style.display = 'block';
-                
-                const userName = session.user.user_metadata.full_name || session.user.phone || session.user.email;
-                document.getElementById('session-status').innerText = "Session Authed: " + userName;
-                configureDashboardUI(true, userName, session.user.email || 'Phone User');
-            } else {
-                document.getElementById('user-photo').style.display = 'none';
-                document.getElementById('user-icon').style.display = 'block';
-                document.getElementById('session-status').innerText = "Public Visitor Mode";
-                configureDashboardUI(false, null, null);
-            }
-        });
-
-        window.triggerPhoneOtpSend = async () => {
-            const cc = document.getElementById('phone-cc').value;
-            const number = document.getElementById('phone-num').value.trim();
-            const errBox = document.getElementById('reg-err-box');
-            const sccBox = document.getElementById('reg-success-box');
-            const sendBtn = document.getElementById('send-otp-btn');
-
-            if(!number) { errBox.innerText = "Error: Input phone field matrix empty."; errBox.style.display='block'; return; }
-            globalPhoneNumber = cc + number;
-            sendBtn.disabled = true;
-
-            const { data, error } = await supabase.auth.signInWithOtp({ phone: globalPhoneNumber });
-
-            if (error) {
-                errBox.innerText = "Error: " + error.message; errBox.style.display = 'block';
-                sendBtn.disabled = false;
-            } else {
-                errBox.style.display = 'none';
-                sccBox.innerText = "Verification link triggered. Check your phone number: " + globalPhoneNumber;
-                sccBox.style.display = 'block';
-
-                document.getElementById('otp-animation-wrapper').style.display = 'flex';
-                document.getElementById('timer-label-box').style.display = 'flex';
-                document.getElementById('otp-inputs-block').style.display = 'block';
-                document.querySelectorAll('.otp-input-node')[0].focus();
-                startCountdownTimer();
-            }
-        };
-
-        function startCountdownTimer() {
-            let duration = 30;
-            const clockLabel = document.getElementById('timer-clock');
-            const resendLink = document.getElementById('resend-trigger-link');
-            const sendBtn = document.getElementById('send-otp-btn');
-            resendLink.classList.remove('active');
-            
-            clearInterval(timerInstance);
-            timerInstance = setInterval(() => {
-                duration--;
-                clockLabel.innerText = "00:" + (duration < 10 ? "0" : "") + duration;
-                if(duration <= 0) {
-                    clearInterval(timerInstance);
-                    clockLabel.innerText = "Expired";
-                    resendLink.classList.add('active');
-                    sendBtn.disabled = false;
-                }
-            }, 1000);
+        function openAuthPortal() {
+            const overlay = document.getElementById('auth-overlay');
+            const card = document.getElementById('auth-card');
+            overlay.style.display = 'flex';
+            setTimeout(() => { overlay.style.opacity = '1'; card.style.transform = 'translateX(0)'; }, 50);
         }
-
-        window.processOtpVerificationNode = async () => {
-            let tokenCode = "";
-            document.querySelectorAll('.otp-input-node').forEach(input => tokenCode += input.value);
-            const errBox = document.getElementById('reg-err-box');
-
-            const { session, error } = await supabase.auth.verifyOtp({
-                phone: globalPhoneNumber,
-                token: tokenCode,
-                type: 'sms'
-            });
-
-            if (error) {
-                errBox.innerText = "Error: Invalid verification parameters."; errBox.style.display = 'block';
+        function closeAuthPortal() {
+            const overlay = document.getElementById('auth-overlay');
+            const card = document.getElementById('auth-card');
+            overlay.style.opacity = '0'; card.style.transform = 'translateX(100%)';
+            setTimeout(() => { overlay.style.display = 'none'; }, 400);
+        }
+        function configureDashboardUI(isLoggedIn, user) {
+            if(isLoggedIn) {
+                document.getElementById('auth-gateways').style.display = 'none';
+                document.getElementById('user-dashboard-panel').style.display = 'block';
+                document.getElementById('dashboard-banner-desc').innerText = "Session Node: " + (user.phoneNumber || user.email);
             } else {
-                errBox.style.display = 'none'; closeAuthPortal(); alert("Terminal Secured Successfully!");
+                document.getElementById('user-dashboard-panel').style.display = 'none';
+                document.getElementById('auth-gateways').style.display = 'block';
             }
-        };
-
-        window.handleSecureGitHubLogin = async () => {
-            const { data, error } = await supabase.auth.signInWithOAuth({
-                provider: 'github',
-                options: { redirectTo: window.location.origin + window.location.pathname }
-            });
-            if (error) alert(error.message);
-        };
-
-        window.processSecureLogout = async () => { await supabase.auth.signOut(); closeAuthPortal(); };
-        function openAuthPortal() { const overlay = document.getElementById('auth-overlay'); const card = document.getElementById('auth-card'); overlay.style.display = 'flex'; setTimeout(() => { overlay.style.opacity = '1'; card.style.transform = 'translateX(0)'; }, 50); }
-        function closeAuthPortal() { const overlay = document.getElementById('auth-overlay'); const card = document.getElementById('auth-card'); overlay.style.opacity = '0'; card.style.transform = 'translateX(100%)'; setTimeout(() => { overlay.style.display = 'none'; }, 400); }
-        function configureDashboardUI(isLoggedIn, name, email) { if(isLoggedIn) { document.getElementById('auth-gateways').style.display = 'none'; document.getElementById('user-dashboard-panel').style.display = 'block'; document.getElementById('dashboard-banner-desc').innerText = "Active Node: " + email; document.getElementById('dash-name').value = name; } else { document.getElementById('user-dashboard-panel').style.display = 'none'; document.getElementById('auth-gateways').style.display = 'block'; } }
+        }
 
         const inputs = document.querySelectorAll('.otp-input-node');
         inputs.forEach((input, index) => {
             input.addEventListener('keyup', (e) => {
-                if (e.key >= 0 && e.key <= 9) { if (index < inputs.length - 1) inputs[index + 1].focus(); }
-                else if (e.key === "Backspace") { if (index > 0) inputs[index - 1].focus(); }
+                if (e.key >= 0 && e.key <= 9) {
+                    if (index < inputs.length - 1) inputs[index + 1].focus();
+                } else if (e.key === "Backspace") {
+                    if (index > 0) inputs[index - 1].focus();
+                }
             });
         });
     </script>
