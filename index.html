@@ -39,6 +39,7 @@
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-blue); }
 
+        /* DIRECT CLICK KE LIYE PROFILE BUTTON UPDATE KIYA GAYA HAI */
         .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 9999; }
         .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
         .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
@@ -61,7 +62,7 @@
         .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
         .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
 
-        /* PHOTO BOX FIXED DIMENSIONS */
+        /* PHOTO BOX */
         .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; }
         .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -113,7 +114,6 @@
         .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: var(--text-gray); font-size: 30px; cursor: pointer; z-index: 100; }
         .close-auth:hover { color: var(--accent-red); }
         
-        /* SOCIAL BUTTONS FIX (Clicks Allowed & Pointer Events enforced) */
         .social-btn { position: relative; z-index: 50; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; margin-bottom: 15px; pointer-events: auto; }
         .btn-google { background: rgba(255,255,255,0.02); }
         .btn-google:hover { border-color: #db4437; background: rgba(219, 68, 55, 0.05); box-shadow: 0 0 15px rgba(219, 68, 55, 0.2); }
@@ -137,8 +137,8 @@
                     <a href="#">Contact</a>
                 </div>
                 
-                <!-- LOGIN BUTTON -->
-                <button class="profile-login-btn" id="openAuthBtn">
+                <!-- FIX: Direct "onclick" event HTML mein dal diya hai -->
+                <button type="button" class="profile-login-btn" onclick="openAuthOverlay()">
                     <i id="user-icon" class="fas fa-user"></i>
                     <img id="user-photo" src="" alt="Profile">
                 </button>
@@ -146,7 +146,7 @@
         </div>
     </header>
 
-    <!-- HERO SECTION (FIX: Photo box wrapped to prevent stretching) -->
+    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -160,7 +160,6 @@
             </div>
         </div>
         
-        <!-- PHOTO WRAPPER: Yeh div lagane se photo 290x355 par lock ho jayegi -->
         <div style="flex: 1; display: flex; justify-content: center; width: 100%;">
             <div class="image-wrapper">
                 <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
@@ -300,7 +299,8 @@
     <!-- LOGIN SLIDE PANEL -->
     <div id="auth-overlay">
         <div class="auth-container">
-            <button class="close-auth" id="closeAuthBtn">&times;</button>
+            <!-- FIX: Direct "onclick" for close button -->
+            <button type="button" class="close-auth" onclick="closeAuthOverlay()">&times;</button>
             
             <div style="margin-top: 60px; text-align: center;">
                 <h2 style="font-size: 24px; margin-bottom: 8px;">Welcome Suraj</h2>
@@ -312,60 +312,63 @@
                     <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.05);"></div>
                 </div>
 
-                <!-- BUTTONS FIXED: type="button" and IDs added -->
-                <button type="button" id="btn-google" class="social-btn btn-google">
+                <!-- FIX: Direct "onclick" for social buttons -->
+                <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()">
                     <i class="fab fa-google" style="color: #db4437; font-size: 16px;"></i> Continue with Google
                 </button>
 
-                <button type="button" id="btn-linkedin" class="social-btn btn-linkedin">
+                <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()">
                     <i class="fab fa-linkedin-in" style="color: #0077b5; font-size: 16px;"></i> Continue with LinkedIn
                 </button>
 
-                <button type="button" id="logout-btn" style="display:none; width: 100%; margin-top: 20px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--accent-red); padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;">
+                <button type="button" id="logout-btn" onclick="logoutUser()" style="display:none; width: 100%; margin-top: 20px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--accent-red); padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;">
                     <i class="fas fa-sign-out-alt"></i> Log Out
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- SUPABASE JAVASCRIPT FIX (Direct Event Listeners for 100% Click Accuracy) -->
+    <!-- SUPABASE JAVASCRIPT FIX (Global Functions) -->
     <script>
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        // UI Open/Close Controls
-        document.getElementById('openAuthBtn').addEventListener('click', () => {
+        // Global functions for direct HTML onclick
+        window.openAuthOverlay = function() {
             const overlay = document.getElementById('auth-overlay');
             overlay.style.display = 'flex';
-            setTimeout(() => { overlay.style.opacity = '1'; document.querySelector('.auth-container').style.transform = 'translateX(0)'; }, 10);
-        });
+            setTimeout(() => { 
+                overlay.style.opacity = '1'; 
+                document.querySelector('.auth-container').style.transform = 'translateX(0)'; 
+            }, 10);
+        };
 
-        document.getElementById('closeAuthBtn').addEventListener('click', () => {
+        window.closeAuthOverlay = function() {
             document.querySelector('.auth-container').style.transform = 'translateX(100%)';
-            setTimeout(() => { document.getElementById('auth-overlay').style.opacity = '0'; document.getElementById('auth-overlay').style.display = 'none'; }, 400);
-        });
+            setTimeout(() => { 
+                document.getElementById('auth-overlay').style.opacity = '0'; 
+                document.getElementById('auth-overlay').style.display = 'none'; 
+            }, 400);
+        };
 
-        // Google Login Action
-        document.getElementById('btn-google').addEventListener('click', async () => {
-            alert('Connecting to Google...'); // Added for confirmation that button clicked
+        window.loginWithGoogle = async function() {
+            alert('Connecting to Google...');
             const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
             if (error) alert("Error: " + error.message);
-        });
+        };
 
-        // LinkedIn Login Action
-        document.getElementById('btn-linkedin').addEventListener('click', async () => {
-            alert('Connecting to LinkedIn...'); // Added for confirmation
+        window.loginWithLinkedIn = async function() {
+            alert('Connecting to LinkedIn...');
             const { error } = await supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc' });
             if (error) alert("Error: " + error.message);
-        });
+        };
 
-        // Logout Action
-        document.getElementById('logout-btn').addEventListener('click', async () => {
+        window.logoutUser = async function() {
             await supabase.auth.signOut();
-        });
+        };
 
-        // Auth State Listener
+        // Auth State Check
         supabase.auth.onAuthStateChange((event, session) => {
             const userIcon = document.getElementById('user-icon');
             const userPhoto = document.getElementById('user-photo');
