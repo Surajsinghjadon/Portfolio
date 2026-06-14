@@ -3,340 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suraj Singh Jadon - Executive Portfolio</title>
-    
-    <!-- Supabase aur FontAwesome -->
+    <title>Suraj Singh Jadon - Portfolio</title>
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
     <style>
-        /* --- AAPKA ORIGINAL CSS DESIGN --- */
-        :root {
-            --bg-main: #05070c;
-            --bg-card: #0d111c;
-            --accent-blue: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.4);
-            --border-matrix: rgba(56, 189, 248, 0.08);
-            --text-white: #f8fafc;
-            --text-gray: #94a3b8;
-            --accent-red: #ef4444;
-            --accent-green: #22c55e;
+        /* CSS ka jhanjhat khatam, simple layout */
+        body { background: #05070c; color: white; font-family: sans-serif; }
+        
+        /* Fixed Panel */
+        #auth-overlay { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0,0,0,0.95); z-index: 999999; display: none; 
+            flex-direction: column; align-items: center; justify-content: center;
         }
-
-        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; padding-top: 110px; }
-        .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
-
-        /* HEADER */
-        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; }
-        .nav-container { display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); }
-        .logo span { color: var(--text-white); }
         
-        .right-menu { display: flex; align-items: center; gap: 25px; }
-        .nav-links { display: flex; gap: 20px; }
-        @media (max-width: 768px) { .nav-links { display: none; } }
-        .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
-        .nav-links a:hover { color: var(--accent-blue); }
-
-        /* PROFILE BUTTON */
-        .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 9999; }
-        .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
-        .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
-        .profile-login-btn img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 50%; pointer-events: none; }
-
-        /* HERO SECTION */
-        .hero { display: flex; flex-direction: column; gap: 50px; padding: 40px 0; align-items: center; text-align: center; }
-        @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
-        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
-        .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
-        h1 { font-size: 42px; font-weight: 800; margin-bottom: 20px; color: var(--text-white); line-height: 1.2; }
-        .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
-        .hero-p { font-size: 14px; color: var(--text-gray); margin-bottom: 35px; max-width: 540px; line-height: 1.7; }
-        
-        .btn-group { display: flex; gap: 15px; justify-content: center; }
-        @media (min-width: 768px) { .btn-group { justify-content: flex-start; } }
-        .btn { position: relative; z-index: 50; display: inline-flex; align-items: center; gap: 9px; text-decoration: none; padding: 13px 25px; font-weight: 700; border-radius: 8px; font-size: 13px; transition: all 0.3s; text-transform: uppercase; border: none; cursor: pointer; }
-        .btn-blue { background: var(--accent-blue); color: #05070c; box-shadow: 0 5px 15px var(--accent-glow); }
-        .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--accent-blue); }
-        .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
-        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
-
-        /* PHOTO BOX */
-        .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; z-index: 10; }
-        .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
-        .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 12px; z-index: 10; }
-        .badge-check { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
-
-        /* SECTIONS & CARDS */
-        .section-title { font-size: 22px; font-weight: 800; margin: 70px 0 30px 0; display: flex; align-items: center; }
-        .section-title::before { content: ""; display: inline-block; width: 4px; height: 24px; background: var(--accent-blue); border-radius: 2px; margin-right: 12px; box-shadow: 0 0 15px var(--accent-blue); }
-        
-        .card { background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.03); margin-bottom: 20px; transition: all 0.4s; }
-        .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
-        .company { color: var(--text-white); font-size: 18px; }
-        .tag { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); font-size: 11px; padding: 5px 12px; border-radius: 50px; border: 1px solid rgba(56, 189, 248, 0.1); }
-        .role { color: var(--accent-blue); font-weight: 600; font-size: 13px; margin-bottom: 12px; }
-        .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
-        .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; }
-
-        /* SKILLS GRID */
-        .skills-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 20px; }
-        @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
-        .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
-        .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .skill-tag { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 12px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
-        .skill-icon-box { background: rgba(56, 189, 248, 0.06); width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); }
-        
-        .lang-item { margin-bottom: 20px; font-size: 12px; }
-        .bar { background: rgba(255,255,255,0.05); height: 6px; border-radius: 5px; margin-top: 8px; overflow: hidden; }
-        .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
-
-        /* CONTACT SECTION */
-        .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; margin-top: 30px; margin-bottom: 60px; }
-        @media (min-width: 768px) { .contact-box { flex-direction: row; } }
-        .contact-left { padding: 40px; flex: 1.2; }
-        .contact-row { display: flex; align-items: center; gap: 18px; margin-bottom: 25px; }
-        .icon-container { background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.1); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; }
-        .label { font-size: 10px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
-        .value { font-size: 13px; font-weight: 700; color: var(--text-white); margin-top: 4px; }
-        
-        .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 40px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 20; }
-        .real-earth-wrapper { width: 100px; height: 100px; background: var(--accent-blue); margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #05070c; }
-        
-        .loc-pill { position: relative; z-index: 50; display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 10px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); text-decoration: none; transition: 0.3s; cursor: pointer; }
-        .loc-pill:hover { background: rgba(56, 189, 248, 0.15); }
-        
-        /* AUTH OVERLAY PANEL */
-        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.7); backdrop-filter: blur(6px); z-index: 999999; display: flex; justify-content: flex-end; opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.3s ease; }
-        #auth-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
-        
-        .auth-container { background: var(--bg-card); border-left: 1px solid var(--border-matrix); width: 100%; max-width: 400px; height: 100%; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8); display: flex; flex-direction: column; position: relative; transform: translateX(100%); transition: transform 0.3s ease; z-index: 1000000; }
-        #auth-overlay.show .auth-container { transform: translateX(0); }
-        
-        .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: var(--text-gray); font-size: 30px; cursor: pointer; z-index: 1000005; }
-        .close-auth:hover { color: var(--accent-red); }
-        
-        .social-btn { position: relative; z-index: 1000002; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; margin-bottom: 15px; pointer-events: auto !important; }
-        .btn-google { background: rgba(255,255,255,0.02); }
-        .btn-google:hover { border-color: #db4437; background: rgba(219, 68, 55, 0.05); }
-        .btn-linkedin { background: rgba(0, 119, 181, 0.05); border-color: rgba(0, 119, 181, 0.3); }
-        .btn-linkedin:hover { border-color: #0077b5; background: rgba(0, 119, 181, 0.15); }
-        
-        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid var(--border-matrix); margin-top: 40px; position: relative; z-index: 10; }
+        .social-btn { 
+            width: 80%; padding: 20px; margin: 15px; 
+            background: #222; color: white; border: 1px solid #444; 
+            border-radius: 15px; font-size: 18px; cursor: pointer;
+            z-index: 9999999; /* Button ko sabse upar rakha */
+        }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
-    <header>
-        <div class="container nav-container">
-            <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
-            <div class="right-menu">
-                <div class="nav-links">
-                    <a href="#experience">Experience</a>
-                    <a href="#education">Education</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#contact">Contact</a>
-                </div>
-                <!-- PROFILE BUTTON -->
-                <button type="button" class="profile-login-btn" onclick="document.getElementById('auth-overlay').classList.add('show');">
-                    <i id="user-icon" class="fas fa-user"></i>
-                    <img id="user-photo" src="" alt="Profile">
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- HERO SECTION -->
-    <div class="container hero">
-        <div style="flex: 1;">
-            <div class="badge" id="auth-status-badge">
-                <div class="badge-dot" id="auth-dot"></div> <span id="auth-status-text">Public Visitor Mode</span>
-            </div>
-            <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
-            <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
-            
-            <div class="btn-group">
-                <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
-                <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
-            </div>
-        </div>
-        
-        <div style="flex: 1; display: flex; justify-content: center; width: 100%;">
-            <div class="image-wrapper">
-                <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
-                <div class="floating-badge">
-                    <div class="badge-check"><i class="fas fa-check"></i></div>
-                    <div>
-                        <div style="font-size:10px;color:var(--text-gray);font-weight:bold;">EXPERIENCE</div>
-                        <div style="font-weight:bold;font-size:13px;color:white;">4+ Years</div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Main Content -->
+    <div style="text-align:center; padding-top:50px;">
+        <button onclick="document.getElementById('auth-overlay').style.display='flex'" 
+                style="padding:15px 30px; background:#38bdf8; border:none; border-radius:10px; cursor:pointer;">
+            Open Login Panel
+        </button>
     </div>
 
-    <!-- EXPERIENCE SECTION -->
-    <div class="container" id="experience">
-        <h2 class="section-title">Professional Journey</h2>
-        <div class="card">
-            <div class="card-top">
-                <span class="company">Polyhose India Private Limited</span>
-                <span class="tag">Current • 1 Year</span>
-            </div>
-            <div class="role">Invoice SAP Executive</div>
-            <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
-            <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
-        </div>
-        <div class="card">
-            <div class="card-top">
-                <span class="company">Hettich</span>
-                <span class="tag">1 Year</span>
-            </div>
-            <div class="role">Store Data Analysis Operations</div>
-            <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
-        </div>
-        <div class="card">
-            <div class="card-top">
-                <span class="company">Rahul Precision Work Pvt Ltd</span>
-                <span class="tag">2 Years</span>
-            </div>
-            <div class="role">Machine Operator</div>
-            <div class="desc-line"><i class="fas fa-check"></i> <span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
-        </div>
-    </div>
-
-    <!-- EDUCATION SECTION -->
-    <div class="container" id="education">
-        <h2 class="section-title">Education Details</h2>
-        <div class="card">
-            <div class="card-top">
-                <span class="company">Diploma in Computer Applications (DCA)</span>
-                <span class="tag">2023</span>
-            </div>
-            <div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
-        </div>
-        <div class="card">
-            <div class="card-top">
-                <span class="company">12th Grade</span>
-                <span class="tag">2022</span>
-            </div>
-            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
-        </div>
-        <div class="card">
-            <div class="card-top">
-                <span class="company">10th Grade</span>
-                <span class="tag">2020</span>
-            </div>
-            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
-        </div>
-    </div>
-
-    <!-- SKILLS SECTION -->
-    <div class="container" id="skills">
-        <h2 class="section-title">Technical Expertise</h2>
-        <div class="skills-grid">
-            <div>
-                <div class="sub-title">DATA ANALYTICS EXPERTISE</div>
-                <div class="badge-grid">
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-database"></i></div> SAP Operations</div>
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-chart-line"></i></div> Advanced Excel</div>
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-file-word"></i></div> MS Office Suite</div>
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-bolt"></i></div> Data Analysis Speed</div>
-                </div>
-            </div>
-            <div style="padding-left: 10px;">
-                <div class="sub-title">COMMUNICATION SYSTEMS</div>
-                <div class="lang-item">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Hindi (Native) - 100%</span></div>
-                    <div class="bar"><div class="fill" style="width: 100%;"></div></div>
-                </div>
-                <div class="lang-item">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>English (Corporate) - 85%</span></div>
-                    <div class="bar"><div class="fill" style="width: 85%;"></div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTACT SECTION -->
-    <div class="container" id="contact">
-        <h2 class="section-title">Get in Touch</h2>
-        <div class="contact-box">
-            <div class="contact-left">
-                <div class="contact-row">
-                    <div class="icon-container"><i class="fas fa-map-marker-alt"></i></div>
-                    <div><div class="label">ADDRESS</div><div class="value">Nalchha Road Sagore Pithampur Dhar (MP) - 454775</div></div>
-                </div>
-                <div class="contact-row">
-                    <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
-                    <div><div class="label">PHONE LINE</div><div class="value">+91 7879595821</div></div>
-                </div>
-                <div class="contact-row">
-                    <div class="icon-container"><i class="fas fa-envelope"></i></div>
-                    <div><div class="label">EMAIL DELIVERY</div><div class="value">surajsinghrajput5040@gmail.com</div></div>
-                </div>
-            </div>
-            <div class="contact-right">
-                <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                <a href="https://maps.google.com/?q=Pithampur,+Madhya+Pradesh" target="_blank" class="loc-pill">Open Live Terminal Map</a>
-                <div style="font-size:10px; color:var(--text-gray); margin-top:15px;">Pithampur, Madhya Pradesh</div>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        &copy; 2026 Suraj Singh Jadon. Local Matrix Realigned.
-    </footer>
-
-    <!-- AUTHENTICATION PANEL -->
+    <!-- Login Panel -->
     <div id="auth-overlay">
-        <div class="auth-container">
-            <button type="button" class="close-auth" onclick="document.getElementById('auth-overlay').classList.remove('show');">&times;</button>
-            
-            <div style="margin-top: 60px; text-align: center;">
-                
-                <!-- FIX: 'Welcome Suraj' ki jagah Professional Title lagaya hai -->
-                <h2 style="font-size: 24px; margin-bottom: 8px; color: white;">Executive Access</h2>
-                <p style="color: var(--text-gray); font-size: 12px; margin-bottom: 30px;">Please authenticate to continue</p>
-
-                <div style="display: flex; align-items: center; color: var(--text-gray); font-size: 10px; margin: 25px 0; text-transform: uppercase;">
-                    <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.05);"></div>
-                    <span style="padding: 0 10px;">Secure Login</span>
-                    <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.05);"></div>
-                </div>
-
-                <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()">
-                    <i class="fab fa-google" style="color: #db4437; font-size: 16px;"></i> Continue with Google
-                </button>
-
-                <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()">
-                    <i class="fab fa-linkedin-in" style="color: #0077b5; font-size: 16px;"></i> Continue with LinkedIn
-                </button>
-            </div>
-        </div>
+        <button onclick="this.parentElement.parentElement.style.display='none'" 
+                style="position:absolute; top:20px; right:20px; padding:10px; cursor:pointer;">CLOSE</button>
+        
+        <h2 style="margin-bottom:30px;">Login Access</h2>
+        
+        <!-- YEH BUTTONS AB 100% CLICK HONGE -->
+        <button class="social-btn" onclick="runLogin('google')">Login with Google</button>
+        <button class="social-btn" onclick="runLogin('linkedin_oidc')">Login with LinkedIn</button>
     </div>
 
-    <!-- SUPABASE JAVASCRIPT -->
     <script>
-        const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
-        const supabaseKey = 'sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
-        const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-
-        window.loginWithGoogle = async function() {
-            alert('Connecting to Google...');
-            const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
-            if (error) alert("Error: " + error.message);
-        };
-
-        window.loginWithLinkedIn = async function() {
-            alert('Connecting to LinkedIn...');
-            const { error } = await supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc' });
-            if (error) alert("Error: " + error.message);
-        };
+        const supabase = window.supabase.createClient('https://ypoxybmhdpxmxcmiimjf.supabase.co', 'sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu');
+        
+        // Direct click function
+        window.runLogin = async function(provider) {
+            console.log("Button clicked!");
+            alert("Connecting to " + provider); 
+            await supabase.auth.signInWithOAuth({ provider: provider });
+        }
     </script>
 </body>
 </html>
