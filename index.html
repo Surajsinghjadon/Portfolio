@@ -57,7 +57,6 @@
         
         .btn-group { display: flex; gap: 15px; justify-content: center; }
         @media (min-width: 768px) { .btn-group { justify-content: flex-start; } }
-        /* FIX: BUTTONS DIRECT CLICKS ENABLED */
         .btn { position: relative; z-index: 50; display: inline-flex; align-items: center; gap: 9px; text-decoration: none; padding: 13px 25px; font-weight: 700; border-radius: 8px; font-size: 13px; transition: all 0.3s; text-transform: uppercase; border: none; cursor: pointer; }
         .btn-blue { background: var(--accent-blue); color: #05070c; box-shadow: 0 5px 15px var(--accent-glow); }
         .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--accent-blue); }
@@ -107,7 +106,6 @@
         .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 40px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 20; }
         .real-earth-wrapper { width: 100px; height: 100px; background: var(--accent-blue); margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #05070c; }
         
-        /* FIX: LOCATION BUTTON CLICK ENABLED */
         .loc-pill { position: relative; z-index: 50; display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 10px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); text-decoration: none; transition: 0.3s; cursor: pointer; }
         .loc-pill:hover { background: rgba(56, 189, 248, 0.15); }
         
@@ -115,13 +113,13 @@
         #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.7); backdrop-filter: blur(6px); z-index: 999999; display: flex; justify-content: flex-end; opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.3s ease; }
         #auth-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
         
-        .auth-container { background: var(--bg-card); border-left: 1px solid var(--border-matrix); width: 100%; max-width: 400px; height: 100%; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8); display: flex; flex-direction: column; position: relative; transform: translateX(100%); transition: transform 0.3s ease; }
+        .auth-container { background: var(--bg-card); border-left: 1px solid var(--border-matrix); width: 100%; max-width: 400px; height: 100%; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8); display: flex; flex-direction: column; position: relative; transform: translateX(100%); transition: transform 0.3s ease; z-index: 1000000; }
         #auth-overlay.show .auth-container { transform: translateX(0); }
         
-        .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: var(--text-gray); font-size: 30px; cursor: pointer; z-index: 100; }
+        .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: var(--text-gray); font-size: 30px; cursor: pointer; z-index: 1000005; }
         .close-auth:hover { color: var(--accent-red); }
         
-        .social-btn { position: relative; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; margin-bottom: 15px; }
+        .social-btn { position: relative; z-index: 1000002; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; margin-bottom: 15px; pointer-events: auto !important; }
         .btn-google { background: rgba(255,255,255,0.02); }
         .btn-google:hover { border-color: #db4437; background: rgba(219, 68, 55, 0.05); }
         .btn-linkedin { background: rgba(0, 119, 181, 0.05); border-color: rgba(0, 119, 181, 0.3); }
@@ -143,8 +141,7 @@
                     <a href="#skills">Skills</a>
                     <a href="#contact">Contact</a>
                 </div>
-                
-                <!-- FIX: Panel Opening Button -->
+                <!-- PROFILE BUTTON -->
                 <button type="button" class="profile-login-btn" onclick="document.getElementById('auth-overlay').classList.add('show');">
                     <i id="user-icon" class="fas fa-user"></i>
                     <img id="user-photo" src="" alt="Profile">
@@ -163,7 +160,6 @@
             <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
             
             <div class="btn-group">
-                <!-- FIX: Direct Anchor Tags -->
                 <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
                 <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
             </div>
@@ -186,7 +182,6 @@
     <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
-        
         <div class="card">
             <div class="card-top">
                 <span class="company">Polyhose India Private Limited</span>
@@ -196,7 +191,6 @@
             <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
         </div>
-
         <div class="card">
             <div class="card-top">
                 <span class="company">Hettich</span>
@@ -205,7 +199,6 @@
             <div class="role">Store Data Analysis Operations</div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
         </div>
-
         <div class="card">
             <div class="card-top">
                 <span class="company">Rahul Precision Work Pvt Ltd</span>
@@ -219,7 +212,6 @@
     <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
-        
         <div class="card">
             <div class="card-top">
                 <span class="company">Diploma in Computer Applications (DCA)</span>
@@ -227,7 +219,6 @@
             </div>
             <div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
         </div>
-
         <div class="card">
             <div class="card-top">
                 <span class="company">12th Grade</span>
@@ -235,7 +226,6 @@
             </div>
             <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
         </div>
-
         <div class="card">
             <div class="card-top">
                 <span class="company">10th Grade</span>
@@ -292,10 +282,7 @@
             </div>
             <div class="contact-right">
                 <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                
-                <!-- FIX: Direct Google Maps Link -->
                 <a href="https://maps.google.com/?q=Pithampur,+Madhya+Pradesh" target="_blank" class="loc-pill">Open Live Terminal Map</a>
-                
                 <div style="font-size:10px; color:var(--text-gray); margin-top:15px;">Pithampur, Madhya Pradesh</div>
             </div>
         </div>
@@ -305,15 +292,16 @@
         &copy; 2026 Suraj Singh Jadon. Local Matrix Realigned.
     </footer>
 
-    <!-- AUTH OVERLAY PANEL -->
+    <!-- AUTHENTICATION PANEL -->
     <div id="auth-overlay">
         <div class="auth-container">
-            <!-- Close Button -->
             <button type="button" class="close-auth" onclick="document.getElementById('auth-overlay').classList.remove('show');">&times;</button>
             
             <div style="margin-top: 60px; text-align: center;">
-                <h2 style="font-size: 24px; margin-bottom: 8px;">Welcome Suraj</h2>
-                <p style="color: var(--text-gray); font-size: 12px; margin-bottom: 30px;">Sign in to access your dashboard</p>
+                
+                <!-- FIX: 'Welcome Suraj' ki jagah Professional Title lagaya hai -->
+                <h2 style="font-size: 24px; margin-bottom: 8px; color: white;">Executive Access</h2>
+                <p style="color: var(--text-gray); font-size: 12px; margin-bottom: 30px;">Please authenticate to continue</p>
 
                 <div style="display: flex; align-items: center; color: var(--text-gray); font-size: 10px; margin: 25px 0; text-transform: uppercase;">
                     <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.05);"></div>
@@ -328,10 +316,6 @@
                 <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()">
                     <i class="fab fa-linkedin-in" style="color: #0077b5; font-size: 16px;"></i> Continue with LinkedIn
                 </button>
-
-                <button type="button" id="logout-btn" onclick="logoutUser()" style="display:none; width: 100%; margin-top: 20px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: var(--accent-red); padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;">
-                    <i class="fas fa-sign-out-alt"></i> Log Out
-                </button>
             </div>
         </div>
     </div>
@@ -343,41 +327,16 @@
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
         window.loginWithGoogle = async function() {
+            alert('Connecting to Google...');
             const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
             if (error) alert("Error: " + error.message);
         };
 
         window.loginWithLinkedIn = async function() {
+            alert('Connecting to LinkedIn...');
             const { error } = await supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc' });
             if (error) alert("Error: " + error.message);
         };
-
-        window.logoutUser = async function() {
-            await supabase.auth.signOut();
-        };
-
-        // Profile State Checker
-        supabase.auth.onAuthStateChange((event, session) => {
-            const userIcon = document.getElementById('user-icon');
-            const userPhoto = document.getElementById('user-photo');
-            const authText = document.getElementById('auth-status-text');
-            const logoutBtn = document.getElementById('logout-btn');
-            
-            if (session && session.user) {
-                if(userIcon) userIcon.style.display = 'none';
-                if(userPhoto) {
-                    userPhoto.src = session.user.user_metadata.avatar_url || 'https://img.icons8.com/color/100/checked-user-male.png';
-                    userPhoto.style.display = 'block';
-                }
-                if(authText) authText.innerText = "Authed: " + (session.user.user_metadata.full_name || session.user.email);
-                if(logoutBtn) logoutBtn.style.display = 'block';
-            } else {
-                if(userPhoto) userPhoto.style.display = 'none';
-                if(userIcon) userIcon.style.display = 'flex';
-                if(authText) authText.innerText = "Public Visitor Mode";
-                if(logoutBtn) logoutBtn.style.display = 'none';
-            }
-        });
     </script>
 </body>
 </html>
