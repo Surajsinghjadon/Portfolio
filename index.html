@@ -23,12 +23,10 @@
             --accent-green: #22c55e;
         }
 
-        /* FIX: Smooth Scroll for Menu Links */
         html { scroll-behavior: smooth; scroll-padding-top: 100px; }
-
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; padding-top: 110px; }
-        .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 10; }
 
         /* HEADER */
         header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; }
@@ -42,6 +40,7 @@
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-blue); }
 
+        /* PROFILE BUTTON */
         .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 9999; }
         .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
         .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
@@ -58,14 +57,15 @@
         
         .btn-group { display: flex; gap: 15px; justify-content: center; }
         @media (min-width: 768px) { .btn-group { justify-content: flex-start; } }
-        .btn { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; padding: 13px 25px; font-weight: 700; border-radius: 8px; font-size: 13px; transition: all 0.3s; text-transform: uppercase; border: none; cursor: pointer; }
+        /* FIX: BUTTONS DIRECT CLICKS ENABLED */
+        .btn { position: relative; z-index: 50; display: inline-flex; align-items: center; gap: 9px; text-decoration: none; padding: 13px 25px; font-weight: 700; border-radius: 8px; font-size: 13px; transition: all 0.3s; text-transform: uppercase; border: none; cursor: pointer; }
         .btn-blue { background: var(--accent-blue); color: #05070c; box-shadow: 0 5px 15px var(--accent-glow); }
         .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--accent-blue); }
         .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
         .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
 
         /* PHOTO BOX */
-        .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; }
+        .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; z-index: 10; }
         .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
         .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 12px; z-index: 10; }
@@ -76,7 +76,6 @@
         .section-title::before { content: ""; display: inline-block; width: 4px; height: 24px; background: var(--accent-blue); border-radius: 2px; margin-right: 12px; box-shadow: 0 0 15px var(--accent-blue); }
         
         .card { background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.03); margin-bottom: 20px; transition: all 0.4s; }
-        .card:hover { transform: translateY(-3px); border-color: rgba(56, 189, 248, 0.25); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
         .company { color: var(--text-white); font-size: 18px; }
         .tag { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); font-size: 11px; padding: 5px 12px; border-radius: 50px; border: 1px solid rgba(56, 189, 248, 0.1); }
@@ -88,7 +87,6 @@
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 20px; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
-        
         .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
         .skill-tag { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 12px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
         .skill-icon-box { background: rgba(56, 189, 248, 0.06); width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); }
@@ -106,26 +104,30 @@
         .label { font-size: 10px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
         .value { font-size: 13px; font-weight: 700; color: var(--text-white); margin-top: 4px; }
         
-        .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 40px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+        .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 40px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 20; }
         .real-earth-wrapper { width: 100px; height: 100px; background: var(--accent-blue); margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #05070c; }
-        .loc-pill { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 8px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); }
         
-        /* FIX: INVISIBLE WALL BUG SOLVED (Visibility Hidden approach) */
-        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(6px); z-index: 99999; display: flex; justify-content: flex-end; opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.4s ease; }
+        /* FIX: LOCATION BUTTON CLICK ENABLED */
+        .loc-pill { position: relative; z-index: 50; display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 10px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); text-decoration: none; transition: 0.3s; cursor: pointer; }
+        .loc-pill:hover { background: rgba(56, 189, 248, 0.15); }
+        
+        /* AUTH OVERLAY PANEL */
+        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.7); backdrop-filter: blur(6px); z-index: 999999; display: flex; justify-content: flex-end; opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.3s ease; }
         #auth-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
-        .auth-container { background: var(--bg-card); border-left: 1px solid var(--border-matrix); width: 100%; max-width: 400px; height: 100%; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; position: relative; transform: translateX(100%); transition: transform 0.4s ease; }
+        
+        .auth-container { background: var(--bg-card); border-left: 1px solid var(--border-matrix); width: 100%; max-width: 400px; height: 100%; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.8); display: flex; flex-direction: column; position: relative; transform: translateX(100%); transition: transform 0.3s ease; }
         #auth-overlay.show .auth-container { transform: translateX(0); }
         
         .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: var(--text-gray); font-size: 30px; cursor: pointer; z-index: 100; }
         .close-auth:hover { color: var(--accent-red); }
         
-        .social-btn { position: relative; z-index: 50; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; margin-bottom: 15px; pointer-events: auto; }
+        .social-btn { position: relative; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; margin-bottom: 15px; }
         .btn-google { background: rgba(255,255,255,0.02); }
-        .btn-google:hover { border-color: #db4437; background: rgba(219, 68, 55, 0.05); box-shadow: 0 0 15px rgba(219, 68, 55, 0.2); }
+        .btn-google:hover { border-color: #db4437; background: rgba(219, 68, 55, 0.05); }
         .btn-linkedin { background: rgba(0, 119, 181, 0.05); border-color: rgba(0, 119, 181, 0.3); }
-        .btn-linkedin:hover { border-color: #0077b5; background: rgba(0, 119, 181, 0.15); box-shadow: 0 0 15px rgba(0, 119, 181, 0.2); }
+        .btn-linkedin:hover { border-color: #0077b5; background: rgba(0, 119, 181, 0.15); }
         
-        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; }
+        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid var(--border-matrix); margin-top: 40px; position: relative; z-index: 10; }
     </style>
 </head>
 <body>
@@ -135,7 +137,6 @@
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
             <div class="right-menu">
-                <!-- FIX: Links ko sahi sections ke ID (Address) de diye gaye hain -->
                 <div class="nav-links">
                     <a href="#experience">Experience</a>
                     <a href="#education">Education</a>
@@ -143,8 +144,8 @@
                     <a href="#contact">Contact</a>
                 </div>
                 
-                <!-- PROFILE LOGIN BUTTON -->
-                <button type="button" class="profile-login-btn" onclick="openAuthOverlay()">
+                <!-- FIX: Panel Opening Button -->
+                <button type="button" class="profile-login-btn" onclick="document.getElementById('auth-overlay').classList.add('show');">
                     <i id="user-icon" class="fas fa-user"></i>
                     <img id="user-photo" src="" alt="Profile">
                 </button>
@@ -160,16 +161,17 @@
             </div>
             <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
             <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
+            
             <div class="btn-group">
-                <a href="#contact" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
-                <a href="#" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
+                <!-- FIX: Direct Anchor Tags -->
+                <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
+                <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
             </div>
         </div>
         
         <div style="flex: 1; display: flex; justify-content: center; width: 100%;">
             <div class="image-wrapper">
                 <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
-                
                 <div class="floating-badge">
                     <div class="badge-check"><i class="fas fa-check"></i></div>
                     <div>
@@ -181,7 +183,7 @@
         </div>
     </div>
 
-    <!-- EXPERIENCE SECTION (ID Add kiya gaya hai scroll ke liye) -->
+    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         
@@ -214,7 +216,7 @@
         </div>
     </div>
 
-    <!-- EDUCATION SECTION (ID Add kiya gaya hai) -->
+    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         
@@ -243,11 +245,10 @@
         </div>
     </div>
 
-    <!-- SKILLS SECTION (ID Add kiya gaya hai) -->
+    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
-            <!-- Data Analytics Expertise -->
             <div>
                 <div class="sub-title">DATA ANALYTICS EXPERTISE</div>
                 <div class="badge-grid">
@@ -257,8 +258,6 @@
                     <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-bolt"></i></div> Data Analysis Speed</div>
                 </div>
             </div>
-            
-            <!-- Communication Systems -->
             <div style="padding-left: 10px;">
                 <div class="sub-title">COMMUNICATION SYSTEMS</div>
                 <div class="lang-item">
@@ -273,7 +272,7 @@
         </div>
     </div>
 
-    <!-- CONTACT SECTION (ID Add kiya gaya hai) -->
+    <!-- CONTACT SECTION -->
     <div class="container" id="contact">
         <h2 class="section-title">Get in Touch</h2>
         <div class="contact-box">
@@ -293,7 +292,10 @@
             </div>
             <div class="contact-right">
                 <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                <div class="loc-pill">Open Live Terminal Map</div>
+                
+                <!-- FIX: Direct Google Maps Link -->
+                <a href="https://maps.google.com/?q=Pithampur,+Madhya+Pradesh" target="_blank" class="loc-pill">Open Live Terminal Map</a>
+                
                 <div style="font-size:10px; color:var(--text-gray); margin-top:15px;">Pithampur, Madhya Pradesh</div>
             </div>
         </div>
@@ -303,10 +305,11 @@
         &copy; 2026 Suraj Singh Jadon. Local Matrix Realigned.
     </footer>
 
-    <!-- LOGIN SLIDE PANEL (Invisible Wall Bug Fixed) -->
+    <!-- AUTH OVERLAY PANEL -->
     <div id="auth-overlay">
         <div class="auth-container">
-            <button type="button" class="close-auth" onclick="closeAuthOverlay()">&times;</button>
+            <!-- Close Button -->
+            <button type="button" class="close-auth" onclick="document.getElementById('auth-overlay').classList.remove('show');">&times;</button>
             
             <div style="margin-top: 60px; text-align: center;">
                 <h2 style="font-size: 24px; margin-bottom: 8px;">Welcome Suraj</h2>
@@ -339,25 +342,12 @@
         const supabaseKey = 'sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        // Simple and Bulletproof Overlay Controls
-        const authOverlay = document.getElementById('auth-overlay');
-
-        window.openAuthOverlay = function() {
-            authOverlay.classList.add('show');
-        };
-
-        window.closeAuthOverlay = function() {
-            authOverlay.classList.remove('show');
-        };
-
         window.loginWithGoogle = async function() {
-            alert('Connecting to Google...');
             const { error } = await supabase.auth.signInWithOAuth({ provider: 'google' });
             if (error) alert("Error: " + error.message);
         };
 
         window.loginWithLinkedIn = async function() {
-            alert('Connecting to LinkedIn...');
             const { error } = await supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc' });
             if (error) alert("Error: " + error.message);
         };
