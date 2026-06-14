@@ -39,11 +39,11 @@
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-blue); }
 
-        /* PROFILE BUTTON */
-        .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; }
+        /* PROFILE BUTTON KO SABSE AAGE KIYA GAYA HAI */
+        .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 9999; }
         .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
-        .profile-login-btn i { font-size: 18px; color: var(--accent-blue); }
-        .profile-login-btn img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 50%; }
+        .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
+        .profile-login-btn img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 50%; pointer-events: none; }
 
         /* HERO SECTION */
         .hero { display: flex; flex-direction: column; gap: 50px; padding: 40px 0; align-items: center; text-align: center; }
@@ -109,7 +109,7 @@
         .loc-pill { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 8px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); }
         
         /* AUTHENTICATION OVERLAY */
-        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(6px); z-index: 9999; display: none; justify-content: flex-end; opacity: 0; transition: all 0.4s ease; }
+        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(6px); z-index: 99999; display: none; justify-content: flex-end; opacity: 0; transition: all 0.4s ease; }
         .auth-container { background: var(--bg-card); border-left: 1px solid var(--border-matrix); width: 100%; max-width: 400px; height: 100%; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; position: relative; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: var(--text-gray); font-size: 30px; cursor: pointer; }
         .close-auth:hover { color: var(--accent-red); }
@@ -136,7 +136,9 @@
                     <a href="#">Skills</a>
                     <a href="#">Contact</a>
                 </div>
-                <button class="profile-login-btn" onclick="openAuthOverlay()">
+                
+                <!-- LOGIN BUTTON -->
+                <button class="profile-login-btn" onclick="document.getElementById('auth-overlay').style.display='flex'; setTimeout(() => { document.getElementById('auth-overlay').style.opacity='1'; document.querySelector('.auth-container').style.transform='translateX(0)'; }, 10);">
                     <i id="user-icon" class="fas fa-user"></i>
                     <img id="user-photo" src="" alt="Profile">
                 </button>
@@ -158,8 +160,9 @@
             </div>
         </div>
         <div class="image-wrapper">
-            <!-- BHAIYA YAHAN APNI PHOTO KA NAAM DAAL DIJIYEGA AGAR DUSRI HAI TOH -->
-            <div class="photo-box"><img src="18883.jpg" alt="Suraj Singh Jadon"></div>
+            <!-- AAPKI PHOTO KA NAAM '378.jpg' YAHAN SET KAR DIYA HAI -->
+            <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
+            
             <div class="floating-badge">
                 <div class="badge-check"><i class="fas fa-check"></i></div>
                 <div>
@@ -291,10 +294,10 @@
         &copy; 2026 Suraj Singh Jadon. Local Matrix Realigned.
     </footer>
 
-    <!-- LOGIN SLIDE PANEL (No OTP, Only Google & LinkedIn) -->
+    <!-- LOGIN SLIDE PANEL -->
     <div id="auth-overlay">
         <div class="auth-container">
-            <button class="close-auth" onclick="closeAuthOverlay()">&times;</button>
+            <button class="close-auth" onclick="document.querySelector('.auth-container').style.transform='translateX(100%)'; setTimeout(() => { document.getElementById('auth-overlay').style.opacity='0'; document.getElementById('auth-overlay').style.display='none'; }, 400);">&times;</button>
             
             <div style="margin-top: 60px; text-align: center;">
                 <h2 style="font-size: 24px; margin-bottom: 8px;">Welcome Suraj</h2>
@@ -321,7 +324,7 @@
         </div>
     </div>
 
-    <!-- SUPABASE JAVASCRIPT (With your Key) -->
+    <!-- SUPABASE JAVASCRIPT -->
     <script>
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
@@ -330,19 +333,6 @@
         window.loginWithGoogle = async () => { await supabase.auth.signInWithOAuth({ provider: 'google' }); };
         window.loginWithLinkedIn = async () => { await supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc' }); };
         window.logoutUser = async () => { await supabase.auth.signOut(); };
-
-        window.openAuthOverlay = () => {
-            const overlay = document.getElementById('auth-overlay');
-            overlay.style.display = 'flex';
-            setTimeout(() => { overlay.style.opacity = '1'; document.querySelector('.auth-container').style.transform = 'translateX(0)'; }, 10);
-        };
-
-        window.closeAuthOverlay = () => {
-            const overlay = document.getElementById('auth-overlay');
-            overlay.style.opacity = '0';
-            document.querySelector('.auth-container').style.transform = 'translateX(100%)';
-            setTimeout(() => overlay.style.display = 'none', 400);
-        };
 
         supabase.auth.onAuthStateChange((event, session) => {
             const userIcon = document.getElementById('user-icon');
