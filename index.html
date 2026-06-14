@@ -23,6 +23,9 @@
             --accent-green: #22c55e;
         }
 
+        /* FIX: Smooth Scroll for Menu Links */
+        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; padding-top: 110px; }
         .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; }
@@ -39,7 +42,6 @@
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-blue); }
 
-        /* DIRECT CLICK KE LIYE PROFILE BUTTON UPDATE KIYA GAYA HAI */
         .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 9999; }
         .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
         .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
@@ -108,9 +110,12 @@
         .real-earth-wrapper { width: 100px; height: 100px; background: var(--accent-blue); margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #05070c; }
         .loc-pill { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 8px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); }
         
-        /* AUTHENTICATION OVERLAY */
-        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(6px); z-index: 99999; display: none; justify-content: flex-end; opacity: 0; transition: all 0.4s ease; }
-        .auth-container { background: var(--bg-card); border-left: 1px solid var(--border-matrix); width: 100%; max-width: 400px; height: 100%; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; position: relative; transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); pointer-events: auto; }
+        /* FIX: INVISIBLE WALL BUG SOLVED (Visibility Hidden approach) */
+        #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(6px); z-index: 99999; display: flex; justify-content: flex-end; opacity: 0; visibility: hidden; pointer-events: none; transition: all 0.4s ease; }
+        #auth-overlay.show { opacity: 1; visibility: visible; pointer-events: auto; }
+        .auth-container { background: var(--bg-card); border-left: 1px solid var(--border-matrix); width: 100%; max-width: 400px; height: 100%; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.6); display: flex; flex-direction: column; position: relative; transform: translateX(100%); transition: transform 0.4s ease; }
+        #auth-overlay.show .auth-container { transform: translateX(0); }
+        
         .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: var(--text-gray); font-size: 30px; cursor: pointer; z-index: 100; }
         .close-auth:hover { color: var(--accent-red); }
         
@@ -130,14 +135,15 @@
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
             <div class="right-menu">
+                <!-- FIX: Links ko sahi sections ke ID (Address) de diye gaye hain -->
                 <div class="nav-links">
-                    <a href="#">Experience</a>
-                    <a href="#">Education</a>
-                    <a href="#">Skills</a>
-                    <a href="#">Contact</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
                 </div>
                 
-                <!-- FIX: Direct "onclick" event HTML mein dal diya hai -->
+                <!-- PROFILE LOGIN BUTTON -->
                 <button type="button" class="profile-login-btn" onclick="openAuthOverlay()">
                     <i id="user-icon" class="fas fa-user"></i>
                     <img id="user-photo" src="" alt="Profile">
@@ -155,7 +161,7 @@
             <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
             <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
             <div class="btn-group">
-                <a href="#" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
+                <a href="#contact" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
                 <a href="#" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
             </div>
         </div>
@@ -175,8 +181,8 @@
         </div>
     </div>
 
-    <!-- EXPERIENCE SECTION -->
-    <div class="container">
+    <!-- EXPERIENCE SECTION (ID Add kiya gaya hai scroll ke liye) -->
+    <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         
         <div class="card">
@@ -208,8 +214,8 @@
         </div>
     </div>
 
-    <!-- EDUCATION SECTION -->
-    <div class="container">
+    <!-- EDUCATION SECTION (ID Add kiya gaya hai) -->
+    <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         
         <div class="card">
@@ -237,8 +243,9 @@
         </div>
     </div>
 
-    <!-- SKILLS SECTION -->
-    <div class="container">
+    <!-- SKILLS SECTION (ID Add kiya gaya hai) -->
+    <div class="container" id="skills">
+        <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
             <!-- Data Analytics Expertise -->
             <div>
@@ -266,8 +273,8 @@
         </div>
     </div>
 
-    <!-- GET IN TOUCH -->
-    <div class="container">
+    <!-- CONTACT SECTION (ID Add kiya gaya hai) -->
+    <div class="container" id="contact">
         <h2 class="section-title">Get in Touch</h2>
         <div class="contact-box">
             <div class="contact-left">
@@ -296,10 +303,9 @@
         &copy; 2026 Suraj Singh Jadon. Local Matrix Realigned.
     </footer>
 
-    <!-- LOGIN SLIDE PANEL -->
+    <!-- LOGIN SLIDE PANEL (Invisible Wall Bug Fixed) -->
     <div id="auth-overlay">
         <div class="auth-container">
-            <!-- FIX: Direct "onclick" for close button -->
             <button type="button" class="close-auth" onclick="closeAuthOverlay()">&times;</button>
             
             <div style="margin-top: 60px; text-align: center;">
@@ -312,7 +318,6 @@
                     <div style="flex: 1; border-bottom: 1px solid rgba(255,255,255,0.05);"></div>
                 </div>
 
-                <!-- FIX: Direct "onclick" for social buttons -->
                 <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()">
                     <i class="fab fa-google" style="color: #db4437; font-size: 16px;"></i> Continue with Google
                 </button>
@@ -328,28 +333,21 @@
         </div>
     </div>
 
-    <!-- SUPABASE JAVASCRIPT FIX (Global Functions) -->
+    <!-- SUPABASE JAVASCRIPT -->
     <script>
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
         const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        // Global functions for direct HTML onclick
+        // Simple and Bulletproof Overlay Controls
+        const authOverlay = document.getElementById('auth-overlay');
+
         window.openAuthOverlay = function() {
-            const overlay = document.getElementById('auth-overlay');
-            overlay.style.display = 'flex';
-            setTimeout(() => { 
-                overlay.style.opacity = '1'; 
-                document.querySelector('.auth-container').style.transform = 'translateX(0)'; 
-            }, 10);
+            authOverlay.classList.add('show');
         };
 
         window.closeAuthOverlay = function() {
-            document.querySelector('.auth-container').style.transform = 'translateX(100%)';
-            setTimeout(() => { 
-                document.getElementById('auth-overlay').style.opacity = '0'; 
-                document.getElementById('auth-overlay').style.display = 'none'; 
-            }, 400);
+            authOverlay.classList.remove('show');
         };
 
         window.loginWithGoogle = async function() {
@@ -368,7 +366,7 @@
             await supabase.auth.signOut();
         };
 
-        // Auth State Check
+        // Profile State Checker
         supabase.auth.onAuthStateChange((event, session) => {
             const userIcon = document.getElementById('user-icon');
             const userPhoto = document.getElementById('user-photo');
