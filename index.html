@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CORE PORTFOLIO DESIGN (PREMIUM RESTORED) --- */
+        /* --- CORE PORTFOLIO DESIGN (PREMIUM) --- */
         :root {
             --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
             --accent-glow: rgba(56, 189, 248, 0.4); --text-white: #f8fafc; --text-gray: #94a3b8;
@@ -101,7 +101,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- MODERN CENTERED MODAL DESIGN (LIKE REAL WEBSITES) --- */
+        /* --- CENTERED DIALOG POPUP MODAL --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(8px); 
@@ -110,7 +110,7 @@
         }
         .auth-container { 
             background: #0d111c; border: 1px solid rgba(255, 255, 255, 0.08); 
-            border-radius: 20px; width: 100%; max-width: 400px; padding: 30px; 
+            border-radius: 20px; width: 100%; max-width: 410px; padding: 30px; 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7); position: relative; 
             animation: modalScale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
@@ -118,30 +118,38 @@
             from { transform: scale(0.95); opacity: 0; }
             to { transform: scale(1); opacity: 1; }
         }
-        .close-auth { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #94a3b8; font-size: 26px; cursor: pointer; transition: 0.2s; }
+        .close-auth { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #94a3b8; font-size: 26px; cursor: pointer; }
         .close-auth:hover { color: #ef4444; }
-
-        /* INLINE COMPACT INPUTS */
-        .input-group { position: relative; margin-bottom: 16px; display: flex; align-items: center; }
-        .auth-input { width: 100%; padding: 13px 16px; background: #161b22; border: 1px solid #30363d; color: white; border-radius: 10px; font-size: 14px; outline: none; transition: 0.2s; }
-        .auth-input:focus { border-color: #38bdf8; box-shadow: 0 0 8px rgba(56, 189, 248, 0.15); }
         
-        /* Modern Inner Embedded Action Buttons */
-        .input-inline-btn { position: absolute; right: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; transition: 0.2s; }
-        .input-inline-btn:hover { background: rgba(56, 189, 248, 0.2); color: #fff; }
+        .input-group { position: relative; margin-bottom: 14px; display: flex; align-items: center; }
+        .auth-input { width: 100%; padding: 13px 16px; background: #161b22; border: 1px solid #30363d; color: white; border-radius: 10px; font-size: 14px; outline: none; }
+        .auth-input:focus { border-color: #38bdf8; }
+        
+        /* Inline embedded dynamic elements */
+        .input-inline-btn { position: absolute; right: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; }
+        .input-inline-btn:hover { background: rgba(56, 189, 248, 0.2); }
         .verify-btn { background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.2); color: #4ade80; }
-        .verify-btn:hover { background: rgba(74, 222, 128, 0.2); }
-
-        .btn-auth { width: 100%; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: bold; cursor: pointer; transition: 0.3s; border: none; }
-        .btn-primary { background: #38bdf8; color: #000; }
-        .btn-primary:hover { background: #0284c7; color: white; }
         
-        .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 20px 0; letter-spacing: 1px; }
+        /* PASSWORD STRENGTH METERS LINES */
+        .strength-container { width: 100%; margin-top: -8px; margin-bottom: 12px; }
+        .strength-bar-bg { background: #161b22; height: 5px; border-radius: 3px; overflow: hidden; }
+        .strength-bar { height: 100%; width: 0%; transition: 0.3s ease; }
+        .strength-text { font-size: 11px; color: var(--text-gray); display: block; text-align: right; margin-top: 4px; font-weight: 600; }
+
+        /* TIMER CONTAINER STYLES */
+        .otp-timer-block { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 12px; padding: 0 4px; }
+        .resend-link { color: var(--accent-blue); text-decoration: none; font-weight: bold; cursor: pointer; }
+        .resend-link.disabled { color: #4b5563; cursor: not-allowed; pointer-events: none; }
+
+        .btn-auth { width: 100%; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: bold; cursor: pointer; border: none; }
+        .btn-primary { background: #38bdf8; color: #000; }
+        
+        .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 18px 0; }
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .divider:not(:empty)::before { margin-right: .8em; } .divider:not(:empty)::after { margin-left: .8em; }
         
-        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; transition: all 0.2s; margin-bottom: 10px; background: rgba(255,255,255,0.02); }
-        .social-btn:hover { background: rgba(255,255,255,0.05); border-color: #38bdf8; }
+        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.02); }
+        .social-btn:hover { border-color: #38bdf8; }
         .btn-google i { color: #db4437; } .btn-linkedin i { color: #0077b5; }
         .status-box { background-color: #05070c; border: 1px solid #1a1a24; padding: 10px; border-radius: 8px; text-align: center; font-size: 12px; margin-top: 15px; color: #38bdf8; font-weight: 600; }
     </style>
@@ -219,7 +227,7 @@
         </div>
     </div>
 
-    <!-- EDUCATION SECTION -->
+    <!-- EDUCATION & CERTIFICATE SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -233,6 +241,14 @@
         <div class="card">
             <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
             <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
+        </div>
+
+        <!-- NEW MODERN ACCORDION OPTION CARD FOR SECURE DOCUMENTS ACCORDING TO PLAN -->
+        <div class="card" style="border: 1px dashed var(--accent-blue); background: rgba(56, 189, 248, 0.02); text-align: center; padding: 35px 20px;">
+            <i class="fas fa-shield-alt" style="color: var(--accent-blue); font-size: 30px; margin-bottom: 12px;"></i>
+            <h3 style="font-size: 18px; margin-bottom: 6px;">🔒 Secure Documents Gateway</h3>
+            <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 20px;">View certified certificates, marksheets, and DCA diploma registry assets mapping data.</p>
+            <button type="button" class="btn btn-blue" onclick="openPanel()"><i class="fas fa-key"></i> ACCESS SECURE DOCUMENTS</button>
         </div>
     </div>
 
@@ -297,59 +313,134 @@
         </div>
     </footer>
 
-    <!-- AUTH CENTERED MODAL OVERLAY -->
+    <!-- REAL WEBSITES STYLE STRUCTURE POPUP MODAL -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
             
             <div class="auth-form active">
-                <h3 style="font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 5px; color: var(--accent-blue);">🛡️ Request Verification</h3>
-                <p style="color: var(--text-gray); font-size: 13px; text-align: center; margin-bottom: 20px;">Verify identity via secure cloud authorization.</p>
+                <h3 style="font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 5px; color: var(--accent-blue);">🛡️ Register Account</h3>
+                <p style="color: var(--text-gray); font-size: 13px; text-align: center; margin-bottom: 20px;">Create secure profile configuration logs.</p>
                 
-                <!-- Social Authentication Grid -->
+                <!-- UPPER EMAIL ID AND PASSWORD STRUCTURE OPTION -->
+                <div class="input-group">
+                    <input type="email" id="email" class="auth-input" style="padding-right: 90px;" placeholder="Enter Gmail ID">
+                    <button type="button" id="btn-get-otp" class="input-inline-btn">Get OTP</button>
+                </div>
+                
+                <div class="input-group">
+                    <input type="password" id="password" class="auth-input" placeholder="Create Secure Password">
+                </div>
+                
+                <!-- PASSWORD WEEK MEDIUM STRONG LIVE METER LINES -->
+                <div class="strength-container">
+                    <div class="strength-bar-bg">
+                        <div id="strength-bar" class="strength-bar"></div>
+                    </div>
+                    <span id="strength-text" class="strength-text">Password Strength</span>
+                </div>
+
+                <!-- MIDDLE GOOGLE ACCOUNT & LINKEDIN CHANNELS -->
                 <button type="button" id="btn-google" class="social-btn"><i class="fab fa-google"></i> Continue with Google</button>
                 <button type="button" id="btn-linkedin" class="social-btn"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
                 
-                <div class="divider">OR USE SECURE EMAIL</div>
+                <div class="divider">CONFIRM DETAILS</div>
 
-                <!-- Input Fields -->
+                <!-- EXTRA REGISTRATION METADATA SCHEMAS -->
                 <div class="input-group">
                     <input type="text" id="fullname" class="auth-input" placeholder="Your Full Name">
                 </div>
                 <div class="input-group">
                     <input type="text" id="company" class="auth-input" placeholder="Your Company Name">
                 </div>
-                
-                <!-- Compact Embedded OTP Fields -->
                 <div class="input-group">
-                    <input type="email" id="email" class="auth-input" style="padding-right: 90px;" placeholder="Email Address">
-                    <button type="button" id="btn-get-otp" class="input-inline-btn">Get OTP</button>
+                    <input type="password" id="confirm-password" class="auth-input" placeholder="Confirm Password">
                 </div>
+                
                 <div class="input-group">
-                    <input type="text" id="otp-code" class="auth-input" style="padding-right: 90px;" placeholder="6-Digit OTP">
+                    <input type="text" id="otp-code" class="auth-input" style="padding-right: 90px;" placeholder="Enter 6-Digit OTP">
                     <button type="button" id="btn-verify-otp" class="input-inline-btn verify-btn">Verify</button>
                 </div>
 
-                <button type="button" id="btn-submit-request" class="btn-auth btn-primary" style="margin-top: 10px;">SUBMIT SECURITY REQUEST</button>
-                
-                <div class="status-box" id="status-display">Awaiting client signature payload...</div>
+                <!-- 60s COUNTDOWN TIMER & RESEND GATEWAY -->
+                <div class="otp-timer-block">
+                    <span id="timer-display">Timer: --:--</span>
+                    <span id="resend-link-btn" class="resend-link disabled" onclick="triggerResendOTP()">Resend OTP</span>
+                </div>
+
+                <!-- FINAL ACCESS BUTTON LINKED TO APPROVAL SHEET -->
+                <button type="button" id="btn-submit-request" class="btn-auth btn-primary">SUBMIT REQUEST</button>
+                <div class="status-box" id="status-display">Awaiting secure authorization token...</div>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT LOGIC INTEGRATION -->
+    <!-- JAVASCRIPT AUTH & LAYOUT CONTROL -->
     <script>
-        // --- SAFE INLINE CORE ARCHITECTURE ---
-        const SUPABASE_URL = "https://your-supabase-url.supabase.co"; 
+        const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
         
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         let isEmailVerified = false;
+        let countdownInterval = null;
 
         function openPanel() { document.getElementById('auth-overlay').style.display = 'flex'; }
         function closePanel() { document.getElementById('auth-overlay').style.display = 'none'; }
 
-        // OAuth
+        // --- PASSWORD LIVE STRENGTH DETECTOR METER ---
+        document.getElementById('password').addEventListener('input', function() {
+            const val = this.value;
+            const bar = document.getElementById('strength-bar');
+            const txt = document.getElementById('strength-text');
+            
+            if (val.length === 0) {
+                bar.style.width = "0%"; bar.style.backgroundColor = "transparent";
+                txt.innerText = "Password Strength";
+            } else if (val.length < 6) {
+                bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444";
+                txt.innerText = "Weak Password (Too Short)";
+                txt.style.color = "#ff6b6b";
+            } else if (val.length >= 6 && (/[A-Z]/.test(val) || /[0-9]/.test(val)) && (/[a-z]/.test(val))) {
+                if (val.length >= 10 && /[^A-Za-z0-9]/.test(val)) {
+                    bar.style.width = "100%"; bar.style.backgroundColor = "#4ade80";
+                    txt.innerText = "Strong Password (Secure)";
+                    txt.style.color = "#4ade80";
+                } else {
+                    bar.style.width = "66%"; bar.style.backgroundColor = "#fbbf24";
+                    txt.innerText = "Medium Password";
+                    txt.style.color = "#fbbf24";
+                }
+            } else {
+                bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444";
+                txt.innerText = "Weak Password";
+                txt.style.color = "#ff6b6b";
+            }
+        });
+
+        // --- 60 SECONDS LIVE COUNTDOWN ENGINE ---
+        function startOTPTimer() {
+            clearInterval(countdownInterval);
+            let secondsLeft = 60;
+            const timerDisplay = document.getElementById('timer-display');
+            const resendBtn = document.getElementById('resend-link-btn');
+            
+            resendBtn.classList.add('disabled');
+            document.getElementById('btn-get-otp').disabled = true;
+
+            countdownInterval = setInterval(() => {
+                secondsLeft--;
+                timerDisplay.innerText = `Resend in: ${secondsLeft}s`;
+                
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    timerDisplay.innerText = "Timer ended.";
+                    resendBtn.classList.remove('disabled');
+                    document.getElementById('btn-get-otp').disabled = false;
+                }
+            }, 1000);
+        }
+
+        // OAuth Handlers
         document.getElementById('btn-google').addEventListener('click', async () => {
             const { error } = await _supabase.auth.signInWithOAuth({ provider: 'google' });
             if (error) alert(error.message);
@@ -359,67 +450,81 @@
             if (error) alert(error.message);
         });
 
-        // Get OTP
-        document.getElementById('btn-get-otp').addEventListener('click', async () => {
+        // Transmit OTP Function
+        async function sendOTP() {
             const emailValue = document.getElementById('email').value.trim();
-            if (!emailValue) { alert("Kripya valid email daalein!"); return; }
-            document.getElementById('status-display').innerText = "Transmitting OTP token...";
+            if (!emailValue) { alert("Kripya valid email address fill karein!"); return; }
+            
+            document.getElementById('status-display').innerText = "Transmitting secure verification token...";
             const { error } = await _supabase.auth.signInWithOtp({ email: emailValue });
+            
             if (error) {
                 alert(error.message);
-                document.getElementById('status-display').innerText = "OTP Transmission Error.";
+                document.getElementById('status-display').innerText = "OTP generation engine failure.";
             } else {
-                alert("OTP secure bhej diya gaya hai!");
-                document.getElementById('status-display').innerText = "OTP logged successfully.";
+                alert("6-Digit secure code aapke address par transmit kar diya gaya hai!");
+                document.getElementById('status-display').innerText = "OTP payload transmitted.";
+                startOTPTimer();
             }
-        });
+        }
 
-        // Verify OTP
+        document.getElementById('btn-get-otp').addEventListener('click', sendOTP);
+        function triggerResendOTP() { sendOTP(); }
+
+        // Token Validator
         document.getElementById('btn-verify-otp').addEventListener('click', async () => {
             const emailValue = document.getElementById('email').value.trim();
             const tokenValue = document.getElementById('otp-code').value.trim();
-            if (!emailValue || !tokenValue) { alert("Email aur OTP code dono bhariye!"); return; }
-            document.getElementById('status-display').innerText = "Validating verification tokens...";
+            if (!emailValue || !tokenValue) { alert("Email aur verification OTP code dono load karein!"); return; }
+            
+            document.getElementById('status-display').innerText = "Validating cryptographic signatures...";
             const { error } = await _supabase.auth.verifyOtp({ email: emailValue, token: tokenValue, type: 'email' });
+            
             if (error) {
-                alert("Galat Token! Kripya sahi OTP dekhein.");
-                document.getElementById('status-display').innerText = "Token mismatch error.";
+                alert("Security Token Mismatch!");
+                document.getElementById('status-display').innerText = "Verification mismatch.";
                 isEmailVerified = false;
             } else {
-                alert("OTP validation successfully complete!");
-                document.getElementById('status-display').innerText = "Security tokens matched.";
+                alert("Validation complete! Access parameters synchronized.");
+                document.getElementById('status-display').innerText = "Tokens verified successfully.";
                 isEmailVerified = true;
             }
         });
 
-        // Database Submission
+        // Main Document Checking Protocol
         document.getElementById('btn-submit-request').addEventListener('click', async () => {
             const nameValue = document.getElementById('fullname').value.trim();
             const companyValue = document.getElementById('company').value.trim();
             const emailValue = document.getElementById('email').value.trim();
-            if (!isEmailVerified) { alert("Pehle Verify button daba kar OTP validation karein!"); return; }
-            document.getElementById('status-display').innerText = "Checking record state...";
+            const passValue = document.getElementById('password').value;
+            const confirmPass = document.getElementById('confirm-password').value;
 
-            const { data: requestRecord, error: fetchError } = await _supabase
+            if (!isEmailVerified) { alert("Pehle Verify button daba kar OTP validation check pass karein!"); return; }
+            if (passValue !== confirmPass) { alert("Password aur Confirm Password data aapas me match nahi ho raha!"); return; }
+
+            document.getElementById('status-display').innerText = "Analyzing state from document_requests...";
+
+            const { data: record, error: fetchError } = await _supabase
                 .from('document_requests').select('status').eq('email', emailValue).maybeSingle();
 
-            if (requestRecord) {
-                if (requestRecord.status === 'approved') {
-                    alert("Access Granted! Loading your documents...");
+            if (record) {
+                if (record.status === 'approved') {
+                    alert("Verification Clear! Opening target document asset.");
                     window.location.href = "dca_diploma.pdf";
                 } else {
-                    alert("Aapka token record abhi bhi 'pending' state mein hai.");
+                    alert("Aapka profile record abhi bhi admin pane (Pending) validation par hai.");
                     document.getElementById('status-display').innerText = "Status: Pending Admin Approval.";
                 }
             } else {
-                document.getElementById('status-display').innerText = "Saving profile metadata structure...";
+                document.getElementById('status-display').innerText = "Injecting registration schema profiles...";
                 const { error: insertError } = await _supabase.from('document_requests')
                     .insert([{ name: nameValue, company: companyValue, email: emailValue, status: 'pending' }]);
+                
                 if (insertError) {
                     alert(insertError.message);
                 } else {
-                    alert("Request saved cleanly! Wait for admin approval.");
-                    document.getElementById('status-display').innerText = "Logged safely. Check back soon.";
+                    alert("Data safely logged! Kripya admin panel se authorization approved hone ka wait karein.");
+                    document.getElementById('status-display').innerText = "Record safely deployed. Refresh once approved.";
                 }
             }
         });
