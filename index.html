@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
-    <!-- Core External Asset Framework Pipelines -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.google.com/recaptcha/api.js?onload=grecaptchaInit&render=explicit" async defer></script>
@@ -61,7 +60,7 @@
         .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; z-index: 10; }
         .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(56, 189, 248, 0.2); display: flex; align-items: center; gap: 12px; z-index: 10; }
+        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 12px; z-index: 10; }
         .badge-check { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
 
         /* SECTIONS & CARDS */
@@ -160,7 +159,6 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -179,7 +177,6 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -208,7 +205,6 @@
         </div>
     </div>
 
-    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -232,7 +228,6 @@
         </div>
     </div>
 
-    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -249,7 +244,6 @@
         </div>
     </div>
 
-    <!-- SKILLS SECTION (FIXED: UNCLOSED DIV COMPLETELY BALANCED NATIVELY) -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -276,7 +270,6 @@
         </div>
     </div>
 
-    <!-- CONTACT SECTION (FULLY RECOVERED AND ACCURATE) -->
     <div class="container" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-box">
@@ -299,12 +292,10 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>&copy; 2026 Suraj Singh Jadon. All Rights Reserved.</footer>
+    <footer>© 2026 Suraj Singh Jadon. All Rights Reserved.</footer>
 
-    <!-- VIRTUAL ANTI-BLOCK NEW PAGE OVERLAY -->
     <div id="virtual-cert-page">
-        <button onclick="closeCertificatesPage()" style="position:absolute; top:20px; left:25px; background:none; border:none; color:#94a3b8; font-size:35px; cursor:pointer;">&times; Close Page</button>
+        <button onclick="closeCertificatesPage()" style="position:absolute; top:20px; left:25px; background:none; border:none; color:#94a3b8; font-size:35px; cursor:pointer;">× Close Page</button>
         <h1 style="margin-top: 40px;">1v1 Technical Achievements & Credentials</h1>
         <p style="color: #94a3b8;">Verified server-side secure clearance database profiles</p>
         <div class="cert-grid">
@@ -326,13 +317,11 @@
         </div>
     </div>
 
-    <!-- SIDEBAR PANEL OVERLAY -->
     <div id="auth-overlay" onclick="closePanelOutside(event)">
         <div class="auth-container">
             <button class="close-auth" onclick="toggleAuthPanel()">×</button>
             <div id="msg-box" class="msg-box"></div>
 
-            <!-- 1. LOGIN FORM -->
             <div class="auth-form active" id="login-form-block">
                 <h3>Secure Portal</h3>
                 <p>Sign in to view Achievements and request private file clearances.</p>
@@ -351,7 +340,6 @@
                 <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()"><i class="fab fa-linkedin-in"></i> LinkedIn Network</button>
             </div>
 
-            <!-- 2. REGISTER FORM -->
             <div class="auth-form" id="register-form-block">
                 <h3>Create Account</h3>
                 <p>Register to unlock achievements access instantly.</p>
@@ -375,7 +363,6 @@
                 <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()"><i class="fab fa-linkedin-in"></i> LinkedIn Network</button>
             </div>
 
-            <!-- 3. PROFILE DASHBOARD -->
             <div class="auth-form" id="logout-form-block">
                 <h3>Profile Dashboard</h3>
                 <p id="session-profile-desc" style="margin-bottom: 25px; font-weight: bold; color: var(--accent-blue);"></p>
@@ -401,7 +388,6 @@
                 </button>
             </div>
 
-            <!-- 4. REAL OTP ADMIN APPROVAL FORM -->
             <div class="auth-form" id="approval-form-block">
                 <h3 style="color: #4ade80;"><i class="fas fa-shield-alt"></i> Admin Approval Form</h3>
                 <p>Verify your credentials with real email OTP token setup.</p>
@@ -421,7 +407,6 @@
         </div>
     </div>
 
-    <!-- UI LAYER CONTROLLER MECHANICS -->
     <script>
         let otpVerified = false;
         let captchaLoginId = null;
@@ -522,7 +507,6 @@
         }
     </script>
 
-    <!-- CORE SUPABASE LOGIC CLIENT ENGINE -->
     <script>
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4';
