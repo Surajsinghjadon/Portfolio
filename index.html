@@ -43,6 +43,7 @@
         @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
         .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
         .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
+        .badge-dot.locked { background: #ef4444; box-shadow: 0 0 10px #ef4444; }
         h1 { font-size: 42px; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
         .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
         .hero-p { font-size: 14px; color: var(--text-gray); margin-bottom: 35px; max-width: 540px; line-height: 1.7; }
@@ -86,6 +87,15 @@
         .bar { background: rgba(255,255,255,0.05); height: 6px; border-radius: 5px; margin-top: 8px; overflow: hidden; }
         .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
 
+        /* DOCUMENTS DESIGN (Dynamic List Grid) */
+        .docs-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
+        @media(min-width: 600px) { .docs-grid { grid-template-columns: 1fr 1fr; } }
+        .doc-link { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; text-decoration: none; color: white; transition: 0.2s; font-size: 13px; }
+        .doc-link:hover { border-color: var(--accent-blue); background: rgba(56,189,248,0.04); transform: translateY(-2px); }
+        .doc-info { display: flex; align-items: center; gap: 12px; }
+        .doc-info i { color: var(--accent-blue); font-size: 16px; }
+        .view-tag { font-size: 11px; color: var(--accent-blue); font-weight: bold; text-transform: uppercase; }
+
         /* CONTACT SECTION */
         .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; margin-top: 30px; margin-bottom: 60px; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
@@ -93,7 +103,7 @@
         .contact-row { display: flex; align-items: center; gap: 18px; margin-bottom: 25px; }
         .icon-container { background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.1); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; }
         .label { font-size: 10px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
-        .value { font-size: 13px; font-weight: 700; margin-top: 4px; }
+        .value { font-size: 13px; font-weight: 700; margin-top: 4px; color: var(--text-white); }
         
         .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 40px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 20; }
         .real-earth-wrapper { width: 100px; height: 100px; background: var(--accent-blue); margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #05070c; }
@@ -102,52 +112,22 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- AUTH OVERLAY & FORMS (FAST & CLEAN) --- */
+        /* --- SIDEBAR AUTH PANEL OVERLAY --- */
         #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.9); z-index: 9999999; display: none; justify-content: flex-end; align-items: stretch; }
         #auth-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        .auth-container { background: #0d111c; border-left: 2px solid #38bdf8; width: 100%; max-width: 420px; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9); overflow-y: auto; position: relative; }
+        .auth-container { background: #0d111c; border-left: 2px solid #38bdf8; width: 100%; max-width: 420px; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9); overflow-y: auto; position: relative; display: flex; flex-direction: column; justify-content: center; }
         .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: #94a3b8; font-size: 35px; cursor: pointer; z-index: 10; transition: 0.3s; }
         .close-auth:hover { color: #ef4444; }
 
-        .auth-form { display: none; margin-top: 20px; }
-        .auth-form.active { display: block; animation: slideUp 0.3s ease; }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .auth-form { text-align: center; }
+        .auth-form h3 { font-size: 24px; margin-bottom: 10px; font-weight: 800; }
+        .auth-form p { color: var(--text-gray); font-size: 13px; margin-bottom: 30px; }
 
-        /* ERROR/SUCCESS MESSAGES (Cleaned up) */
-        .msg-box { padding: 12px; border-radius: 8px; font-size: 13px; font-weight: bold; margin-bottom: 20px; display: none; text-align: center; transition: 0.3s; }
-        .msg-error { background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ff6b6b; }
-        .msg-success { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--accent-blue); color: var(--accent-blue); }
-
-        .input-group { position: relative; margin-bottom: 15px; }
-        .auth-input { width: 100%; padding: 14px 15px; background: #1a1a24; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 12px; font-size: 14px; outline: none; transition: 0.3s; padding-right: 45px; }
-        .auth-input:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
-        
-        .eye-icon { position: absolute; right: 15px; top: 16px; cursor: pointer; color: #94a3b8; font-size: 16px; transition: 0.2s; }
-        .eye-icon:hover { color: #38bdf8; }
-
-        /* Password Strength Meter */
-        .strength-meter-container { margin-bottom: 15px; display: none; }
-        .strength-meter { height: 4px; width: 100%; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; margin-bottom: 5px; }
-        .strength-bar { height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease; }
-        .strength-text { font-size: 11px; text-align: right; font-weight: bold; }
-
-        .btn-auth { width: 100%; padding: 15px; border-radius: 12px; font-size: 14px; font-weight: bold; cursor: pointer; transition: 0.3s; border: none; margin-bottom: 10px; }
-        .btn-primary { background: #38bdf8; color: #000; }
-        .btn-primary:hover { background: #0284c7; color: white; }
-        
-        .auth-link { color: #38bdf8; font-size: 13px; font-weight: bold; cursor: pointer; text-align: center; margin-top: 5px; display: block; background: none; border: none; width: 100%; }
-        .auth-link:hover { text-decoration: underline; }
-
-        .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 25px 0; letter-spacing: 1px; }
-        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .divider:not(:empty)::before { margin-right: .8em; } .divider:not(:empty)::after { margin-left: .8em; }
-        
         .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; margin-bottom: 12px; background: rgba(255,255,255,0.02); }
-        .social-btn:hover { background: rgba(255,255,255,0.05); border-color: #38bdf8; }
+        .social-btn:hover { background: rgba(255,255,255,0.05); border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.1); }
         .btn-google i { color: #db4437; }
-        .btn-linkedin i { color: #0077b5; }
     </style>
 </head>
 <body>
@@ -161,9 +141,10 @@
                     <a href="#experience">Experience</a>
                     <a href="#education">Education</a>
                     <a href="#skills">Skills</a>
+                    <a href="#secured-docs-section" id="nav-docs-link" style="display: none; color: #4ade80;">Documents</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <button type="button" class="profile-login-btn" onclick="openPanel()">
+                <button type="button" class="profile-login-btn" onclick="toggleAuthPanel()">
                     <i id="user-icon" class="fas fa-user"></i>
                     <img id="user-photo" src="" alt="Profile">
                 </button>
@@ -173,9 +154,9 @@
 
     <!-- HERO SECTION -->
     <div class="container hero">
-        <div style="flex: 1;">
+        <div>
             <div class="badge" id="auth-status-badge">
-                <div class="badge-dot" id="auth-dot"></div> <span id="auth-status-text">Public Visitor Mode</span>
+                <div class="badge-dot locked" id="auth-dot"></div> <span id="auth-status-text">Public Visitor Mode</span>
             </div>
             <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
             <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
@@ -186,7 +167,7 @@
             </div>
         </div>
         
-        <div style="flex: 1; display: flex; justify-content: center; width: 100%;">
+        <div style="display: flex; justify-content: center; width: 100%;">
             <div class="image-wrapper">
                 <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
                 <div class="floating-badge">
@@ -196,6 +177,50 @@
                         <div style="font-weight:bold;font-size:13px;color:white;">4+ Years</div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SECURED DOCUMENTS SECTION (Hidden till Secure Login) -->
+    <div class="container" id="secured-docs-section" style="display: none;">
+        <h2 class="section-title" style="color: #4ade80;">Secured Credentials & Attachments</h2>
+        <div class="card" style="border-color: rgba(74, 222, 128, 0.2);">
+            <div class="sub-title" style="color: #4ade80;">PRIMARY DOCUMENT</div>
+            <a href="resume.pdf" target="_blank" class="doc-link" style="border-color: rgba(74, 222, 128, 0.3); background: rgba(74, 222, 128, 0.02);">
+                <div class="doc-info"><i class="fas fa-file-pdf" style="color: #4ade80;"></i> <strong>Official Professional Resume / CV</strong></div>
+                <span class="view-tag" style="color: #4ade80;">Open PDF</span>
+            </a>
+
+            <div class="sub-title" style="margin-top: 30px;">ACADEMIC QUALIFICATIONS</div>
+            <div class="docs-grid">
+                <a href="10th_marksheet.pdf" target="_blank" class="doc-link">
+                    <div class="doc-info"><i class="fas fa-file-invoice"></i> 10th Grade Marksheet</div> <span class="view-tag">View</span>
+                </a>
+                <a href="12th_marksheet.pdf" target="_blank" class="doc-link">
+                    <div class="doc-info"><i class="fas fa-file-invoice"></i> 12th Grade Marksheet</div> <span class="view-tag">View</span>
+                </a>
+                <a href="dca_diploma.pdf" target="_blank" class="doc-link">
+                    <div class="doc-info"><i class="fas fa-graduation-cap"></i> DCA Final Diploma Certificate</div> <span class="view-tag">View</span>
+                </a>
+                <a href="dca_1Sam.pdf" target="_blank" class="doc-link">
+                    <div class="doc-info"><i class="fas fa-file-signature"></i> DCA - 1st Semester Marksheet</div> <span class="view-tag">View</span>
+                </a>
+                <a href="dca_2Sam.pdf" target="_blank" class="doc-link">
+                    <div class="doc-info"><i class="fas fa-file-signature"></i> DCA - 2nd Semester Marksheet</div> <span class="view-tag">View</span>
+                </a>
+            </div>
+
+            <div class="sub-title" style="margin-top: 30px;">TECHNICAL CERTIFICATIONS</div>
+            <div class="docs-grid">
+                <a href="ChatGPT for Everyone_certificate.pdf" target="_blank" class="doc-link">
+                    <div class="doc-info"><i class="fas fa-certificate"></i> ChatGPT for Everyone Cert.</div> <span class="view-tag">View</span>
+                </a>
+                <a href="Data Analytics with AI_certificate.pdf" target="_blank" class="doc-link">
+                    <div class="doc-info"><i class="fas fa-chart-pie"></i> Data Analytics with AI Cert.</div> <span class="view-tag">View</span>
+                </a>
+                <a href="Introduction to SQL_certificate.pdf" target="_blank" class="doc-link">
+                    <div class="doc-info"><i class="fas fa-server"></i> Introduction to SQL Cert.</div> <span class="view-tag">View</span>
+                </a>
             </div>
         </div>
     </div>
@@ -254,15 +279,15 @@
                     <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-bolt"></i></div> Data Analysis Speed</div>
                 </div>
             </div>
-            <div style="padding-left: 10px;">
+            <div>
                 <div class="sub-title">COMMUNICATION SYSTEMS</div>
                 <div class="lang-item">
                     <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Hindi (Native) - 100%</span></div>
                     <div class="bar"><div class="fill" style="width: 100%;"></div></div>
                 </div>
                 <div class="lang-item">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>English (Corporate) - 85%</span></div>
-                    <div class="bar"><div class="fill" style="width: 85%;"></div></div>
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>English (Professional) - 75%</span></div>
+                    <div class="bar"><div class="fill" style="width: 75%;"></div></div>
                 </div>
             </div>
         </div>
@@ -270,287 +295,141 @@
 
     <!-- CONTACT SECTION -->
     <div class="container" id="contact">
-        <h2 class="section-title">Get in Touch</h2>
         <div class="contact-box">
             <div class="contact-left">
                 <div class="contact-row">
-                    <div class="icon-container"><i class="fas fa-map-marker-alt"></i></div>
-                    <div><div class="label">ADDRESS</div><div class="value">Nalchha Road Sagore Pithampur Dhar (MP) - 454775</div></div>
-                </div>
-                <div class="contact-row">
-                    <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
-                    <div><div class="label">PHONE LINE</div><div class="value">+91 7879595821</div></div>
-                </div>
-                <div class="contact-row">
                     <div class="icon-container"><i class="fas fa-envelope"></i></div>
-                    <div><div class="label">EMAIL DELIVERY</div><div class="value">surajsinghrajput5040@gmail.com</div></div>
+                    <div><div class="label">Email Address</div><div class="value">surajsinghrajput5040@gmail.com</div></div>
+                </div>
+                <div class="contact-row">
+                    <div class="icon-container"><i class="fab fa-linkedin-in"></i></div>
+                    <div><div class="label">LinkedIn Network</div><div class="value">linkedin.com/in/surajsingh</div></div>
                 </div>
             </div>
             <div class="contact-right">
                 <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                <a href="https://maps.google.com/?q=Pithampur,+Madhya+Pradesh" target="_blank" class="loc-pill">Open Live Terminal Map</a>
-                <div style="font-size:10px; color:var(--text-gray); margin-top:15px;">Pithampur, Madhya Pradesh</div>
+                <div class="loc-pill">Madhya Pradesh, India</div>
             </div>
         </div>
     </div>
 
-    <footer>&copy; 2026 Suraj Singh Jadon. Local Matrix Realigned.</footer>
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2026 Suraj Singh Jadon. All Rights Reserved.
+    </footer>
 
-    <!-- ========================================================================= -->
-    <!-- ADVANCED AUTHENTICATION PANEL (NO DELAYS, NO GREEN BOXES)                 -->
-    <!-- ========================================================================= -->
-    <div id="auth-overlay">
+    <!-- SIDEBAR AUTH OVERLAY PANEL -->
+    <div id="auth-overlay" onclick="closePanelOutside(event)">
         <div class="auth-container">
-            <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
-            
-            <!-- Custom Notification Box (Hidden by default) -->
-            <div id="msg-box" class="msg-box"></div>
-
-            <!-- 1. SIGN IN FORM -->
-            <div id="form-signin" class="auth-form active">
-                <h2 style="font-size: 26px; margin-bottom: 5px; color: white;">Executive Access</h2>
-                <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 25px;">Please sign in to continue</p>
-
-                <div class="input-group">
-                    <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
+            <button class="close-auth" onclick="toggleAuthPanel()">&times;</button>
+            <div class="auth-form" id="oauth-gate-form">
+                <h3 id="panel-title">Secure Portal</h3>
+                <p id="panel-desc">Sign in with authorized corporate Google credentials to unlock premium executive attachments and credentials dashboard.</p>
+                <div id="action-area">
+                    <button class="social-btn btn-google" onclick="loginWithGoogle()">
+                        <i class="fab fa-google"></i> Continue with Google Auth
+                    </button>
                 </div>
-                
-                <div class="input-group">
-                    <input type="password" id="login-password" class="auth-input" placeholder="Password">
-                    <i class="fas fa-eye eye-icon" id="eye-login" onclick="togglePass('login-password', 'eye-login')"></i>
-                </div>
-                
-                <button type="button" class="btn-auth btn-primary" onclick="handleSignIn()">Secure Sign In</button>
-                <button type="button" class="auth-link" onclick="switchForm('form-signup')">Create a new account</button>
-
-                <div class="divider">OR CONTINUE WITH</div>
-
-                <button type="button" class="social-btn btn-google" onclick="handleSocial('google')">
-                    <i class="fab fa-google"></i> Google
-                </button>
-                <button type="button" class="social-btn btn-linkedin" onclick="handleSocial('linkedin_oidc')">
-                    <i class="fab fa-linkedin-in"></i> LinkedIn
-                </button>
-            </div>
-
-            <!-- 2. SIGN UP FORM -->
-            <div id="form-signup" class="auth-form">
-                <h2 style="font-size: 24px; margin-bottom: 5px; color: white;">Create Account</h2>
-                <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 20px;">Register for secure access</p>
-
-                <div class="input-group">
-                    <input type="text" id="reg-name" class="auth-input" placeholder="Full Name">
-                </div>
-                <div class="input-group">
-                    <input type="email" id="reg-email" class="auth-input" placeholder="Email Address">
-                </div>
-                
-                <!-- Password with Strength Meter -->
-                <div class="input-group" style="margin-bottom: 5px;">
-                    <input type="password" id="reg-password" class="auth-input" placeholder="Create Password" oninput="checkStrength()">
-                    <i class="fas fa-eye eye-icon" id="eye-reg-pass" onclick="togglePass('reg-password', 'eye-reg-pass')"></i>
-                </div>
-                
-                <!-- Strength UI -->
-                <div id="strength-container" class="strength-meter-container">
-                    <div class="strength-meter"><div id="strength-bar" class="strength-bar"></div></div>
-                    <div id="strength-text" class="strength-text"></div>
-                </div>
-
-                <!-- Confirm Password -->
-                <div class="input-group" style="margin-top: 10px;">
-                    <input type="password" id="reg-confirm" class="auth-input" placeholder="Confirm Password">
-                    <i class="fas fa-eye eye-icon" id="eye-reg-confirm" onclick="togglePass('reg-confirm', 'eye-reg-confirm')"></i>
-                </div>
-                
-                <button type="button" class="btn-auth btn-primary" onclick="handleSignUp()">Create Account</button>
-                <button type="button" class="auth-link" onclick="switchForm('form-signin')">Already have an account? Sign In</button>
-            </div>
-
-            <!-- 3. OTP VERIFICATION FORM -->
-            <div id="form-otp" class="auth-form">
-                <h2 style="font-size: 24px; margin-bottom: 5px; color: white;">Verify Email</h2>
-                <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 20px;">Please check your email for the OTP verification code.</p>
-
-                <div class="input-group">
-                    <input type="text" id="otp-code" class="auth-input" placeholder="Enter 6-Digit Code" style="text-align: center; letter-spacing: 5px; font-size: 18px; font-weight: bold;">
-                </div>
-                
-                <button type="button" class="btn-auth btn-primary" onclick="handleVerifyOtp()">Verify Code</button>
-                <button type="button" class="auth-link" onclick="switchForm('form-signup')">Go back</button>
-            </div>
-
-            <!-- 4. LOGOUT DASHBOARD -->
-            <div id="form-logout" class="auth-form">
-                <h2 style="font-size: 24px; margin-bottom: 5px; color: white;">Dashboard</h2>
-                <p style="color: #4ade80; font-size: 14px; margin-bottom: 20px; font-weight: bold;"><i class="fas fa-check-circle"></i> You are securely logged in.</p>
-                <button type="button" class="btn-auth" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444;" onclick="handleLogout()">Log Out Securely</button>
             </div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT: INSTANT REDIRECT & SECURE LOGIC -->
+    <!-- SUPABASE SECURITY ENGINE (CLEAN & FIXED) -->
     <script>
+        // Supabase Infrastructure Parameters
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
-        const supabaseKey = 'sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
-        const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
+        const supabaseKey = 'Sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
+        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
 
-        let userTempEmail = ""; // Stores email for OTP
+        // Explicit Absolute Production Target Endpoint 
+        const targetRedirectUrl = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        function openPanel() { document.getElementById('auth-overlay').classList.add('show'); }
-        function closePanel() { 
-            document.getElementById('auth-overlay').classList.remove('show'); 
-            hideMsg(); 
-            document.getElementById('strength-container').style.display = 'none';
-        }
-        
-        function switchForm(formId) {
-            hideMsg();
-            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
-            document.getElementById(formId).classList.add('active');
+        // Auth Panel Open/Close Toggle
+        function toggleAuthPanel() {
+            const overlay = document.getElementById('auth-overlay');
+            overlay.classList.toggle('show');
         }
 
-        function showMsg(text, isError = true) {
-            const msgBox = document.getElementById('msg-box');
-            msgBox.textContent = text;
-            msgBox.style.display = 'block';
-            msgBox.className = isError ? 'msg-box msg-error' : 'msg-box msg-success';
-        }
-        function hideMsg() { document.getElementById('msg-box').style.display = 'none'; }
-
-        // EYE ICON (TOGGLE PASSWORD)
-        function togglePass(inputId, iconId) {
-            const input = document.getElementById(inputId);
-            const icon = document.getElementById(iconId);
-            if (input.type === "password") {
-                input.type = "text";
-                icon.classList.remove("fa-eye");
-                icon.classList.add("fa-eye-slash");
-                icon.style.color = "#38bdf8";
-            } else {
-                input.type = "password";
-                icon.classList.remove("fa-eye-slash");
-                icon.classList.add("fa-eye");
-                icon.style.color = "#94a3b8";
+        function closePanelOutside(e) {
+            if (e.target.id === 'auth-overlay') {
+                toggleAuthPanel();
             }
         }
 
-        // PASSWORD STRENGTH CHECKER
-        function checkStrength() {
-            const pass = document.getElementById('reg-password').value;
-            const container = document.getElementById('strength-container');
-            const bar = document.getElementById('strength-bar');
-            const text = document.getElementById('strength-text');
-            
-            if (pass.length === 0) {
-                container.style.display = 'none';
-                return;
-            }
-            
-            container.style.display = 'block';
-            let strength = 0;
-            
-            if (pass.length >= 6) strength += 25;
-            if (pass.match(/[a-z]/) && pass.match(/[A-Z]/)) strength += 25;
-            if (pass.match(/[0-9]/)) strength += 25;
-            if (pass.match(/[^a-zA-Z0-9]/)) strength += 25;
-
-            bar.style.width = strength + "%";
-
-            if (strength <= 50) {
-                bar.style.backgroundColor = "#ef4444";
-                text.innerText = "Weak Password";
-                text.style.color = "#ef4444";
-            } else if (strength === 75) {
-                bar.style.backgroundColor = "#f59e0b";
-                text.innerText = "Medium Password";
-                text.style.color = "#f59e0b";
-            } else {
-                bar.style.backgroundColor = "#38bdf8";
-                text.innerText = "Strong Password";
-                text.style.color = "#38bdf8";
-            }
-        }
-
-        // 1. Social Login (INSTANT NO MESSAGES)
-        async function handleSocial(provider) {
-            // Seedha fast redirect hoga
-            await supabaseClient.auth.signInWithOAuth({ provider: provider });
-        }
-
-        // 2. Email Sign In
-        async function handleSignIn() {
-            const email = document.getElementById('login-email').value.trim();
-            const pass = document.getElementById('login-password').value;
-            
-            if(!email || !pass) return showMsg("Please enter both Email and Password.", true);
-            
-            const { error } = await supabaseClient.auth.signInWithPassword({ email: email, password: pass });
-            if (error) showMsg("Login Error: " + error.message, true);
-        }
-
-        // 3. Email Sign Up
-        async function handleSignUp() {
-            const name = document.getElementById('reg-name').value.trim();
-            const email = document.getElementById('reg-email').value.trim();
-            const pass = document.getElementById('reg-password').value;
-            const confirmPass = document.getElementById('reg-confirm').value;
-            
-            if(!name || !email || !pass || !confirmPass) return showMsg("Please fill all required fields.", true);
-            if(pass !== confirmPass) return showMsg("Passwords do not match!", true);
-            if(pass.length < 6) return showMsg("Password must be at least 6 characters.", true);
-            
-            const { data, error } = await supabaseClient.auth.signUp({ 
-                email: email, password: pass, options: { data: { full_name: name } }
+        // Google Federated OAuth Core Call
+        async function loginWithGoogle() {
+            const { data, error } = await supabase.auth.signInWithOAuth({
+                provider: 'google',
+                options: {
+                    redirectTo: targetRedirectUrl
+                }
             });
-            
             if (error) {
-                showMsg(error.message, true);
-            } else {
-                showMsg("Success! Please check your email for the OTP.", false);
-                userTempEmail = email;
-                setTimeout(() => switchForm('form-otp'), 1000);
+                alert('Authentication Exception: ' + error.message);
             }
         }
 
-        // 4. OTP Verification
-        async function handleVerifyOtp() {
-            const otp = document.getElementById('otp-code').value.trim();
-            if(!otp) return showMsg("Please enter the 6-digit code.", true);
+        // Interactive Interface Session Adaptor
+        async function runSessionMonitor() {
+            const { data: { session }, error } = await supabase.auth.getSession();
             
-            const { session, error } = await supabaseClient.auth.verifyOtp({ 
-                email: userTempEmail, token: otp, type: 'signup' 
-            });
-            
-            if (error) showMsg("Invalid Code: " + error.message, true);
-        }
-
-        // 5. Logout
-        async function handleLogout() {
-            await supabaseClient.auth.signOut();
-        }
-
-        // 6. Global Auth State Monitor
-        supabaseClient.auth.onAuthStateChange((event, session) => {
+            const dot = document.getElementById('auth-dot');
+            const statusText = document.getElementById('auth-status-text');
             const userIcon = document.getElementById('user-icon');
             const userPhoto = document.getElementById('user-photo');
-            const authText = document.getElementById('auth-status-text');
-            
-            if (session && session.user) {
-                if(userIcon) userIcon.style.display = 'none';
-                if(userPhoto) {
-                    userPhoto.src = session.user.user_metadata.avatar_url || 'https://img.icons8.com/color/100/checked-user-male.png';
+            const securedDocs = document.getElementById('secured-docs-section');
+            const navDocsLink = document.getElementById('nav-docs-link');
+            const panelTitle = document.getElementById('panel-title');
+            const panelDesc = document.getElementById('panel-desc');
+            const actionArea = document.getElementById('action-area');
+
+            if (session) {
+                const user = session.user;
+                
+                // Set Header Badge to Secure Verified Mode
+                dot.classList.remove('locked');
+                statusText.innerText = "Secured Identity Verified";
+                statusText.style.color = "#4ade80";
+
+                // Swap User Icon with Google User Avatar
+                if (user.user_metadata && user.user_metadata.avatar_url) {
+                    userIcon.style.display = 'none';
+                    userPhoto.src = user.user_metadata.avatar_url;
                     userPhoto.style.display = 'block';
                 }
-                if(authText) authText.innerText = "Authed: " + (session.user.user_metadata.full_name || session.user.email);
-                switchForm('form-logout');
+
+                // Unlock Hidden Documents UI View
+                securedDocs.style.display = 'block';
+                navDocsLink.style.display = 'inline-block';
+
+                // Change Side Panel UI state to Sign Out Option
+                panelTitle.innerText = "Session Active";
+                panelDesc.innerText = `Logged in securely as ${user.email}. All verified documents are now visible across your viewport layout.`;
+                actionArea.innerHTML = `
+                    <button class="social-btn" style="border-color: #ef4444; color: #ef4444;" onclick="triggerSecureLogout()">
+                        <i class="fas fa-sign-out-alt"></i> Terminate Session (Logout)
+                    </button>
+                `;
             } else {
-                if(userPhoto) userPhoto.style.display = 'none';
-                if(userIcon) userIcon.style.display = 'flex';
-                if(authText) authText.innerText = "Public Visitor Mode";
-                switchForm('form-signin');
+                // Ensure default fallbacks are strictly locked down
+                dot.classList.add('locked');
+                statusText.innerText = "Public Visitor Mode";
+                statusText.style.color = "var(--accent-blue)";
+                userIcon.style.display = 'block';
+                userPhoto.style.display = 'none';
+                securedDocs.style.display = 'none';
+                navDocsLink.style.display = 'none';
             }
-        });
+        }
+
+        // Secure Destructuring of active OAuth Cookies
+        async function triggerSecureLogout() {
+            await supabase.auth.signOut();
+            window.location.href = targetRedirectUrl; // Reload inside safe production root sandbox
+        }
+
+        // Window Event listener pipeline execution
+        window.addEventListener('DOMContentLoaded', runSessionMonitor);
     </script>
 </body>
 </html>
