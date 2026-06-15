@@ -5,10 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
-    <!-- Supabase, FontAwesome, aur ASLI GOOGLE reCAPTCHA Script Framework -->
+    <!-- Supabase, FontAwesome, aur Explicit Google reCAPTCHA SDK -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=grecaptchaInit&render=explicit" async defer></script>
 
     <style>
         /* --- CORE PORTFOLIO DESIGN --- */
@@ -61,7 +61,7 @@
         .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; z-index: 10; }
         .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 12px; z-index: 10; }
+        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(56, 189, 248, 0.2); display: flex; align-items: center; gap: 12px; z-index: 10; }
         .badge-check { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
 
         /* SECTIONS & CARDS */
@@ -132,7 +132,7 @@
         .msg-success { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--accent-blue); color: var(--accent-blue); }
 
         .input-group { position: relative; margin-bottom: 18px; display: flex; gap: 8px; }
-        .auth-input { flex-grow: 1; padding: 14px 15px; background: #1a1a24; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 12px; font-size: 14px; outline: none; transition: 0.3s; }
+        .auth-input { width: 100%; padding: 14px 15px; background: #1a1a24; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 12px; font-size: 14px; outline: none; transition: 0.3s; }
         .auth-input:focus { border-color: #38bdf8; }
         .eye-icon { position: absolute; right: 15px; top: 16px; cursor: pointer; color: #94a3b8; z-index: 10; }
 
@@ -147,7 +147,7 @@
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1); }
         .divider:not(:empty)::before { margin-right: .8em; } .divider:not(:empty)::after { margin-left: .8em; }
         
-        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; background: rgba(255,255,255,0.02); margin-bottom: 12px; }
+        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; background: rgba(255,255,255,0.02); margin-bottom: 12px; transition: 0.3s; }
         .social-btn:hover { background: rgba(255,255,255,0.05); border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.1); }
         .btn-google i { color: #db4437; }
         .btn-linkedin i { color: #0077b5; }
@@ -178,7 +178,7 @@
 
     <!-- HERO SECTION -->
     <div class="container hero">
-        <div>
+        <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
                 <div class="badge-dot locked" id="auth-dot"></div> <span id="auth-status-text">Public Visitor Mode</span>
             </div>
@@ -191,7 +191,7 @@
             </div>
         </div>
         
-        <div style="display: flex; justify-content: center; width: 100%;">
+        <div style="flex: 1; display: flex; justify-content: center; width: 100%;">
             <div class="image-wrapper">
                 <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
                 <div class="floating-badge">
@@ -360,12 +360,13 @@
         </div>
     </div>
 
-    <footer>&copy; 2026 Suraj Singh Jadon. All Rights Reserved.</footer>
+    <!-- FOOTER -->
+    <footer>© 2026 Suraj Singh Jadon. All Rights Reserved.</footer>
 
     <!-- SIDEBAR PANEL OVERLAY -->
     <div id="auth-overlay" onclick="closePanelOutside(event)">
         <div class="auth-container">
-            <button class="close-auth" onclick="toggleAuthPanel()">&times;</button>
+            <button class="close-auth" onclick="toggleAuthPanel()">×</button>
             <div id="msg-box" class="msg-box"></div>
 
             <!-- 1. LOGIN MODE -->
@@ -379,8 +380,9 @@
                     <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('login-password', this)"></i>
                 </div>
                 
+                <!-- 🤖 Unique Explicit Node ID for Login Captcha -->
                 <div style="margin-bottom:18px; display:flex; justify-content:center;">
-                    <div class="g-recaptcha" data-sitekey="6LfUTCAtAAAAAMaOBQd83MqMKlERnTXCF2SBxwFG" data-theme="dark"></div>
+                    <div id="recaptcha-login"></div>
                 </div>
 
                 <button type="button" class="btn-auth btn-primary" onclick="signInWithEmail()">Sign In</button>
@@ -403,8 +405,9 @@
                     <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('reg-password', this)"></i>
                 </div>
                 
+                <!-- 🤖 Unique Explicit Node ID for Register Captcha -->
                 <div style="margin-bottom:18px; display:flex; justify-content:center;">
-                    <div class="g-recaptcha" data-sitekey="6LfUTCAtAAAAAMaOBQd83MqMKlERnTXCF2SBxwFG" data-theme="dark"></div>
+                    <div id="recaptcha-register"></div>
                 </div>
 
                 <button type="button" class="btn-auth btn-primary" onclick="signUpWithEmail()">Register Identity</button>
@@ -442,10 +445,26 @@
         </div>
     </div>
 
-    <!-- UI LAYER CONFIGURATION MECHANICS -->
+    <!-- UI LAYER CONTROLLER MECHANICS -->
     <script>
         let isApprovedUser = false;
         let otpVerified = false;
+        let captchaLoginId = null;
+        let captchaRegisterId = null;
+
+        // 🤖 Multi-Widget Initialization Protocol
+        window.grecaptchaInit = function() {
+            if(window.grecaptcha && window.grecaptcha.render) {
+                captchaLoginId = window.grecaptcha.render('recaptcha-login', {
+                    'sitekey': '6LfUTCAtAAAAAMaOBQd83MqMKlERnTXCF2SBxwFG',
+                    'theme': 'dark'
+                });
+                captchaRegisterId = window.grecaptcha.render('recaptcha-register', {
+                    'sitekey': '6LfUTCAtAAAAAMaOBQd83MqMKlERnTXCF2SBxwFG',
+                    'theme': 'dark'
+                });
+            }
+        };
 
         function toggleAuthPanel() {
             const overlay = document.getElementById('auth-overlay');
@@ -469,7 +488,10 @@
             else if (mode === 'approval') document.getElementById('approval-form-block').classList.add('active');
             else if (mode === 'logout') document.getElementById('logout-form-block').classList.add('active');
             
-            if(window.grecaptcha) { window.grecaptcha.reset(); }
+            if(window.grecaptcha) { 
+                if(captchaLoginId !== null) window.grecaptcha.reset(captchaLoginId);
+                if(captchaRegisterId !== null) window.grecaptcha.reset(captchaRegisterId);
+            }
         }
 
         function togglePasswordVisibility(inputId, iconEl) {
@@ -505,40 +527,49 @@
         }
     </script>
 
-    <!-- ANTI-LOOP DEEP REDIRECT ENGINE -->
+    <!-- ANTI-LOOP DYNAMIC EXCHANGER ENGINE -->
     <script>
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'Sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu';
-        const targetRedirectUrl = 'https://surajsinghjadon.github.io/Portfolio/';
+        
+        // ⚡ Auto-Detect production link path natively to avoid loop failures completely
+        const activeOriginUrl = window.location.origin + window.location.pathname;
         const ADMIN_EMAIL = 'surajsinghrajput5040@gmail.com';
 
         const supabaseClient = window.supabase ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
 
+        async function getVerifiedCaptcha(widgetId) {
+            if(!window.grecaptcha || widgetId === null) return "";
+            return window.grecaptcha.getResponse(widgetId);
+        }
+
         async function loginWithGoogle() {
             if (!supabaseClient) return;
-            const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse() : "";
+            const currentForm = document.getElementById('register-form-block').classList.contains('active') ? captchaRegisterId : captchaLoginId;
+            const captchaResponse = await getVerifiedCaptcha(currentForm);
             if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA task puzzle first!", true); return; }
             
             await supabaseClient.auth.signInWithOAuth({ 
                 provider: 'google', 
-                options: { redirectTo: targetRedirectUrl } 
+                options: { redirectTo: activeOriginUrl } 
             });
         }
 
         async function loginWithLinkedIn() {
             if (!supabaseClient) return;
-            const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse() : "";
+            const currentForm = document.getElementById('register-form-block').classList.contains('active') ? captchaRegisterId : captchaLoginId;
+            const captchaResponse = await getVerifiedCaptcha(currentForm);
             if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA task puzzle first!", true); return; }
             
             await supabaseClient.auth.signInWithOAuth({ 
                 provider: 'linkedin', 
-                options: { redirectTo: targetRedirectUrl } 
+                options: { redirectTo: activeOriginUrl } 
             });
         }
 
         async function signUpWithEmail() {
             clearMessageBox();
-            const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse() : "";
+            const captchaResponse = await getVerifiedCaptcha(captchaRegisterId);
             if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA task puzzle first!", true); return; }
             
             const email = document.getElementById('reg-email').value;
@@ -549,12 +580,12 @@
                 const { error } = await supabaseClient.auth.signUp({ email, password, options: { data: { full_name: name } } });
                 if (error) throw error;
                 showStatusMessage("Registration successful! Check your mailbox verification links.", false);
-            } catch(e) { showStatusMessage(e.message, true); window.grecaptcha.reset(); }
+            } catch(e) { showStatusMessage(e.message, true); window.grecaptcha.reset(captchaRegisterId); }
         }
 
         async function signInWithEmail() {
             clearMessageBox();
-            const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse() : "";
+            const captchaResponse = await getVerifiedCaptcha(captchaLoginId);
             if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA task puzzle first!", true); return; }
 
             const email = document.getElementById('login-email').value;
@@ -564,7 +595,7 @@
             try {
                 const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
                 if (error) throw error;
-            } catch(e) { showStatusMessage(e.message, true); window.grecaptcha.reset(); }
+            } catch(e) { showStatusMessage(e.message, true); window.grecaptcha.reset(captchaLoginId); }
         }
 
         async function sendEmailOTP() {
@@ -640,10 +671,10 @@
 
         async function triggerSecureLogout() {
             if (supabaseClient) await supabaseClient.auth.signOut();
-            window.location.href = targetRedirectUrl; 
+            window.location.href = activeOriginUrl; 
         }
 
-        // ⚡ HIGH-SPEED STATE SYNCHRONIZER (CRASH-PROOF)
+        // ⚡ EXPLICIT AUTH RENDER SYNC
         async function synchroniseUserState(session) {
             const dot = document.getElementById('auth-dot');
             const statusText = document.getElementById('auth-status-text');
@@ -698,11 +729,6 @@
                 }
                 switchFormMode('logout');
             } else {
-                // If there's an oauth redirect running, do not force lock UI screens instantly
-                if (window.location.hash.includes('access_token')) {
-                    showStatusMessage("Syncing external identity tokens... Please wait.", false);
-                    return;
-                }
                 isApprovedUser = false;
                 if(dot) dot.classList.add('locked');
                 if(statusText) { statusText.innerText = "Public Visitor Mode"; statusText.style.color = "#ef4444"; }
@@ -717,16 +743,9 @@
             }
         }
 
-        // Deep Hooking Listener Core
         if (supabaseClient) {
-            // Immediate URL Parameter Token Interceptor
-            supabaseClient.auth.onAuthStateChange((event, session) => {
-                synchroniseUserState(session);
-            });
-            // Fallback recovery check
-            supabaseClient.auth.getSession().then(({ data: { session } }) => {
-                if (session) synchroniseUserState(session);
-            });
+            supabaseClient.auth.onAuthStateChange((event, session) => { synchroniseUserState(session); });
+            supabaseClient.auth.getSession().then(({ data: { session } }) => { if (session) synchroniseUserState(session); });
         }
     </script>
 </body>
