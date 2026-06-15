@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
-    <!-- Core External Asset Framework Pipelines -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.google.com/recaptcha/api.js?onload=grecaptchaInit&render=explicit" async defer></script>
@@ -88,21 +87,6 @@
         .bar { background: rgba(255,255,255,0.05); height: 6px; border-radius: 5px; margin-top: 8px; overflow: hidden; }
         .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
 
-        /* DOCUMENTS DESIGN */
-        .docs-grid { display: grid; grid-template-columns: 1fr; gap: 15px; margin-top: 15px; }
-        @media(min-width: 600px) { .docs-grid { grid-template-columns: 1fr 1fr; } }
-        .doc-link { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; text-decoration: none; color: white; transition: 0.2s; font-size: 13px; cursor: pointer; }
-        .doc-link:hover { border-color: var(--accent-blue); background: rgba(56,189,248,0.04); transform: translateY(-2px); }
-        .doc-info { display: flex; align-items: center; gap: 12px; }
-        .doc-info i { color: var(--accent-blue); font-size: 16px; }
-        .view-tag-status { font-size: 11px; font-weight: bold; text-transform: uppercase; }
-
-        /* PASSWORD STRENGTH UI CORE INDICATORS */
-        .strength-meter-container { margin-bottom: 18px; display: none; width: 100%; }
-        .strength-meter { height: 5px; width: 100%; background: rgba(255,255,255,0.1); border-radius: 10px; overflow: hidden; margin-bottom: 6px; }
-        .strength-bar { height: 100%; width: 0%; transition: all 0.3s ease; }
-        .strength-text { font-size: 11px; text-align: right; font-weight: bold; }
-
         /* CONTACT SECTION */
         .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; margin-top: 30px; margin-bottom: 60px; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
@@ -154,11 +138,15 @@
         .social-btn:hover { background: rgba(255,255,255,0.05); border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.1); }
         .btn-google i { color: #db4437; }
         .btn-linkedin i { color: #0077b5; }
+
+        /* --- LOGGED IN USER MENU STYLE --- */
+        .user-menu-item { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 12px; color: white; text-decoration: none; font-size: 14px; font-weight: bold; margin-bottom: 12px; cursor: pointer; transition: 0.2s; }
+        .user-menu-item:hover { border-color: #38bdf8; background: rgba(56,189,248,0.05); transform: translateX(-3px); }
+        .user-menu-item i { font-size: 18px; color: #38bdf8; width: 24px; text-align: center; }
     </style>
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -167,8 +155,6 @@
                     <a href="#experience">Experience</a>
                     <a href="#education">Education</a>
                     <a href="#skills">Skills</a>
-                    <a href="#achievements-section" id="nav-ach-link" style="display: none; color: #38bdf8;">Achievements</a>
-                    <a href="#secured-docs-section" id="nav-docs-link" style="display: none; color: #4ade80;">Documents</a>
                     <a href="#contact">Contact</a>
                 </div>
                 <button type="button" class="profile-login-btn" onclick="toggleAuthPanel()">
@@ -179,7 +165,6 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -208,72 +193,6 @@
         </div>
     </div>
 
-    <!-- 👑 ADMIN APPROVAL DASHBOARD PANEL (Visible Only to Suraj) -->
-    <div class="container" id="admin-dashboard-section" style="display: none; margin-bottom: 40px;">
-        <h2 class="section-title" style="color: #f59e0b;">Admin Approval Dashboard (Suraj Only)</h2>
-        <div class="card" style="border-color: rgba(245, 158, 11, 0.3); background: #0f1322;">
-            <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 15px;"><i class="fas fa-info-circle"></i> Following users have verified their email and requested clearance to view documents:</p>
-            <div id="admin-requests-list" style="display: flex; flex-direction: column; gap: 12px;">
-                <p style="color: var(--text-gray); font-size: 12px; font-style: italic;">Loading clearance requests...</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- 🌟 ACHIEVEMENTS SECTION -->
-    <div class="container" id="achievements-section" style="display: none; margin-bottom: 40px;">
-        <h2 class="section-title" style="color: #38bdf8;">Professional Achievements</h2>
-        <div class="card" style="border-color: rgba(56, 189, 248, 0.2);">
-            <div class="sub-title" style="color: #38bdf8; font-size:11px; font-weight:700; margin-bottom:15px;">1v1 TECHNICAL CERTIFICATIONS</div>
-            <div class="docs-grid">
-                <a href="ChatGPT for Everyone_certificate.pdf" target="_blank" class="doc-link">
-                    <div class="doc-info"><i class="fas fa-certificate" style="color:#38bdf8;"></i> ChatGPT for Everyone Cert.</div> <span class="view-tag-status" style="color:#38bdf8;">View PDF</span>
-                </a>
-                <a href="Data Analytics with AI_certificate.pdf" target="_blank" class="doc-link">
-                    <div class="doc-info"><i class="fas fa-chart-pie" style="color:#38bdf8;"></i> Data Analytics with AI Cert.</div> <span class="view-tag-status" style="color:#38bdf8;">View PDF</span>
-                </a>
-                <a href="Introduction to SQL_certificate.pdf" target="_blank" class="doc-link">
-                    <div class="doc-info"><i class="fas fa-server" style="color:#38bdf8;"></i> Introduction to SQL Cert.</div> <span class="view-tag-status" style="color:#38bdf8;">View PDF</span>
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- 🔒 SECURED DOCUMENTS SECTION (Fires Admin Approval Sidebar Loop Natively) -->
-    <div class="container" id="secured-docs-section" style="display: none;">
-        <h2 class="section-title" style="color: #4ade80;">Official Documents Repository</h2>
-        <div class="card" style="border-color: rgba(74, 222, 128, 0.2);">
-            <div class="badge" id="doc-lock-status-badge" style="margin-bottom:20px; background:rgba(239,68,68,0.1); border-color:#ef4444; color:#ef4444;">
-                <i class="fas fa-lock"></i> <span id="lock-status-text">Approval Required to Open Files</span>
-            </div>
-
-            <div class="sub-title" style="color: #4ade80; font-size:11px; font-weight:700; margin-bottom:15px;">PRIMARY ARCHIVE</div>
-            <div onclick="handleDocumentAccess('resume.pdf')" class="doc-link" style="margin-bottom:20px;">
-                <div class="doc-info"><i class="fas fa-file-pdf" style="color:#4ade80;"></i> Official Executive Resume / CV</div>
-                <span class="view-tag-status doc-status-label" style="color:#94a3b8;"><i class="fas fa-lock"></i> Locked</span>
-            </div>
-
-            <div class="sub-title" style="color: #4ade80; font-size:11px; font-weight:700; margin-bottom:15px;">ACADEMIC RECORDS</div>
-            <div class="docs-grid">
-                <div onclick="handleDocumentAccess('10th_marksheet.pdf')" class="doc-link">
-                    <div class="doc-info"><i class="fas fa-file-invoice"></i> 10th Grade Marksheet</div> <span class="view-tag-status doc-status-label" style="color:#94a3b8;"><i class="fas fa-lock"></i> Locked</span>
-                </div>
-                <div onclick="handleDocumentAccess('12th_marksheet.pdf')" class="doc-link">
-                    <div class="doc-info"><i class="fas fa-file-invoice"></i> 12th Grade Marksheet</div> <span class="view-tag-status doc-status-label" style="color:#94a3b8;"><i class="fas fa-lock"></i> Locked</span>
-                </div>
-                <div onclick="handleDocumentAccess('dca_diploma.pdf')" class="doc-link">
-                    <div class="doc-info"><i class="fas fa-graduation-cap"></i> DCA Final Diploma Certificate</div> <span class="view-tag-status doc-status-label" style="color:#94a3b8;"><i class="fas fa-lock"></i> Locked</span>
-                </div>
-                <div onclick="handleDocumentAccess('dca_1Sam.pdf')" class="doc-link">
-                    <div class="doc-info"><i class="fas fa-file-signature"></i> DCA - 1st Semester Marksheet</div> <span class="view-tag-status doc-status-label" style="color:#94a3b8;"><i class="fas fa-lock"></i> Locked</span>
-                </div>
-                <div onclick="handleDocumentAccess('dca_2Sam.pdf')" class="doc-link">
-                    <div class="doc-info"><i class="fas fa-file-signature"></i> DCA - 2nd Semester Marksheet</div> <span class="view-tag-status doc-status-label" style="color:#94a3b8;"><i class="fas fa-lock"></i> Locked</span>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -297,7 +216,6 @@
         </div>
     </div>
 
-    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -314,7 +232,6 @@
         </div>
     </div>
 
-    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -341,7 +258,6 @@
         </div>
     </div>
 
-    <!-- CONTACT SECTION -->
     <div class="container" id="contact">
         <div class="contact-box">
             <div class="contact-left">
@@ -363,39 +279,29 @@
         </div>
     </div>
 
-    <footer>&copy; 2026 Suraj Singh Jadon. All Rights Reserved.</footer>
-
-    <!-- SIDEBAR PANEL OVERLAY -->
     <div id="auth-overlay" onclick="closePanelOutside(event)">
         <div class="auth-container">
             <button class="close-auth" onclick="toggleAuthPanel()">×</button>
             <div id="msg-box" class="msg-box"></div>
 
-            <!-- 1. LOGIN MODE -->
             <div class="auth-form active" id="login-form-block">
                 <h3>Secure Portal</h3>
                 <p>Sign in to view Achievements and request private file clearances.</p>
-                
                 <div class="input-group"><input type="email" id="login-email" class="auth-input" placeholder="Email Address"></div>
                 <div class="input-group">
                     <input type="password" id="login-password" class="auth-input" placeholder="Password">
                     <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('login-password', this)"></i>
                 </div>
-                
                 <div style="margin-bottom:18px; display:flex; justify-content:center;">
                     <div id="recaptcha-login"></div>
                 </div>
-
                 <button type="button" class="btn-auth btn-primary" onclick="signInWithEmail()">Sign In</button>
                 <button type="button" class="auth-link" onclick="switchFormMode('register')">New User? Create Account</button>
-                
                 <div class="divider">OR CONTINUE WITH</div>
-                
                 <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()"><i class="fab fa-google"></i> Google Account</button>
                 <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()"><i class="fab fa-linkedin-in"></i> LinkedIn Network</button>
             </div>
 
-            <!-- 2. REGISTER MODE -->
             <div class="auth-form" id="register-form-block">
                 <h3>Create Account</h3>
                 <p>Register to unlock achievements access instantly.</p>
@@ -405,57 +311,66 @@
                     <input type="password" id="reg-password" class="auth-input" placeholder="Password" onkeyup="checkPasswordStrength(this.value)">
                     <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('reg-password', this)"></i>
                 </div>
-                
-                <!-- Live Password Strength Meter UI Container -->
                 <div class="strength-meter-container" id="strength-container">
-                    <div class="strength-meter">
-                        <div id="strength-bar" class="strength-bar"></div>
-                    </div>
+                    <div class="strength-meter"><div id="strength-bar" class="strength-bar"></div></div>
                     <div id="strength-text" class="strength-text">Weak</div>
                 </div>
-
                 <div style="margin-bottom:18px; display:flex; justify-content:center;">
                     <div id="recaptcha-register"></div>
                 </div>
-
                 <button type="button" class="btn-auth btn-primary" onclick="signUpWithEmail()">Register Identity</button>
                 <button type="button" class="auth-link" onclick="switchFormMode('login')">Already Registered? Sign In</button>
-                
                 <div class="divider">OR SIGN UP WITH</div>
-                
                 <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()"><i class="fab fa-google"></i> Google Account</button>
                 <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()"><i class="fab fa-linkedin-in"></i> LinkedIn Network</button>
             </div>
 
-            <!-- 3. REAL OTP ADMIN APPROVAL FORM -->
+            <div class="auth-form" id="logout-form-block">
+                <h3>Profile Dashboard</h3>
+                <p id="session-profile-desc" style="margin-bottom: 25px; font-weight: bold; color: var(--accent-blue);"></p>
+                
+                <div class="user-menu-item" onclick="openCertificatesPage()">
+                    <i class="fas fa-award"></i>
+                    <div>
+                        <div>Certificates</div>
+                        <div style="font-size:11px; color:var(--text-gray); font-weight:normal;">Open 1v1 technical archives</div>
+                    </div>
+                </div>
+
+                <div class="user-menu-item" onclick="switchFormMode('approval')">
+                    <i class="fas fa-file-shield"></i>
+                    <div>
+                        <div>Documents option</div>
+                        <div style="font-size:11px; color:var(--text-gray); font-weight:normal;">Request admin credential access</div>
+                    </div>
+                </div>
+
+                <button type="button" class="btn-auth" style="border: 1px solid #ef4444; color: #ef4444; background: none; margin-top: 20px;" onclick="triggerSecureLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout Session
+                </button>
+            </div>
+
             <div class="auth-form" id="approval-form-block">
                 <h3 style="color: #4ade80;"><i class="fas fa-shield-alt"></i> Admin Approval Form</h3>
-                <p>Enter details. A real 6-digit verification code will go to the email address provided below.</p>
+                <p>Verification token payload structure request archive router setup.</p>
                 <div class="input-group"><input type="text" id="app-name" class="auth-input" placeholder="Your Full Name"></div>
                 <div class="input-group"><input type="text" id="app-company" class="auth-input" placeholder="Company Name / Purpose"></div>
                 <div class="input-group">
                     <input type="email" id="app-email" class="auth-input" placeholder="Your Gmail Address">
-                    <button type="button" class="btn-inline" onclick="sendEmailOTP()">Get Real OTP</button>
+                    <button type="button" class="btn-inline" onclick="sendEmailOTP()">Get OTP</button>
                 </div>
                 <div class="input-group">
                     <input type="text" id="app-otp" class="auth-input" placeholder="Enter 6-Digit OTP Code">
-                    <button type="button" class="btn-inline" onclick="verifyEmailOTP()">Verify OTP</button>
+                    <button type="button" class="btn-inline" onclick="verifyEmailOTP()">Verify</button>
                 </div>
-                <button type="button" class="btn-auth btn-primary" style="background:#4ade80; color:black;" onclick="submitApprovalRequest()">Submit Request to Suraj</button>
+                <button type="button" class="btn-auth btn-primary" style="background:#4ade80; color:black;" onclick="submitApprovalRequest()">Submit Request</button>
+                <button type="button" class="auth-link" onclick="switchFormMode('logout')">Back to Profile</button>
             </div>
 
-            <!-- 4. LOGOUT MODE -->
-            <div class="auth-form" id="logout-form-block">
-                <h3>Session Active</h3>
-                <p id="session-profile-desc"></p>
-                <button type="button" class="btn-auth" style="border-color:#ef4444; color:#ef4444; background:none;" onclick="triggerSecureLogout()">Logout</button>
-            </div>
         </div>
     </div>
 
-    <!-- UI LAYER CONTROLLER MECHANICS -->
     <script>
-        let isApprovedUser = false;
         let otpVerified = false;
         let captchaLoginId = null;
         let captchaRegisterId = null;
@@ -543,44 +458,74 @@
                 box.style.display = 'block';
             }
         }
-        
-        function clearMessageBox() { 
-            const box = document.getElementById('msg-box');
-            if(box) box.style.display = 'none'; 
+        function clearMessageBox() { const box = document.getElementById('msg-box'); if(box) box.style.display = 'none'; }
+
+        // 🔥 NEW TAB WINDOW CERTIFICATES POPUP LAYER
+        function openCertificatesPage() {
+            const certWindow = window.open("", "_blank");
+            certWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>Suraj Singh Jadon - Technical Certificates</title>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+                    <style>
+                        body { background: #05070c; color: white; font-family: system-ui, sans-serif; padding: 60px 20px; text-align: center; }
+                        h1 { font-size: 32px; font-weight: 800; color: #38bdf8; margin-bottom: 10px; }
+                        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 25px; max-width: 1000px; margin: 50px auto; }
+                        .cert-card { background: #0d111c; border: 1px solid #1e293b; padding: 30px 20px; border-radius: 16px; transition: 0.3s; display: block; text-decoration: none; color: white; }
+                        .cert-card:hover { border-color: #38bdf8; transform: translateY(-4px); box-shadow: 0 10px 25px rgba(56,189,248,0.15); }
+                        .cert-card i { font-size: 44px; color: #38bdf8; margin-bottom: 20px; }
+                        .cert-title { font-size: 18px; font-weight: bold; margin-bottom: 12px; }
+                        .action-btn { display: inline-block; margin-top: 15px; padding: 8px 18px; background: rgba(56,189,248,0.1); border: 1px solid #38bdf8; color: #38bdf8; font-size: 12px; font-weight: bold; border-radius: 8px; text-transform: uppercase; }
+                    </style>
+                </head>
+                <body>
+                    <h1>1v1 Technical Achievements & Credentials</h1>
+                    <p style="color: #94a3b8;">Verified authentication pipeline secure clearance</p>
+                    <div class="grid">
+                        <a href="ChatGPT for Everyone_certificate.pdf" target="_blank" class="cert-card">
+                            <i class="fas fa-certificate"></i>
+                            <div class="cert-title">ChatGPT for Everyone</div>
+                            <span class="action-btn">View PDF Document</span>
+                        </a>
+                        <a href="Data Analytics with AI_certificate.pdf" target="_blank" class="cert-card">
+                            <i class="fas fa-chart-pie"></i>
+                            <div class="cert-title">Data Analytics with AI</div>
+                            <span class="action-btn">View PDF Document</span>
+                        </a>
+                        <a href="Introduction to SQL_certificate.pdf" target="_blank" class="cert-card">
+                            <i class="fas fa-server"></i>
+                            <div class="cert-title">Introduction to SQL</div>
+                            <span class="action-btn">View PDF Document</span>
+                        </a>
+                    </div>
+                </body>
+                </html>
+            `);
+            certWindow.document.close();
         }
 
+        // Handle Document Action Trigger (Now strictly handled inside the dashboard layout)
         function handleDocumentAccess(fileName) {
-            if (isApprovedUser) {
-                window.open(fileName, '_blank');
-            } else {
-                alert("Security Clearance Required: Opening Admin Approval Form. Please verify your Gmail with OTP token payload.");
-                toggleAuthPanel();
-                switchFormMode('approval');
-            }
+            alert("Security Clearance Redirect: Please access the profile option dropdown to request dynamic file unlock tokens.");
+            toggleAuthPanel();
         }
     </script>
 
-    <!-- ANTI-LOOP LOADER CORE SUPABASE ENGINE -->
     <script>
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4';
-        
         const activeOriginUrl = window.location.origin + window.location.pathname;
-        const ADMIN_EMAIL = 'surajsinghrajput5040@gmail.com';
 
         const supabaseClient = window.supabase ? window.supabase.createClient(supabaseUrl, supabaseKey, {
             auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
         }) : null;
 
-        async function getVerifiedCaptcha(widgetId) {
-            if(!window.grecaptcha || widgetId === null) return "";
-            return window.grecaptcha.getResponse(widgetId);
-        }
-
         async function loginWithGoogle() {
             if (!supabaseClient) return;
             const currentForm = document.getElementById('register-form-block').classList.contains('active') ? captchaRegisterId : captchaLoginId;
-            const captchaResponse = await getVerifiedCaptcha(currentForm);
+            const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse(currentForm) : "";
             if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA challenge first!", true); return; }
             
             await supabaseClient.auth.signInWithOAuth({ 
@@ -592,18 +537,15 @@
         async function loginWithLinkedIn() {
             if (!supabaseClient) return;
             const currentForm = document.getElementById('register-form-block').classList.contains('active') ? captchaRegisterId : captchaLoginId;
-            const captchaResponse = await getVerifiedCaptcha(currentForm);
+            const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse(currentForm) : "";
             if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA challenge first!", true); return; }
             
-            await supabaseClient.auth.signInWithOAuth({ 
-                provider: 'linkedin', 
-                options: { redirectTo: activeOriginUrl } 
-            });
+            await supabaseClient.auth.signInWithOAuth({ provider: 'linkedin', options: { redirectTo: activeOriginUrl } });
         }
 
         async function signUpWithEmail() {
             clearMessageBox();
-            const captchaResponse = await getVerifiedCaptcha(captchaRegisterId);
+            const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse(captchaRegisterId) : "";
             if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA challenge first!", true); return; }
             
             const email = document.getElementById('reg-email').value;
@@ -613,13 +555,13 @@
             try {
                 const { error } = await supabaseClient.auth.signUp({ email, password, options: { data: { full_name: name } } });
                 if (error) throw error;
-                showStatusMessage("Registration successful! Check your mailbox verification links.", false);
+                showStatusMessage("Registration successful! Check your inbox verification links.", false);
             } catch(e) { showStatusMessage(e.message, true); window.grecaptcha.reset(captchaRegisterId); }
         }
 
         async function signInWithEmail() {
             clearMessageBox();
-            const captchaResponse = await getVerifiedCaptcha(captchaLoginId);
+            const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse(captchaLoginId) : "";
             if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA challenge first!", true); return; }
 
             const email = document.getElementById('login-email').value;
@@ -636,7 +578,6 @@
             clearMessageBox();
             const email = document.getElementById('app-email').value;
             if(!email) { showStatusMessage("Please input a valid Gmail address.", true); return; }
-            
             showStatusMessage("Processing request... Dispatching real OTP.", false);
             const { error } = await supabaseClient.auth.signInWithOtp({ email });
             if (error) { showStatusMessage("OTP Error: " + error.message, true); } 
@@ -648,10 +589,8 @@
             const email = document.getElementById('app-email').value;
             const otpInput = document.getElementById('app-otp').value;
             if(!email || !otpInput) { showStatusMessage("Email and OTP fields are mandatory.", true); return; }
-
             showStatusMessage("Validating verification code...", false);
             const { data, error } = await supabaseClient.auth.verifyOtp({ email: email, token: otpInput, type: 'email' });
-
             if (error) { showStatusMessage("Invalid OTP Code: " + error.message, true); otpVerified = false; } 
             else { otpVerified = true; showStatusMessage("Gmail successfully authenticated & verified!", false); }
         }
@@ -661,47 +600,14 @@
             const name = document.getElementById('app-name').value;
             const company = document.getElementById('app-company').value;
             const email = document.getElementById('app-email').value;
-
             if(!name || !company || !email) { showStatusMessage("Please fill out all identity sections.", true); return; }
             if(!otpVerified) { showStatusMessage("Please verify the email OTP first.", true); return; }
 
             showStatusMessage("Logging application profile payload...", false);
             const { error } = await supabaseClient.from('document_requests').upsert([{ name, email, company, status: 'pending' }], { onConflict: 'email' });
-
             if (error) { showStatusMessage("Database Submission Error: " + error.message, true); } 
             else { alert("Success! Application logged. Files unlock instantly upon Suraj's authorization."); location.reload(); }
         }
-
-        async function loadPendingClearances() {
-            const listContainer = document.getElementById('admin-requests-list');
-            if (!listContainer) return;
-
-            const { data, error } = await supabaseClient.from('document_requests').select('*').eq('status', 'pending');
-            if (error) { listContainer.innerHTML = `<p style="color:#ef4444; font-size:12px;">Error: ${error.message}</p>`; return; }
-            if (!data || data.length === 0) { listContainer.innerHTML = `<p style="color:#4ade80; font-size:12px; font-style:italic;"><i class="fas fa-check-circle"></i> No pending file applications registered.</p>`; return; }
-
-            let htmlTemplate = "";
-            data.forEach(req => {
-                htmlTemplate += `
-                    <div style="display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); padding:12px 15px; border-radius:10px; flex-wrap:wrap; gap:10px;">
-                        <div>
-                            <strong style="color:white; font-size:14px;">${req.name}</strong> <span style="color:#38bdf8; font-size:12px;">(${req.company})</span>
-                            <div style="color:var(--text-gray); font-size:12px; margin-top:2px;">Email: ${req.email}</div>
-                        </div>
-                        <button type="button" class="btn-inline" style="background:#4ade80; color:black; border:none; padding:8px 16px; border-radius:8px; cursor:pointer;" onclick="approveUserRequest('${req.email}')">
-                            <i class="fas fa-check"></i> Grant Access
-                        </button>
-                    </div>
-                `;
-            });
-            listContainer.innerHTML = htmlTemplate;
-        }
-
-        window.approveUserRequest = async function(userEmail) {
-            const { error } = await supabaseClient.from('document_requests').update({ status: 'approved' }).eq('email', userEmail);
-            if (error) { alert("Error updating status: " + error.message); } 
-            else { alert(`Clearance Approved for ${userEmail}`); loadPendingClearances(); }
-        };
 
         async function triggerSecureLogout() {
             if (supabaseClient) await supabaseClient.auth.signOut();
@@ -716,64 +622,30 @@
             const userPhoto = document.getElementById('user-photo');
             const achSec = document.getElementById('achievements-section');
             const docsSec = document.getElementById('secured-docs-section');
-            const navAchLink = document.getElementById('nav-ach-link');
-            const navDocsLink = document.getElementById('nav-docs-link');
             const profileDesc = document.getElementById('session-profile-desc');
-            const adminSec = document.getElementById('admin-dashboard-section');
 
             if (session && session.user) {
                 const user = session.user;
                 if(dot) dot.classList.remove('locked');
                 if(statusText) { statusText.innerText = "Secured Identity Active"; statusText.style.color = "#38bdf8"; }
-                
                 if (user.user_metadata && user.user_metadata.avatar_url) {
                     if (userIcon) userIcon.style.display = 'none';
                     if (userPhoto) { userPhoto.src = user.user_metadata.avatar_url; userPhoto.style.display = 'block'; }
                 }
 
+                // Unhide interface blocks cleanly
                 if(achSec) achSec.style.display = 'block';
                 if(docsSec) docsSec.style.display = 'block';
-                if(navAchLink) navAchLink.style.display = 'inline-block';
-                if(navDocsLink) navDocsLink.style.display = 'inline-block';
-                if(profileDesc) profileDesc.innerText = `Identity Scope Token: ${user.email}`;
-
-                const { data: reqData } = await supabaseClient.from('document_requests').select('status').eq('email', user.email).maybeSingle();
-
-                if (user.email.toLowerCase() === ADMIN_EMAIL) {
-                    isApprovedUser = true;
-                    if(adminSec) adminSec.style.display = 'block';
-                    loadPendingClearances();
-                    document.getElementById('doc-lock-status-badge').style.borderColor = "#4ade80";
-                    document.getElementById('doc-lock-status-badge').style.background = "rgba(74,222,128,0.1)";
-                    document.getElementById('doc-lock-status-badge').style.color = "#4ade80";
-                    document.getElementById('lock-status-text').innerText = "System Owner Clearance Verified: Documents Unlocked";
-                    document.querySelectorAll('.doc-status-label').forEach(el => { el.innerHTML = "Open PDF File"; el.style.color = "#4ade80"; });
-                } else if (reqData && reqData.status === 'approved') {
-                    isApprovedUser = true;
-                    document.getElementById('doc-lock-status-badge').style.borderColor = "#4ade80";
-                    document.getElementById('doc-lock-status-badge').style.background = "rgba(74,222,128,0.1)";
-                    document.getElementById('doc-lock-status-badge').style.color = "#4ade80";
-                    document.getElementById('lock-status-text').innerText = "Clearance Active: Documents Unlocked";
-                    document.querySelectorAll('.doc-status-label').forEach(el => { el.innerHTML = "Open PDF File"; el.style.color = "#4ade80"; });
-                } else if (reqData && reqData.status === 'pending') {
-                    document.getElementById('lock-status-text').innerText = "Clearance Request Pending Admin Action";
-                    document.getElementById('doc-lock-status-badge').style.color = "#f59e0b";
-                    document.getElementById('doc-lock-status-badge').style.borderColor = "#f59e0b";
-                    document.getElementById('doc-lock-status-badge').style.background = "rgba(245,158,11,0.05)";
-                }
+                if(profileDesc) profileDesc.innerText = `${user.email}`;
                 switchFormMode('logout');
             } else {
                 if (window.location.hash.includes('access_token')) { return; }
-                isApprovedUser = false;
                 if(dot) dot.classList.add('locked');
                 if(statusText) { statusText.innerText = "Public Visitor Mode"; statusText.style.color = "#ef4444"; }
                 if(userIcon) userIcon.style.display = 'block';
                 if(userPhoto) userPhoto.style.display = 'none';
                 if(achSec) achSec.style.display = 'none';
                 if(docsSec) docsSec.style.display = 'none';
-                if(navAchLink) navAchLink.style.display = 'none';
-                if(navDocsLink) navDocsLink.style.display = 'none';
-                if(adminSec) adminSec.style.display = 'none';
                 switchFormMode('login');
             }
         }
