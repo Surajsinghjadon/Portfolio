@@ -117,17 +117,51 @@
         #auth-overlay.show { display: flex; animation: fadeIn 0.2s ease; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        .auth-container { background: #0d111c; border-left: 2px solid #38bdf8; width: 100%; max-width: 420px; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9); overflow-y: auto; position: relative; display: flex; flex-direction: column; justify-content: center; }
-        .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: #94a3b8; font-size: 35px; cursor: pointer; z-index: 10; transition: 0.3s; }
+        .auth-container { background: #0d111c; border-left: 2px solid #38bdf8; width: 100%; max-width: 420px; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9); overflow-y: auto; position: relative; display: flex; flex-direction: column; justify-content: flex-start; }
+        .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: #94a3b8; font-size: 35px; cursor: pointer; z-index: 1010; transition: 0.3s; }
         .close-auth:hover { color: #ef4444; }
 
-        .auth-form { text-align: center; }
-        .auth-form h3 { font-size: 24px; margin-bottom: 10px; font-weight: 800; }
-        .auth-form p { color: var(--text-gray); font-size: 13px; margin-bottom: 30px; }
+        /* EXTENDED CUSTOM FORM IMPLEMENTATION */
+        .auth-form { display: none; margin-top: 25px; text-align: left; }
+        .auth-form.active { display: block; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
+        .auth-form h3 { font-size: 24px; margin-bottom: 10px; font-weight: 800; text-align: center; color: var(--text-white); }
+        .auth-form p { color: var(--text-gray); font-size: 13px; margin-bottom: 25px; text-align: center; }
+
+        /* ERRORS AND NOTIFICATIONS BOXES */
+        .msg-box { padding: 12px; border-radius: 8px; font-size: 13px; font-weight: bold; margin-bottom: 20px; display: none; text-align: center; }
+        .msg-error { background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ff6b6b; }
+        .msg-success { background: rgba(56, 189, 248, 0.15); border: 1px solid var(--accent-blue); color: var(--accent-blue); }
+
+        .input-group { position: relative; margin-bottom: 18px; }
+        .auth-input { width: 100%; padding: 14px 15px; background: #1a1a24; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 12px; font-size: 14px; outline: none; transition: 0.3s; padding-right: 45px; }
+        .auth-input:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
+        
+        .eye-icon { position: absolute; right: 15px; top: 16px; cursor: pointer; color: #94a3b8; font-size: 16px; z-index: 10; }
+        .eye-icon:hover { color: #38bdf8; }
+
+        /* PASSWORD METERS STYLING */
+        .strength-meter-container { margin-bottom: 18px; display: none; }
+        .strength-meter { height: 4px; width: 100%; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; margin-bottom: 5px; }
+        .strength-bar { height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease; }
+        .strength-text { font-size: 11px; text-align: right; font-weight: bold; }
+
+        .btn-auth { width: 100%; padding: 15px; border-radius: 12px; font-size: 14px; font-weight: bold; cursor: pointer; transition: 0.3s; border: none; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+        .btn-primary { background: #38bdf8; color: #000; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2); }
+        .btn-primary:hover { background: #0284c7; color: white; transform: translateY(-1px); }
+        
+        .auth-link { color: #38bdf8; font-size: 13px; font-weight: bold; cursor: pointer; text-align: center; margin-top: 15px; display: block; background: none; border: none; width: 100%; }
+        .auth-link:hover { text-decoration: underline; }
+
+        .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 25px 0; letter-spacing: 1px; }
+        .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1); }
+        .divider:not(:empty)::before { margin-right: .8em; } .divider:not(:empty)::after { margin-left: .8em; }
+        
         .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; margin-bottom: 12px; background: rgba(255,255,255,0.02); }
         .social-btn:hover { background: rgba(255,255,255,0.05); border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.1); }
         .btn-google i { color: #db4437; }
+        .btn-linkedin i { color: #0077b5; }
     </style>
 </head>
 <body>
@@ -324,79 +358,269 @@
     <div id="auth-overlay" onclick="closePanelOutside(event)">
         <div class="auth-container">
             <button class="close-auth" onclick="toggleAuthPanel()">&times;</button>
-            <div class="auth-form" id="oauth-gate-form">
-                <h3 id="panel-title">Secure Portal</h3>
-                <p id="panel-desc">Sign in with authorized corporate Google credentials to unlock premium executive attachments and credentials dashboard.</p>
-                <div id="action-area">
-                    <!-- Diagnostic click attached safely -->
-                    <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()">
-                        <i class="fab fa-google"></i> Continue with Google Auth
-                    </button>
+            
+            <!-- Global Messages Notification Box -->
+            <div id="msg-box" class="msg-box"></div>
+
+            <!-- 1. LOGIN FORM MODE -->
+            <div class="auth-form active" id="login-form-block">
+                <h3>Secure Portal</h3>
+                <p>Sign in to unlock premium executive attachments and credentials dashboard.</p>
+                
+                <div class="input-group">
+                    <input type="email" id="login-email" class="auth-input" placeholder="Email Address" required>
                 </div>
+                <div class="input-group">
+                    <input type="password" id="login-password" class="auth-input" placeholder="Password" required>
+                    <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('login-password', this)"></i>
+                </div>
+                
+                <button type="button" class="btn-auth btn-primary" onclick="signInWithEmail()">Sign In</button>
+                
+                <button type="button" class="auth-link" onclick="switchFormMode('register')">New User? Create Account</button>
+                
+                <div class="divider">OR CONTINUE WITH</div>
+                
+                <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()">
+                    <i class="fab fa-google"></i> Google Account
+                </button>
+                <button type="button" class="social-btn btn-linkedin" onclick="handleSocialStub('LinkedIn')">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn Network
+                </button>
             </div>
+
+            <!-- 2. REGISTER FORM MODE -->
+            <div class="auth-form" id="register-form-block">
+                <h3>Create Account</h3>
+                <p>Register your corporate identity profile to request archive permissions.</p>
+                
+                <div class="input-group">
+                    <input type="text" id="reg-name" class="auth-input" placeholder="Full Name" required>
+                </div>
+                <div class="input-group">
+                    <input type="email" id="reg-email" class="auth-input" placeholder="Email Address" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" id="reg-password" class="auth-input" placeholder="Password" onkeyup="checkPasswordStrength(this.value)" required>
+                    <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('reg-password', this)"></i>
+                </div>
+                
+                <!-- Live Dynamic Password Strength Meter Layout -->
+                <div class="strength-meter-container" id="strength-container">
+                    <div class="strength-meter">
+                        <div id="strength-bar" class="strength-bar"></div>
+                    </div>
+                    <div id="strength-text" class="strength-text">Weak</div>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="reg-confirm" class="auth-input" placeholder="Confirm Password" required>
+                    <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('reg-confirm', this)"></i>
+                </div>
+                
+                <button type="button" class="btn-auth btn-primary" onclick="signUpWithEmail()">Register Identity</button>
+                
+                <button type="button" class="auth-link" onclick="switchFormMode('login')">Already Registered? Sign In</button>
+                
+                <div class="divider">OR SIGN UP WITH</div>
+                
+                <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()">
+                    <i class="fab fa-google"></i> Google Account
+                </button>
+                <button type="button" class="social-btn btn-linkedin" onclick="handleSocialStub('LinkedIn')">
+                    <i class="fab fa-linkedin-in"></i> LinkedIn Network
+                </button>
+            </div>
+
+            <!-- 3. LOGGED IN SESSION MANAGEMENT CONTAINER -->
+            <div class="auth-form" id="logout-form-block">
+                <h3>Session Active</h3>
+                <p id="session-profile-desc">Identity token validated successfully.</p>
+                <button type="button" class="btn-auth" style="border-color: #ef4444; color: #ef4444; background: none;" onclick="triggerSecureLogout()">
+                    <i class="fas fa-sign-out-alt"></i> Terminate Session (Logout)
+                </button>
+            </div>
+
         </div>
     </div>
 
-    <!-- UI CORE PANEL HANDLING SCRIPT -->
+    <!-- UI LAYER ACTIONS AND TRANSITIONS -->
     <script>
         function toggleAuthPanel() {
             const overlay = document.getElementById('auth-overlay');
             if (overlay) overlay.classList.toggle('show');
+            clearMessageBox();
         }
-        function openPanel() { toggleAuthPanel(); }
+
         function closePanelOutside(e) {
             if (e.target.id === 'auth-overlay') toggleAuthPanel();
         }
+
+        function switchFormMode(mode) {
+            clearMessageBox();
+            document.getElementById('login-form-block').classList.remove('active');
+            document.getElementById('register-form-block').classList.remove('active');
+            document.getElementById('logout-form-block').classList.remove('active');
+            
+            if (mode === 'login') {
+                document.getElementById('login-form-block').classList.add('active');
+            } else if (mode === 'register') {
+                document.getElementById('register-form-block').classList.add('active');
+            } else if (mode === 'logout') {
+                document.getElementById('logout-form-block').classList.add('active');
+            }
+        }
+
+        function togglePasswordVisibility(inputId, iconEl) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                iconEl.classList.remove('fa-eye');
+                iconEl.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                iconEl.classList.remove('fa-eye-slash');
+                iconEl.classList.add('fa-eye');
+            }
+        }
+
+        // Live strength metrics computational engine
+        function checkPasswordStrength(password) {
+            const container = document.getElementById('strength-container');
+            const bar = document.getElementById('strength-bar');
+            const txt = document.getElementById('strength-text');
+            
+            if (!password) {
+                container.style.display = 'none';
+                return;
+            }
+            container.style.display = 'block';
+
+            let score = 0;
+            if (password.length >= 6) score++;
+            if (password.match(/[A-Z]/) && password.match(/[a-z]/)) score++;
+            if (password.match(/[0-9]/)) score++;
+            if (password.match(/[^A-Za-z0-9]/)) score++;
+
+            if (score <= 1) {
+                bar.style.width = '33%';
+                bar.style.backgroundColor = '#ef4444';
+                txt.innerText = 'Weak';
+                txt.style.color = '#ef4444';
+            } else if (score === 2 || score === 3) {
+                bar.style.width = '66%';
+                bar.style.backgroundColor = '#f59e0b';
+                txt.innerText = 'Medium';
+                txt.style.color = '#f59e0b';
+            } else {
+                bar.style.width = '100%';
+                bar.style.backgroundColor = '#4ade80';
+                txt.innerText = 'Strong';
+                txt.style.color = '#4ade80';
+            }
+        }
+
+        function showStatusMessage(text, isError) {
+            const box = document.getElementById('msg-box');
+            box.innerText = text;
+            box.className = 'msg-box ' + (isError ? 'msg-error' : 'msg-success');
+            box.style.display = 'block';
+        }
+
+        function clearMessageBox() {
+            const box = document.getElementById('msg-box');
+            box.style.display = 'none';
+            box.innerText = '';
+        }
+
+        function handleSocialStub(provider) {
+            alert(`${provider} connection capability is currently pending external API credentials mapping setup.`);
+        }
     </script>
 
-    <!-- DATABASE & DIAGNOSTICS SCRIPT ENGINE -->
+    <!-- SUPABASE FUNCTIONAL LINKING CONTROLLER -->
     <script>
         let supabase;
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'Sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
         const targetRedirectUrl = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        // Active Diagnostics Initialize Block
-        function initSupabaseClient() {
+        try {
+            if (window.supabase && window.supabase.createClient) {
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+            }
+        } catch (e) {
+            console.error("Database framework linking failed:", e);
+        }
+
+        // 1. Traditional Email Registration System
+        async function signUpWithEmail() {
+            clearMessageBox();
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const confirm = document.getElementById('reg-confirm').value;
+            const name = document.getElementById('reg-name').value;
+
+            if (!email || !password || !name) {
+                showStatusMessage("Please completely fill all mandatory input parameters.", true);
+                return;
+            }
+            if (password !== confirm) {
+                showStatusMessage("Confirmation password identity does not match structure.", true);
+                return;
+            }
+
             try {
-                if (window.supabase && window.supabase.createClient) {
-                    supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
-                }
-            } catch (e) {
-                console.error("Initialization issue caught:", e);
+                const { data, error } = await supabase.auth.signUp({
+                    email: email,
+                    password: password,
+                    options: { data: { full_name: name } }
+                });
+                if (error) throw error;
+                showStatusMessage("Registration initialized! Please check your mailbox confirmation links.", false);
+            } catch (err) {
+                showStatusMessage(err.message, true);
             }
         }
-        initSupabaseClient();
 
-        // 🚀 LIVE DIAGNOSTIC CLICK HANDLER
-        async function loginWithGoogle() {
-            // Test Alert 1: To check if function triggers on tap
-            alert("SURAJ BHAIYA: Login button successfully clicked! Attempting verification...");
+        // 2. Traditional Email Login System
+        async function signInWithEmail() {
+            clearMessageBox();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
 
-            if (!supabase) {
-                // If script race condition happened, retry initializing dynamically
-                initSupabaseClient();
-                if (!supabase) {
-                    alert("ERROR: Supabase library missing. Checking network connection...");
-                    return;
-                }
+            if (!email || !password) {
+                showStatusMessage("Email and password credentials parameters required.", true);
+                return;
             }
 
             try {
-                alert("Redirecting target: " + targetRedirectUrl);
+                const { data, error } = await supabase.auth.signInWithPassword({
+                    email: email,
+                    password: password
+                });
+                if (error) throw error;
+                showStatusMessage("Authorization approved! Syncing credentials view layout...", false);
+                runSessionMonitor();
+            } catch (err) {
+                showStatusMessage(err.message, true);
+            }
+        }
+
+        // 3. Google OAuth System
+        async function loginWithGoogle() {
+            try {
                 const { data, error } = await supabase.auth.signInWithOAuth({
                     provider: 'google',
                     options: { redirectTo: targetRedirectUrl }
                 });
-                
                 if (error) throw error;
             } catch (err) {
-                // Catches token structure errors or server faults loudly on screen
-                alert('ALERT DATA LOG: ' + err.message);
+                alert('Authentication Loop Exception: ' + err.message);
             }
         }
 
-        // Active Session Monitor Adaptor
+        // 4. Session State Render Adaptation Monitor Hook
         async function runSessionMonitor() {
             if (!supabase) return;
             try {
@@ -409,17 +633,17 @@
                 const userPhoto = document.getElementById('user-photo');
                 const securedDocs = document.getElementById('secured-docs-section');
                 const navDocsLink = document.getElementById('nav-docs-link');
-                const panelTitle = document.getElementById('panel-title');
-                const panelDesc = document.getElementById('panel-desc');
-                const actionArea = document.getElementById('action-area');
+                const profileDesc = document.getElementById('session-profile-desc');
 
                 if (session) {
                     const user = session.user;
+                    
                     if (dot) dot.classList.remove('locked');
                     if (statusText) {
                         statusText.innerText = "Secured Identity Verified";
                         statusText.style.color = "#4ade80";
                     }
+
                     if (user.user_metadata && user.user_metadata.avatar_url) {
                         if (userIcon) userIcon.style.display = 'none';
                         if (userPhoto) {
@@ -427,20 +651,28 @@
                             userPhoto.style.display = 'block';
                         }
                     }
+
                     if (securedDocs) securedDocs.style.display = 'block';
                     if (navDocsLink) navDocsLink.style.display = 'inline-block';
-                    if (panelTitle) panelTitle.innerText = "Session Active";
-                    if (panelDesc) panelDesc.innerText = `Logged in securely as ${user.email}.`;
-                    if (actionArea) {
-                        actionArea.innerHTML = `
-                            <button class="social-btn" style="border-color: #ef4444; color: #ef4444; background: none;" onclick="triggerSecureLogout()">
-                                <i class="fas fa-sign-out-alt"></i> Terminate Session (Logout)
-                            </button>
-                        `;
+                    
+                    if (profileDesc) {
+                        profileDesc.innerText = `Logged in securely as ${user.email}. Premium credentials dashboard validation is now unlocked.`;
                     }
+                    switchFormMode('logout');
+                } else {
+                    if (dot) dot.classList.add('locked');
+                    if (statusText) {
+                        statusText.innerText = "Public Visitor Mode";
+                        statusText.style.color = "var(--accent-blue)";
+                    }
+                    if (userIcon) userIcon.style.display = 'block';
+                    if (userPhoto) userPhoto.style.display = 'none';
+                    if (securedDocs) securedDocs.style.display = 'none';
+                    if (navDocsLink) navDocsLink.style.display = 'none';
+                    switchFormMode('login');
                 }
             } catch (err) {
-                console.error("Session Adaptor issue handled cleanly:", err);
+                console.error("Session initialization sandbox exception handled safely:", err);
             }
         }
 
