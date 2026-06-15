@@ -45,9 +45,9 @@
         .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
         .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
         .badge-dot.locked { background: #ef4444; box-shadow: 0 0 10px #ef4444; }
-        h1 { font-size: 42px; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
+        h1 { font-size: 42px; font-weight: 800; margin-bottom: 20px; line-height: 1.2; word-wrap: break-word; }
         .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
-        .hero-p { font-size: 14px; color: var(--text-gray); margin-bottom: 35px; max-width: 540px; line-height: 1.7; }
+        .hero-p { font-size: 14px; color: var(--text-gray); margin-bottom: 35px; max-width: 540px; line-height: 1.7; text-align: justify; }
         
         .btn-group { display: flex; gap: 15px; justify-content: center; }
         @media (min-width: 768px) { .btn-group { justify-content: flex-start; } }
@@ -61,7 +61,7 @@
         .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; z-index: 10; }
         .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 12px; z-index: 10; }
+        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(56, 189, 248, 0.2); display: flex; align-items: center; gap: 12px; z-index: 10; }
         .badge-check { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
 
         /* SECTIONS & CARDS */
@@ -73,7 +73,7 @@
         .company { color: var(--text-white); font-size: 18px; }
         .tag { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); font-size: 11px; padding: 5px 12px; border-radius: 50px; border: 1px solid rgba(56, 189, 248, 0.1); }
         .role { color: var(--accent-blue); font-weight: 600; font-size: 13px; margin-bottom: 12px; }
-        .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
+        .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; line-height: 1.5; }
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; }
 
         /* SKILLS GRID */
@@ -89,19 +89,19 @@
         .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
 
         /* CONTACT SECTION */
-        .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; margin-top: 30px; margin-bottom: 60px; }
+        .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; margin-top: 30px; margin-bottom: 40px; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
         .contact-left { padding: 40px; flex: 1.2; }
         .contact-row { display: flex; align-items: center; gap: 18px; margin-bottom: 25px; }
         .icon-container { background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.1); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; }
         .label { font-size: 10px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
-        .value { font-size: 13px; font-weight: 700; margin-top: 4px; color: var(--text-white); }
+        .value { font-size: 13px; font-weight: 700; margin-top: 4px; color: var(--text-white); word-break: break-all; }
         
         .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 40px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 20; }
         .real-earth-wrapper { width: 100px; height: 100px; background: var(--accent-blue); margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #05070c; }
         .loc-pill { position: relative; z-index: 50; display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 10px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); text-decoration: none; transition: 0.3s; cursor: pointer; }
         .loc-pill:hover { background: rgba(56, 189, 248, 0.15); border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
-        footer { padding: 30px 0; text-align: center; color: var(--text-gray); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.02); }
+        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 12px; border-top: 1px solid rgba(255,255,255,0.03); width: 100%; position: relative; z-index: 10; }
 
         /* --- SIDEBAR PANEL OVERLAY --- */
         #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.9); z-index: 9999999; display: none; justify-content: flex-end; align-items: stretch; }
@@ -525,6 +525,7 @@
     <!-- CORE SUPABASE LOGIC CLIENT ENGINE -->
     <script>
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
+        // 🔥 BLUNDER SOLVED: Restored user's original explicit master JWT key string
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4';
         const activeOriginUrl = window.location.origin + window.location.pathname;
 
@@ -555,10 +556,7 @@
             const captchaResponse = await getVerifiedCaptcha(currentForm);
             if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA challenge first!", true); return; }
             
-            await supabaseClient.auth.signInWithOAuth({ 
-                provider: 'linkedin', 
-                options: { redirectTo: activeOriginUrl, captchaToken: captchaResponse } 
-            });
+            await supabaseClient.auth.signInWithOAuth({ provider: 'linkedin', options: { redirectTo: activeOriginUrl, captchaToken: captchaResponse } });
         }
 
         async function signUpWithEmail() {
