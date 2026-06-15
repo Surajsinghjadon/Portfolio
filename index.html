@@ -5,12 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
+    <!-- Core External Asset Framework Pipelines -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script src="https://www.google.com/recaptcha/api.js?onload=grecaptchaInit&render=explicit" async defer></script>
 
     <style>
-        /* --- CORE PORTFOLIO DESIGN (100% ORIGINAL STYLE RESTORED) --- */
+        /* --- CORE PORTFOLIO DESIGN (100% MOBILE RESPONSIVE) --- */
         :root {
             --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
             --accent-glow: rgba(56, 189, 248, 0.4); --text-white: #f8fafc; --text-gray: #94a3b8;
@@ -44,7 +45,10 @@
         .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
         .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
         .badge-dot.locked { background: #ef4444; box-shadow: 0 0 10px #ef4444; }
-        h1 { font-size: 42px; font-weight: 800; margin-bottom: 20px; line-height: 1.2; }
+        
+        h1 { font-size: 34px; font-weight: 800; margin-bottom: 20px; line-height: 1.2; word-wrap: break-word; overflow-wrap: break-word; }
+        @media (min-width: 480px) { h1 { font-size: 42px; } }
+        
         .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
         .hero-p { font-size: 14px; color: var(--text-gray); margin-bottom: 35px; max-width: 540px; line-height: 1.7; }
         
@@ -60,7 +64,7 @@
         .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; z-index: 10; }
         .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 12px; z-index: 10; }
+        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(56, 189, 248, 0.2); display: flex; align-items: center; gap: 12px; z-index: 10; }
         .badge-check { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
 
         /* SECTIONS & CARDS */
@@ -159,6 +163,7 @@
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -177,6 +182,7 @@
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -205,6 +211,7 @@
         </div>
     </div>
 
+    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -228,6 +235,7 @@
         </div>
     </div>
 
+    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -244,6 +252,7 @@
         </div>
     </div>
 
+    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -270,6 +279,7 @@
         </div>
     </div>
 
+    <!-- CONTACT SECTION -->
     <div class="container" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-box">
@@ -292,10 +302,12 @@
         </div>
     </div>
 
-    <footer>© 2026 Suraj Singh Jadon. All Rights Reserved.</footer>
+    <!-- FOOTER -->
+    <footer>&copy; 2026 Suraj Singh Jadon. All Rights Reserved.</footer>
 
+    <!-- VIRTUAL ARCHIVE SUB-PAGE OVERLAY -->
     <div id="virtual-cert-page">
-        <button onclick="closeCertificatesPage()" style="position:absolute; top:20px; left:25px; background:none; border:none; color:#94a3b8; font-size:35px; cursor:pointer;">× Close Page</button>
+        <button onclick="closeCertificatesPage()" style="position:absolute; top:20px; left:25px; background:none; border:none; color:#94a3b8; font-size:35px; cursor:pointer;">&times; Close Page</button>
         <h1 style="margin-top: 40px;">1v1 Technical Achievements & Credentials</h1>
         <p style="color: #94a3b8;">Verified server-side secure clearance database profiles</p>
         <div class="cert-grid">
@@ -317,14 +329,16 @@
         </div>
     </div>
 
+    <!-- SIDEBAR PANEL OVERLAY -->
     <div id="auth-overlay" onclick="closePanelOutside(event)">
         <div class="auth-container">
             <button class="close-auth" onclick="toggleAuthPanel()">×</button>
             <div id="msg-box" class="msg-box"></div>
 
+            <!-- 1. LOGIN FORM -->
             <div class="auth-form active" id="login-form-block">
                 <h3>Secure Portal</h3>
-                <p>Sign in to view Achievements and request private file clearances.</p>
+                <p>Sign in with your account credentials or view options.</p>
                 <div class="input-group"><input type="email" id="login-email" class="auth-input" placeholder="Email Address"></div>
                 <div class="input-group">
                     <input type="password" id="login-password" class="auth-input" placeholder="Password">
@@ -335,14 +349,14 @@
                 </div>
                 <button type="button" class="btn-auth btn-primary" onclick="signInWithEmail()">Sign In</button>
                 <button type="button" class="auth-link" onclick="switchFormMode('register')">New User? Create Account</button>
-                <div class="divider">OR CONTINUE WITH</div>
-                <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()"><i class="fab fa-google"></i> Google Account</button>
-                <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()"><i class="fab fa-linkedin-in"></i> LinkedIn Network</button>
+                <div class="divider">OR CHOOSE SYSTEM</div>
+                <button type="button" class="social-btn btn-google" onclick="switchFormMode('approval')"><i class="fas fa-file-shield"></i> Open Admin Approval Form</button>
             </div>
 
+            <!-- 2. REGISTER FORM -->
             <div class="auth-form" id="register-form-block">
                 <h3>Create Account</h3>
-                <p>Register to unlock achievements access instantly.</p>
+                <p>Register identity logs securely into database cluster.</p>
                 <div class="input-group"><input type="text" id="reg-name" class="auth-input" placeholder="Full Name"></div>
                 <div class="input-group"><input type="email" id="reg-email" class="auth-input" placeholder="Email Address"></div>
                 <div class="input-group">
@@ -358,11 +372,9 @@
                 </div>
                 <button type="button" class="btn-auth btn-primary" onclick="signUpWithEmail()">Register Identity</button>
                 <button type="button" class="auth-link" onclick="switchFormMode('login')">Already Registered? Sign In</button>
-                <div class="divider">OR SIGN UP WITH</div>
-                <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()"><i class="fab fa-google"></i> Google Account</button>
-                <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()"><i class="fab fa-linkedin-in"></i> LinkedIn Network</button>
             </div>
 
+            <!-- 3. PROFILE DASHBOARD -->
             <div class="auth-form" id="logout-form-block">
                 <h3>Profile Dashboard</h3>
                 <p id="session-profile-desc" style="margin-bottom: 25px; font-weight: bold; color: var(--accent-blue);"></p>
@@ -388,29 +400,34 @@
                 </button>
             </div>
 
+            <!-- 4. REAL SECURE OTP FORM -->
             <div class="auth-form" id="approval-form-block">
-                <h3 style="color: #4ade80;"><i class="fas fa-shield-alt"></i> Admin Approval Form</h3>
-                <p>Verify your credentials with real email OTP token setup.</p>
+                <h3 style="color: #38bdf8;"><i class="fas fa-shield-alt"></i> Admin Approval Form</h3>
+                <p>Verify identity via real secure OTP verification system.</p>
                 <div class="input-group"><input type="text" id="app-name" class="auth-input" placeholder="Your Full Name"></div>
-                <div class="input-group"><input type="text" id="app-company" class="auth-input" placeholder="Company Name / Purpose"></div>
+                <div class="input-group"><input type="text" id="app-company" class="auth-input" placeholder="Company Name"></div>
+                
                 <div class="input-group">
                     <input type="email" id="app-email" class="auth-input" placeholder="Your Gmail Address">
                     <button type="button" class="btn-inline" onclick="sendEmailOTP()">Get OTP</button>
                 </div>
+                
                 <div class="input-group">
-                    <input type="text" id="app-otp" class="auth-input" placeholder="Enter 6-Digit OTP Code">
+                    <input type="text" id="app-otp" class="auth-input" placeholder="Enter 6-Digit OTP">
                     <button type="button" class="btn-inline" onclick="verifyEmailOTP()">Verify</button>
                 </div>
+
                 <button type="button" class="btn-auth btn-primary" style="background:#4ade80; color:black;" onclick="submitApprovalRequest()">Submit Request</button>
-                <button type="button" class="auth-link" onclick="switchFormMode('logout')">Back to Profile</button>
+                <button type="button" class="auth-link" onclick="switchFormMode('login')">Back to Portal</button>
             </div>
         </div>
     </div>
 
+    <!-- UI LAYER CONTROLLER MECHANICS -->
     <script>
-        let otpVerified = false;
         let captchaLoginId = null;
         let captchaRegisterId = null;
+        let otpVerified = false;
 
         window.grecaptchaInit = function() {
             if(window.grecaptcha && window.grecaptcha.render) {
@@ -507,6 +524,7 @@
         }
     </script>
 
+    <!-- CORE SUPABASE LOGIC CLIENT ENGINE -->
     <script>
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4';
@@ -516,103 +534,89 @@
             auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
         }) : null;
 
-        async function getVerifiedCaptcha(widgetId) {
-            if(!window.grecaptcha || widgetId === null) return "";
-            return window.grecaptcha.getResponse(widgetId);
-        }
-
-        async function loginWithGoogle() {
-            if (!supabaseClient) return;
-            const currentForm = document.getElementById('register-form-block').classList.contains('active') ? captchaRegisterId : captchaLoginId;
-            const captchaResponse = await getVerifiedCaptcha(currentForm);
-            if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA challenge first!", true); return; }
-            
-            await supabaseClient.auth.signInWithOAuth({ 
-                provider: 'google', 
-                options: { redirectTo: activeOriginUrl, queryParams: { prompt: 'select_account' } } 
-            });
-        }
-
-        async function loginWithLinkedIn() {
-            if (!supabaseClient) return;
-            const currentForm = document.getElementById('register-form-block').classList.contains('active') ? captchaRegisterId : captchaLoginId;
-            const captchaResponse = await getVerifiedCaptcha(currentForm);
-            if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA challenge first!", true); return; }
-            
-            await supabaseClient.auth.signInWithOAuth({ provider: 'linkedin', options: { redirectTo: activeOriginUrl } });
-        }
-
-        async function signUpWithEmail() {
-            clearMessageBox();
-            const captchaResponse = await getVerifiedCaptcha(captchaRegisterId);
-            if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA challenge first!", true); return; }
-            
-            const email = document.getElementById('reg-email').value;
-            const password = document.getElementById('reg-password').value;
-            const name = document.getElementById('reg-name').value;
-            if(!email || !password) { showStatusMessage("Fields are mandatory.", true); return; }
-            try {
-                const { error } = await supabaseClient.auth.signUp({ 
-                    email, 
-                    password, 
-                    options: { data: { full_name: name } } 
-                });
-                if (error) throw error;
-                showStatusMessage("Registration successful! Check your mailbox verification links.", false);
-            } catch(e) { showStatusMessage(e.message, true); window.grecaptcha.reset(captchaRegisterId); }
-        }
-
-        async function signInWithEmail() {
-            clearMessageBox();
-            const captchaResponse = await getVerifiedCaptcha(captchaLoginId);
-            if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA challenge first!", true); return; }
-
-            const email = document.getElementById('login-email').value;
-            const password = document.getElementById('login-password').value;
-            if (!email || !password) { showStatusMessage("Credentials required.", true); return; }
-
-            try {
-                const { error } = await supabaseClient.auth.signInWithPassword({ 
-                    email, 
-                    password
-                });
-                if (error) throw error;
-            } catch(e) { showStatusMessage(e.message, true); window.grecaptcha.reset(captchaLoginId); }
-        }
-
+        // REAL ENGINE OTP FLOW linked with Resend SMTP
         async function sendEmailOTP() {
             clearMessageBox();
             const email = document.getElementById('app-email').value;
             if(!email) { showStatusMessage("Please input a valid Gmail address.", true); return; }
-            showStatusMessage("Processing request... Dispatching real OTP.", false);
+            showStatusMessage("Sending secure OTP token via Resend SMTP...", false);
+            
             const { error } = await supabaseClient.auth.signInWithOtp({ email });
-            if (error) { showStatusMessage("OTP Error: " + error.message, true); } 
-            else { showStatusMessage("A real 6-digit verification OTP has been sent to your Gmail inbox!", false); otpVerified = false; }
+            if (error) { 
+                showStatusMessage("OTP Routing Error: " + error.message, true); 
+            } else { 
+                showStatusMessage("6-Digit Verification OTP sent successfully to your email!", false); 
+                otpVerified = false; 
+            }
         }
 
         async function verifyEmailOTP() {
             clearMessageBox();
             const email = document.getElementById('app-email').value;
             const otpInput = document.getElementById('app-otp').value;
-            if(!email || !otpInput) { showStatusMessage("Email and OTP fields are mandatory.", true); return; }
-            showStatusMessage("Validating verification code...", false);
-            const { data, error } = await supabaseClient.auth.verifyOtp({ email: email, token: otpInput, type: 'email' });
-            if (error) { showStatusMessage("Invalid OTP Code: " + error.message, true); otpVerified = false; } 
-            else { otpVerified = true; showStatusMessage("Gmail successfully authenticated & verified!", false); }
+            if(!email || !otpInput) { showStatusMessage("Both Email and OTP Token are required.", true); return; }
+            
+            const { error } = await supabaseClient.auth.verifyOtp({ email, token: otpInput, type: 'email' });
+            if (error) { 
+                showStatusMessage("Invalid or Expired OTP: " + error.message, true); 
+                otpVerified = false; 
+            } else { 
+                otpVerified = true; 
+                showStatusMessage("Identity authenticated natively! Proceed to submit.", false); 
+            }
         }
 
         async function submitApprovalRequest() {
             clearMessageBox();
+            if(!otpVerified) { 
+                showStatusMessage("Security Barrier: Please trigger and verify the email OTP first.", true); 
+                return; 
+            }
+            
             const name = document.getElementById('app-name').value;
             const company = document.getElementById('app-company').value;
             const email = document.getElementById('app-email').value;
-            if(!name || !company || !email) { showStatusMessage("Please fill out all identity sections.", true); return; }
-            if(!otpVerified) { showStatusMessage("Please verify the email OTP first.", true); return; }
+
+            if(!name || !company) { showStatusMessage("Please complete all profile information forms.", true); return; }
 
             showStatusMessage("Logging application profile payload...", false);
-            const { error } = await supabaseClient.from('document_requests').upsert([{ name, email, company, status: 'pending' }], { onConflict: 'email' });
-            if (error) { showStatusMessage("Database Submission Error: " + error.message, true); } 
-            else { alert("Success! Application logged. Access tokens will sync natively."); location.reload(); }
+            const { error } = await supabaseClient.from('document_requests').upsert([{ 
+                name, 
+                email, 
+                company, 
+                status: 'pending' 
+            }], { onConflict: 'email' });
+            
+            if (error) { 
+                showStatusMessage("Database error: " + error.message, true); 
+            } else { 
+                alert("Success! Request logged safely. Security tokens are matching."); 
+                location.reload(); 
+            }
+        }
+
+        async function signUpWithEmail() {
+            clearMessageBox();
+            const email = document.getElementById('reg-email').value;
+            const password = document.getElementById('reg-password').value;
+            const name = document.getElementById('reg-name').value;
+            if(!email || !password) { showStatusMessage("Fields are mandatory.", true); return; }
+            try {
+                const { error } = await supabaseClient.auth.signUp({ email, password, options: { data: { full_name: name } } });
+                if (error) throw error;
+                showStatusMessage("Registration initialized. Please check email or shift to Admin OTP form!", false);
+            } catch(e) { showStatusMessage(e.message, true); }
+        }
+
+        async function signInWithEmail() {
+            clearMessageBox();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            if (!email || !password) { showStatusMessage("Credentials required.", true); return; }
+            try {
+                const { error } = await supabaseClient.auth.signInWithPassword({ email, password });
+                if (error) throw error;
+            } catch(e) { showStatusMessage(e.message, true); }
         }
 
         async function triggerSecureLogout() {
@@ -631,19 +635,13 @@
                 const user = session.user;
                 if(dot) dot.classList.remove('locked');
                 if(statusText) { statusText.innerText = "Secured Identity Active"; statusText.style.color = "#38bdf8"; }
-                if (user.user_metadata && user.user_metadata.avatar_url) {
-                    if (userIcon) userIcon.style.display = 'none';
-                    if (userPhoto) { userPhoto.src = user.user_metadata.avatar_url; userPhoto.style.display = 'block'; }
-                }
                 if(profileDesc) profileDesc.innerText = `${user.email}`;
                 switchFormMode('logout');
             } else {
-                if (window.location.hash.includes('access_token')) { return; }
                 if(dot) dot.classList.add('locked');
                 if(statusText) { statusText.innerText = "Public Visitor Mode"; statusText.style.color = "#ef4444"; }
                 if(userIcon) userIcon.style.display = 'block';
                 if(userPhoto) userPhoto.style.display = 'none';
-                switchFormMode('login');
             }
         }
 
