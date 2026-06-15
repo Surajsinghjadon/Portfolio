@@ -11,7 +11,7 @@
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
     <style>
-        /* --- CORE PORTFOLIO DESIGN (EXACTLY FROM ORIGINAL) --- */
+        /* --- CORE PORTFOLIO DESIGN --- */
         :root {
             --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
             --accent-glow: rgba(56, 189, 248, 0.4); --text-white: #f8fafc; --text-gray: #94a3b8;
@@ -150,6 +150,7 @@
         .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; background: rgba(255,255,255,0.02); margin-bottom: 12px; }
         .social-btn:hover { background: rgba(255,255,255,0.05); border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.1); }
         .btn-google i { color: #db4437; }
+        .btn-linkedin i { color: #0077b5; }
     </style>
 </head>
 <body>
@@ -204,7 +205,7 @@
         </div>
     </div>
 
-    <!-- 👑 ADMIN APPROVAL DASHBOARD PANEL (Visible Only to Suraj) -->
+    <!-- 👑 ADMIN APPROVAL DASHBOARD PANEL -->
     <div class="container" id="admin-dashboard-section" style="display: none; margin-bottom: 40px;">
         <h2 class="section-title" style="color: #f59e0b;">Admin Approval Dashboard (Suraj Only)</h2>
         <div class="card" style="border-color: rgba(245, 158, 11, 0.3); background: #0f1322;">
@@ -215,7 +216,7 @@
         </div>
     </div>
 
-    <!-- 🌟 ACHIEVEMENTS SECTION (Open for all Logged-In Users) -->
+    <!-- 🌟 ACHIEVEMENTS SECTION -->
     <div class="container" id="achievements-section" style="display: none; margin-bottom: 40px;">
         <h2 class="section-title" style="color: #38bdf8;">Professional Achievements</h2>
         <div class="card" style="border-color: rgba(56, 189, 248, 0.2);">
@@ -234,7 +235,7 @@
         </div>
     </div>
 
-    <!-- 🔒 SECURED DOCUMENTS SECTION (Requires Admin Approval Form) -->
+    <!-- 🔒 SECURED DOCUMENTS SECTION -->
     <div class="container" id="secured-docs-section" style="display: none;">
         <h2 class="section-title" style="color: #4ade80;">Official Documents Repository</h2>
         <div class="card" style="border-color: rgba(74, 222, 128, 0.2);">
@@ -269,7 +270,7 @@
         </div>
     </div>
 
-    <!-- EXPERIENCE SECTION (100% ORIGINAL LINES RESTORED) -->
+    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -293,7 +294,7 @@
         </div>
     </div>
 
-    <!-- EDUCATION SECTION (100% ORIGINAL RESTORED) -->
+    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -310,7 +311,7 @@
         </div>
     </div>
 
-    <!-- SKILLS SECTION (100% ORIGINAL PROGRESS BARS RESTORED) -->
+    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -359,16 +360,12 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
-    <footer>
-        &copy; 2026 Suraj Singh Jadon. All Rights Reserved.
-    </footer>
+    <footer>&copy; 2026 Suraj Singh Jadon. All Rights Reserved.</footer>
 
     <!-- SIDEBAR PANEL OVERLAY -->
     <div id="auth-overlay" onclick="closePanelOutside(event)">
         <div class="auth-container">
             <button class="close-auth" onclick="toggleAuthPanel()">&times;</button>
-            
             <div id="msg-box" class="msg-box"></div>
 
             <!-- 1. LOGIN MODE -->
@@ -382,7 +379,6 @@
                     <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('login-password', this)"></i>
                 </div>
                 
-                <!-- 🤖 ASLI GOOGLE reCAPTCHA v2 LOG IN ELEMENT -->
                 <div style="margin-bottom:18px; display:flex; justify-content:center;">
                     <div class="g-recaptcha" data-sitekey="6LfUTCAtAAAAAMaOBQd83MqMKlERnTXCF2SBxwFG" data-theme="dark"></div>
                 </div>
@@ -393,6 +389,7 @@
                 <div class="divider">OR CONTINUE WITH</div>
                 
                 <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()"><i class="fab fa-google"></i> Google Account</button>
+                <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()"><i class="fab fa-linkedin-in"></i> LinkedIn Network</button>
             </div>
 
             <!-- 2. REGISTER MODE -->
@@ -406,13 +403,17 @@
                     <i class="fas fa-eye eye-icon" onclick="togglePasswordVisibility('reg-password', this)"></i>
                 </div>
                 
-                <!-- 🤖 ASLI GOOGLE reCAPTCHA v2 REGISTER ELEMENT -->
                 <div style="margin-bottom:18px; display:flex; justify-content:center;">
                     <div class="g-recaptcha" data-sitekey="6LfUTCAtAAAAAMaOBQd83MqMKlERnTXCF2SBxwFG" data-theme="dark"></div>
                 </div>
 
                 <button type="button" class="btn-auth btn-primary" onclick="signUpWithEmail()">Register Identity</button>
                 <button type="button" class="auth-link" onclick="switchFormMode('login')">Already Registered? Sign In</button>
+                
+                <div class="divider">OR SIGN UP WITH</div>
+                
+                <button type="button" class="social-btn btn-google" onclick="loginWithGoogle()"><i class="fab fa-google"></i> Google Account</button>
+                <button type="button" class="social-btn btn-linkedin" onclick="loginWithLinkedIn()"><i class="fab fa-linkedin-in"></i> LinkedIn Network</button>
             </div>
 
             <!-- 3. REAL OTP ADMIN APPROVAL FORM -->
@@ -482,8 +483,10 @@
 
         function showStatusMessage(text, isError) {
             const box = document.getElementById('msg-box');
-            box.innerText = text; box.className = 'msg-box ' + (isError ? 'msg-error' : 'msg-success');
-            box.style.display = 'block';
+            if(box) {
+                box.innerText = text; box.className = 'msg-box ' + (isError ? 'msg-error' : 'msg-success');
+                box.style.display = 'block';
+            }
         }
         
         function clearMessageBox() { 
@@ -502,14 +505,13 @@
         }
     </script>
 
-    <!-- PURE GLOBAL EXPLICIT SUPABASE SYNC ENGINE (ANTI-LOOP ENGINE) -->
+    <!-- ANTI-LOOP DEEP REDIRECT ENGINE -->
     <script>
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'Sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu';
         const targetRedirectUrl = 'https://surajsinghjadon.github.io/Portfolio/';
         const ADMIN_EMAIL = 'surajsinghrajput5040@gmail.com';
 
-        // Direct Global Object Framework Init
         const supabaseClient = window.supabase ? window.supabase.createClient(supabaseUrl, supabaseKey) : null;
 
         async function loginWithGoogle() {
@@ -519,6 +521,17 @@
             
             await supabaseClient.auth.signInWithOAuth({ 
                 provider: 'google', 
+                options: { redirectTo: targetRedirectUrl } 
+            });
+        }
+
+        async function loginWithLinkedIn() {
+            if (!supabaseClient) return;
+            const captchaResponse = window.grecaptcha ? window.grecaptcha.getResponse() : "";
+            if (!captchaResponse) { showStatusMessage("Please solve the reCAPTCHA task puzzle first!", true); return; }
+            
+            await supabaseClient.auth.signInWithOAuth({ 
+                provider: 'linkedin', 
                 options: { redirectTo: targetRedirectUrl } 
             });
         }
@@ -630,7 +643,7 @@
             window.location.href = targetRedirectUrl; 
         }
 
-        // ⚡ INSTANT RENDER HANDLER (PARSES TOKEN LOOPS GURANTEED WITH ZERO SYSTEM LAG)
+        // ⚡ HIGH-SPEED STATE SYNCHRONIZER (CRASH-PROOF)
         async function synchroniseUserState(session) {
             const dot = document.getElementById('auth-dot');
             const statusText = document.getElementById('auth-status-text');
@@ -685,6 +698,11 @@
                 }
                 switchFormMode('logout');
             } else {
+                // If there's an oauth redirect running, do not force lock UI screens instantly
+                if (window.location.hash.includes('access_token')) {
+                    showStatusMessage("Syncing external identity tokens... Please wait.", false);
+                    return;
+                }
                 isApprovedUser = false;
                 if(dot) dot.classList.add('locked');
                 if(statusText) { statusText.innerText = "Public Visitor Mode"; statusText.style.color = "#ef4444"; }
@@ -699,10 +717,16 @@
             }
         }
 
-        // Safe Engine Execution Initializer Pipeline (Kills OAuth Thread Locking completely)
+        // Deep Hooking Listener Core
         if (supabaseClient) {
-            supabaseClient.auth.getSession().then(({ data: { session } }) => { synchroniseUserState(session); });
-            supabaseClient.auth.onAuthStateChange((event, session) => { synchroniseUserState(session); });
+            // Immediate URL Parameter Token Interceptor
+            supabaseClient.auth.onAuthStateChange((event, session) => {
+                synchroniseUserState(session);
+            });
+            // Fallback recovery check
+            supabaseClient.auth.getSession().then(({ data: { session } }) => {
+                if (session) synchroniseUserState(session);
+            });
         }
     </script>
 </body>
