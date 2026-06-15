@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CORE PORTFOLIO DESIGN (PREMIUM) --- */
+        /* --- CORE PORTFOLIO DESIGN (PREMIUM RESTORED) --- */
         :root {
             --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
             --accent-glow: rgba(56, 189, 248, 0.4); --text-white: #f8fafc; --text-gray: #94a3b8;
@@ -73,6 +73,9 @@
         .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; }
 
+        /* EDUCATION & DOCUMENTS GRID */
+        .secure-gateway-box { border: 1px dashed var(--accent-blue); background: rgba(56, 189, 248, 0.02); text-align: center; padding: 35px 20px; border-radius: 16px; margin-top: 20px; }
+
         /* SKILLS GRID */
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 20px; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
@@ -101,7 +104,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- CENTERED DIALOG POPUP MODAL --- */
+        /* --- MODERN CENTERED MODAL & TABS DESIGN --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(8px); 
@@ -112,39 +115,42 @@
             background: #0d111c; border: 1px solid rgba(255, 255, 255, 0.08); 
             border-radius: 20px; width: 100%; max-width: 410px; padding: 30px; 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7); position: relative; 
-            animation: modalScale 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-        @keyframes modalScale {
-            from { transform: scale(0.95); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
         }
         .close-auth { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #94a3b8; font-size: 26px; cursor: pointer; }
         .close-auth:hover { color: #ef4444; }
-        
-        .input-group { position: relative; margin-bottom: 14px; display: flex; align-items: center; }
+
+        /* TAB TOGGLES DESIGN */
+        .auth-tabs { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; }
+        .auth-tab-btn { background: none; border: none; color: var(--text-gray); font-size: 16px; font-weight: 700; cursor: pointer; padding: 4px 12px; transition: 0.2s; }
+        .auth-tab-btn.active { color: var(--accent-blue); border-bottom: 2px solid var(--accent-blue); }
+
+        .tab-view { display: none; }
+        .tab-view.active { display: block; }
+
+        /* INPUTS & ACTIONS */
+        .input-group { position: relative; margin-bottom: 16px; display: flex; align-items: center; }
         .auth-input { width: 100%; padding: 13px 16px; background: #161b22; border: 1px solid #30363d; color: white; border-radius: 10px; font-size: 14px; outline: none; }
         .auth-input:focus { border-color: #38bdf8; }
         
-        /* Inline embedded dynamic elements */
         .input-inline-btn { position: absolute; right: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; }
         .input-inline-btn:hover { background: rgba(56, 189, 248, 0.2); }
         .verify-btn { background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.2); color: #4ade80; }
-        
-        /* PASSWORD STRENGTH METERS LINES */
-        .strength-container { width: 100%; margin-top: -8px; margin-bottom: 12px; }
+
+        /* LIVE STRENGTH STYLES */
+        .strength-container { width: 100%; margin-top: -8px; margin-bottom: 14px; }
         .strength-bar-bg { background: #161b22; height: 5px; border-radius: 3px; overflow: hidden; }
-        .strength-bar { height: 100%; width: 0%; transition: 0.3s ease; }
+        .strength-bar { height: 100%; width: 0%; transition: 0.3s; }
         .strength-text { font-size: 11px; color: var(--text-gray); display: block; text-align: right; margin-top: 4px; font-weight: 600; }
 
-        /* TIMER CONTAINER STYLES */
-        .otp-timer-block { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 12px; padding: 0 4px; }
-        .resend-link { color: var(--accent-blue); text-decoration: none; font-weight: bold; cursor: pointer; }
+        /* TIMER BLOCKS */
+        .otp-timer-block { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 14px; padding: 0 4px; }
+        .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; }
         .resend-link.disabled { color: #4b5563; cursor: not-allowed; pointer-events: none; }
 
         .btn-auth { width: 100%; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: bold; cursor: pointer; border: none; }
         .btn-primary { background: #38bdf8; color: #000; }
         
-        .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 18px 0; }
+        .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 20px 0; }
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .divider:not(:empty)::before { margin-right: .8em; } .divider:not(:empty)::after { margin-left: .8em; }
         
@@ -188,17 +194,9 @@
                 <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
             </div>
         </div>
-        
-        <div style="flex: 1; display: flex; justify-content: center; width: 100%;">
+        <div>
             <div class="image-wrapper">
                 <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
-                <div class="floating-badge">
-                    <div class="badge-check"><i class="fas fa-check"></i></div>
-                    <div>
-                        <div style="font-size:10px;color:var(--text-gray);font-weight:bold;">EXPERIENCE</div>
-                        <div style="font-weight:bold;font-size:13px;color:white;">4+ Years</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -212,39 +210,18 @@
                 <span class="tag">Current • 1 Year</span>
             </div>
             <div class="role">Invoice SAP Executive</div>
-            <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
-            <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
-        </div>
-        <div class="card">
-            <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
-            <div class="role">Store Data Analysis Operations</div>
-            <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
-        </div>
-        <div class="card">
-            <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
-            <div class="role">Machine Operator</div>
-            <div class="desc-line"><i class="fas fa-check"></i> <span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
         </div>
     </div>
 
-    <!-- EDUCATION & CERTIFICATE SECTION -->
+    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
             <div class="card-top"><span class="company">Diploma in Computer Applications (DCA)</span><span class="tag">2023</span></div>
-            <div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
-        </div>
-        <div class="card">
-            <div class="card-top"><span class="company">12th Grade</span><span class="tag">2022</span></div>
-            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
-        </div>
-        <div class="card">
-            <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
-            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
         </div>
 
-        <!-- NEW MODERN ACCORDION OPTION CARD FOR SECURE DOCUMENTS ACCORDING TO PLAN -->
-        <div class="card" style="border: 1px dashed var(--accent-blue); background: rgba(56, 189, 248, 0.02); text-align: center; padding: 35px 20px;">
+        <!-- ACCESS SECURE DOCUMENTS GATEWAY BOX -->
+        <div class="secure-gateway-box">
             <i class="fas fa-shield-alt" style="color: var(--accent-blue); font-size: 30px; margin-bottom: 12px;"></i>
             <h3 style="font-size: 18px; margin-bottom: 6px;">🔒 Secure Documents Gateway</h3>
             <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 20px;">View certified certificates, marksheets, and DCA diploma registry assets mapping data.</p>
@@ -252,130 +229,80 @@
         </div>
     </div>
 
-    <!-- SKILLS SECTION -->
-    <div class="container" id="skills">
-        <h2 class="section-title">Technical Expertise</h2>
-        <div class="skills-grid">
-            <div>
-                <div class="sub-title">DATA ANALYTICS EXPERTISE</div>
-                <div class="badge-grid">
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-database"></i></div> SAP Operations</div>
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-chart-line"></i></div> Advanced Excel</div>
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-file-word"></i></div> MS Office Suite</div>
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-bolt"></i></div> Data Analysis Speed</div>
-                </div>
-            </div>
-            <div style="padding-left: 10px;">
-                <div class="sub-title">COMMUNICATION SYSTEMS</div>
-                <div class="lang-item">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Hindi (Native) - 100%</span></div>
-                    <div class="bar"><div class="fill" style="width: 100%;"></div></div>
-                </div>
-                <div class="lang-item">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>English (Professional) - 75%</span></div>
-                    <div class="bar"><div class="fill" style="width: 75%;"></div></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONTACT SECTION -->
-    <div class="container" id="contact">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="contact-box">
-            <div class="contact-left">
-                <div class="contact-row">
-                    <div class="icon-container"><i class="fas fa-envelope"></i></div>
-                    <div>
-                        <div class="label">Email Address</div>
-                        <div class="value">surajsinghrajput5040@gmail.com</div>
-                    </div>
-                </div>
-                <div class="contact-row">
-                    <div class="icon-container"><i class="fab fa-linkedin"></i></div>
-                    <div>
-                        <div class="label">LinkedIn Portal</div>
-                        <div class="value">linkedin.com/in/suraj-singh</div>
-                    </div>
-                </div>
-            </div>
-            <div class="contact-right">
-                <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                <div class="loc-pill">LOCATION: INDIA</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
-        </div>
-    </footer>
-
-    <!-- REAL WEBSITES STYLE STRUCTURE POPUP MODAL -->
+    <!-- AUTH MODAL POPUP (CENTERED SYSTEM) -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
             
-            <div class="auth-form active">
-                <h3 style="font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 5px; color: var(--accent-blue);">🛡️ Register Account</h3>
-                <p style="color: var(--text-gray); font-size: 13px; text-align: center; margin-bottom: 20px;">Create secure profile configuration logs.</p>
-                
-                <!-- UPPER EMAIL ID AND PASSWORD STRUCTURE OPTION -->
+            <!-- TABS CONTROLLER CONTAINER -->
+            <div class="auth-tabs">
+                <button type="button" id="tab-login" class="auth-tab-btn active" onclick="switchAuthTab('login')">Login</button>
+                <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">New Register</button>
+            </div>
+
+            <!-- 1. LOGIN INTERFACE TAB VIEW -->
+            <div id="view-login" class="tab-view active">
                 <div class="input-group">
-                    <input type="email" id="email" class="auth-input" style="padding-right: 90px;" placeholder="Enter Gmail ID">
+                    <input type="email" id="login-email" class="auth-input" placeholder="Enter Email ID">
+                </div>
+                <div class="input-group">
+                    <input type="password" id="login-password" class="auth-input" placeholder="Enter Password">
+                </div>
+                <button type="button" id="btn-login-submit" class="btn-auth var(--accent-blue)" style="background-color: var(--accent-blue); color: #000;">LOG IN</button>
+                
+                <div class="divider">OR CONTINUE WITH</div>
+                <button type="button" class="social-btn oauth-google-trigger"><i class="fab fa-google"></i> Continue with Google</button>
+                <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
+            </div>
+
+            <!-- 2. REGISTER INTERFACE TAB VIEW -->
+            <div id="view-register" class="tab-view">
+                <div class="input-group">
+                    <input type="text" id="reg-fullname" class="auth-input" placeholder="Your Full Name">
+                </div>
+                <div class="input-group">
+                    <input type="text" id="reg-company" class="auth-input" placeholder="Your Company Name">
+                </div>
+                <div class="input-group">
+                    <input type="email" id="reg-email" class="auth-input" style="padding-right: 90px;" placeholder="Email Address">
                     <button type="button" id="btn-get-otp" class="input-inline-btn">Get OTP</button>
                 </div>
-                
                 <div class="input-group">
-                    <input type="password" id="password" class="auth-input" placeholder="Create Secure Password">
+                    <input type="password" id="reg-password" class="auth-input" placeholder="Create Password">
                 </div>
                 
-                <!-- PASSWORD WEEK MEDIUM STRONG LIVE METER LINES -->
+                <!-- Password Strength Live Meter Line -->
                 <div class="strength-container">
-                    <div class="strength-bar-bg">
-                        <div id="strength-bar" class="strength-bar"></div>
-                    </div>
+                    <div class="strength-bar-bg"><div id="strength-bar" class="strength-bar"></div></div>
                     <span id="strength-text" class="strength-text">Password Strength</span>
                 </div>
 
-                <!-- MIDDLE GOOGLE ACCOUNT & LINKEDIN CHANNELS -->
-                <button type="button" id="btn-google" class="social-btn"><i class="fab fa-google"></i> Continue with Google</button>
-                <button type="button" id="btn-linkedin" class="social-btn"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
-                
-                <div class="divider">CONFIRM DETAILS</div>
-
-                <!-- EXTRA REGISTRATION METADATA SCHEMAS -->
                 <div class="input-group">
-                    <input type="text" id="fullname" class="auth-input" placeholder="Your Full Name">
+                    <input type="password" id="reg-confirm-password" class="auth-input" placeholder="Confirm Password">
                 </div>
-                <div class="input-group">
-                    <input type="text" id="company" class="auth-input" placeholder="Your Company Name">
-                </div>
-                <div class="input-group">
-                    <input type="password" id="confirm-password" class="auth-input" placeholder="Confirm Password">
-                </div>
-                
                 <div class="input-group">
                     <input type="text" id="otp-code" class="auth-input" style="padding-right: 90px;" placeholder="Enter 6-Digit OTP">
                     <button type="button" id="btn-verify-otp" class="input-inline-btn verify-btn">Verify</button>
                 </div>
 
-                <!-- 60s COUNTDOWN TIMER & RESEND GATEWAY -->
+                <!-- 60s Countdown Timer block -->
                 <div class="otp-timer-block">
                     <span id="timer-display">Timer: --:--</span>
                     <span id="resend-link-btn" class="resend-link disabled" onclick="triggerResendOTP()">Resend OTP</span>
                 </div>
 
-                <!-- FINAL ACCESS BUTTON LINKED TO APPROVAL SHEET -->
-                <button type="button" id="btn-submit-request" class="btn-auth btn-primary">SUBMIT REQUEST</button>
-                <div class="status-box" id="status-display">Awaiting secure authorization token...</div>
+                <button type="button" id="btn-submit-request" class="btn-auth btn-primary">SUBMIT SECURITY REQUEST</button>
+                
+                <div class="divider">OR REGISTER WITH</div>
+                <button type="button" class="social-btn oauth-google-trigger"><i class="fab fa-google"></i> Continue with Google</button>
+                <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
             </div>
+
+            <div class="status-box" id="status-display">Awaiting client signature payload...</div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT AUTH & LAYOUT CONTROL -->
+    <!-- JAVASCRIPT AUTH & TIMERS GATEWAY -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -387,37 +314,42 @@
         function openPanel() { document.getElementById('auth-overlay').style.display = 'flex'; }
         function closePanel() { document.getElementById('auth-overlay').style.display = 'none'; }
 
-        // --- PASSWORD LIVE STRENGTH DETECTOR METER ---
-        document.getElementById('password').addEventListener('input', function() {
+        // Switch Between Login / Register Tabs Layouts
+        function switchAuthTab(type) {
+            document.querySelectorAll('.auth-tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-view').forEach(view => view.classList.remove('active'));
+            
+            if(type === 'login') {
+                document.getElementById('tab-login').classList.add('active');
+                document.getElementById('view-login').classList.add('active');
+            } else {
+                document.getElementById('tab-register').classList.add('active');
+                document.getElementById('view-register').classList.add('active');
+            }
+        }
+
+        // --- PASSWORD LIVE STRENGTH LINE LOGIC ---
+        document.getElementById('reg-password').addEventListener('input', function() {
             const val = this.value;
             const bar = document.getElementById('strength-bar');
             const txt = document.getElementById('strength-text');
             
             if (val.length === 0) {
-                bar.style.width = "0%"; bar.style.backgroundColor = "transparent";
-                txt.innerText = "Password Strength";
+                bar.style.width = "0%"; bar.style.backgroundColor = "transparent"; txt.innerText = "Password Strength";
             } else if (val.length < 6) {
-                bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444";
-                txt.innerText = "Weak Password (Too Short)";
-                txt.style.color = "#ff6b6b";
+                bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444"; txt.innerText = "Weak Password"; txt.style.color = "#ff6b6b";
             } else if (val.length >= 6 && (/[A-Z]/.test(val) || /[0-9]/.test(val)) && (/[a-z]/.test(val))) {
                 if (val.length >= 10 && /[^A-Za-z0-9]/.test(val)) {
-                    bar.style.width = "100%"; bar.style.backgroundColor = "#4ade80";
-                    txt.innerText = "Strong Password (Secure)";
-                    txt.style.color = "#4ade80";
+                    bar.style.width = "100%"; bar.style.backgroundColor = "#4ade80"; txt.innerText = "Strong Password"; txt.style.color = "#4ade80";
                 } else {
-                    bar.style.width = "66%"; bar.style.backgroundColor = "#fbbf24";
-                    txt.innerText = "Medium Password";
-                    txt.style.color = "#fbbf24";
+                    bar.style.width = "66%"; bar.style.backgroundColor = "#fbbf24"; txt.innerText = "Medium Password"; txt.style.color = "#fbbf24";
                 }
             } else {
-                bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444";
-                txt.innerText = "Weak Password";
-                txt.style.color = "#ff6b6b";
+                bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444"; txt.innerText = "Weak Password"; txt.style.color = "#ff6b6b";
             }
         });
 
-        // --- 60 SECONDS LIVE COUNTDOWN ENGINE ---
+        // --- 60 SECONDS OTP ENGINE TIMER LOGIC ---
         function startOTPTimer() {
             clearInterval(countdownInterval);
             let secondsLeft = 60;
@@ -440,92 +372,83 @@
             }, 1000);
         }
 
-        // OAuth Handlers
-        document.getElementById('btn-google').addEventListener('click', async () => {
-            const { error } = await _supabase.auth.signInWithOAuth({ provider: 'google' });
-            if (error) alert(error.message);
+        // Connect Global Trigger Social Buttons
+        document.querySelectorAll('.oauth-google-trigger').forEach(el => {
+            el.addEventListener('click', async () => {
+                const { error } = await _supabase.auth.signInWithOAuth({ provider: 'google' });
+                if (error) alert(error.message);
+            });
         });
-        document.getElementById('btn-linkedin').addEventListener('click', async () => {
-            const { error } = await _supabase.auth.signInWithOAuth({ provider: 'linkedin' });
-            if (error) alert(error.message);
+        document.querySelectorAll('.oauth-linkedin-trigger').forEach(el => {
+            el.addEventListener('click', async () => {
+                const { error } = await _supabase.auth.signInWithOAuth({ provider: 'linkedin' });
+                if (error) alert(error.message);
+            });
         });
 
-        // Transmit OTP Function
+        // Get OTP Trigger
         async function sendOTP() {
-            const emailValue = document.getElementById('email').value.trim();
-            if (!emailValue) { alert("Kripya valid email address fill karein!"); return; }
-            
-            document.getElementById('status-display').innerText = "Transmitting secure verification token...";
+            const emailValue = document.getElementById('reg-email').value.trim();
+            if (!emailValue) { alert("Kripya Register tab me Email ID fill karein!"); return; }
+            document.getElementById('status-display').innerText = "Transmitting token...";
             const { error } = await _supabase.auth.signInWithOtp({ email: emailValue });
-            
             if (error) {
                 alert(error.message);
-                document.getElementById('status-display').innerText = "OTP generation engine failure.";
             } else {
-                alert("6-Digit secure code aapke address par transmit kar diya gaya hai!");
-                document.getElementById('status-display').innerText = "OTP payload transmitted.";
+                alert("OTP bhej diya gaya hai!");
                 startOTPTimer();
             }
         }
-
         document.getElementById('btn-get-otp').addEventListener('click', sendOTP);
         function triggerResendOTP() { sendOTP(); }
 
-        // Token Validator
+        // Verify Token Code
         document.getElementById('btn-verify-otp').addEventListener('click', async () => {
-            const emailValue = document.getElementById('email').value.trim();
+            const emailValue = document.getElementById('reg-email').value.trim();
             const tokenValue = document.getElementById('otp-code').value.trim();
-            if (!emailValue || !tokenValue) { alert("Email aur verification OTP code dono load karein!"); return; }
-            
-            document.getElementById('status-display').innerText = "Validating cryptographic signatures...";
             const { error } = await _supabase.auth.verifyOtp({ email: emailValue, token: tokenValue, type: 'email' });
-            
             if (error) {
-                alert("Security Token Mismatch!");
-                document.getElementById('status-display').innerText = "Verification mismatch.";
-                isEmailVerified = false;
+                alert("Galat Code!"); isEmailVerified = false;
             } else {
-                alert("Validation complete! Access parameters synchronized.");
-                document.getElementById('status-display').innerText = "Tokens verified successfully.";
-                isEmailVerified = true;
+                alert("OTP Successfully Verified!"); isEmailVerified = true;
             }
         });
 
-        // Main Document Checking Protocol
+        // Submit Dynamic Validations Check Handles
         document.getElementById('btn-submit-request').addEventListener('click', async () => {
-            const nameValue = document.getElementById('fullname').value.trim();
-            const companyValue = document.getElementById('company').value.trim();
-            const emailValue = document.getElementById('email').value.trim();
-            const passValue = document.getElementById('password').value;
-            const confirmPass = document.getElementById('confirm-password').value;
+            const nameValue = document.getElementById('reg-fullname').value.trim();
+            const companyValue = document.getElementById('reg-company').value.trim();
+            const emailValue = document.getElementById('reg-email').value.trim();
+            const passValue = document.getElementById('reg-password').value;
+            const confValue = document.getElementById('reg-confirm-password').value;
 
-            if (!isEmailVerified) { alert("Pehle Verify button daba kar OTP validation check pass karein!"); return; }
-            if (passValue !== confirmPass) { alert("Password aur Confirm Password data aapas me match nahi ho raha!"); return; }
+            if (!isEmailVerified) { alert("Pehle Verify button par click karein!"); return; }
+            if (passValue !== confValue) { alert("Passwords match nahi ho rahe!"); return; }
 
-            document.getElementById('status-display').innerText = "Analyzing state from document_requests...";
-
-            const { data: record, error: fetchError } = await _supabase
-                .from('document_requests').select('status').eq('email', emailValue).maybeSingle();
-
-            if (record) {
-                if (record.status === 'approved') {
-                    alert("Verification Clear! Opening target document asset.");
-                    window.location.href = "dca_diploma.pdf";
-                } else {
-                    alert("Aapka profile record abhi bhi admin pane (Pending) validation par hai.");
-                    document.getElementById('status-display').innerText = "Status: Pending Admin Approval.";
-                }
+            const { data: record } = await _supabase.from('document_requests').select('status').eq('email', emailValue).maybeSingle();
+            if (record && record.status === 'approved') {
+                window.location.href = "dca_diploma.pdf";
+            } else if (record) {
+                alert("Aapki request status abhi pending hai!");
             } else {
-                document.getElementById('status-display').innerText = "Injecting registration schema profiles...";
-                const { error: insertError } = await _supabase.from('document_requests')
-                    .insert([{ name: nameValue, company: companyValue, email: emailValue, status: 'pending' }]);
-                
-                if (insertError) {
-                    alert(insertError.message);
-                } else {
-                    alert("Data safely logged! Kripya admin panel se authorization approved hone ka wait karein.");
-                    document.getElementById('status-display').innerText = "Record safely deployed. Refresh once approved.";
-                }
+                await _supabase.from('document_requests').insert([{ name: nameValue, company: companyValue, email: emailValue, status: 'pending' }]);
+                alert("Registration saved! Wait for admin approval.");
+            }
+        });
+
+        // Simple Login form verification checking protocol
+        document.getElementById('btn-login-submit').addEventListener('click', async () => {
+            const emailValue = document.getElementById('login-email').value.trim();
+            if(!emailValue) { alert("Email ID bharna zaroori hai!"); return; }
+
+            const { data: record } = await _supabase.from('document_requests').select('status').eq('email', emailValue).maybeSingle();
+            if (record && record.status === 'approved') {
+                alert("Login Successful! Opening Documents Asset portal.");
+                window.location.href = "dca_diploma.pdf";
+            } else if (record) {
+                alert("Aapka profile mil gaya hai par admin status 'pending' hai.");
+            } else {
+                alert("Aapka data database me registered nahi hai! Kripya 'New Register' tab me jaakar apply karein.");
             }
         });
     </script>
