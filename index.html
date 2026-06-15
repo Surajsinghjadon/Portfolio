@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
-    <!-- Supabase aur FontAwesome Icons -->
+    <!-- Supabase & FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- AAPKA ORIGINAL CSS DESIGN --- */
+        /* --- CORE DESIGN --- */
         :root {
             --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
             --accent-glow: rgba(56, 189, 248, 0.4); --border-matrix: rgba(56, 189, 248, 0.08);
@@ -34,8 +34,8 @@
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-blue); }
 
-        /* PROFILE BUTTON */
         .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 1001; }
+        .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
         .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
         .profile-login-btn img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 50%; pointer-events: none; }
 
@@ -75,7 +75,6 @@
         .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; }
 
-        /* SKILLS GRID */
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 20px; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
@@ -87,7 +86,6 @@
         .bar { background: rgba(255,255,255,0.05); height: 6px; border-radius: 5px; margin-top: 8px; overflow: hidden; }
         .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
 
-        /* CONTACT SECTION */
         .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; margin-top: 30px; margin-bottom: 60px; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
         .contact-left { padding: 40px; flex: 1.2; }
@@ -101,36 +99,54 @@
         .loc-pill { position: relative; z-index: 50; display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 10px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); text-decoration: none; transition: 0.3s; cursor: pointer; }
         .loc-pill:hover { background: rgba(56, 189, 248, 0.15); }
         
-        /* AUTH OVERLAY PANEL (EMAIL/PASSWORD + SOCIAL) */
+        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid var(--border-matrix); margin-top: 40px; position: relative; z-index: 10; }
+
+        /* --- AUTH OVERLAY & FORMS (NEW SECURITY UPGRADES) --- */
         #auth-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(5, 7, 12, 0.85); z-index: 9999999; display: none; justify-content: flex-end; align-items: stretch; }
-        .auth-container { background: #0d111c; border-left: 2px solid #38bdf8; width: 100%; max-width: 400px; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9); overflow-y: auto; }
+        #auth-overlay.show { display: flex; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
-        .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: #94a3b8; font-size: 35px; cursor: pointer; z-index: 1000005; }
+        .auth-container { background: #0d111c; border-left: 2px solid #38bdf8; width: 100%; max-width: 400px; padding: 40px 30px; box-shadow: -10px 0 40px rgba(0, 0, 0, 0.9); overflow-y: auto; position: relative; }
+        .close-auth { position: absolute; top: 20px; left: 25px; background: none; border: none; color: #94a3b8; font-size: 35px; cursor: pointer; z-index: 10; transition: 0.3s; }
         .close-auth:hover { color: #ef4444; }
-        
-        /* Email Inputs Styling */
-        .input-group { margin-bottom: 15px; }
-        .auth-input { width: 100%; padding: 15px; background: #1a1a24; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 12px; font-size: 14px; outline: none; transition: 0.3s; }
+
+        .auth-form { display: none; margin-top: 30px; }
+        .auth-form.active { display: block; }
+
+        /* No Alerts Msg Box */
+        .msg-box { padding: 12px; border-radius: 8px; font-size: 13px; font-weight: bold; margin-bottom: 15px; display: none; text-align: center; }
+        .msg-error { background: rgba(239, 68, 68, 0.15); border: 1px solid #ef4444; color: #ff6b6b; }
+        .msg-success { background: rgba(34, 197, 94, 0.15); border: 1px solid #22c55e; color: #4ade80; }
+
+        .input-group { position: relative; margin-bottom: 15px; }
+        .auth-input { width: 100%; padding: 15px; background: #1a1a24; border: 1px solid rgba(255,255,255,0.1); color: white; border-radius: 12px; font-size: 14px; outline: none; transition: 0.3s; padding-right: 45px; }
         .auth-input:focus { border-color: #38bdf8; box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
         
-        .btn-auth { width: 100%; padding: 15px; border-radius: 12px; font-size: 14px; font-weight: bold; cursor: pointer; transition: 0.3s; border: none; margin-bottom: 10px; }
-        .btn-signin { background: #38bdf8; color: #000; }
-        .btn-signin:hover { background: #0284c7; color: white; }
-        .btn-signup { background: transparent; color: #38bdf8; border: 1px solid #38bdf8; }
-        .btn-signup:hover { background: rgba(56, 189, 248, 0.1); }
+        /* Eye Icon */
+        .eye-icon { position: absolute; right: 15px; top: 16px; cursor: pointer; color: #94a3b8; font-size: 16px; transition: 0.2s; }
+        .eye-icon:hover { color: #38bdf8; }
+
+        /* Strength Meter */
+        .strength-meter { height: 4px; width: 100%; background: rgba(255,255,255,0.1); margin: 5px 0 10px 0; border-radius: 2px; overflow: hidden; }
+        .strength-bar { height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease; }
+        .strength-text { font-size: 11px; margin-bottom: 15px; text-align: right; font-weight: bold; color: #666; }
+
+        .btn-auth { width: 100%; padding: 15px; border-radius: 12px; font-size: 14px; font-weight: bold; cursor: pointer; transition: 0.3s; border: none; margin-bottom: 15px; }
+        .btn-primary { background: #38bdf8; color: #000; }
+        .btn-primary:hover { background: #0284c7; color: white; }
+        
+        .auth-link { color: #38bdf8; font-size: 13px; font-weight: bold; cursor: pointer; text-align: center; display: block; background: none; border: none; width: 100%; margin-bottom: 10px; }
+        .auth-link:hover { text-decoration: underline; }
 
         .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 25px 0; letter-spacing: 1px; }
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.1); }
-        .divider:not(:empty)::before { margin-right: .8em; }
-        .divider:not(:empty)::after { margin-left: .8em; }
+        .divider:not(:empty)::before { margin-right: .8em; } .divider:not(:empty)::after { margin-left: .8em; }
         
         .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 15px; border-radius: 12px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; transition: all 0.3s; margin-bottom: 15px; }
         .btn-google { background: rgba(255,255,255,0.02); }
         .btn-google:hover { border-color: #db4437; background: rgba(219, 68, 55, 0.05); }
         .btn-linkedin { background: rgba(0, 119, 181, 0.05); border-color: rgba(0, 119, 181, 0.3); }
         .btn-linkedin:hover { border-color: #0077b5; background: rgba(0, 119, 181, 0.15); }
-        
-        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid var(--border-matrix); margin-top: 40px; position: relative; z-index: 10; }
     </style>
 </head>
 <body>
@@ -146,8 +162,8 @@
                     <a href="#skills">Skills</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <!-- PROFILE BUTTON OPENS AUTH PANEL -->
-                <button type="button" class="profile-login-btn" onclick="document.getElementById('auth-overlay').style.display = 'flex';">
+                <!-- PROFILE BUTTON OPENS LOGIN PANEL -->
+                <button type="button" class="profile-login-btn" onclick="openPanel()">
                     <i id="user-icon" class="fas fa-user"></i>
                     <img id="user-photo" src="" alt="Profile">
                 </button>
@@ -188,10 +204,7 @@
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
-            <div class="card-top">
-                <span class="company">Polyhose India Private Limited</span>
-                <span class="tag">Current • 1 Year</span>
-            </div>
+            <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
             <div class="role">Invoice SAP Executive</div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
@@ -278,116 +291,256 @@
         </div>
     </div>
 
-    <footer>
-        &copy; 2026 Suraj Singh Jadon. Local Matrix Realigned.
-    </footer>
+    <footer>&copy; 2026 Suraj Singh Jadon. Local Matrix Realigned.</footer>
 
-    <!-- AUTHENTICATION PANEL WITH EMAIL/PASSWORD -->
+    <!-- ========================================== -->
+    <!-- AUTHENTICATION PANEL (SECURE & BUG-FREE)   -->
+    <!-- ========================================== -->
     <div id="auth-overlay">
         <div class="auth-container">
-            <button type="button" class="close-auth" onclick="document.getElementById('auth-overlay').style.display = 'none';">&times;</button>
+            <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
             
-            <div style="margin-top: 40px; text-align: left;">
-                <h2 style="font-size: 26px; margin-bottom: 10px; color: white;">Executive Access</h2>
-                <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 30px;">Please authenticate to continue</p>
+            <!-- In-panel Notification Box (No Browser Alerts) -->
+            <div id="msg-box" class="msg-box"></div>
 
-                <!-- NEW: EMAIL & PASSWORD INPUTS -->
+            <!-- FORM 1: SIGN IN -->
+            <div id="form-signin" class="auth-form active">
+                <h2 style="font-size: 26px; margin-bottom: 10px; color: white;">Executive Access</h2>
+                <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 25px;">Please sign in to continue</p>
+
                 <div class="input-group">
-                    <input type="email" id="emailInput" class="auth-input" placeholder="Email Address" required>
-                </div>
-                <div class="input-group">
-                    <input type="password" id="passwordInput" class="auth-input" placeholder="Password" required>
+                    <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
                 </div>
                 
-                <!-- NEW: SIGN IN & SIGN UP BUTTONS -->
-                <button type="button" class="btn-auth btn-signin" onclick="signInEmail()">Sign In</button>
-                <button type="button" class="btn-auth btn-signup" onclick="signUpEmail()">Create Account</button>
+                <div class="input-group">
+                    <input type="password" id="login-password" class="auth-input" placeholder="Password">
+                    <i class="fas fa-eye eye-icon" id="eye-login" onclick="togglePass('login-password', 'eye-login')"></i>
+                </div>
+                
+                <button type="button" class="btn-auth btn-primary" onclick="handleSignIn()">Secure Sign In</button>
+                <button type="button" class="auth-link" onclick="switchForm('form-signup')">Create a new account</button>
 
                 <div class="divider">OR CONTINUE WITH</div>
 
-                <!-- SOCIAL BUTTONS -->
-                <button type="button" class="social-btn btn-google" onclick="loginProvider('google')">
+                <button type="button" class="social-btn btn-google" onclick="handleSocial('google')">
                     <i class="fab fa-google" style="color: #db4437;"></i> Google
                 </button>
-
-                <button type="button" class="social-btn btn-linkedin" onclick="loginProvider('linkedin_oidc')">
+                <button type="button" class="social-btn btn-linkedin" onclick="handleSocial('linkedin_oidc')">
                     <i class="fab fa-linkedin-in" style="color: #0077b5;"></i> LinkedIn
                 </button>
-
-                <!-- LOGOUT BUTTON (Hidden by default) -->
-                <button type="button" id="logout-btn" onclick="logoutUser()" style="display:none; width: 100%; margin-top: 20px; background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444; padding: 12px; border-radius: 12px; font-weight: bold; cursor: pointer;">
-                    <i class="fas fa-sign-out-alt"></i> Log Out
-                </button>
             </div>
+
+            <!-- FORM 2: SIGN UP -->
+            <div id="form-signup" class="auth-form">
+                <h2 style="font-size: 24px; margin-bottom: 10px; color: white;">Create Account</h2>
+                <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 20px;">Register for secure access</p>
+
+                <div class="input-group"><input type="text" id="reg-name" class="auth-input" placeholder="Full Name"></div>
+                <div class="input-group"><input type="email" id="reg-email" class="auth-input" placeholder="Email Address"></div>
+                
+                <!-- Password with Strength Meter & Eye Icon -->
+                <div class="input-group">
+                    <input type="password" id="reg-password" class="auth-input" placeholder="Create Password" oninput="checkStrength()">
+                    <i class="fas fa-eye eye-icon" id="eye-reg-pass" onclick="togglePass('reg-password', 'eye-reg-pass')"></i>
+                </div>
+                <div class="strength-meter"><div id="strength-bar" class="strength-bar"></div></div>
+                <div id="strength-text" class="strength-text"></div>
+
+                <!-- Confirm Password with Eye Icon -->
+                <div class="input-group">
+                    <input type="password" id="reg-confirm" class="auth-input" placeholder="Confirm Password">
+                    <i class="fas fa-eye eye-icon" id="eye-reg-confirm" onclick="togglePass('reg-confirm', 'eye-reg-confirm')"></i>
+                </div>
+                
+                <button type="button" class="btn-auth btn-primary" onclick="handleSignUp()">Create Account</button>
+                <button type="button" class="auth-link" onclick="switchForm('form-signin')">Already have an account? Sign In</button>
+            </div>
+
+            <!-- FORM 3: OTP VERIFICATION -->
+            <div id="form-otp" class="auth-form">
+                <h2 style="font-size: 24px; margin-bottom: 10px; color: white;">Verify Email</h2>
+                <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 20px;">Please check your email for the OTP verification code.</p>
+
+                <div class="input-group"><input type="text" id="otp-code" class="auth-input" placeholder="Enter 6-Digit OTP Code" style="text-align: center; letter-spacing: 5px; font-size: 20px;"></div>
+                
+                <button type="button" class="btn-auth btn-primary" onclick="handleVerifyOtp()">Verify Code</button>
+                <button type="button" class="auth-link" onclick="switchForm('form-signup')">Go back</button>
+            </div>
+
+            <!-- LOGOUT SECTION (Hidden by default) -->
+            <div id="form-logout" class="auth-form">
+                <h2 style="font-size: 24px; margin-bottom: 10px; color: white;">Dashboard</h2>
+                <p style="color: #4ade80; font-size: 14px; margin-bottom: 20px; font-weight: bold;">You are currently logged in securely.</p>
+                <button type="button" class="btn-auth" style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444;" onclick="handleLogout()">Log Out Securely</button>
+            </div>
+
         </div>
     </div>
 
-    <!-- JAVASCRIPT: SUPABASE LOGIC FOR ALL METHODS -->
+    <!-- JAVASCRIPT: SECURE LOGIC -->
     <script>
-        // Supabase Setup
         const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
         const supabaseKey = 'sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
         const supabaseClient = window.supabase.createClient(supabaseUrl, supabaseKey);
 
-        // 1. Email Sign In
-        window.signInEmail = async function() {
-            const email = document.getElementById('emailInput').value;
-            const password = document.getElementById('passwordInput').value;
-            
-            if (!email || !password) {
-                alert("Kripya apna Email aur Password daalein!");
-                return;
-            }
-            
-            alert("Login ho raha hai... Kripya wait karein.");
-            const { error } = await supabaseClient.auth.signInWithPassword({ email: email, password: password });
-            
-            if (error) {
-                alert("Login Error: " + error.message);
-            } else {
-                alert("Login Successful!");
-                document.getElementById('auth-overlay').style.display = 'none';
-            }
-        };
+        let userTempEmail = ""; // Needed for OTP
 
-        // 2. Email Sign Up (Create Account)
-        window.signUpEmail = async function() {
-            const email = document.getElementById('emailInput').value;
-            const password = document.getElementById('passwordInput').value;
-            
-            if (!email || !password) {
-                alert("Kripya naya account banane ke liye Email aur Password daalein!");
-                return;
-            }
-            
-            alert("Account ban raha hai... Kripya wait karein.");
-            const { error } = await supabaseClient.auth.signUp({ email: email, password: password });
-            
-            if (error) {
-                alert("Sign Up Error: " + error.message);
-            } else {
-                alert("Account ban gaya! Agar confirmation email aaya hai toh usay verify karein, warna seedha Sign In karein.");
-            }
-        };
+        // --- UI HELPER FUNCTIONS ---
+        function openPanel() { document.getElementById('auth-overlay').classList.add('show'); }
+        function closePanel() { 
+            document.getElementById('auth-overlay').classList.remove('show'); 
+            hideMsg(); 
+        }
+        
+        function switchForm(formId) {
+            hideMsg();
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            document.getElementById(formId).classList.add('active');
+        }
 
-        // 3. Social Login (Google & LinkedIn)
-        window.loginProvider = async function(provider) {
-            alert(provider + " se connect ho raha hai...");
+        function showMsg(text, isError = true) {
+            const msgBox = document.getElementById('msg-box');
+            msgBox.textContent = text;
+            msgBox.style.display = 'block';
+            msgBox.className = isError ? 'msg-box msg-error' : 'msg-box msg-success';
+        }
+        function hideMsg() { document.getElementById('msg-box').style.display = 'none'; }
+
+        // --- PASSWORD TOGGLE (EYE ICON) ---
+        function togglePass(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            if (input.type === "password") {
+                input.type = "text";
+                icon.classList.remove("fa-eye");
+                icon.classList.add("fa-eye-slash");
+                icon.style.color = "#38bdf8";
+            } else {
+                input.type = "password";
+                icon.classList.remove("fa-eye-slash");
+                icon.classList.add("fa-eye");
+                icon.style.color = "#94a3b8";
+            }
+        }
+
+        // --- PASSWORD STRENGTH METER ---
+        function checkStrength() {
+            const pass = document.getElementById('reg-password').value;
+            const bar = document.getElementById('strength-bar');
+            const text = document.getElementById('strength-text');
+            
+            let strength = 0;
+            if (pass.length > 0) {
+                if (pass.length >= 6) strength += 25;
+                if (pass.match(/[a-z]/) && pass.match(/[A-Z]/)) strength += 25;
+                if (pass.match(/[0-9]/)) strength += 25;
+                if (pass.match(/[^a-zA-Z0-9]/)) strength += 25;
+            }
+
+            bar.style.width = strength + "%";
+
+            if (strength === 0) {
+                bar.style.backgroundColor = "transparent";
+                text.innerText = "";
+            } else if (strength <= 50) {
+                bar.style.backgroundColor = "#ef4444"; // Red (Weak)
+                text.innerText = "Weak";
+                text.style.color = "#ef4444";
+            } else if (strength === 75) {
+                bar.style.backgroundColor = "#f59e0b"; // Orange (Medium)
+                text.innerText = "Medium";
+                text.style.color = "#f59e0b";
+            } else {
+                bar.style.backgroundColor = "#22c55e"; // Green (Strong)
+                text.innerText = "Strong";
+                text.style.color = "#22c55e";
+            }
+        }
+
+        // --- AUTH FUNCTIONS ---
+
+        // 1. Social Login
+        async function handleSocial(provider) {
+            showMsg("Connecting securely...", false);
             const { error } = await supabaseClient.auth.signInWithOAuth({ provider: provider });
-            if (error) alert("Error: " + error.message);
-        };
+            if (error) showMsg("Connection failed: " + error.message, true);
+        }
 
-        // 4. Logout User
-        window.logoutUser = async function() {
+        // 2. Email Sign In
+        async function handleSignIn() {
+            const email = document.getElementById('login-email').value.trim();
+            const pass = document.getElementById('login-password').value;
+            
+            if(!email || !pass) return showMsg("Please enter both Email and Password.", true);
+            
+            showMsg("Authenticating...", false);
+            const { error } = await supabaseClient.auth.signInWithPassword({ email: email, password: pass });
+            
+            if (error) showMsg("Login Error: " + error.message, true);
+            else { showMsg("Login Successful!", false); setTimeout(closePanel, 1500); }
+        }
+
+        // 3. Secure Sign Up
+        async function handleSignUp() {
+            const name = document.getElementById('reg-name').value.trim();
+            const email = document.getElementById('reg-email').value.trim();
+            const pass = document.getElementById('reg-password').value;
+            const confirmPass = document.getElementById('reg-confirm').value;
+            
+            // Validations
+            if(!name || !email || !pass || !confirmPass) return showMsg("Please fill all required fields.", true);
+            if(pass !== confirmPass) return showMsg("Passwords do not match!", true);
+            if(pass.length < 6) return showMsg("Password must be at least 6 characters long.", true);
+            
+            showMsg("Creating secure account...", false);
+            
+            const { data, error } = await supabaseClient.auth.signUp({ 
+                email: email, 
+                password: pass,
+                options: { data: { full_name: name } }
+            });
+            
+            if (error) {
+                showMsg(error.message, true);
+            } else {
+                showMsg("Success! We sent an OTP to your email.", false);
+                userTempEmail = email;
+                setTimeout(() => switchForm('form-otp'), 1500);
+            }
+        }
+
+        // 4. OTP Verification
+        async function handleVerifyOtp() {
+            const otp = document.getElementById('otp-code').value.trim();
+            if(!otp) return showMsg("Please enter the 6-digit OTP code.", true);
+            
+            showMsg("Verifying OTP...", false);
+            
+            const { session, error } = await supabaseClient.auth.verifyOtp({ 
+                email: userTempEmail, 
+                token: otp, 
+                type: 'signup' 
+            });
+            
+            if (error) {
+                showMsg("Invalid OTP: " + error.message, true);
+            } else {
+                showMsg("Email Verified & Logged In Successfully!", false);
+                setTimeout(closePanel, 1500);
+            }
+        }
+
+        // 5. Logout
+        async function handleLogout() {
+            showMsg("Logging out...", false);
             await supabaseClient.auth.signOut();
-        };
+        }
 
-        // 5. Auth State Listener (Profile Update)
+        // 6. Global Auth State Monitor
         supabaseClient.auth.onAuthStateChange((event, session) => {
             const userIcon = document.getElementById('user-icon');
             const userPhoto = document.getElementById('user-photo');
             const authText = document.getElementById('auth-status-text');
-            const logoutBtn = document.getElementById('logout-btn');
             
             if (session && session.user) {
                 if(userIcon) userIcon.style.display = 'none';
@@ -396,12 +549,12 @@
                     userPhoto.style.display = 'block';
                 }
                 if(authText) authText.innerText = "Authed: " + (session.user.user_metadata.full_name || session.user.email);
-                if(logoutBtn) logoutBtn.style.display = 'block';
+                switchForm('form-logout');
             } else {
                 if(userPhoto) userPhoto.style.display = 'none';
                 if(userIcon) userIcon.style.display = 'flex';
                 if(authText) authText.innerText = "Public Visitor Mode";
-                if(logoutBtn) logoutBtn.style.display = 'none';
+                switchForm('form-signin');
             }
         });
     </script>
