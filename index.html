@@ -73,9 +73,6 @@
         .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; }
 
-        /* GATEWAY BOX AREA */
-        .secure-gateway-box { border: 1px dashed var(--accent-blue); background: rgba(56, 189, 248, 0.02); text-align: center; padding: 35px 20px; border-radius: 16px; margin-top: 25px; }
-
         /* SKILLS GRID */
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 20px; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
@@ -121,30 +118,46 @@
         .auth-tabs { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 12px; }
         .auth-tab-btn { background: none; border: none; color: var(--text-gray); font-size: 16px; font-weight: 700; cursor: pointer; padding: 4px 12px; }
         .auth-tab-btn.active { color: var(--accent-blue); border-bottom: 2px solid var(--accent-blue); }
+        
         .tab-view { display: none; }
         .tab-view.active { display: block; }
-        .input-group { position: relative; margin-bottom: 16px; display: flex; align-items: center; }
+        
+        .input-group { position: relative; margin-bottom: 16px; display: flex; align-items: center; width: 100%; }
         .auth-input { width: 100%; padding: 13px 16px; background: #161b22; border: 1px solid #30363d; color: white; border-radius: 10px; font-size: 14px; outline: none; }
         .auth-input:focus { border-color: #38bdf8; }
+        
         .input-inline-btn { position: absolute; right: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; }
         .input-inline-btn:hover { background: rgba(56, 189, 248, 0.2); }
         .verify-btn { background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.2); color: #4ade80; }
-        .strength-container { width: 100%; margin-top: -8px; margin-bottom: 14px; }
+
+        /* LIVE STRENGTH STYLES (HIDDEN BY DEFAULT) */
+        .strength-container { width: 100%; margin-top: -8px; margin-bottom: 14px; display: none; }
         .strength-bar-bg { background: #161b22; height: 5px; border-radius: 3px; overflow: hidden; }
         .strength-bar { height: 100%; width: 0%; transition: 0.3s; }
         .strength-text { font-size: 11px; color: var(--text-gray); display: block; text-align: right; margin-top: 4px; font-weight: 600; }
-        .otp-timer-block { display: flex; justify-content: space-between; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 14px; padding: 0 4px; }
+        
+        /* TIMER BLOCKS (HIDDEN BY DEFAULT) */
+        .otp-timer-block { display: none; justify-content: space-between; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 14px; padding: 0 4px; }
         .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; }
         .resend-link.disabled { color: #4b5563; cursor: not-allowed; pointer-events: none; }
+        
         .btn-auth { width: 100%; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: bold; cursor: pointer; border: none; }
         .btn-primary { background: #38bdf8; color: #000; }
         .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 20px 0; }
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .divider:not(:empty)::before { margin-right: .8em; } .divider:not(:empty)::after { margin-left: .8em; }
+        
         .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 12px; border-radius: 10px; font-size: 13px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.02); }
         .social-btn:hover { border-color: #38bdf8; }
         .btn-google i { color: #db4437; } .btn-linkedin i { color: #0077b5; }
-        .status-box { background-color: #05070c; border: 1px solid #1a1a24; padding: 10px; border-radius: 8px; text-align: center; font-size: 12px; margin-top: 15px; color: #38bdf8; font-weight: 600; }
+        
+        /* STATUS BOX (HIDDEN BY DEFAULT) */
+        .status-box { display: none; background-color: #05070c; border: 1px solid #1a1a24; padding: 10px; border-radius: 8px; text-align: center; font-size: 12px; margin-top: 15px; color: #38bdf8; font-weight: 600; }
+
+        /* POST-LOGIN DASHBOARD STYLE */
+        .dashboard-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+        .dash-btn { background: #161b22; border: 1px solid rgba(255,255,255,0.08); color: white; padding: 20px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; transition: 0.2s; }
+        .dash-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.02); color: var(--accent-blue); }
     </style>
 </head>
 <body>
@@ -181,22 +194,14 @@
                 <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
             </div>
         </div>
-        
-        <div style="flex: 1; display: flex; justify-content: center; width: 100%;">
+        <div>
             <div class="image-wrapper">
                 <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
-                <div class="floating-badge">
-                    <div class="badge-check"><i class="fas fa-check"></i></div>
-                    <div>
-                        <div style="font-size:10px;color:var(--text-gray);font-weight:bold;">EXPERIENCE</div>
-                        <div style="font-weight:bold;font-size:13px;color:white;">4+ Years</div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 
-    <!-- EXPERIENCE SECTION (ALL CARDS COMPLETE RE-RESTORED) -->
+    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -209,24 +214,18 @@
             <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
         </div>
         <div class="card">
-            <div class="card-top">
-                <span class="company">Hettich</span>
-                <span class="tag">1 Year</span>
-            </div>
+            <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
             <div class="role">Store Data Analysis Operations</div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
         </div>
         <div class="card">
-            <div class="card-top">
-                <span class="company">Rahul Precision Work Pvt Ltd</span>
-                <span class="tag">2 Years</span>
-            </div>
+            <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
             <div class="role">Machine Operator</div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
         </div>
     </div>
 
-    <!-- EDUCATION SECTION (ALL CARDS RE-RESTORED EXACTLY) -->
+    <!-- EDUCATION SECTION (COMPLETELY CLEAN WITHOUT ANY CLUTTER BOX) -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -240,14 +239,6 @@
         <div class="card">
             <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
             <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
-        </div>
-
-        <!-- DYNAMIC ACCESS BOX UNDER EDUCATION AS REQUESTED -->
-        <div class="secure-gateway-box">
-            <i class="fas fa-shield-alt" style="color: var(--accent-blue); font-size: 30px; margin-bottom: 12px;"></i>
-            <h3 style="font-size: 18px; margin-bottom: 6px;">🔒 Secure Documents Gateway</h3>
-            <p style="color: var(--text-gray); font-size: 13px; margin-bottom: 20px;">View certified certificates, marksheets, and DCA diploma registry assets mapping data.</p>
-            <button type="button" class="btn btn-blue" onclick="openPanel()"><i class="fas fa-key"></i> ACCESS SECURE DOCUMENTS</button>
         </div>
     </div>
 
@@ -312,17 +303,18 @@
         </div>
     </footer>
 
-    <!-- AUTH POPUP SYSTEM -->
+    <!-- AUTH POPUP MODAL SYSTEM -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
             
-            <div class="auth-tabs">
+            <!-- TABS (Hides automatically when dashboard view is active) -->
+            <div class="auth-tabs" id="modal-tabs-header">
                 <button type="button" id="tab-login" class="auth-tab-btn active" onclick="switchAuthTab('login')">Login</button>
                 <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">New Register</button>
             </div>
 
-            <!-- LOGIN VIEW LAYOUT -->
+            <!-- VIEW 1: LOGIN TAB VIEW -->
             <div id="view-login" class="tab-view active">
                 <div class="input-group">
                     <input type="email" id="login-email" class="auth-input" placeholder="Enter Email ID">
@@ -337,13 +329,10 @@
                 <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
             </div>
 
-            <!-- NEW REGISTER VIEW LAYOUT -->
+            <!-- VIEW 2: NEW REGISTER TAB VIEW -->
             <div id="view-register" class="tab-view">
                 <div class="input-group">
                     <input type="text" id="reg-fullname" class="auth-input" placeholder="Your Full Name">
-                </div>
-                <div class="input-group">
-                    <input type="text" id="reg-company" class="auth-input" placeholder="Your Company Name">
                 </div>
                 <div class="input-group">
                     <input type="email" id="reg-email" class="auth-input" style="padding-right: 90px;" placeholder="Email Address">
@@ -353,7 +342,8 @@
                     <input type="password" id="reg-password" class="auth-input" placeholder="Create Password">
                 </div>
                 
-                <div class="strength-container">
+                <!-- Password Strength Live Meter (Hidden by Default) -->
+                <div class="strength-container" id="strength-container-block">
                     <div class="strength-bar-bg"><div id="strength-bar" class="strength-bar"></div></div>
                     <span id="strength-text" class="strength-text">Password Strength</span>
                 </div>
@@ -366,8 +356,9 @@
                     <button type="button" id="btn-verify-otp" class="input-inline-btn verify-btn">Verify</button>
                 </div>
 
-                <div class="otp-timer-block">
-                    <span id="timer-display">Timer: --:--</span>
+                <!-- 60s Timer (Hidden by Default) -->
+                <div class="otp-timer-block" id="otp-timer-block">
+                    <span id="timer-display">Timer: 60s</span>
                     <span id="resend-link-btn" class="resend-link disabled" onclick="triggerResendOTP()">Resend OTP</span>
                 </div>
 
@@ -378,11 +369,27 @@
                 <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
             </div>
 
-            <div class="status-box" id="status-display">Awaiting client signature payload...</div>
+            <!-- VIEW 3: NEW POST-LOGIN SECURE SYSTEM DASHBOARD -->
+            <div id="view-dashboard" class="tab-view">
+                <h3 style="font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 5px; color: var(--accent-blue);">🔒 Secure Portal Gateway</h3>
+                <p style="color: var(--text-gray); font-size: 13px; text-align: center; margin-bottom: 25px;">Select an authorized ledger dashboard link below.</p>
+                
+                <div class="dashboard-grid">
+                    <button type="button" class="dash-btn" onclick="alert('Achievements Registry: Currently loading certified corporate archives...')">
+                        <i class="fas fa-trophy" style="color: #fbbf24; font-size: 20px;"></i> Achievement
+                    </button>
+                    <button type="button" class="dash-btn" onclick="window.location.href='dca_diploma.pdf'">
+                        <i class="fas fa-file-pdf" style="color: #ef4444; font-size: 20px;"></i> Documents
+                    </button>
+                </div>
+            </div>
+
+            <!-- Real-time Status Log Display (Hidden by default) -->
+            <div class="status-box" id="status-display">Logging application profile payload...</div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT SYSTEM ENGINE -->
+    <!-- JAVASCRIPT AUTH ENGINE -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -406,32 +413,36 @@
             }
         }
 
-        // Live Strength line logic
+        // --- PASSWORD LIVE STRENGTH DETECTOR METER ---
         document.getElementById('reg-password').addEventListener('input', function() {
             const val = this.value;
+            const container = document.getElementById('strength-container-block');
             const bar = document.getElementById('strength-bar');
             const txt = document.getElementById('strength-text');
+            
             if (val.length === 0) {
-                bar.style.width = "0%"; bar.style.backgroundColor = "transparent"; txt.innerText = "Password Strength";
-            } else if (val.length < 6) {
-                bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444"; txt.innerText = "Weak Password"; txt.style.color = "#ff6b6b";
-            } else if (val.length >= 6 && (/[A-Z]/.test(val) || /[0-9]/.test(val)) && (/[a-z]/.test(val))) {
-                if (val.length >= 10 && /[^A-Za-z0-9]/.test(val)) {
-                    bar.style.width = "100%"; bar.style.backgroundColor = "#4ade80"; txt.innerText = "Strong Password"; txt.style.color = "#4ade80";
-                } else {
-                    bar.style.width = "66%"; bar.style.backgroundColor = "#fbbf24"; txt.innerText = "Medium Password"; txt.style.color = "#fbbf24";
-                }
+                container.style.display = "none";
             } else {
-                bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444"; txt.innerText = "Weak Password"; txt.style.color = "#ff6b6b";
+                container.style.display = "block";
+                if (val.length < 6) {
+                    bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444"; txt.innerText = "Weak Password"; txt.style.color = "#ff6b6b";
+                } else if (val.length >= 6 && (/[A-Z]/.test(val) || /[0-9]/.test(val))) {
+                    bar.style.width = "66%"; bar.style.backgroundColor = "#fbbf24"; txt.innerText = "Medium Password"; txt.style.color = "#fbbf24";
+                } else {
+                    bar.style.width = "100%"; bar.style.backgroundColor = "#4ade80"; txt.innerText = "Strong Password"; txt.style.color = "#4ade80";
+                }
             }
         });
 
-        // 60s Countdown logic
+        // --- 60 SECONDS OTP ENGINE TIMER LOGIC ---
         function startOTPTimer() {
             clearInterval(countdownInterval);
             let secondsLeft = 60;
+            const timerBlock = document.getElementById('otp-timer-block');
             const timerDisplay = document.getElementById('timer-display');
             const resendBtn = document.getElementById('resend-link-btn');
+            
+            timerBlock.style.display = "flex"; // Show timer block only on trigger
             resendBtn.classList.add('disabled');
             document.getElementById('btn-get-otp').disabled = true;
 
@@ -447,7 +458,7 @@
             }, 1000);
         }
 
-        // Social Connections
+        // Connect Global Trigger Social Buttons
         document.querySelectorAll('.oauth-google-trigger').forEach(el => {
             el.addEventListener('click', async () => {
                 const { error } = await _supabase.auth.signInWithOAuth({ provider: 'google' });
@@ -461,29 +472,40 @@
             });
         });
 
+        // Get OTP Trigger
         async function sendOTP() {
             const emailValue = document.getElementById('reg-email').value.trim();
-            if (!emailValue) { alert("Register tab me Email ID fill karein!"); return; }
+            if (!emailValue) { alert("Email ID fill karein!"); return; }
+            
+            document.getElementById('status-display').style.display = "block";
             document.getElementById('status-display').innerText = "Transmitting token...";
+            
             const { error } = await _supabase.auth.signInWithOtp({ email: emailValue });
-            if (error) alert(error.message);
-            else { alert("OTP bhej diya gaya hai!"); startOTPTimer(); }
+            if (error) {
+                alert(error.message);
+            } else {
+                alert("OTP successfully bhej diya gaya hai!");
+                startOTPTimer();
+            }
         }
         document.getElementById('btn-get-otp').addEventListener('click', sendOTP);
         function triggerResendOTP() { sendOTP(); }
 
+        // Verify Token Code
         document.getElementById('btn-verify-otp').addEventListener('click', async () => {
             const emailValue = document.getElementById('reg-email').value.trim();
             const tokenValue = document.getElementById('otp-code').value.trim();
             const { error } = await _supabase.auth.verifyOtp({ email: emailValue, token: tokenValue, type: 'email' });
-            if (error) { alert("Galat Code!"); isEmailVerified = false; }
-            else { alert("OTP Successfully Verified!"); isEmailVerified = true; }
+            if (error) {
+                alert("Galat Code!"); isEmailVerified = false;
+            } else {
+                alert("OTP Successfully Verified!"); isEmailVerified = true;
+            }
         });
 
-        // Register action submit
+        // Submit Action
         document.getElementById('btn-submit-request').addEventListener('click', async () => {
             const nameValue = document.getElementById('reg-fullname').value.trim();
-            const companyValue = document.getElementById('reg-company').value.trim();
             const emailValue = document.getElementById('reg-email').value.trim();
             const passValue = document.getElementById('reg-password').value;
             const confValue = document.getElementById('reg-confirm-password').value;
@@ -491,14 +513,23 @@
             if (!isEmailVerified) { alert("Pehle Verify button par click karein!"); return; }
             if (passValue !== confValue) { alert("Passwords match nahi ho rahe!"); return; }
 
+            document.getElementById('status-display').style.display = "block";
+            document.getElementById('status-display').innerText = "Submitting registration payload...";
+
             const { data: record } = await _supabase.from('document_requests').select('status').eq('email', emailValue).maybeSingle();
             if (record && record.status === 'approved') {
-                window.location.href = "dca_diploma.pdf";
+                // Switch to Dashboard Page Content
+                document.getElementById('modal-tabs-header').style.display = "none";
+                document.getElementById('view-register').classList.remove('active');
+                document.getElementById('view-dashboard').classList.add('active');
+                document.getElementById('status-display').style.display = "none";
             } else if (record) {
                 alert("Aapki request status abhi pending hai!");
+                document.getElementById('status-display').innerText = "Status: Pending Approval.";
             } else {
-                await _supabase.from('document_requests').insert([{ name: nameValue, company: companyValue, email: emailValue, status: 'pending' }]);
+                await _supabase.from('document_requests').insert([{ name: nameValue, email: emailValue, status: 'pending' }]);
                 alert("Registration saved! Wait for admin approval.");
+                document.getElementById('status-display').innerText = "Saved safely. Awaiting admin approval sheet.";
             }
         });
 
@@ -507,14 +538,22 @@
             const emailValue = document.getElementById('login-email').value.trim();
             if(!emailValue) { alert("Email ID bharna zaroori hai!"); return; }
 
+            document.getElementById('status-display').style.display = "block";
+            document.getElementById('status-display').innerText = "Verifying profile index parameters...";
+
             const { data: record } = await _supabase.from('document_requests').select('status').eq('email', emailValue).maybeSingle();
             if (record && record.status === 'approved') {
-                alert("Login Successful! Opening Documents Asset portal.");
-                window.location.href = "dca_diploma.pdf";
+                // Smoothly Load Dashboard Options View
+                document.getElementById('modal-tabs-header').style.display = "none";
+                document.getElementById('view-login').classList.remove('active');
+                document.getElementById('view-dashboard').classList.add('active');
+                document.getElementById('status-display').style.display = "none";
             } else if (record) {
-                alert("Aapka profile mil gaya hai par admin status 'pending' hai.");
+                alert("Aapka profile mil gaya hai par admin status abhi 'pending' hai.");
+                document.getElementById('status-display').innerText = "Status: Pending Admin Approval.";
             } else {
                 alert("Aapka data registered nahi hai! New Register tab me apply karein.");
+                document.getElementById('status-display').style.display = "none";
             }
         });
     </script>
