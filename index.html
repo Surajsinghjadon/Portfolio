@@ -33,7 +33,7 @@
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-blue); }
 
-        .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 1005; }
+        .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 99999; }
         .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
         .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
         .profile-login-btn img { width: 100%; height: 100%; object-fit: cover; display: none; border-radius: 50%; pointer-events: none; }
@@ -108,7 +108,6 @@
         .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 40px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 20; }
         .real-earth-wrapper { width: 100px; height: 100px; background: var(--accent-blue); margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #05070c; }
         
-        /* Fixed Location Pill style as a link */
         .loc-pill { position: relative; z-index: 50; display: inline-flex; align-items: center; gap: 8px; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 10px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); text-decoration: none; transition: 0.3s; cursor: pointer; }
         .loc-pill:hover { background: rgba(56, 189, 248, 0.15); border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(56, 189, 248, 0.2); }
         
@@ -146,7 +145,7 @@
                     <a href="#secured-docs-section" id="nav-docs-link" style="display: none; color: #4ade80;">Documents</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <!-- Profile Action Trigger Button -->
+                <!-- Profile Action Button -->
                 <button type="button" class="profile-login-btn" onclick="toggleAuthPanel()">
                     <i id="user-icon" class="fas fa-user"></i>
                     <img id="user-photo" src="" alt="Profile">
@@ -311,7 +310,7 @@
             </div>
             <div class="contact-right">
                 <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                <!-- Fixed Location Pill wrapped in active redirection anchor link -->
+                <!-- Google Maps redirection fix -->
                 <a href="https://maps.google.com/?q=Madhya+Pradesh" target="_blank" class="loc-pill">
                     <i class="fas fa-map-marker-alt"></i> Madhya Pradesh, India
                 </a>
@@ -340,37 +339,46 @@
         </div>
     </div>
 
-    <!-- SUPABASE SECURITY ENGINE (MOBILE OPTIMIZED) -->
+    <!-- 1. INDEPENDENT UI SCRIPT BLOCK (Crash-Proof for Clicks) -->
     <script>
-        // Supabase Infrastructure Parameters
-        const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
-        const supabaseKey = 'Sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
-        const supabase = supabase.createClient(supabaseUrl, supabaseKey);
-
-        // Explicit Absolute Production Target Endpoint 
-        const targetRedirectUrl = 'https://surajsinghjadon.github.io/Portfolio/';
-
-        // Global Panel Toggles
         function toggleAuthPanel() {
             const overlay = document.getElementById('auth-overlay');
             if (overlay) {
                 overlay.classList.toggle('show');
             }
         }
-        
-        // Backup function to guarantee compatibility with template clicks
         function openPanel() {
             toggleAuthPanel();
         }
-
         function closePanelOutside(e) {
             if (e.target.id === 'auth-overlay') {
                 toggleAuthPanel();
             }
         }
+    </script>
+
+    <!-- 2. ISOLATED SUPABASE & LOGIC ENGINE SCRIPT BLOCK -->
+    <script>
+        let supabase;
+        const supabaseUrl = 'https://ypoxybmhdpxmxcmiimjf.supabase.co';
+        const supabaseKey = 'Sb_publishable_FA9NtukWnWCfoKfGL9iwrA_efm-8xSu'; 
+        const targetRedirectUrl = 'https://surajsinghjadon.github.io/Portfolio/';
+
+        // Safe client initialization wrapper
+        try {
+            if (window.supabase && window.supabase.createClient) {
+                supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+            }
+        } catch (e) {
+            console.error("Database boot failure intercepted safely:", e);
+        }
 
         // Google Federated OAuth Core Call
         async function loginWithGoogle() {
+            if (!supabase) {
+                alert('Database linking in progress... Please tap again in 2 seconds.');
+                return;
+            }
             try {
                 const { data, error } = await supabase.auth.signInWithOAuth({
                     provider: 'google',
@@ -384,8 +392,9 @@
             }
         }
 
-        // Interactive Interface Session Adaptor inside safe Try-Catch sandbox
+        // Session adaptor layout update engine
         async function runSessionMonitor() {
+            if (!supabase) return;
             try {
                 const { data: { session }, error } = await supabase.auth.getSession();
                 if (error) throw error;
@@ -403,14 +412,12 @@
                 if (session) {
                     const user = session.user;
                     
-                    // Set Header Badge to Secure Verified Mode
                     if (dot) dot.classList.remove('locked');
                     if (statusText) {
                         statusText.innerText = "Secured Identity Verified";
                         statusText.style.color = "#4ade80";
                     }
 
-                    // Swap User Icon with Google User Avatar
                     if (user.user_metadata && user.user_metadata.avatar_url) {
                         if (userIcon) userIcon.style.display = 'none';
                         if (userPhoto) {
@@ -419,11 +426,9 @@
                         }
                     }
 
-                    // Unlock Hidden Documents UI View
                     if (securedDocs) securedDocs.style.display = 'block';
                     if (navDocsLink) navDocsLink.style.display = 'inline-block';
 
-                    // Change Side Panel UI state to Sign Out Option
                     if (panelTitle) panelTitle.innerText = "Session Active";
                     if (panelDesc) panelDesc.innerText = `Logged in securely as ${user.email}. All verified documents are now visible across your viewport layout.`;
                     if (actionArea) {
@@ -433,32 +438,19 @@
                             </button>
                         `;
                     }
-                } else {
-                    // Ensure default fallbacks are strictly locked down safely
-                    if (dot) dot.classList.add('locked');
-                    if (statusText) {
-                        statusText.innerText = "Public Visitor Mode";
-                        statusText.style.color = "var(--accent-blue)";
-                    }
-                    if (userIcon) userIcon.style.display = 'block';
-                    if (userPhoto) userPhoto.style.display = 'none';
-                    if (securedDocs) securedDocs.style.display = 'none';
-                    if (navDocsLink) navDocsLink.style.display = 'none';
                 }
             } catch (err) {
-                console.error("Supabase engine connection fault handled cleanly:", err);
+                console.error("Session monitor adapt error:", err);
             }
         }
 
-        // Secure Destructuring of active OAuth Cookies
         async function triggerSecureLogout() {
-            try {
-                await supabase.auth.signOut();
-            } catch(e) {}
+            if (supabase) {
+                try { await supabase.auth.signOut(); } catch(e) {}
+            }
             window.location.href = targetRedirectUrl; 
         }
 
-        // Window Event listener pipeline execution
         window.addEventListener('DOMContentLoaded', runSessionMonitor);
     </script>
 </body>
