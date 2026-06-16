@@ -101,7 +101,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- MODERN A1 QUALITY APP MODAL --- */
+        /* --- MODERN RE-DESIGNED APP MODAL --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
@@ -212,7 +212,6 @@
             
             <div class="btn-group">
                 <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
-                <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
             </div>
         </div>
         <div>
@@ -303,17 +302,10 @@
                     </div>
                 </div>
                 <div class="contact-row">
-                    <div class="icon-container"><i class="fab fa-linkedin"></i></div>
-                    <div>
-                        <div class="label">LinkedIn Portal</div>
-                        <div class="value">linkedin.com/in/suraj-singh</div>
-                    </div>
-                </div>
-                <div class="contact-row">
                     <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
                     <div>
                         <div class="label">Contact Number</div>
-                        <div class="value">+91 70004 0XXXX</div>
+                        <div class="value">+91 78795 95821</div>
                     </div>
                 </div>
             </div>
@@ -342,7 +334,7 @@
             </div>
 
             <!-- VIEW 1: SIGN IN PANELS -->
-            <div id="view-login" class="tab-view active">
+            <div id="view-login" class="tab-view">
                 <div class="input-group">
                     <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
                 </div>
@@ -371,7 +363,7 @@
                 </div>
                 
                 <!-- TIMER BLOCK REG -->
-                <div class="otp-timer-block" id="otp-timer-block-reg">
+                <div class="otp-timer-block" id="otp-timer-block-reg" style="display: none;">
                     <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
                 </div>
@@ -408,7 +400,7 @@
                 </div>
 
                 <!-- TIMER BLOCK FORGOT -->
-                <div class="otp-timer-block" id="otp-timer-block-forgot">
+                <div class="otp-timer-block" id="otp-timer-block-forgot" style="display: none;">
                     <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
                 </div>
@@ -439,7 +431,7 @@
                 </div>
             </div>
 
-            <!-- VIEW 3: SECURE FILE VAULT -->
+            <!-- VIEW 3: SECURE DASHBOARD EXCLUSIVE OVERRIDE VIEW -->
             <div id="view-dashboard" class="tab-view">
                 <div class="user-profile-card">
                     <div class="user-avatar-frame">
@@ -528,6 +520,7 @@
         let isEmailVerified = false;
         let countdownInterval = null;
         let blockAutoDashboard = false;
+        let activeTab = 'login'; // Track current visibility state
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         function showVaultSection(sectionKey) {
@@ -583,69 +576,86 @@
             window.open(fileName, '_blank');
         }
 
+        // --- EXCLUSIVE VIEW LAYER SYNC CONTROLLER TO SOLVE OVERLAPPING ---
+        function syncAuthUI() {
+            // Force hard reset hidden layout structures across all views
+            document.getElementById('modal-tabs-header').style.display = "none";
+            document.getElementById('view-login').style.display = "none";
+            document.getElementById('view-register').style.display = "none";
+            document.getElementById('view-forgot').style.display = "none";
+            document.getElementById('view-dashboard').style.display = "none";
+
+            if (currentActiveSession) {
+                document.getElementById('status-dot').style.background = "#4ade80";
+                document.getElementById('badge-text').innerText = "Secure Authorized Mode";
+                
+                const user = currentActiveSession.user;
+                const meta = user.user_metadata || {};
+                const provider = user.app_metadata?.provider || '';
+                
+                let realName = "User Account";
+                let realAvatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+                if (provider === 'google' || meta.full_name || meta.picture) {
+                    realName = meta.full_name || meta.name;
+                    realAvatar = meta.picture || meta.avatar_url;
+                } else if (provider === 'linkedin' || provider === 'linkedin_oidc') {
+                    realName = meta.name || meta.preferred_username;
+                    realAvatar = meta.picture || meta.avatar_url;
+                }
+
+                if(!realName || realName === "undefined") realName = user.email.split('@')[0].toUpperCase();
+                if(!realAvatar || realAvatar === "undefined") realAvatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+                const headerBtn = document.getElementById('header-profile-trigger');
+                if (headerBtn) headerBtn.innerHTML = `<img src="${realAvatar}" alt="Profile">`;
+                
+                document.getElementById('dash-live-avatar').src = realAvatar;
+                document.getElementById('dash-live-name').innerText = realName;
+                document.getElementById('dash-live-email').innerText = user.email;
+
+                document.getElementById('view-dashboard').style.display = "block";
+            } else {
+                document.getElementById('status-dot').style.background = "#94a3b8";
+                document.getElementById('badge-text').innerText = "Public Visitor Mode";
+                document.getElementById('header-profile-trigger').innerHTML = `<i id="user-icon" class="fas fa-user" style="color: #38bdf8; font-size: 18px;"></i>`;
+                
+                returnToRootDashboard();
+                
+                if (activeTab === 'register') {
+                    document.getElementById('modal-tabs-header').style.display = "flex";
+                    document.getElementById('tab-register').classList.add('active');
+                    document.getElementById('tab-login').classList.remove('active');
+                    document.getElementById('view-register').style.display = "block";
+                } else if (activeTab === 'forgot') {
+                    document.getElementById('view-forgot').style.display = "block";
+                } else {
+                    document.getElementById('modal-tabs-header').style.display = "flex";
+                    document.getElementById('tab-login').classList.add('active');
+                    document.getElementById('tab-register').classList.remove('active');
+                    document.getElementById('view-login').style.display = "block";
+                }
+            }
+        }
+
         _supabase.auth.getSession().then(({ data }) => {
             if (data.session) {
                 currentActiveSession = data.session;
-                if (!blockAutoDashboard) handleLoginSuccessState(data.session.user);
+                if (!blockAutoDashboard) syncAuthUI();
+            } else {
+                syncAuthUI();
             }
         });
 
         _supabase.auth.onAuthStateChange((event, session) => {
             if (session) {
                 currentActiveSession = session;
-                if (!blockAutoDashboard) handleLoginSuccessState(session.user);
+                if (!blockAutoDashboard) syncAuthUI();
             } else {
                 currentActiveSession = null;
-                resetUIToVisitor();
+                syncAuthUI();
             }
         });
-
-        // BRINGS SOLID VIEW ISOLATION OVERRIDES TO SOLVE OVERLAPPING
-        function handleLoginSuccessState(user) {
-            document.getElementById('status-dot').style.background = "#4ade80";
-            document.getElementById('badge-text').innerText = "Secure Authorized Mode";
-            
-            const meta = user.user_metadata || {};
-            const provider = user.app_metadata?.provider || '';
-            
-            let realName = "User Account";
-            let realAvatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-
-            if (provider === 'google' || meta.full_name || meta.picture) {
-                realName = meta.full_name || meta.name;
-                realAvatar = meta.picture || meta.avatar_url;
-            } else if (provider === 'linkedin' || provider === 'linkedin_oidc') {
-                realName = meta.name || meta.preferred_username;
-                realAvatar = meta.picture || meta.avatar_url;
-            }
-
-            if(!realName || realName === "undefined") realName = user.email.split('@')[0].toUpperCase();
-            if(!realAvatar || realAvatar === "undefined") realAvatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-
-            const headerBtn = document.getElementById('header-profile-trigger');
-            if (headerBtn) headerBtn.innerHTML = `<img src="${realAvatar}" alt="Profile">`;
-            
-            document.getElementById('dash-live-avatar').src = realAvatar;
-            document.getElementById('dash-live-name').innerText = realName;
-            document.getElementById('dash-live-email').innerText = user.email;
-            
-            // STRICT HARDHIDE FORM RENDERS FOR ZERO BLEEDINGS
-            document.getElementById('modal-tabs-header').style.display = "none";
-            document.getElementById('view-login').style.display = "none";
-            document.getElementById('view-register').style.display = "none";
-            document.getElementById('view-forgot').style.display = "none";
-            document.getElementById('view-dashboard').style.display = "block";
-        }
-
-        function resetUIToVisitor() {
-            document.getElementById('status-dot').style.background = "#94a3b8";
-            document.getElementById('badge-text').innerText = "Public Visitor Mode";
-            document.getElementById('header-profile-trigger').innerHTML = `<i id="user-icon" class="fas fa-user" style="color: #38bdf8; font-size: 18px;"></i>`;
-            document.getElementById('modal-tabs-header').style.display = "flex";
-            document.getElementById('view-dashboard').style.display = "none";
-            returnToRootDashboard();
-            switchAuthTab('login');
-        }
 
         document.getElementById('btn-logout-action').addEventListener('click', async () => {
             await _supabase.auth.signOut();
@@ -656,28 +666,9 @@
         function closePanel() { document.getElementById('auth-overlay').style.display = 'none'; }
 
         function switchAuthTab(type) {
+            activeTab = type;
             blockAutoDashboard = (type === 'register' || type === 'forgot');
-            
-            document.getElementById('view-login').style.display = "none";
-            document.getElementById('view-register').style.display = "none";
-            document.getElementById('view-forgot').style.display = "none";
-            document.getElementById('view-dashboard').style.display = "none";
-            
-            document.getElementById('tab-login').classList.remove('active');
-            document.getElementById('tab-register').classList.remove('active');
-
-            if(type === 'login') {
-                document.getElementById('tab-login').classList.add('active');
-                document.getElementById('view-login').style.display = "block";
-                document.getElementById('modal-tabs-header').style.display = "flex";
-            } else if(type === 'register') {
-                document.getElementById('tab-register').classList.add('active');
-                document.getElementById('view-register').style.display = "block";
-                document.getElementById('modal-tabs-header').style.display = "flex";
-            } else if(type === 'forgot') {
-                document.getElementById('view-forgot').style.display = "block";
-                document.getElementById('modal-tabs-header').style.display = "none";
-            }
+            syncAuthUI();
         }
 
         function checkPasswordStrength(val, barId, textId, containerId) {
@@ -701,7 +692,7 @@
         document.getElementById('reg-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-reg', 'strength-text-reg', 'strength-container-reg'); });
         document.getElementById('forgot-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-forgot', 'strength-text-forgot', 'strength-container-forgot'); });
 
-        // --- TIMER ENGINE SYSTEM WITH AUTO-REPLACING LOGIC ---
+        // --- TIMER ENGINE SYSTEM WITH PERFECT TOGGLE HOOKS ---
         function startOTPTimer(type) {
             clearInterval(countdownInterval);
             let secondsLeft = 60;
@@ -722,8 +713,8 @@
                 timerDisplay.innerText = `Resend in: ${secondsLeft}s`;
                 if (secondsLeft <= 0) {
                     clearInterval(countdownInterval);
-                    timerDisplay.style.display = "none"; // Hides countdown entirely
-                    resendBtn.style.display = "inline";  // Shows clickable button precisely in place
+                    timerDisplay.style.display = "none";
+                    resendBtn.style.display = "inline";
                     getOtpBtn.disabled = false;
                 }
             }, 1000);
