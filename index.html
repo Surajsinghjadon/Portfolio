@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
+    <!-- Supabase & FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -124,17 +125,11 @@
         .auth-input { width: 100%; padding: 13px 16px; background: #161b22; border: 1px solid #30363d; color: white; border-radius: 10px; font-size: 14px; outline: none; }
         .auth-input:focus { border-color: #38bdf8; }
         
-        .input-inline-btn { position: absolute; right: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; }
-        .input-inline-btn:hover { background: rgba(56, 189, 248, 0.2); }
-        .verify-btn { background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.2); color: #4ade80; }
-
-        /* LIVE STRENGTH STYLES */
         .strength-container { width: 100%; margin-top: -8px; margin-bottom: 14px; display: none; }
         .strength-bar-bg { background: #161b22; height: 5px; border-radius: 3px; overflow: hidden; }
         .strength-bar { height: 100%; width: 0%; transition: 0.3s; }
         .strength-text { font-size: 11px; color: var(--text-gray); display: block; text-align: right; margin-top: 4px; font-weight: 600; }
         
-        /* TIMER BLOCKS */
         .otp-timer-block { display: none; justify-content: space-between; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 14px; padding: 0 4px; }
         .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; }
         .resend-link.disabled { color: #4b5563; cursor: not-allowed; pointer-events: none; }
@@ -168,6 +163,7 @@
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -185,6 +181,7 @@
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -205,6 +202,7 @@
         </div>
     </div>
 
+    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -228,6 +226,7 @@
         </div>
     </div>
 
+    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -244,6 +243,7 @@
         </div>
     </div>
 
+    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -270,6 +270,7 @@
         </div>
     </div>
 
+    <!-- CONTACT SECTION -->
     <div class="container" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-box">
@@ -296,12 +297,14 @@
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <p>&copy; 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
         </div>
     </footer>
 
+    <!-- AUTH POPUP MODAL SYSTEM -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
@@ -311,6 +314,7 @@
                 <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">New Register</button>
             </div>
 
+            <!-- VIEW 1: LOGIN TAB VIEW -->
             <div id="view-login" class="tab-view active">
                 <div class="input-group">
                     <input type="email" id="login-email" class="auth-input" placeholder="Enter Email ID">
@@ -325,6 +329,7 @@
                 <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
             </div>
 
+            <!-- VIEW 2: NEW REGISTER TAB VIEW -->
             <div id="view-register" class="tab-view">
                 <div class="input-group">
                     <input type="text" id="reg-fullname" class="auth-input" placeholder="Your Full Name">
@@ -363,7 +368,9 @@
                 <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
             </div>
 
+            <!-- VIEW 3: POST-LOGIN SECURE SYSTEM DASHBOARD -->
             <div id="view-dashboard" class="tab-view">
+                <!-- LIVE USER INFORMATION PANEL -->
                 <div class="user-profile-card">
                     <div class="user-avatar-frame">
                         <img id="dash-live-avatar" src="" alt="User Avatar">
@@ -395,6 +402,7 @@
         </div>
     </div>
 
+    <!-- JAVASCRIPT REAL AUTH GATEWAY -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -432,13 +440,17 @@
             }
         });
 
+        // SMART USER DATA FETCH ENGINE (FIXED LINKEDIN & GOOGLE DATA MAPPING)
         function handleLoginSuccessState(user) {
             document.getElementById('status-dot').style.background = "#4ade80";
             document.getElementById('status-dot').style.boxShadow = "0 0 10px #4ade80";
             document.getElementById('badge-text').innerText = "Secure Authorized Mode";
             
-            const userFullName = user.user_metadata.full_name || user.email.split('@')[0].toUpperCase();
-            const userAvatarUrl = user.user_metadata.avatar_url || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+            const metadata = user.user_metadata || {};
+            
+            // Multi-field scanning logic to bypass distinct formatting payload schemes
+            const userFullName = metadata.full_name || metadata.name || metadata.preferred_username || metadata.given_name || user.email.split('@')[0].toUpperCase();
+            const userAvatarUrl = metadata.avatar_url || metadata.picture || metadata.image || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
 
             const headerBtn = document.getElementById('header-profile-trigger');
             if (headerBtn) {
@@ -471,7 +483,6 @@
             switchAuthTab('login');
         }
 
-        // Logout Action Trigger
         document.getElementById('btn-logout-action').addEventListener('click', async () => {
             await _supabase.auth.signOut();
             alert("Terminal connection terminated safely.");
@@ -493,7 +504,6 @@
             }
         }
 
-        // PASSWORD LIVE STRENGTH DETECTOR METER
         document.getElementById('reg-password').addEventListener('input', function() {
             const val = this.value;
             const container = document.getElementById('strength-container-block');
@@ -538,7 +548,6 @@
             }, 1000);
         }
 
-        // Real OTP Sender Function
         async function sendOTP() {
             const emailValue = document.getElementById('reg-email').value.trim();
             if (!emailValue) { alert("Pehle Email ID daaliye!"); return; }
@@ -559,7 +568,6 @@
         document.getElementById('btn-get-otp').addEventListener('click', sendOTP);
         function triggerResendOTP() { sendOTP(); }
 
-        // Real OTP Token Verification Engine
         document.getElementById('btn-verify-otp').addEventListener('click', async () => {
             const emailValue = document.getElementById('reg-email').value.trim();
             const tokenValue = document.getElementById('otp-code').value.trim();
@@ -573,7 +581,6 @@
             }
         });
 
-        // Social OAuth Auth Redirect Connectors
         document.querySelectorAll('.oauth-google-trigger').forEach(el => {
             el.addEventListener('click', async () => {
                 await _supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: redirectLink } });
@@ -586,7 +593,6 @@
             });
         });
 
-        // Email Form Submit Creator Node
         document.getElementById('btn-submit-request').addEventListener('click', async () => {
             const email = document.getElementById('reg-email').value.trim();
             const password = document.getElementById('reg-password').value;
@@ -610,7 +616,6 @@
             }
         });
 
-        // Native Password Sign In Verification Signatures
         document.getElementById('btn-login-submit').addEventListener('click', async () => {
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
