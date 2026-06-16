@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
-    <!-- Supabase & FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -199,7 +198,6 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -217,7 +215,6 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -238,7 +235,6 @@
         </div>
     </div>
 
-    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -262,7 +258,6 @@
         </div>
     </div>
 
-    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -270,16 +265,15 @@
             <div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
         </div>
         <div class="card">
-            <div class="card-top"><span class="company">12th Grade[span_3](start_span)[span_3](end_span)</span><span class="tag">2022</span></div>
-            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh State Open Board[span_4](start_span)[span_4](end_span)</div>
+            <div class="card-top"><span class="company">12th Grade</span><span class="tag">2022</span></div>
+            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh State Open Board</div>
         </div>
         <div class="card">
-            <div class="card-top"><span class="company">10th Grade[span_5](start_span)[span_5](end_span)</span><span class="tag">2020[span_6](start_span)[span_6](end_span)[span_7](start_span)[span_7](end_span)</span></div>
-            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board[span_8](start_span)[span_8](end_span)</div>
+            <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
+            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
         </div>
     </div>
 
-    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -306,7 +300,6 @@
         </div>
     </div>
 
-    <!-- CONTACT SECTION -->
     <div class="container" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-box">
@@ -328,19 +321,17 @@
             </div>
             <div class="contact-right">
                 <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                <a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar" target="_blank" class="loc-pill">LOCATION: INDIA</a>
+                <a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar+Madhya+Pradesh" target="_blank" class="loc-pill">LOCATION: INDIA</a>
             </div>
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
         </div>
     </footer>
 
-    <!-- CENTRAL CONTROL MODAL OVERLAY -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">×</button>
@@ -350,7 +341,6 @@
                 <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">Sign Up</button>
             </div>
 
-            <!-- VIEW 1: SIGN IN PANELS -->
             <div id="view-login" class="tab-view">
                 <div class="input-group">
                     <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
@@ -369,7 +359,6 @@
                 <button type="button" class="social-btn" onclick="handleLinkedInLogin()"><i class="fab fa-linkedin-in"></i> LinkedIn</button>
             </div>
 
-            <!-- VIEW 2: SIGN UP PANELS -->
             <div id="view-register" class="tab-view">
                 <div class="input-group">
                     <input type="text" id="reg-fullname" class="auth-input" placeholder="Full Name">
@@ -379,7 +368,6 @@
                     <button type="button" id="btn-get-otp-reg" class="input-inline-btn" onclick="handleSendOTP('reg')">Get OTP</button>
                 </div>
                 
-                <!-- TIMER BLOCK REG -->
                 <div class="otp-timer-block" id="otp-timer-block-reg" style="display: none;">
                     <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
@@ -407,7 +395,6 @@
                 <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
             </div>
 
-            <!-- VIEW 4: FORGOT PASSWORD TAB SYSTEM -->
             <div id="view-forgot" class="tab-view">
                 <h3 style="font-size: 16px; font-weight: bold; color: var(--accent-blue); margin-bottom: 15px; text-align: center;"><i class="fas fa-key"></i> Reset Password</h3>
                 
@@ -416,7 +403,6 @@
                     <button type="button" id="btn-get-otp-forgot" class="input-inline-btn" onclick="handleSendOTP('forgot')">Get OTP</button>
                 </div>
 
-                <!-- TIMER BLOCK FORGOT -->
                 <div class="otp-timer-block" id="otp-timer-block-forgot" style="display: none;">
                     <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
@@ -448,7 +434,6 @@
                 </div>
             </div>
 
-            <!-- VIEW 3: SECURE DASHBOARD VIEW -->
             <div id="view-dashboard" class="tab-view">
                 <div class="user-profile-card">
                     <div class="user-avatar-frame">
@@ -462,7 +447,6 @@
 
                 <h3 style="font-size: 13px; font-weight: 700; color: var(--accent-blue); margin-bottom: 10px;"><i class="fas fa-folder-open"></i> Gated Management Portal</h3>
                 
-                <!-- MAIN OPTIONS HUB -->
                 <div id="dashboard-root-options" style="display: block;">
                     <div class="twin-dashboard-grid">
                         <div class="dashboard-main-card card-ach" onclick="showVaultSection('achievements')">
@@ -477,7 +461,6 @@
                     <button type="button" class="btn-logout-danger" onclick="handleLogout()">Log Out</button>
                 </div>
 
-                <!-- SUB ROOT A: ACHIEVEMENTS SUITE VIEW -->
                 <div id="sec-vault-achievements" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     <div class="vault-list-container">
@@ -486,15 +469,13 @@
                         <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners_certificate.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering_certificate.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                     </div>
                 </div>
 
-                <!-- SUB ROOT B: REAL DOCUMENTS SECURE GATED VIEW -->
                 <div id="sec-vault-documents" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     
-                    <!-- REQUEST GATED FORM VIEW -->
                     <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
                         <i class="fas fa-lock"></i>
                         <h4 style="font-size:14px; margin-bottom:5px; color:#fff;">Access Verification Required</h4>
@@ -502,7 +483,6 @@
                         <button type="button" class="btn-auth" style="background:#fbbf24; color:#000;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
                     </div>
 
-                    <!-- PENDING APP STATE VIEW -->
                     <div id="doc-gate-pending-view" style="display:none;">
                         <div class="status-badge-pending">
                             <i class="fas fa-hourglass-half"></i> Status: Pending Admin Approval
@@ -510,13 +490,12 @@
                         <p style="font-size:12px; color:var(--text-gray); text-align:center; margin-top:14px; line-height:1.6;">Your authorization request is currently being processed. Digital documents will unlock automatically in real-time upon credential validation.</p>
                     </div>
 
-                    <!-- ALLOWED CORE ARCHIVES LIST VIEW -->
                     <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
                         <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet[span_9](start_span)[span_9](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet[span_10](start_span)[span_10](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Professional Resume</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                     </div>
                 </div>
@@ -527,7 +506,6 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT MASTER AUTHENTICATION INFRASTRUCTURE -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
