@@ -45,7 +45,7 @@
             transition: all 0.3s; 
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); 
             position: relative; 
-            z-index: 100005; /* Highest stack depth enforces interception across overlay wrappers */
+            z-index: 100005; 
             flex-shrink: 0; 
             pointer-events: auto !important;
         }
@@ -188,11 +188,12 @@
         .btn-logout-danger { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; padding: 11px; border-radius: 10px; width: 100%; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 15px; text-transform: uppercase; }
         .btn-logout-danger:hover { background: rgba(239, 68, 68, 0.15); }
 
-        /* ACCESS APPROVAL SUB-TILES - EXCLUSIVE RE-COPYWRITING */
+        /* ACCESS APPROVAL SUB-TILES */
         .admin-form-box { background: #111522; border: 1px solid rgba(245,158,11,0.15); padding: 16px; border-radius: 12px; text-align: center; }
         .admin-form-box i { color: #f59e0b; font-size: 24px; margin-bottom: 8px; }
         .admin-form-box p { font-size: 12px; color: var(--text-gray); margin-bottom: 14px; line-height: 1.5; }
         .status-badge-pending { display: inline-block; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); color: #f59e0b; padding: 12px; border-radius: 10px; font-size: 12px; font-weight: 700; width: 100%; text-align: center; }
+        .status-box { display: none; text-align: center; padding: 8px; font-size: 12px; color: var(--accent-blue); }
     </style>
 </head>
 <body>
@@ -367,7 +368,7 @@
                     <button type="button" id="btn-get-otp-reg" class="input-inline-btn" onclick="handleSendOTP('reg')">Get OTP</button>
                 </div>
                 
-                <div class="otp-timer-block" id="otp-timer-block-reg" style="display: none;">
+                <div class="otp-timer-block" id="otp-timer-block-reg">
                     <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
                 </div>
@@ -402,7 +403,7 @@
                     <button type="button" id="btn-get-otp-forgot" class="input-inline-btn" onclick="handleSendOTP('forgot')">Get OTP</button>
                 </div>
 
-                <div class="otp-timer-block" id="otp-timer-block-forgot" style="display: none;">
+                <div class="otp-timer-block" id="otp-timer-block-forgot">
                     <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
                 </div>
@@ -516,6 +517,7 @@
         let blockAutoDashboard = false;
         let activeTab = 'login'; 
         let realtimeChannel = null; 
+        const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         function showVaultSection(sectionKey) {
             document.getElementById('dashboard-root-options').style.display = "none";
@@ -554,7 +556,6 @@
             }
         }
 
-        // REAL-TIME AUTO SOCKET HANDLER
         function subscribeToRealtimeDatabase(email) {
             if (realtimeChannel) _supabase.removeChannel(realtimeChannel);
 
