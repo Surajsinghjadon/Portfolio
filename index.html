@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
-    <!-- Supabase & FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -21,13 +20,13 @@
         body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; padding-top: 110px; }
         .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
-        /* HEADER & BULLETPROOF BUTTON CLICK FIX */
-        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 10000; }
+        /* HEADER & BULLETPROOF HIGHEST LAYER BUTTON CLICKABLE FIX */
+        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); }
         .logo span { color: var(--text-white); }
         
-        .right-menu { display: flex; align-items: center; gap: 25px; position: relative; z-index: 10001; }
+        .right-menu { display: flex; align-items: center; gap: 25px; position: relative; z-index: 100001; }
         .nav-links { display: flex; gap: 20px; }
         @media (max-width: 768px) { .nav-links { display: none; } }
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
@@ -46,7 +45,7 @@
             transition: all 0.3s; 
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); 
             position: relative; 
-            z-index: 10005; 
+            z-index: 100005; /* Highest stack depth enforces interception across overlay wrappers */
             flex-shrink: 0; 
             pointer-events: auto !important;
         }
@@ -120,7 +119,7 @@
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
-            z-index: 9999999; display: none; 
+            z-index: 99999; display: none; 
             justify-content: center; align-items: center; padding: 15px;
         }
         .auth-container { 
@@ -189,7 +188,7 @@
         .btn-logout-danger { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; padding: 11px; border-radius: 10px; width: 100%; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 15px; text-transform: uppercase; }
         .btn-logout-danger:hover { background: rgba(239, 68, 68, 0.15); }
 
-        /* ACCESS APPROVAL SUB-TILES - ULTRA PREMIUM ENGLISH COPY */
+        /* ACCESS APPROVAL SUB-TILES - EXCLUSIVE RE-COPYWRITING */
         .admin-form-box { background: #111522; border: 1px solid rgba(245,158,11,0.15); padding: 16px; border-radius: 12px; text-align: center; }
         .admin-form-box i { color: #f59e0b; font-size: 24px; margin-bottom: 8px; }
         .admin-form-box p { font-size: 12px; color: var(--text-gray); margin-bottom: 14px; line-height: 1.5; }
@@ -198,7 +197,6 @@
 </head>
 <body>
 
-    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -216,7 +214,6 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -237,7 +234,6 @@
         </div>
     </div>
 
-    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -261,7 +257,6 @@
         </div>
     </div>
 
-    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -278,7 +273,6 @@
         </div>
     </div>
 
-    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -305,7 +299,6 @@
         </div>
     </div>
 
-    <!-- CONTACT SECTION -->
     <div class="container" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-box">
@@ -332,14 +325,12 @@
         </div>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <div class="container">
             <p>&copy; 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
         </div>
     </footer>
 
-    <!-- CENTRAL CONTROL MODAL OVERLAY -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
@@ -349,7 +340,6 @@
                 <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">Sign Up</button>
             </div>
 
-            <!-- VIEW 1: SIGN IN PANELS -->
             <div id="view-login" class="tab-view">
                 <div class="input-group">
                     <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
@@ -368,7 +358,6 @@
                 <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> LinkedIn</button>
             </div>
 
-            <!-- VIEW 2: SIGN UP PANELS -->
             <div id="view-register" class="tab-view">
                 <div class="input-group">
                     <input type="text" id="reg-fullname" class="auth-input" placeholder="Full Name">
@@ -378,7 +367,6 @@
                     <button type="button" id="btn-get-otp-reg" class="input-inline-btn" onclick="handleSendOTP('reg')">Get OTP</button>
                 </div>
                 
-                <!-- TIMER BLOCK REG -->
                 <div class="otp-timer-block" id="otp-timer-block-reg" style="display: none;">
                     <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
@@ -406,7 +394,6 @@
                 <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
             </div>
 
-            <!-- VIEW 4: FORGOT PASSWORD TAB SYSTEM -->
             <div id="view-forgot" class="tab-view">
                 <h3 style="font-size: 16px; font-weight: bold; color: var(--accent-blue); margin-bottom: 15px; text-align: center;"><i class="fas fa-key"></i> Reset Password</h3>
                 
@@ -415,7 +402,6 @@
                     <button type="button" id="btn-get-otp-forgot" class="input-inline-btn" onclick="handleSendOTP('forgot')">Get OTP</button>
                 </div>
 
-                <!-- TIMER BLOCK FORGOT -->
                 <div class="otp-timer-block" id="otp-timer-block-forgot" style="display: none;">
                     <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
@@ -447,7 +433,6 @@
                 </div>
             </div>
 
-            <!-- VIEW 3: SECURE DASHBOARD VIEW -->
             <div id="view-dashboard" class="tab-view">
                 <div class="user-profile-card">
                     <div class="user-avatar-frame">
@@ -461,7 +446,6 @@
 
                 <h3 style="font-size: 13px; font-weight: 700; color: var(--accent-blue); margin-bottom: 10px;"><i class="fas fa-folder-open"></i> Gated Management Portal</h3>
                 
-                <!-- MAIN OPTIONS HUB: EXACTLY 2 CHOICES OUTSIDE -->
                 <div id="dashboard-root-options" style="display: block;">
                     <div class="twin-dashboard-grid">
                         <div class="dashboard-main-card card-ach" onclick="showVaultSection('achievements')">
@@ -476,7 +460,6 @@
                     <button type="button" class="btn-logout-danger" id="btn-logout-action">Log Out</button>
                 </div>
 
-                <!-- SUB ROOT A: ACHIEVEMENTS SUITE VIEW -->
                 <div id="sec-vault-achievements" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     <div class="vault-list-container">
@@ -489,11 +472,9 @@
                     </div>
                 </div>
 
-                <!-- SUB ROOT B: REAL DOCUMENTS SECURE GATED VIEW -->
                 <div id="sec-vault-documents" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     
-                    <!-- HIGH RE-DESIGNED CLEAN ENGLISH GRAPHICS -->
                     <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
                         <i class="fas fa-lock"></i>
                         <h4 style="font-size:14px; margin-bottom:5px; color:#fff;">Access Verification Required</h4>
@@ -501,7 +482,6 @@
                         <button type="button" class="btn-auth" id="btn-submit-admin-request" style="background:#fbbf24; color:#000;">Send Clearance Request</button>
                     </div>
 
-                    <!-- PENDING APP STATE VIEW -->
                     <div id="doc-gate-pending-view" style="display:none;">
                         <div class="status-badge-pending">
                             <i class="fas fa-hourglass-half"></i> Status: Pending Admin Approval
@@ -509,7 +489,6 @@
                         <p style="font-size:12px; color:var(--text-gray); text-align:center; margin-top:14px; line-height:1.6;">Your authorization request is currently being processed. Digital documents will unlock automatically in real-time upon credential validation.</p>
                     </div>
 
-                    <!-- ALLOWED CORE ARCHIVES LIST VIEW -->
                     <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
                         <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
@@ -526,7 +505,6 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT MASTER AUTHENTICATION INFRASTRUCTURE -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -538,7 +516,6 @@
         let blockAutoDashboard = false;
         let activeTab = 'login'; 
         let realtimeChannel = null; 
-        const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         function showVaultSection(sectionKey) {
             document.getElementById('dashboard-root-options').style.display = "none";
@@ -577,6 +554,7 @@
             }
         }
 
+        // REAL-TIME AUTO SOCKET HANDLER
         function subscribeToRealtimeDatabase(email) {
             if (realtimeChannel) _supabase.removeChannel(realtimeChannel);
 
@@ -588,7 +566,7 @@
                     table: 'document_requests', 
                     filter: `email=eq.${email}` 
                 }, (payload) => {
-                    if (document.getElementById('view-dashboard').style.display === "block") {
+                    if (document.getElementById('view-dashboard').style.display === "block" && document.getElementById('sec-vault-documents').style.display === "block") {
                         handleDocumentAccessGate();
                     }
                 })
