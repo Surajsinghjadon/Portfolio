@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
+    <!-- Supabase & FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -45,7 +46,7 @@
             transition: all 0.3s; 
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); 
             position: relative; 
-            z-index: 99999999 !important; /* Forces top layer behavior override */
+            z-index: 99999999 !important; 
             flex-shrink: 0; 
             pointer-events: auto !important;
         }
@@ -119,7 +120,7 @@
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
-            z-index: 99999; display: none; 
+            z-index: 999999; display: none; 
             justify-content: center; align-items: center; padding: 15px;
         }
         .auth-container { 
@@ -198,6 +199,7 @@
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -215,6 +217,7 @@
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -235,6 +238,7 @@
         </div>
     </div>
 
+    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -258,6 +262,7 @@
         </div>
     </div>
 
+    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -274,6 +279,7 @@
         </div>
     </div>
 
+    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -300,6 +306,7 @@
         </div>
     </div>
 
+    <!-- CONTACT SECTION -->
     <div class="container" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-box">
@@ -326,12 +333,14 @@
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <p>&copy; 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
         </div>
     </footer>
 
+    <!-- CENTRAL CONTROL MODAL OVERLAY -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
@@ -341,6 +350,7 @@
                 <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">Sign Up</button>
             </div>
 
+            <!-- VIEW 1: SIGN IN PANELS -->
             <div id="view-login" class="tab-view">
                 <div class="input-group">
                     <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
@@ -348,7 +358,8 @@
                 <div class="input-group">
                     <input type="password" id="login-password" class="auth-input" placeholder="Password">
                 </div>
-                <button type="button" id="btn-login-submit" class="btn-auth" style="background-color: var(--accent-blue); color: #000;">LOG IN</button>
+                <!-- FIXED BULLETPROOF CLICK HANDLER -->
+                <button type="button" class="btn-auth" style="background-color: var(--accent-blue); color: #000;" onclick="handleLoginSubmit()">LOG IN</button>
                 
                 <div style="text-align: right; margin-top: 10px; margin-bottom: 5px;">
                     <span style="color: var(--accent-blue); font-size: 12px; font-weight: bold; cursor: pointer;" onclick="switchAuthTab('forgot')">Forgot Password?</span>
@@ -359,6 +370,7 @@
                 <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> LinkedIn</button>
             </div>
 
+            <!-- VIEW 2: SIGN UP PANELS -->
             <div id="view-register" class="tab-view">
                 <div class="input-group">
                     <input type="text" id="reg-fullname" class="auth-input" placeholder="Full Name">
@@ -368,6 +380,7 @@
                     <button type="button" id="btn-get-otp-reg" class="input-inline-btn" onclick="handleSendOTP('reg')">Get OTP</button>
                 </div>
                 
+                <!-- TIMER BLOCK REG -->
                 <div class="otp-timer-block" id="otp-timer-block-reg" style="display: none;">
                     <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
@@ -392,9 +405,10 @@
                     <input type="password" id="reg-confirm-password" class="auth-input" placeholder="Confirm Password">
                 </div>
 
-                <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
+                <button type="button" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
             </div>
 
+            <!-- VIEW 4: FORGOT PASSWORD TAB SYSTEM -->
             <div id="view-forgot" class="tab-view">
                 <h3 style="font-size: 16px; font-weight: bold; color: var(--accent-blue); margin-bottom: 15px; text-align: center;"><i class="fas fa-key"></i> Reset Password</h3>
                 
@@ -403,6 +417,7 @@
                     <button type="button" id="btn-get-otp-forgot" class="input-inline-btn" onclick="handleSendOTP('forgot')">Get OTP</button>
                 </div>
 
+                <!-- TIMER BLOCK FORGOT -->
                 <div class="otp-timer-block" id="otp-timer-block-forgot" style="display: none;">
                     <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
@@ -434,6 +449,7 @@
                 </div>
             </div>
 
+            <!-- VIEW 3: SECURE DASHBOARD VIEW -->
             <div id="view-dashboard" class="tab-view">
                 <div class="user-profile-card">
                     <div class="user-avatar-frame">
@@ -447,6 +463,7 @@
 
                 <h3 style="font-size: 13px; font-weight: 700; color: var(--accent-blue); margin-bottom: 10px;"><i class="fas fa-folder-open"></i> Gated Management Portal</h3>
                 
+                <!-- MAIN OPTIONS HUB -->
                 <div id="dashboard-root-options" style="display: block;">
                     <div class="twin-dashboard-grid">
                         <div class="dashboard-main-card card-ach" onclick="showVaultSection('achievements')">
@@ -458,9 +475,11 @@
                             <span>Documents</span>
                         </div>
                     </div>
-                    <button type="button" class="btn-logout-danger" id="btn-logout-action">Log Out</button>
+                    <!-- FIXED INLINE ONCLICK LOGOUT EVENT LINK -->
+                    <button type="button" class="btn-logout-danger" onclick="handleLogout()">Log Out</button>
                 </div>
 
+                <!-- SUB ROOT A: ACHIEVEMENTS SUITE VIEW -->
                 <div id="sec-vault-achievements" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     <div class="vault-list-container">
@@ -473,16 +492,19 @@
                     </div>
                 </div>
 
+                <!-- SUB ROOT B: REAL DOCUMENTS SECURE GATED VIEW -->
                 <div id="sec-vault-documents" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     
+                    <!-- REQUEST GATED FORM VIEW -->
                     <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
                         <i class="fas fa-lock"></i>
                         <h4 style="font-size:14px; margin-bottom:5px; color:#fff;">Access Verification Required</h4>
                         <p style="font-size:12px; color:var(--text-gray); line-height:1.5; margin-bottom:12px;">This node contains certified academic and career files. Please submit a verified authorization request to unlock this portal.</p>
-                        <button type="button" class="btn-auth" id="btn-submit-admin-request" style="background:#fbbf24; color:#000;">Send Clearance Request</button>
+                        <button type="button" class="btn-auth" style="background:#fbbf24; color:#000;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
                     </div>
 
+                    <!-- PENDING APP STATE VIEW -->
                     <div id="doc-gate-pending-view" style="display:none;">
                         <div class="status-badge-pending">
                             <i class="fas fa-hourglass-half"></i> Status: Pending Admin Approval
@@ -490,6 +512,7 @@
                         <p style="font-size:12px; color:var(--text-gray); text-align:center; margin-top:14px; line-height:1.6;">Your authorization request is currently being processed. Digital documents will unlock automatically in real-time upon credential validation.</p>
                     </div>
 
+                    <!-- ALLOWED CORE ARCHIVES LIST VIEW -->
                     <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
                         <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
@@ -506,6 +529,7 @@
         </div>
     </div>
 
+    <!-- JAVASCRIPT MASTER AUTHENTICATION INFRASTRUCTURE -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -517,8 +541,9 @@
         let blockAutoDashboard = false;
         let activeTab = 'login'; 
         let realtimeChannel = null; 
+        const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        // Global safe windows mapping declarations to bypass ReferenceErrors completely
+        // Global functions mapped to window object to bypass mobile element boundary clashing loops
         window.openPanel = function() {
             document.getElementById('auth-overlay').style.display = 'flex';
         };
@@ -563,7 +588,6 @@
             }
         }
 
-        // REAL-TIME AUTO SOCKET HANDLER (TRIGGERS IN 1 SECOND AUTOMATICALLY)
         function subscribeToRealtimeDatabase(email) {
             if (realtimeChannel) _supabase.removeChannel(realtimeChannel);
 
@@ -582,7 +606,7 @@
                 .subscribe();
         }
 
-        document.getElementById('btn-submit-admin-request').addEventListener('click', async () => {
+        window.handleSubmitAdminRequest = async function() {
             if(!currentActiveSession) return;
             const user = currentActiveSession.user;
             const meta = user.user_metadata || {};
@@ -590,7 +614,7 @@
 
             await _supabase.from('document_requests').insert([{ name: nameValue, email: user.email, status: 'pending' }]);
             handleDocumentAccessGate();
-        });
+        };
 
         function requestSecureFile(fileName) {
             if (!currentActiveSession) { alert("Access Failure: Missing parameters."); return; }
@@ -682,6 +706,15 @@
             }
         });
 
+        window.handleLogout = async function() {
+            await _supabase.auth.signOut();
+            localStorage.clear();
+            sessionStorage.clear();
+            currentActiveSession = null;
+            syncAuthUI();
+            closePanel();
+        };
+
         function switchAuthTab(type) {
             activeTab = type;
             blockAutoDashboard = (type === 'register' || type === 'forgot');
@@ -736,7 +769,7 @@
             }, 1000);
         }
 
-        async function handleSendOTP(type) {
+        window.handleSendOTP = async function(type) {
             const emailInput = (type === 'reg') ? 'reg-email' : 'forgot-email';
             const email = document.getElementById(emailInput).value.trim();
             if (!email) { alert("Enter Email Address first!"); return; }
@@ -744,9 +777,9 @@
             const { error } = await _supabase.auth.signInWithOtp({ email });
             if (error) alert(error.message);
             else { alert("Verification token successfully sent!"); startOTPTimer(type); }
-        }
+        };
 
-        async function handleVerifyOTP(type) {
+        window.handleVerifyOTP = async function(type) {
             const emailInput = (type === 'reg') ? 'reg-email' : 'forgot-email';
             const codeInput = (type === 'reg') ? 'otp-code-reg' : 'otp-code-forgot';
             
@@ -766,9 +799,9 @@
                 document.getElementById(`btn-verify-otp-${type}`).style.display = "none";
                 document.getElementById(`badge-verified-${type}`).style.display = "inline-flex";
             }
-        }
+        };
 
-        async function handleFinalRegister() {
+        window.handleFinalRegister = async function() {
             const email = document.getElementById('reg-email').value.trim();
             const password = document.getElementById('reg-password').value;
             const confirm = document.getElementById('reg-confirm-password').value;
@@ -788,9 +821,9 @@
                 alert("Account created successfully!");
                 switchAuthTab('login');
             }
-        }
+        };
 
-        async function handleResetPasswordSubmit() {
+        window.handleResetPasswordSubmit = async function() {
             const password = document.getElementById('forgot-password').value;
             const confirm = document.getElementById('forgot-confirm-password').value;
 
@@ -806,16 +839,16 @@
                 alert("Password changed successfully! Redirecting to Sign In tab.");
                 switchAuthTab('login');
             }
-        }
+        };
 
-        document.getElementById('btn-login-submit').addEventListener('click', async () => {
+        window.handleLoginSubmit = async function() {
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
             blockAutoDashboard = false;
 
             const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
             if (error) alert(error.message);
-        });
+        };
 
         document.querySelectorAll('.oauth-google-trigger').forEach(el => {
             el.onclick = () => { blockAutoDashboard = false; _supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: redirectLink } }); }
