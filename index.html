@@ -58,8 +58,6 @@
         .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; z-index: 10; }
         .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
-        .floating-badge { position: absolute; bottom: 20px; left: -15px; background: var(--bg-card); padding: 14px 20px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; gap: 12px; z-index: 10; }
-        .badge-check { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); width: 26px; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; }
 
         /* SECTIONS & CARDS */
         .section-title { font-size: 22px; font-weight: 800; margin: 70px 0 30px 0; display: flex; align-items: center; }
@@ -130,13 +128,13 @@
         .input-inline-btn:hover { background: rgba(56, 189, 248, 0.2); }
         .verify-btn { background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.2); color: #4ade80; }
 
-        /* LIVE STRENGTH STYLES (HIDDEN BY DEFAULT) */
+        /* LIVE STRENGTH STYLES */
         .strength-container { width: 100%; margin-top: -8px; margin-bottom: 14px; display: none; }
         .strength-bar-bg { background: #161b22; height: 5px; border-radius: 3px; overflow: hidden; }
         .strength-bar { height: 100%; width: 0%; transition: 0.3s; }
         .strength-text { font-size: 11px; color: var(--text-gray); display: block; text-align: right; margin-top: 4px; font-weight: 600; }
         
-        /* TIMER BLOCKS (HIDDEN BY DEFAULT) */
+        /* TIMER BLOCKS */
         .otp-timer-block { display: none; justify-content: space-between; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 14px; padding: 0 4px; }
         .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; }
         .resend-link.disabled { color: #4b5563; cursor: not-allowed; pointer-events: none; }
@@ -151,7 +149,7 @@
         .social-btn:hover { border-color: #38bdf8; }
         .btn-google i { color: #db4437; } .btn-linkedin i { color: #0077b5; }
         
-        /* STATUS BOX (HIDDEN BY DEFAULT) */
+        /* STATUS BOX */
         .status-box { display: none; background-color: #05070c; border: 1px solid #1a1a24; padding: 10px; border-radius: 8px; text-align: center; font-size: 12px; margin-top: 15px; color: #38bdf8; font-weight: 600; }
 
         /* POST-LOGIN DASHBOARD STYLE */
@@ -225,7 +223,7 @@
         </div>
     </div>
 
-    <!-- EDUCATION SECTION (COMPLETELY CLEAN WITHOUT ANY CLUTTER BOX) -->
+    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -308,7 +306,6 @@
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
             
-            <!-- TABS (Hides automatically when dashboard view is active) -->
             <div class="auth-tabs" id="modal-tabs-header">
                 <button type="button" id="tab-login" class="auth-tab-btn active" onclick="switchAuthTab('login')">Login</button>
                 <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">New Register</button>
@@ -342,7 +339,6 @@
                     <input type="password" id="reg-password" class="auth-input" placeholder="Create Password">
                 </div>
                 
-                <!-- Password Strength Live Meter (Hidden by Default) -->
                 <div class="strength-container" id="strength-container-block">
                     <div class="strength-bar-bg"><div id="strength-bar" class="strength-bar"></div></div>
                     <span id="strength-text" class="strength-text">Password Strength</span>
@@ -356,7 +352,6 @@
                     <button type="button" id="btn-verify-otp" class="input-inline-btn verify-btn">Verify</button>
                 </div>
 
-                <!-- 60s Timer (Hidden by Default) -->
                 <div class="otp-timer-block" id="otp-timer-block">
                     <span id="timer-display">Timer: 60s</span>
                     <span id="resend-link-btn" class="resend-link disabled" onclick="triggerResendOTP()">Resend OTP</span>
@@ -384,7 +379,6 @@
                 </div>
             </div>
 
-            <!-- Real-time Status Log Display (Hidden by default) -->
             <div class="status-box" id="status-display">Logging application profile payload...</div>
         </div>
     </div>
@@ -413,7 +407,7 @@
             }
         }
 
-        // --- PASSWORD LIVE STRENGTH DETECTOR METER ---
+        // PASSWORD LIVE STRENGTH DETECTOR METER
         document.getElementById('reg-password').addEventListener('input', function() {
             const val = this.value;
             const container = document.getElementById('strength-container-block');
@@ -434,7 +428,7 @@
             }
         });
 
-        // --- 60 SECONDS OTP ENGINE TIMER LOGIC ---
+        // 60 SECONDS OTP ENGINE TIMER LOGIC
         function startOTPTimer() {
             clearInterval(countdownInterval);
             let secondsLeft = 60;
@@ -442,7 +436,7 @@
             const timerDisplay = document.getElementById('timer-display');
             const resendBtn = document.getElementById('resend-link-btn');
             
-            timerBlock.style.display = "flex"; // Show timer block only on trigger
+            timerBlock.style.display = "flex";
             resendBtn.classList.add('disabled');
             document.getElementById('btn-get-otp').disabled = true;
 
@@ -465,9 +459,11 @@
                 if (error) alert(error.message);
             });
         });
+        
+        // --- LINKEDIN OIDC TERMINAL FIX APPLIED HERE ---
         document.querySelectorAll('.oauth-linkedin-trigger').forEach(el => {
             el.addEventListener('click', async () => {
-                const { error } = await _supabase.auth.signInWithOAuth({ provider: 'linkedin' });
+                const { error } = await _supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc' });
                 if (error) alert(error.message);
             });
         });
@@ -518,7 +514,6 @@
 
             const { data: record } = await _supabase.from('document_requests').select('status').eq('email', emailValue).maybeSingle();
             if (record && record.status === 'approved') {
-                // Switch to Dashboard Page Content
                 document.getElementById('modal-tabs-header').style.display = "none";
                 document.getElementById('view-register').classList.remove('active');
                 document.getElementById('view-dashboard').classList.add('active');
@@ -543,7 +538,6 @@
 
             const { data: record } = await _supabase.from('document_requests').select('status').eq('email', emailValue).maybeSingle();
             if (record && record.status === 'approved') {
-                // Smoothly Load Dashboard Options View
                 document.getElementById('modal-tabs-header').style.display = "none";
                 document.getElementById('view-login').classList.remove('active');
                 document.getElementById('view-dashboard').classList.add('active');
