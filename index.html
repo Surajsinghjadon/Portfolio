@@ -21,13 +21,13 @@
         body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; padding-top: 110px; }
         .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
-        /* HEADER & BULLETPROOF HEADER BUTTON MECHANISM */
-        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; }
+        /* HEADER & BULLETPROOF HIGHEST LAYER BUTTON CLICKABLE FIX */
+        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); }
         .logo span { color: var(--text-white); }
         
-        .right-menu { display: flex; align-items: center; gap: 25px; position: relative; z-index: 1001; }
+        .right-menu { display: flex; align-items: center; gap: 25px; position: relative; z-index: 100001; }
         .nav-links { display: flex; gap: 20px; }
         @media (max-width: 768px) { .nav-links { display: none; } }
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
@@ -46,6 +46,7 @@
             transition: all 0.3s; 
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); 
             position: relative; 
+            z-index: 200005 !important; 
             flex-shrink: 0; 
             pointer-events: auto !important;
         }
@@ -115,7 +116,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- MODERN RE-DESIGNED APP MODAL OVERLAY --- */
+        /* --- MODERN RE-DESIGNED APP MODAL --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
@@ -193,7 +194,6 @@
         .admin-form-box i { color: #f59e0b; font-size: 24px; margin-bottom: 8px; }
         .admin-form-box p { font-size: 12px; color: var(--text-gray); margin-bottom: 14px; line-height: 1.5; }
         .status-badge-pending { display: inline-block; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); color: #f59e0b; padding: 12px; border-radius: 10px; font-size: 12px; font-weight: 700; width: 100%; text-align: center; }
-        .status-box { display: none; text-align: center; padding: 8px; font-size: 12px; color: var(--accent-blue); }
     </style>
 </head>
 <body>
@@ -538,17 +538,19 @@
         let blockAutoDashboard = false;
         let activeTab = 'login'; 
         let realtimeChannel = null; 
+        let approvalPollingInterval = null; // Smart fallback clock array
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        // Global functions mapped directly to window layer context
+        // Global function namespace initializers
         window.openPanel = function() {
             document.getElementById('auth-overlay').style.display = 'flex';
         };
         window.closePanel = function() {
             document.getElementById('auth-overlay').style.display = 'none';
+            clearInterval(approvalPollingInterval);
         };
 
-        // Enforce dual handler safety mapping mechanisms across high-end devices
+        // Dual hardware touch interceptors
         document.getElementById('header-profile-trigger').addEventListener('click', window.openPanel);
         document.getElementById('header-profile-trigger').addEventListener('touchstart', window.openPanel, {passive: true});
 
@@ -563,9 +565,10 @@
             document.getElementById('sec-vault-achievements').style.display = "none";
             document.getElementById('sec-vault-documents').style.display = "none";
             document.getElementById('dashboard-root-options').style.display = "block";
+            clearInterval(approvalPollingInterval);
         }
 
-        // RE-DEDICATED EXCLUSIVE STATE RENDERING ENGINE
+        // ISOLATED ATOMIC INTERFACE TOGGLE CONTROL FOR ZERO DYNAMIC LATENCY
         function updateDocumentUIStatus(status) {
             document.getElementById('doc-gate-form-view').style.display = "none";
             document.getElementById('doc-gate-pending-view').style.display = "none";
@@ -573,10 +576,12 @@
 
             if (status === 'approved') {
                 document.getElementById('doc-gate-allowed-view').style.display = "block";
+                clearInterval(approvalPollingInterval); // Access clear, close timer loop
             } else if (status === 'pending') {
                 document.getElementById('doc-gate-pending-view').style.display = "block";
             } else {
                 document.getElementById('doc-gate-form-view').style.display = "block";
+                clearInterval(approvalPollingInterval);
             }
         }
 
@@ -587,12 +592,34 @@
             document.getElementById('dashboard-root-options').style.display = "none";
             document.getElementById('sec-vault-documents').style.display = "block";
 
+            // Initial status execution line
             const { data: record } = await _supabase.from('document_requests').select('status').eq('email', user.email).maybeSingle();
             const currentStatus = record ? record.status : 'none';
             updateDocumentUIStatus(currentStatus);
+
+            // ACTIVE REAL-TIME POLLING ENGINE FALLBACK (Triggers immediately on dashboard load)
+            startHybridApprovalSync(user.email);
         }
 
-        // AIRTIGHT REALTIME ENGINE - BROADCAST INLINE RE-EVALUATION CHANNELS
+        // ULTRA SMART FALLBACK ENGINE – UPDATES SCREEN REGARDLESS OF SUPABASE BOARD LAYERING SETTINGS
+        function startHybridApprovalSync(email) {
+            clearInterval(approvalPollingInterval);
+            
+            // Loop runs every 2 seconds to check status updates without requiring manual re-rendering
+            approvalPollingInterval = setInterval(async () => {
+                if (document.getElementById('auth-overlay').style.display === "flex" && 
+                    document.getElementById('sec-vault-documents').style.display === "block") {
+                    
+                    const { data: record } = await _supabase.from('document_requests').select('status').eq('email', email).maybeSingle();
+                    const liveStatus = record ? record.status : 'none';
+                    updateDocumentUIStatus(liveStatus);
+                } else {
+                    clearInterval(approvalPollingInterval);
+                }
+            }, 2000);
+        }
+
+        // UNFILTERED SOCKET LAYER HANDLER
         function subscribeToRealtimeDatabase(email) {
             if (realtimeChannel) _supabase.removeChannel(realtimeChannel);
 
@@ -604,7 +631,6 @@
                     table: 'document_requests'
                 }, (payload) => {
                     const newDoc = payload.new;
-                    // Intercept changes immediately on exact record verification loops inside script thread
                     if (newDoc && newDoc.email && newDoc.email.toLowerCase() === email.toLowerCase()) {
                         if (document.getElementById('auth-overlay').style.display === "flex" && document.getElementById('sec-vault-documents').style.display === "block") {
                             updateDocumentUIStatus(newDoc.status);
@@ -677,6 +703,7 @@
                 if (headerBtn) headerBtn.innerHTML = `<i id="user-icon" class="fas fa-user"></i>`;
                 
                 if (realtimeChannel) { _supabase.removeChannel(realtimeChannel); realtimeChannel = null; }
+                clearInterval(approvalPollingInterval);
                 returnToRootDashboard();
                 
                 if (activeTab === 'register') {
@@ -715,6 +742,7 @@
         });
 
         window.handleLogout = async function() {
+            clearInterval(approvalPollingInterval);
             await _supabase.auth.signOut();
             localStorage.clear();
             sessionStorage.clear();
