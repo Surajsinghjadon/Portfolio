@@ -194,6 +194,7 @@
         .admin-form-box i { color: #f59e0b; font-size: 24px; margin-bottom: 8px; }
         .admin-form-box p { font-size: 12px; color: var(--text-gray); margin-bottom: 14px; line-height: 1.5; }
         .status-badge-pending { display: inline-block; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); color: #f59e0b; padding: 12px; border-radius: 10px; font-size: 12px; font-weight: 700; width: 100%; text-align: center; }
+        .status-box { display: none; text-align: center; padding: 8px; font-size: 12px; color: var(--accent-blue); }
     </style>
 </head>
 <body>
@@ -357,7 +358,7 @@
                 <div class="input-group">
                     <input type="password" id="login-password" class="auth-input" placeholder="Password">
                 </div>
-                <button type="button" class="btn-auth" style="background-color: var(--accent-blue); color: #000;" onclick="handleLoginSubmit()">LOG IN</button>
+                <button type="button" id="btn-login-submit" class="btn-auth" style="background-color: var(--accent-blue); color: #000;" onclick="handleLoginSubmit()">LOG IN</button>
                 
                 <div style="text-align: right; margin-top: 10px; margin-bottom: 5px;">
                     <span style="color: var(--accent-blue); font-size: 12px; font-weight: bold; cursor: pointer;" onclick="switchAuthTab('forgot')">Forgot Password?</span>
@@ -538,10 +539,9 @@
         let blockAutoDashboard = false;
         let activeTab = 'login'; 
         let realtimeChannel = null; 
-        let approvalPollingInterval = null; // Smart fallback clock array
+        let approvalPollingInterval = null; 
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        // Global function namespace initializers
         window.openPanel = function() {
             document.getElementById('auth-overlay').style.display = 'flex';
         };
@@ -550,7 +550,6 @@
             clearInterval(approvalPollingInterval);
         };
 
-        // Dual hardware touch interceptors
         document.getElementById('header-profile-trigger').addEventListener('click', window.openPanel);
         document.getElementById('header-profile-trigger').addEventListener('touchstart', window.openPanel, {passive: true});
 
@@ -568,7 +567,6 @@
             clearInterval(approvalPollingInterval);
         }
 
-        // ISOLATED ATOMIC INTERFACE TOGGLE CONTROL FOR ZERO DYNAMIC LATENCY
         function updateDocumentUIStatus(status) {
             document.getElementById('doc-gate-form-view').style.display = "none";
             document.getElementById('doc-gate-pending-view').style.display = "none";
@@ -576,7 +574,6 @@
 
             if (status === 'approved') {
                 document.getElementById('doc-gate-allowed-view').style.display = "block";
-                clearInterval(approvalPollingInterval); // Access clear, close timer loop
             } else if (status === 'pending') {
                 document.getElementById('doc-gate-pending-view').style.display = "block";
             } else {
@@ -592,20 +589,17 @@
             document.getElementById('dashboard-root-options').style.display = "none";
             document.getElementById('sec-vault-documents').style.display = "block";
 
-            // Initial status execution line
             const { data: record } = await _supabase.from('document_requests').select('status').eq('email', user.email).maybeSingle();
             const currentStatus = record ? record.status : 'none';
             updateDocumentUIStatus(currentStatus);
 
-            // ACTIVE REAL-TIME POLLING ENGINE FALLBACK (Triggers immediately on dashboard load)
+            // CONTINUOUS POLLING SYNC MECHANISM - NEVER SHUTS OFF WHILE VIEW IS ACTIVE
             startHybridApprovalSync(user.email);
         }
 
-        // ULTRA SMART FALLBACK ENGINE – UPDATES SCREEN REGARDLESS OF SUPABASE BOARD LAYERING SETTINGS
         function startHybridApprovalSync(email) {
             clearInterval(approvalPollingInterval);
             
-            // Loop runs every 2 seconds to check status updates without requiring manual re-rendering
             approvalPollingInterval = setInterval(async () => {
                 if (document.getElementById('auth-overlay').style.display === "flex" && 
                     document.getElementById('sec-vault-documents').style.display === "block") {
@@ -616,10 +610,9 @@
                 } else {
                     clearInterval(approvalPollingInterval);
                 }
-            }, 2000);
+            }, 2000); // Polling runs unconditionally to intercept any status downgrades
         }
 
-        // UNFILTERED SOCKET LAYER HANDLER
         function subscribeToRealtimeDatabase(email) {
             if (realtimeChannel) _supabase.removeChannel(realtimeChannel);
 
