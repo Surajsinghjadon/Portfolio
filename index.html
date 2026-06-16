@@ -156,6 +156,8 @@
         .dashboard-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
         .dash-btn { background: #161b22; border: 1px solid rgba(255,255,255,0.08); color: white; padding: 20px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; transition: 0.2s; }
         .dash-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.02); color: var(--accent-blue); }
+        .btn-logout-danger { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444 !important; }
+        .btn-logout-danger:hover { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #ff6b6b !important; }
     </style>
 </head>
 <body>
@@ -182,7 +184,7 @@
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
-                <div class="badge-dot"></div> <span>Public Visitor Mode</span>
+                <div class="badge-dot" style="background: #94a3b8; box-shadow: none;"></div> <span id="badge-text">Public Visitor Mode</span>
             </div>
             <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
             <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
@@ -332,8 +334,7 @@
                     <input type="text" id="reg-fullname" class="auth-input" placeholder="Your Full Name">
                 </div>
                 <div class="input-group">
-                    <input type="email" id="reg-email" class="auth-input" style="padding-right: 90px;" placeholder="Email Address">
-                    <button type="button" id="btn-get-otp" class="input-inline-btn">Get OTP</button>
+                    <input type="email" id="reg-email" class="auth-input" placeholder="Email Address">
                 </div>
                 <div class="input-group">
                     <input type="password" id="reg-password" class="auth-input" placeholder="Create Password">
@@ -347,17 +348,8 @@
                 <div class="input-group">
                     <input type="password" id="reg-confirm-password" class="auth-input" placeholder="Confirm Password">
                 </div>
-                <div class="input-group">
-                    <input type="text" id="otp-code" class="auth-input" style="padding-right: 90px;" placeholder="Enter 6-Digit OTP">
-                    <button type="button" id="btn-verify-otp" class="input-inline-btn verify-btn">Verify</button>
-                </div>
 
-                <div class="otp-timer-block" id="otp-timer-block">
-                    <span id="timer-display">Timer: 60s</span>
-                    <span id="resend-link-btn" class="resend-link disabled" onclick="triggerResendOTP()">Resend OTP</span>
-                </div>
-
-                <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000;">SUBMIT SECURITY REQUEST</button>
+                <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000;">REGISTER ACCCOUNT</button>
                 
                 <div class="divider">OR REGISTER WITH</div>
                 <button type="button" class="social-btn oauth-google-trigger"><i class="fab fa-google"></i> Continue with Google</button>
@@ -370,60 +362,100 @@
                 <p style="color: var(--text-gray); font-size: 13px; text-align: center; margin-bottom: 25px;">Select an authorized ledger dashboard link below.</p>
                 
                 <div class="dashboard-grid">
-                    <button type="button" class="dash-btn" onclick="alert('Achievements Registry: Currently loading certified corporate archives...')">
-                        <i class="fas fa-trophy" style="color: #fbbf24; font-size: 20px;"></i> Achievement
+                    <button type="button" class="dash-btn" onclick="requestSecureFile('achievement')">
+                        <i class="fas fa-trophy" style="color: #fbbf24; font-size: 20px;"></i> Achievements
                     </button>
-                    <button type="button" class="dash-btn" onclick="window.location.href='dca_diploma.pdf'">
-                        <i class="fas fa-file-pdf" style="color: #ef4444; font-size: 20px;"></i> Documents
+                    <button type="button" class="dash-btn" onclick="requestSecureFile('dca')">
+                        <i class="fas fa-file-pdf" style="color: #ef4444; font-size: 20px;"></i> DCA Documents
+                    </button>
+                    <button type="button" class="dash-btn btn-logout-danger" id="btn-logout-action">
+                        <i class="fas fa-sign-out-alt"></i> Log Out Account
                     </button>
                 </div>
             </div>
 
-            <div class="status-box" id="status-display">Logging application profile payload...</div>
+            <div class="status-box" id="status-display">Processing master terminal gateway...</div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT AUTH ENGINE -->
+    <!-- JAVASCRIPT SECURE AUTH ENGINE -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
         
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        let isEmailVerified = false;
-        let countdownInterval = null;
+        let currentActiveSession = null;
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        // --- AUTOMATIC SESSION DETECTOR FIXED ---
-        // 1. Initial page load par active login session check karega
-        _supabase.auth.getSession().then(({ data }) => {
-            if (data.session) handleSocialLoginSuccess(data.session.user);
-        });
+        // --- BYPASS PROOF FILE URL STORAGE (GATED BEHIND AUTH VARIABLES) ---
+        const SECURE_VAULT = {
+            dca: "dca_diploma.pdf",
+            achievement: "achievements.pdf"
+        };
 
-        // 2. Real-time auth state tracker listener
-        _supabase.auth.onAuthStateChange((event, session) => {
-            if (session && (event === 'SIGNED_IN' || event === 'INITIAL_SESSION')) {
-                handleSocialLoginSuccess(session.user);
+        // File opener check loop
+        function requestSecureFile(fileKey) {
+            if (!currentActiveSession) {
+                alert("Security Violation: Access denied! Please login first.");
+                resetUIToVisitor();
+                return;
+            }
+            // If secure session exists, load file dynamically
+            window.open(SECURE_VAULT[fileKey], '_blank');
+        }
+
+        // Automatic Session Tracker System
+        _supabase.auth.getSession().then(({ data }) => {
+            if (data.session) {
+                currentActiveSession = data.session;
+                handleLoginSuccessState();
             }
         });
 
-        // Function to move UI into Secure Dashboard automatically upon login
-        function handleSocialLoginSuccess(user) {
-            const badge = document.getElementById('auth-status-badge');
-            if (badge) badge.innerHTML = '<div class="badge-dot" style="background:#4ade80;"></div> <span>Authorized Mode</span>';
+        _supabase.auth.onAuthStateChange((event, session) => {
+            if (session) {
+                currentActiveSession = session;
+                handleLoginSuccessState();
+            } else {
+                currentActiveSession = null;
+                resetUIToVisitor();
+            }
+        });
+
+        function handleLoginSuccessState() {
+            document.getElementById('auth-status-badge').querySelector('.badge-dot').style.background = "#4ade80";
+            document.getElementById('auth-status-badge').querySelector('.badge-dot').style.boxShadow = "0 0 10px #4ade80";
+            document.getElementById('badge-text').innerText = "Secure Authorized Mode";
             
             const icon = document.getElementById('user-icon');
-            if (icon) {
-                icon.className = "fas fa-user-check";
-                icon.style.color = "#4ade80";
-            }
+            if (icon) { icon.className = "fas fa-user-check"; icon.style.color = "#4ade80"; }
             
-            // Switch tabs inside modal automatically to reveal documents
             document.getElementById('modal-tabs-header').style.display = "none";
             document.getElementById('view-login').classList.remove('active');
             document.getElementById('view-register').classList.remove('active');
             document.getElementById('view-dashboard').classList.add('active');
             document.getElementById('status-display').style.display = "none";
         }
+
+        function resetUIToVisitor() {
+            document.getElementById('auth-status-badge').querySelector('.badge-dot').style.background = "#94a3b8";
+            document.getElementById('auth-status-badge').querySelector('.badge-dot').style.boxShadow = "none";
+            document.getElementById('badge-text').innerText = "Public Visitor Mode";
+            
+            const icon = document.getElementById('user-icon');
+            if (icon) { icon.className = "fas fa-user"; icon.style.color = "#38bdf8"; }
+            
+            document.getElementById('modal-tabs-header').style.display = "flex";
+            document.getElementById('view-dashboard').classList.remove('active');
+            switchAuthTab('login');
+        }
+
+        // Logout Action Event
+        document.getElementById('btn-logout-action').addEventListener('click', async () => {
+            await _supabase.auth.signOut();
+            alert("Logged out securely!");
+            closePanel();
+        });
 
         function openPanel() { document.getElementById('auth-overlay').style.display = 'flex'; }
         function closePanel() { document.getElementById('auth-overlay').style.display = 'none'; }
@@ -461,131 +493,61 @@
             }
         });
 
-        // 60 SECONDS OTP ENGINE TIMER LOGIC
-        function startOTPTimer() {
-            clearInterval(countdownInterval);
-            let secondsLeft = 60;
-            const timerBlock = document.getElementById('otp-timer-block');
-            const timerDisplay = document.getElementById('timer-display');
-            const resendBtn = document.getElementById('resend-link-btn');
-            
-            timerBlock.style.display = "flex";
-            resendBtn.classList.add('disabled');
-            document.getElementById('btn-get-otp').disabled = true;
-
-            countdownInterval = setInterval(() => {
-                secondsLeft--;
-                timerDisplay.innerText = `Resend in: ${secondsLeft}s`;
-                if (secondsLeft <= 0) {
-                    clearInterval(countdownInterval);
-                    timerDisplay.innerText = "Timer ended.";
-                    resendBtn.classList.remove('disabled');
-                    document.getElementById('btn-get-otp').disabled = false;
-                }
-            }, 1000);
-        }
-
-        // Connect Global Trigger Social Buttons
+        // Social Buttons Link Connectors
         document.querySelectorAll('.oauth-google-trigger').forEach(el => {
             el.addEventListener('click', async () => {
-                const { error } = await _supabase.auth.signInWithOAuth({ 
-                    provider: 'google',
-                    options: { redirectTo: redirectLink }
-                });
-                if (error) alert(error.message);
+                await _supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: redirectLink } });
             });
         });
         
         document.querySelectorAll('.oauth-linkedin-trigger').forEach(el => {
             el.addEventListener('click', async () => {
-                const { error } = await _supabase.auth.signInWithOAuth({ 
-                    provider: 'linkedin_oidc',
-                    options: { redirectTo: redirectLink }
-                });
-                if (error) alert(error.message);
+                await _supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc', options: { redirectTo: redirectLink } });
             });
         });
 
-        // Get OTP Trigger
-        async function sendOTP() {
-            const emailValue = document.getElementById('reg-email').value.trim();
-            if (!emailValue) { alert("Email ID fill karein!"); return; }
-            
+        // NATIVE REAL REGISTER HANDLER
+        document.getElementById('btn-submit-request').addEventListener('click', async () => {
+            const email = document.getElementById('reg-email').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const confirm = document.getElementById('reg-confirm-password').value;
+
+            if(!email || !password) { alert("Email aur Password dono bharna zaroori hai!"); return; }
+            if(password !== confirm) { alert("Passwords match nahi ho rahe hain!"); return; }
+
             document.getElementById('status-display').style.display = "block";
-            document.getElementById('status-display').innerText = "Transmitting token...";
+            document.getElementById('status-display').innerText = "Creating real account infrastructure...";
+
+            const { data, error } = await _supabase.auth.signUp({ email, password });
             
-            const { error } = await _supabase.auth.signInWithOtp({ email: emailValue });
             if (error) {
                 alert(error.message);
-            } else {
-                alert("OTP successfully bhej diya gaya hai!");
-                startOTPTimer();
-            }
-        }
-        document.getElementById('btn-get-otp').addEventListener('click', sendOTP);
-        function triggerResendOTP() { sendOTP(); }
-
-        // Verify Token Code
-        document.getElementById('btn-verify-otp').addEventListener('click', async () => {
-            const emailValue = document.getElementById('reg-email').value.trim();
-            const tokenValue = document.getElementById('otp-code').value.trim();
-            const { error } = await _supabase.auth.verifyOtp({ email: emailValue, token: tokenValue, type: 'email' });
-            if (error) {
-                alert("Galat Code!"); isEmailVerified = false;
-            } else {
-                alert("OTP Successfully Verified!"); isEmailVerified = true;
-            }
-        });
-
-        // Submit Action
-        document.getElementById('btn-submit-request').addEventListener('click', async () => {
-            const nameValue = document.getElementById('reg-fullname').value.trim();
-            const emailValue = document.getElementById('reg-email').value.trim();
-            const passValue = document.getElementById('reg-password').value;
-            const confValue = document.getElementById('reg-confirm-password').value;
-
-            if (!isEmailVerified) { alert("Pehle Verify button par click karein!"); return; }
-            if (passValue !== confValue) { alert("Passwords match nahi ho rahe!"); return; }
-
-            document.getElementById('status-display').style.display = "block";
-            document.getElementById('status-display').innerText = "Submitting registration payload...";
-
-            const { data: record } = await _supabase.from('document_requests').select('status').eq('email', emailValue).maybeSingle();
-            if (record && record.status === 'approved') {
-                document.getElementById('modal-tabs-header').style.display = "none";
-                document.getElementById('view-register').classList.remove('active');
-                document.getElementById('view-dashboard').classList.add('active');
                 document.getElementById('status-display').style.display = "none";
-            } else if (record) {
-                alert("Aapki request status abhi pending hai!");
-                document.getElementById('status-display').innerText = "Status: Pending Approval.";
             } else {
-                await _supabase.from('document_requests').insert([{ name: nameValue, email: emailValue, status: 'pending' }]);
-                alert("Registration saved! Wait for admin approval.");
-                document.getElementById('status-display').innerText = "Saved safely. Awaiting admin approval sheet.";
+                alert("Real Account Created! Agar verification link chalu hai toh email check karein, nahi toh ab aap direct Login kar sakte hain.");
+                switchAuthTab('login');
+                document.getElementById('status-display').style.display = "none";
             }
         });
 
-        // Login check
+        // NATIVE REAL LOGIN HANDLER
         document.getElementById('btn-login-submit').addEventListener('click', async () => {
-            const emailValue = document.getElementById('login-email').value.trim();
-            if(!emailValue) { alert("Email ID bharna zaroori hai!"); return; }
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+
+            if(!email || !password) { alert("Email aur Password bhariye!"); return; }
 
             document.getElementById('status-display').style.display = "block";
-            document.getElementById('status-display').innerText = "Verifying profile index parameters...";
+            document.getElementById('status-display').innerText = "Authenticating secure keys...";
 
-            const { data: record } = await _supabase.from('document_requests').select('status').eq('email', emailValue).maybeSingle();
-            if (record && record.status === 'approved') {
-                document.getElementById('modal-tabs-header').style.display = "none";
-                document.getElementById('view-login').classList.remove('active');
-                document.getElementById('view-dashboard').classList.add('active');
+            const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
+
+            if (error) {
+                alert("Login Failed: " + error.message);
                 document.getElementById('status-display').style.display = "none";
-            } else if (record) {
-                alert("Aapka profile mil gaya hai par admin status abhi 'pending' hai.");
-                document.getElementById('status-display').innerText = "Status: Pending Admin Approval.";
             } else {
-                alert("Aapka data registered nahi hai! New Register tab me apply karein.");
-                document.getElementById('status-display').style.display = "none";
+                currentActiveSession = data.session;
+                handleLoginSuccessState();
             }
         });
     </script>
