@@ -228,7 +228,7 @@
             
             <div class="btn-group">
                 <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
-                <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
+                <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
             </div>
         </div>
         <div>
@@ -328,7 +328,8 @@
             </div>
             <div class="contact-right">
                 <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                <div class="loc-pill">LOCATION: INDIA</div>
+                <!-- FIXED: MAP REDIRECT TO EXACT LOCATION LINK INTEGRATED -->
+                <a href="https://www.google.com/maps/search/?api=1&query=Nalchha+Road+Sagore+Pithampur+Dhar+Madhya+Pradesh+454775" target="_blank" class="loc-pill">LOCATION: INDIA</a>
             </div>
         </div>
     </div>
@@ -481,6 +482,7 @@
                 <div id="sec-vault-achievements" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     <div class="vault-list-container">
+                        <!-- FIXED EXPLICIT COMPATIBILITY PATH NAMES TO STOP 404 MISMATCHES -->
                         <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
@@ -593,7 +595,6 @@
             const currentStatus = record ? record.status : 'none';
             updateDocumentUIStatus(currentStatus);
 
-            // CONTINUOUS POLLING SYNC MECHANISM - NEVER SHUTS OFF WHILE VIEW IS ACTIVE
             startHybridApprovalSync(user.email);
         }
 
@@ -610,7 +611,7 @@
                 } else {
                     clearInterval(approvalPollingInterval);
                 }
-            }, 2000); // Polling runs unconditionally to intercept any status downgrades
+            }, 2000); 
         }
 
         function subscribeToRealtimeDatabase(email) {
@@ -878,13 +879,6 @@
             const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
             if (error) alert(error.message);
         };
-
-        document.querySelectorAll('.oauth-google-trigger').forEach(el => {
-            el.onclick = () => { blockAutoDashboard = false; _supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: redirectLink } }); }
-        });
-        document.querySelectorAll('.oauth-linkedin-trigger').forEach(el => {
-            el.onclick = () => { blockAutoDashboard = false; _supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc', options: { redirectTo: redirectLink } }); }
-        });
     </script>
 </body>
 </html>
