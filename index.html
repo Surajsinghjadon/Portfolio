@@ -101,7 +101,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- MODERN RE-DESIGNED APP MODAL --- */
+        /* --- MODERN A1 QUALITY APP MODAL --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
@@ -210,8 +210,10 @@
             <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
             <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
             
+            <!-- BUTTON GROUP RESTORED PERFECTLY WITH ORIGINAL DESIGN -->
             <div class="btn-group">
                 <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
+                <a href="https://www.linkedin.com" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
             </div>
         </div>
         <div>
@@ -520,7 +522,7 @@
         let isEmailVerified = false;
         let countdownInterval = null;
         let blockAutoDashboard = false;
-        let activeTab = 'login'; // Track current visibility state
+        let activeTab = 'login'; 
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         function showVaultSection(sectionKey) {
@@ -560,25 +562,12 @@
             }
         }
 
-        document.getElementById('btn-submit-admin-request').addEventListener('click', async () => {
-            if(!currentActiveSession) return;
-            const user = currentActiveSession.user;
-            const meta = user.user_metadata || {};
-            const nameValue = meta.full_name || meta.name || user.email.split('@')[0].toUpperCase();
-
-            await _supabase.from('document_requests').insert([{ name: nameValue, email: user.email, status: 'pending' }]);
-            alert("Approval request has been safely sent to admin panel!");
-            handleDocumentAccessGate();
-        });
-
         function requestSecureFile(fileName) {
             if (!currentActiveSession) { alert("Access Failure: Missing parameters."); return; }
             window.open(fileName, '_blank');
         }
 
-        // --- EXCLUSIVE VIEW LAYER SYNC CONTROLLER TO SOLVE OVERLAPPING ---
         function syncAuthUI() {
-            // Force hard reset hidden layout structures across all views
             document.getElementById('modal-tabs-header').style.display = "none";
             document.getElementById('view-login').style.display = "none";
             document.getElementById('view-register').style.display = "none";
@@ -657,14 +646,6 @@
             }
         });
 
-        document.getElementById('btn-logout-action').addEventListener('click', async () => {
-            await _supabase.auth.signOut();
-            closePanel();
-        });
-
-        function openPanel() { document.getElementById('auth-overlay').style.display = 'flex'; }
-        function closePanel() { document.getElementById('auth-overlay').style.display = 'none'; }
-
         function switchAuthTab(type) {
             activeTab = type;
             blockAutoDashboard = (type === 'register' || type === 'forgot');
@@ -692,7 +673,6 @@
         document.getElementById('reg-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-reg', 'strength-text-reg', 'strength-container-reg'); });
         document.getElementById('forgot-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-forgot', 'strength-text-forgot', 'strength-container-forgot'); });
 
-        // --- TIMER ENGINE SYSTEM WITH PERFECT TOGGLE HOOKS ---
         function startOTPTimer(type) {
             clearInterval(countdownInterval);
             let secondsLeft = 60;
