@@ -33,27 +33,11 @@
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-blue); }
 
-        /* FIXED INTERACTION CLICKABLE ICON BUTTON */
-        .profile-login-btn { 
-            background: rgba(56, 189, 248, 0.08); 
-            border: 1px solid rgba(56, 189, 248, 0.2); 
-            width: 42px; 
-            height: 42px; 
-            border-radius: 50%; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center; 
-            cursor: pointer; 
-            transition: all 0.3s; 
-            box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); 
-            position: relative; 
-            z-index: 1010; 
-            flex-shrink: 0;
-        }
+        .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; z-index: 1001; }
         .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
         .profile-login-btn i { font-size: 18px; color: var(--accent-blue); }
         .profile-login-btn img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
-        .profile-login-btn * { pointer-events: none; } /* Guarantees clicks registers perfectly on master button boundary layout */
+        .profile-login-btn * { pointer-events: none; }
 
         /* HERO SECTION */
         .hero { display: flex; flex-direction: column; gap: 50px; padding: 40px 0; align-items: center; text-align: center; }
@@ -117,7 +101,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- MODERN RE-DESIGNED APP MODAL --- */
+        /* --- MODERN A1 QUALITY APP MODAL --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
@@ -137,7 +121,6 @@
         .auth-tab-btn.active { color: #000; background: var(--accent-blue); font-weight: 800; }
         
         .tab-view { display: none; }
-        .tab-view.active { display: block; }
         
         .input-group { position: relative; margin-bottom: 12px; width: 100%; }
         .auth-input { width: 100%; padding: 13px 15px; background: #121724; border: 1px solid rgba(255,255,255,0.05); color: white; border-radius: 10px; font-size: 14px; outline: none; }
@@ -153,9 +136,8 @@
         .strength-bar { height: 100%; width: 0%; transition: all 0.3s ease; }
         .strength-text { font-size: 11px; display: block; text-align: right; margin-top: 4px; font-weight: 600; }
 
-        .otp-timer-block { display: none; justify-content: space-between; align-items: center; width: 100%; font-size: 11px; color: var(--text-gray); margin-top: -4px; margin-bottom: 12px; }
-        .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; }
-        .resend-link.disabled { color: #4b5563; cursor: not-allowed; pointer-events: none; }
+        .otp-timer-block { display: none; justify-content: center; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 12px; }
+        .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; display: none; }
 
         .btn-auth { width: 100%; padding: 14px; border-radius: 10px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; text-transform: uppercase; }
         
@@ -327,6 +309,13 @@
                         <div class="value">linkedin.com/in/suraj-singh</div>
                     </div>
                 </div>
+                <div class="contact-row">
+                    <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
+                    <div>
+                        <div class="label">Contact Number</div>
+                        <div class="value">+91 70004 0XXXX</div>
+                    </div>
+                </div>
             </div>
             <div class="contact-right">
                 <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
@@ -371,7 +360,7 @@
                 <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> LinkedIn</button>
             </div>
 
-            <!-- VIEW 2: SIGN UP PANELS WITH VERIFIED TICK ENGINE -->
+            <!-- VIEW 2: SIGN UP PANELS -->
             <div id="view-register" class="tab-view">
                 <div class="input-group">
                     <input type="text" id="reg-fullname" class="auth-input" placeholder="Full Name">
@@ -381,10 +370,10 @@
                     <button type="button" id="btn-get-otp-reg" class="input-inline-btn" onclick="handleSendOTP('reg')">Get OTP</button>
                 </div>
                 
-                <!-- TIMER BLOCK -->
+                <!-- TIMER BLOCK REG -->
                 <div class="otp-timer-block" id="otp-timer-block-reg">
                     <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
-                    <span id="resend-link-btn-reg" class="resend-link disabled" onclick="handleSendOTP('reg')">Resend OTP</span>
+                    <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
                 </div>
 
                 <div class="input-group">
@@ -397,7 +386,6 @@
                     <input type="password" id="reg-password" class="auth-input" placeholder="Create Password">
                 </div>
                 
-                <!-- PASSWORD STRENGTH METER LINE -->
                 <div class="strength-container" id="strength-container-reg">
                     <div class="strength-bar-bg"><div id="strength-bar-reg" class="strength-bar"></div></div>
                     <span id="strength-text-reg" class="strength-text">Password Strength</span>
@@ -410,7 +398,7 @@
                 <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
             </div>
 
-            <!-- VIEW 4: NEW FORGOT PASSWORD TAB SYSTEM -->
+            <!-- VIEW 4: FORGOT PASSWORD TAB SYSTEM -->
             <div id="view-forgot" class="tab-view">
                 <h3 style="font-size: 16px; font-weight: bold; color: var(--accent-blue); margin-bottom: 15px; text-align: center;"><i class="fas fa-key"></i> Reset Password</h3>
                 
@@ -422,7 +410,7 @@
                 <!-- TIMER BLOCK FORGOT -->
                 <div class="otp-timer-block" id="otp-timer-block-forgot">
                     <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
-                    <span id="resend-link-btn-forgot" class="resend-link disabled" onclick="handleSendOTP('forgot')">Resend OTP</span>
+                    <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
                 </div>
 
                 <div class="input-group">
@@ -435,7 +423,6 @@
                     <input type="password" id="forgot-password" class="auth-input" placeholder="New Password">
                 </div>
 
-                <!-- PASSWORD STRENGTH FORGOT -->
                 <div class="strength-container" id="strength-container-forgot">
                     <div class="strength-bar-bg"><div id="strength-bar-forgot" class="strength-bar"></div></div>
                     <span id="strength-text-forgot" class="strength-text">Password Strength</span>
@@ -452,7 +439,7 @@
                 </div>
             </div>
 
-            <!-- VIEW 3: CLEAN PREMIUM FILE VAULT -->
+            <!-- VIEW 3: SECURE FILE VAULT -->
             <div id="view-dashboard" class="tab-view">
                 <div class="user-profile-card">
                     <div class="user-avatar-frame">
@@ -467,7 +454,7 @@
                 <h3 style="font-size: 13px; font-weight: 700; color: var(--accent-blue); margin-bottom: 10px;"><i class="fas fa-folder-open"></i> Gated Management Portal</h3>
                 
                 <!-- MAIN OPTIONS HUB: EXACTLY 2 CHOICES OUTSIDE -->
-                <div id="dashboard-root-options">
+                <div id="dashboard-root-options" style="display: block;">
                     <div class="twin-dashboard-grid">
                         <div class="dashboard-main-card card-ach" onclick="showVaultSection('achievements')">
                             <i class="fas fa-trophy"></i>
@@ -481,7 +468,7 @@
                     <button type="button" class="btn-logout-danger" id="btn-logout-action">Log Out</button>
                 </div>
 
-                <!-- SUB ROOT A: ACHIEVEMENTS SUITE VIEW (EXACT GITHUB SPACES INTEGRATED) -->
+                <!-- SUB ROOT A: ACHIEVEMENTS SUITE VIEW -->
                 <div id="sec-vault-achievements" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     <div class="vault-list-container">
@@ -540,7 +527,7 @@
         let currentActiveSession = null;
         let isEmailVerified = false;
         let countdownInterval = null;
-        let blockAutoDashboard = false; // LOCKS THE Premature Session Dashboard Redirects
+        let blockAutoDashboard = false;
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         function showVaultSection(sectionKey) {
@@ -556,7 +543,6 @@
             document.getElementById('dashboard-root-options').style.display = "block";
         }
 
-        // DOCUMENTS GATEWAY CONTROL LOGIC LOOP (REAL TABLE MAPPING WITH ROW CHECK)
         async function handleDocumentAccessGate() {
             if(!currentActiveSession) return;
             const user = currentActiveSession.user;
@@ -581,12 +567,22 @@
             }
         }
 
+        document.getElementById('btn-submit-admin-request').addEventListener('click', async () => {
+            if(!currentActiveSession) return;
+            const user = currentActiveSession.user;
+            const meta = user.user_metadata || {};
+            const nameValue = meta.full_name || meta.name || user.email.split('@')[0].toUpperCase();
+
+            await _supabase.from('document_requests').insert([{ name: nameValue, email: user.email, status: 'pending' }]);
+            alert("Approval request has been safely sent to admin panel!");
+            handleDocumentAccessGate();
+        });
+
         function requestSecureFile(fileName) {
             if (!currentActiveSession) { alert("Access Failure: Missing parameters."); return; }
             window.open(fileName, '_blank');
         }
 
-        // Active state observer tracker loops
         _supabase.auth.getSession().then(({ data }) => {
             if (data.session) {
                 currentActiveSession = data.session;
@@ -604,6 +600,7 @@
             }
         });
 
+        // BRINGS SOLID VIEW ISOLATION OVERRIDES TO SOLVE OVERLAPPING
         function handleLoginSuccessState(user) {
             document.getElementById('status-dot').style.background = "#4ade80";
             document.getElementById('badge-text').innerText = "Secure Authorized Mode";
@@ -632,11 +629,12 @@
             document.getElementById('dash-live-name').innerText = realName;
             document.getElementById('dash-live-email').innerText = user.email;
             
+            // STRICT HARDHIDE FORM RENDERS FOR ZERO BLEEDINGS
             document.getElementById('modal-tabs-header').style.display = "none";
-            document.getElementById('view-login').classList.remove('active');
-            document.getElementById('view-register').classList.remove('active');
-            document.getElementById('view-forgot').classList.remove('active');
-            document.getElementById('view-dashboard').classList.add('active');
+            document.getElementById('view-login').style.display = "none";
+            document.getElementById('view-register').style.display = "none";
+            document.getElementById('view-forgot').style.display = "none";
+            document.getElementById('view-dashboard').style.display = "block";
         }
 
         function resetUIToVisitor() {
@@ -644,7 +642,7 @@
             document.getElementById('badge-text').innerText = "Public Visitor Mode";
             document.getElementById('header-profile-trigger').innerHTML = `<i id="user-icon" class="fas fa-user" style="color: #38bdf8; font-size: 18px;"></i>`;
             document.getElementById('modal-tabs-header').style.display = "flex";
-            document.getElementById('view-dashboard').classList.remove('active');
+            document.getElementById('view-dashboard').style.display = "none";
             returnToRootDashboard();
             switchAuthTab('login');
         }
@@ -660,24 +658,28 @@
         function switchAuthTab(type) {
             blockAutoDashboard = (type === 'register' || type === 'forgot');
             
+            document.getElementById('view-login').style.display = "none";
+            document.getElementById('view-register').style.display = "none";
+            document.getElementById('view-forgot').style.display = "none";
+            document.getElementById('view-dashboard').style.display = "none";
+            
             document.getElementById('tab-login').classList.remove('active');
             document.getElementById('tab-register').classList.remove('active');
-            document.getElementById('view-login').classList.remove('active');
-            document.getElementById('view-register').classList.remove('active');
-            document.getElementById('view-forgot').classList.remove('active');
 
             if(type === 'login') {
                 document.getElementById('tab-login').classList.add('active');
-                document.getElementById('view-login').classList.add('active');
+                document.getElementById('view-login').style.display = "block";
+                document.getElementById('modal-tabs-header').style.display = "flex";
             } else if(type === 'register') {
                 document.getElementById('tab-register').classList.add('active');
-                document.getElementById('view-register').classList.add('active');
+                document.getElementById('view-register').style.display = "block";
+                document.getElementById('modal-tabs-header').style.display = "flex";
             } else if(type === 'forgot') {
-                document.getElementById('view-forgot').classList.add('active');
+                document.getElementById('view-forgot').style.display = "block";
+                document.getElementById('modal-tabs-header').style.display = "none";
             }
         }
 
-        // --- PASSWORD LIVE STRENGTH LINE DETECTORS MECHANISMS ---
         function checkPasswordStrength(val, barId, textId, containerId) {
             const container = document.getElementById(containerId);
             const bar = document.getElementById(barId);
@@ -699,26 +701,29 @@
         document.getElementById('reg-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-reg', 'strength-text-reg', 'strength-container-reg'); });
         document.getElementById('forgot-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-forgot', 'strength-text-forgot', 'strength-container-forgot'); });
 
-        // --- FIXED CLOCK TIMERS SYSTEM ---
+        // --- TIMER ENGINE SYSTEM WITH AUTO-REPLACING LOGIC ---
         function startOTPTimer(type) {
             clearInterval(countdownInterval);
             let secondsLeft = 60;
+            
             const timerBlock = document.getElementById(`otp-timer-block-${type}`);
             const timerDisplay = document.getElementById(`timer-display-${type}`);
             const resendBtn = document.getElementById(`resend-link-btn-${type}`);
             const getOtpBtn = document.getElementById(`btn-get-otp-${type}`);
             
             timerBlock.style.display = "flex";
-            resendBtn.classList.add('disabled');
+            timerDisplay.style.display = "inline";
+            resendBtn.style.display = "none";
             getOtpBtn.disabled = true;
+            timerDisplay.innerText = `Resend in: ${secondsLeft}s`;
 
             countdownInterval = setInterval(() => {
                 secondsLeft--;
                 timerDisplay.innerText = `Resend in: ${secondsLeft}s`;
                 if (secondsLeft <= 0) {
                     clearInterval(countdownInterval);
-                    timerDisplay.innerText = "Timer ended.";
-                    resendBtn.classList.remove('disabled');
+                    timerDisplay.style.display = "none"; // Hides countdown entirely
+                    resendBtn.style.display = "inline";  // Shows clickable button precisely in place
                     getOtpBtn.disabled = false;
                 }
             }, 1000);
@@ -734,7 +739,6 @@
             else { alert("Verification token successfully sent!"); startOTPTimer(type); }
         }
 
-        // REAL NO-REDIRECT HANDSHAKE TOKEN VERIFICATION ENGINE
         async function handleVerifyOTP(type) {
             const emailInput = (type === 'reg') ? 'reg-email' : 'forgot-email';
             const codeInput = (type === 'reg') ? 'otp-code-reg' : 'otp-code-forgot';
@@ -743,29 +747,28 @@
             const token = document.getElementById(codeInput).value.trim();
             if(!email || !token) { alert("Fields are incomplete!"); return; }
 
-            blockAutoDashboard = true; // Prevents auto redirection
+            blockAutoDashboard = true;
 
             const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
             if (error) { 
-                alert(" Handshake Error: Invalid token code."); 
+                alert("Handshake Error: Invalid token code."); 
                 isEmailVerified = false; 
             } else { 
-                alert(" OTP HANDSHAKE SUCCESSFUL!"); 
+                alert("OTP verified successfully!"); 
                 isEmailVerified = true; 
                 document.getElementById(`btn-verify-otp-${type}`).style.display = "none";
                 document.getElementById(`badge-verified-${type}`).style.display = "inline-flex";
             }
         }
 
-        // ACCOUNT REGISTRATION PROCESS
         async function handleFinalRegister() {
             const email = document.getElementById('reg-email').value.trim();
             const password = document.getElementById('reg-password').value;
             const confirm = document.getElementById('reg-confirm-password').value;
 
-            if(!isEmailVerified) { alert("handshake verification status missing. Click Verify first."); return; }
-            if(!email || !password) { alert("Payload blocks empty."); return; }
-            if(password !== confirm) { alert("Password arrays matching failure."); return; }
+            if(!isEmailVerified) { alert("Handshake verification status missing. Click Verify first."); return; }
+            if(!email || !password) { alert("Fields are empty."); return; }
+            if(password !== confirm) { alert("Passwords do not match."); return; }
 
             blockAutoDashboard = false;
 
@@ -773,21 +776,20 @@
             if (error) {
                 const { error: signUpErr } = await _supabase.auth.signUp({ email, password });
                 if(signUpErr) alert(signUpErr.message);
-                else { alert("Account provision complete!"); switchAuthTab('login'); }
+                else { alert("Account created successfully!"); switchAuthTab('login'); }
             } else {
-                alert("Account provision complete!");
+                alert("Account created successfully!");
                 switchAuthTab('login');
             }
         }
 
-        // PASSWORD FORGOT UPDATER
         async function handleResetPasswordSubmit() {
             const password = document.getElementById('forgot-password').value;
             const confirm = document.getElementById('forgot-confirm-password').value;
 
-            if(!isEmailVerified) { alert("Handshake state signature missing."); return; }
-            if(!password || !confirm) { alert("Field lines null."); return; }
-            if(password !== confirm) { alert("Keys mismatch parameters."); return; }
+            if(!isEmailVerified) { alert("Handshake parameters missing."); return; }
+            if(!password || !confirm) { alert("Password fields are empty."); return; }
+            if(password !== confirm) { alert("Passwords do not match."); return; }
 
             blockAutoDashboard = false;
 
