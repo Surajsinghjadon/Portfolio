@@ -21,13 +21,13 @@
         body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; padding-top: 110px; }
         .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
-        /* HEADER & BULLETPROOF HIGHEST LAYER BUTTON CLICKABLE FIX */
-        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
+        /* HEADER & BULLETPROOF HEADER BUTTON MECHANISM */
+        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); }
         .logo span { color: var(--text-white); }
         
-        .right-menu { display: flex; align-items: center; gap: 25px; position: relative; z-index: 100001; }
+        .right-menu { display: flex; align-items: center; gap: 25px; position: relative; z-index: 1001; }
         .nav-links { display: flex; gap: 20px; }
         @media (max-width: 768px) { .nav-links { display: none; } }
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
@@ -46,7 +46,6 @@
             transition: all 0.3s; 
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); 
             position: relative; 
-            z-index: 99999999 !important; 
             flex-shrink: 0; 
             pointer-events: auto !important;
         }
@@ -116,11 +115,11 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- MODERN RE-DESIGNED APP MODAL --- */
+        /* --- MODERN RE-DESIGNED APP MODAL OVERLAY --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
-            z-index: 999999; display: none; 
+            z-index: 999999 !important; display: none; 
             justify-content: center; align-items: center; padding: 15px;
         }
         .auth-container { 
@@ -210,7 +209,7 @@
                     <a href="#skills">Skills</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <div class="profile-login-btn" id="header-profile-trigger" onclick="openPanel()">
+                <div class="profile-login-btn" id="header-profile-trigger">
                     <i id="user-icon" class="fas fa-user"></i>
                 </div>
             </div>
@@ -358,7 +357,6 @@
                 <div class="input-group">
                     <input type="password" id="login-password" class="auth-input" placeholder="Password">
                 </div>
-                <!-- FIXED BULLETPROOF CLICK HANDLER -->
                 <button type="button" class="btn-auth" style="background-color: var(--accent-blue); color: #000;" onclick="handleLoginSubmit()">LOG IN</button>
                 
                 <div style="text-align: right; margin-top: 10px; margin-bottom: 5px;">
@@ -405,7 +403,7 @@
                     <input type="password" id="reg-confirm-password" class="auth-input" placeholder="Confirm Password">
                 </div>
 
-                <button type="button" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
+                <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
             </div>
 
             <!-- VIEW 4: FORGOT PASSWORD TAB SYSTEM -->
@@ -475,7 +473,6 @@
                             <span>Documents</span>
                         </div>
                     </div>
-                    <!-- FIXED INLINE ONCLICK LOGOUT EVENT LINK -->
                     <button type="button" class="btn-logout-danger" onclick="handleLogout()">Log Out</button>
                 </div>
 
@@ -543,13 +540,17 @@
         let realtimeChannel = null; 
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        // Global functions mapped to window object to bypass mobile element boundary clashing loops
+        // Global functions mapped directly to window layer context
         window.openPanel = function() {
             document.getElementById('auth-overlay').style.display = 'flex';
         };
         window.closePanel = function() {
             document.getElementById('auth-overlay').style.display = 'none';
         };
+
+        // Enforce dual handler safety mapping mechanisms across high-end devices
+        document.getElementById('header-profile-trigger').addEventListener('click', window.openPanel);
+        document.getElementById('header-profile-trigger').addEventListener('touchstart', window.openPanel, {passive: true});
 
         function showVaultSection(sectionKey) {
             document.getElementById('dashboard-root-options').style.display = "none";
@@ -564,43 +565,50 @@
             document.getElementById('dashboard-root-options').style.display = "block";
         }
 
+        // RE-DEDICATED EXCLUSIVE STATE RENDERING ENGINE
+        function updateDocumentUIStatus(status) {
+            document.getElementById('doc-gate-form-view').style.display = "none";
+            document.getElementById('doc-gate-pending-view').style.display = "none";
+            document.getElementById('doc-gate-allowed-view').style.display = "none";
+
+            if (status === 'approved') {
+                document.getElementById('doc-gate-allowed-view').style.display = "block";
+            } else if (status === 'pending') {
+                document.getElementById('doc-gate-pending-view').style.display = "block";
+            } else {
+                document.getElementById('doc-gate-form-view').style.display = "block";
+            }
+        }
+
         async function handleDocumentAccessGate() {
             if(!currentActiveSession) return;
             const user = currentActiveSession.user;
 
             document.getElementById('dashboard-root-options').style.display = "none";
             document.getElementById('sec-vault-documents').style.display = "block";
-            
-            document.getElementById('doc-gate-form-view').style.display = "none";
-            document.getElementById('doc-gate-pending-view').style.display = "none";
-            document.getElementById('doc-gate-allowed-view').style.display = "none";
 
             const { data: record } = await _supabase.from('document_requests').select('status').eq('email', user.email).maybeSingle();
-
-            if (record) {
-                if (record.status === 'approved') {
-                    document.getElementById('doc-gate-allowed-view').style.display = "block";
-                } else {
-                    document.getElementById('doc-gate-pending-view').style.display = "block";
-                }
-            } else {
-                document.getElementById('doc-gate-form-view').style.display = "block";
-            }
+            const currentStatus = record ? record.status : 'none';
+            updateDocumentUIStatus(currentStatus);
         }
 
+        // AIRTIGHT REALTIME ENGINE - BROADCAST INLINE RE-EVALUATION CHANNELS
         function subscribeToRealtimeDatabase(email) {
             if (realtimeChannel) _supabase.removeChannel(realtimeChannel);
 
             realtimeChannel = _supabase
-                .channel('realtime-approval-sync')
+                .channel('realtime-global-sync')
                 .on('postgres_changes', { 
                     event: '*', 
                     schema: 'public', 
-                    table: 'document_requests', 
-                    filter: `email=eq.${email}` 
+                    table: 'document_requests'
                 }, (payload) => {
-                    if (document.getElementById('auth-overlay').style.display === "flex" && document.getElementById('sec-vault-documents').style.display === "block") {
-                        handleDocumentAccessGate();
+                    const newDoc = payload.new;
+                    // Intercept changes immediately on exact record verification loops inside script thread
+                    if (newDoc && newDoc.email && newDoc.email.toLowerCase() === email.toLowerCase()) {
+                        if (document.getElementById('auth-overlay').style.display === "flex" && document.getElementById('sec-vault-documents').style.display === "block") {
+                            updateDocumentUIStatus(newDoc.status);
+                        }
                     }
                 })
                 .subscribe();
