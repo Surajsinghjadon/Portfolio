@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
+    <!-- Supabase & FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -115,92 +116,90 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- HIGH-END EXECUTIVE APP DASHBOARD MODAL --- */
+        /* --- NEW ULTRA-PREMIUM LARGE DASHBOARD LAYOUT CSS --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(3, 5, 10, 0.82); backdrop-filter: blur(20px); 
+            background: rgba(2, 4, 9, 0.85); backdrop-filter: blur(16px); 
             z-index: 999999 !important; display: none; 
-            justify-content: center; align-items: center; padding: 12px;
+            justify-content: center; align-items: center; padding: 20px;
         }
         .auth-container { 
-            background: linear-gradient(145deg, #0e1322 0%, #080b15 100%); 
-            border: 1px solid rgba(56, 189, 248, 0.12); 
-            border-radius: 28px; width: 100%; max-width: 440px; padding: 28px; 
-            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.9), inset 0 1px 1px rgba(255,255,255,0.05); 
+            background: linear-gradient(145deg, #0f1424 0%, #060913 100%); 
+            border: 1px solid rgba(56, 189, 248, 0.15); 
+            border-radius: 28px; width: 100%; max-width: 460px; padding: 35px 28px; 
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.05); 
             position: relative;
         }
-        .close-auth { position: absolute; top: 22px; right: 22px; background: none; border: none; color: #475569; font-size: 26px; cursor: pointer; transition: color 0.2s; }
+        .close-auth { position: absolute; top: 22px; right: 22px; background: none; border: none; color: #64748b; font-size: 26px; cursor: pointer; transition: color 0.2s; }
         .close-auth:hover { color: #ef4444; }
         
-        .auth-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; background: rgba(255,255,255,0.03); padding: 5px; border-radius: 12px; }
-        .auth-tab-btn { flex: 1; background: none; border: none; color: var(--text-gray); font-size: 13px; font-weight: 700; cursor: pointer; padding: 11px; border-radius: 10px; text-align: center; transition: all 0.2s; }
-        .auth-tab-btn.active { color: #05070c; background: var(--accent-blue); font-weight: 800; box-shadow: 0 4px 12px var(--accent-glow); }
+        .auth-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 24px; background: rgba(255,255,255,0.02); padding: 5px; border-radius: 12px; }
+        .auth-tab-btn { flex: 1; background: none; border: none; color: var(--text-gray); font-size: 13px; font-weight: 700; cursor: pointer; padding: 12px; border-radius: 10px; text-align: center; }
+        .auth-tab-btn.active { color: #000; background: var(--accent-blue); font-weight: 800; box-shadow: 0 4px 15px var(--accent-glow); }
         
         .tab-view { display: none; }
         
         .input-group { position: relative; margin-bottom: 14px; width: 100%; }
-        .auth-input { width: 100%; padding: 14px 16px; background: #0b0f19; border: 1px solid rgba(255,255,255,0.06); color: white; border-radius: 12px; font-size: 14px; outline: none; transition: border-color 0.2s; }
-        .auth-input:focus { border-color: var(--accent-blue); box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); }
+        .auth-input { width: 100%; padding: 14px 16px; background: #121724; border: 1px solid rgba(255,255,255,0.05); color: white; border-radius: 12px; font-size: 14px; outline: none; }
+        .auth-input:focus { border-color: var(--accent-blue); }
         
-        .input-inline-btn { position: absolute; right: 8px; top: 8px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); color: #38bdf8; padding: 7px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
-        .input-inline-btn:hover { background: var(--accent-blue); color: #000; }
-        .verify-btn { background: rgba(74, 222, 128, 0.12); border-color: rgba(74, 222, 128, 0.25); color: #4ade80; }
-        .verification-badge { position: absolute; right: 14px; top: 15px; font-size: 12px; font-weight: bold; display: none; align-items: center; gap: 5px; }
+        .input-inline-btn { position: absolute; right: 8px; top: 8px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; padding: 7px 14px; border-radius: 8px; font-size: 11px; font-weight: 700; cursor: pointer; }
+        .verify-btn { background: rgba(74, 222, 128, 0.15); border-color: rgba(74, 222, 128, 0.3); color: #4ade80; }
+        .verification-badge { position: absolute; right: 12px; top: 15px; font-size: 12px; font-weight: bold; display: none; align-items: center; gap: 4px; }
 
-        .strength-container { width: 100%; margin-top: -8px; margin-bottom: 14px; display: none; }
-        .strength-bar-bg { background: #111622; height: 5px; border-radius: 3px; overflow: hidden; width: 100%; }
+        .strength-container { width: 100%; margin-top: -6px; margin-bottom: 14px; display: none; }
+        .strength-bar-bg { background: #161b22; height: 6px; border-radius: 3px; overflow: hidden; width: 100%; }
         .strength-bar { height: 100%; width: 0%; transition: all 0.3s ease; }
         .strength-text { font-size: 11px; display: block; text-align: right; margin-top: 5px; font-weight: 600; }
 
-        .otp-timer-block { display: none; justify-content: center; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -6px; margin-bottom: 14px; }
+        .otp-timer-block { display: none; justify-content: center; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 14px; }
         .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; display: none; }
 
-        .btn-auth { width: 100%; padding: 15px; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
+        .btn-auth { width: 100%; padding: 15px; border-radius: 12px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; text-transform: uppercase; }
         
-        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 13px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; margin-bottom: 10px; background: rgba(255,255,255,0.01); transition: all 0.2s; }
-        .social-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); transform: translateY(-1px); }
+        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.04); padding: 13px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; margin-bottom: 10px; background: rgba(255,255,255,0.01); transition: 0.2s; }
+        .social-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.03); }
         .btn-google i { color: #eb4335; } .btn-linkedin i { color: #0a66c2; }
         
-        /* THE EXECUTIVE DUAL NODES HUB GRID */
-        .twin-dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 18px; }
-        .dashboard-main-card { background: linear-gradient(135deg, #111726 0%, #090d16 100%); border: 1px solid rgba(56,189,248,0.08); border-radius: 20px; padding: 32px 16px; text-align: center; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 4px 20px rgba(0,0,0,0.2); }
-        .dashboard-main-card:hover { border-color: var(--accent-blue); background: linear-gradient(135deg, #141c30 0%, #0c1322 100%); transform: translateY(-4px); box-shadow: 0 12px 24px rgba(56,189,248,0.15); }
-        .dashboard-main-card i { font-size: 34px; color: var(--accent-blue); filter: drop-shadow(0 0 8px var(--accent-glow)); }
-        .dashboard-main-card.card-ach i { color: #f59e0b; filter: drop-shadow(0 0 8px rgba(245,158,11,0.3)); }
-        .dashboard-main-card span { font-size: 15px; font-weight: 700; color: #ffffff; letter-spacing: 0.3px; }
+        /* 2 MAIN DASHBOARD CARDS (LARGE & IMMERSIVE) */
+        .twin-dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 20px; }
+        .dashboard-main-card { background: linear-gradient(135deg, #141b2d 0%, #0a101d 100%); border: 1px solid rgba(56,189,248,0.12); border-radius: 20px; padding: 35px 20px; text-align: center; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; gap: 12px; box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+        .dashboard-main-card:hover { border-color: var(--accent-blue); background: rgba(56,189,248,0.06); transform: translateY(-4px); box-shadow: 0 15px 30px rgba(56,189,248,0.2); }
+        .dashboard-main-card i { font-size: 36px; color: var(--accent-blue); }
+        .dashboard-main-card.card-ach i { color: #f59e0b; }
+        .dashboard-main-card span { font-size: 15px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
 
-        /* DETAILED INTERNAL PORTAL SYSTEM LAYOUT */
-        .inner-vault-view { display: none; margin-top: 18px; animation: fadeInView 0.3s ease; }
-        @keyframes fadeInView { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-        .vault-header-back { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 700; color: var(--accent-blue); cursor: pointer; margin-bottom: 18px; width: max-content; transition: opacity 0.2s; }
-        .vault-header-back:hover { opacity: 0.8; }
-        .vault-list-container { display: flex; flex-direction: column; gap: 10px; max-height: 290px; overflow-y: auto; padding-right: 4px; }
+        /* INNER LIST LAYOUTS (LUXURY LARGE LIST NODES) */
+        .inner-vault-view { display: none; margin-top: 20px; }
+        .vault-header-back { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; color: var(--accent-blue); cursor: pointer; margin-bottom: 20px; width: max-content; }
+        .vault-list-container { display: flex; flex-direction: column; gap: 12px; max-height: 310px; overflow-y: auto; padding-right: 2px; }
         
-        .file-item-row { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px; background: #0b0f19; border: 1px solid rgba(255,255,255,0.04); border-radius: 14px; color: #e2e8f0; font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
-        .file-item-row:hover { background: linear-gradient(90deg, rgba(56,189,248,0.08) 0%, rgba(11,15,25,1) 100%); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.25); transform: translateX(2px); }
+        .file-item-row { display: flex; align-items: center; justify-content: space-between; padding: 15px 20px; background: #131926; border: 1px solid rgba(255,255,255,0.04); border-radius: 16px; color: #e2e8f0; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .file-item-row:hover { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.25); transform: translateX(3px); }
         .file-item-row div { display: flex; align-items: center; gap: 12px; }
         .file-item-row i { color: #ef4444; font-size: 16px; }
         .file-item-row i.fa-certificate { color: #fbbf24; }
 
-        /* PREMIUM METADATA CHIP OWNER CARD */
-        .user-profile-card { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 16px; margin-bottom: 20px; }
-        .user-avatar-frame { width: 48px; height: 44px; border-radius: 50%; border: 2px solid var(--accent-blue); overflow: hidden; box-shadow: 0 0 10px var(--accent-glow); }
+        /* PROFILE IDENTITY METADATA LAYER */
+        .user-profile-card { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px; border-radius: 18px; margin-bottom: 24px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.02); }
+        .user-avatar-frame { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--accent-blue); overflow: hidden; box-shadow: 0 0 10px var(--accent-glow); }
         .user-avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
-        .user-meta-name { font-size: 15px; font-weight: 700; color: #ffffff; display: block; }
-        .user-meta-email { font-size: 11px; color: #475569; display: block; margin-top: 1px; }
+        .user-meta-name { font-size: 16px; font-weight: 700; color: #ffffff; }
+        .user-meta-email { font-size: 12px; color: #64748b; margin-top: 1px; }
         
-        .btn-logout-danger { background: rgba(239, 68, 68, 0.06); border: 1px solid rgba(239, 68, 68, 0.18); color: #ef4444; padding: 13px; border-radius: 12px; width: 100%; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 20px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
-        .btn-logout-danger:hover { background: rgba(239, 68, 68, 0.12); border-color: #ef4444; }
+        .btn-logout-danger { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; padding: 15px; border-radius: 14px; width: 100%; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 24px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
+        .btn-logout-danger:hover { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; }
 
-        .admin-form-box { background: #090d16; border: 1px solid rgba(245,158,11,0.12); padding: 20px; border-radius: 16px; text-align: center; }
-        .admin-form-box i { color: #f59e0b; font-size: 28px; margin-bottom: 10px; }
-        .admin-form-box p { font-size: 12px; color: var(--text-gray); margin-bottom: 16px; line-height: 1.6; }
-        .status-badge-pending { display: inline-block; background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.18); color: #f59e0b; padding: 14px; border-radius: 12px; font-size: 13px; font-weight: 700; width: 100%; text-align: center; box-shadow: 0 0 15px rgba(245,158,11,0.05); }
+        .admin-form-box { background: #0b101d; border: 1px solid rgba(245,158,11,0.15); padding: 24px; border-radius: 18px; text-align: center; }
+        .admin-form-box i { color: #f59e0b; font-size: 30px; margin-bottom: 12px; }
+        .admin-form-box p { font-size: 13px; color: var(--text-gray); margin-bottom: 18px; line-height: 1.6; }
+        .status-badge-pending { display: inline-block; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); color: #f59e0b; padding: 16px; border-radius: 14px; font-size: 14px; font-weight: 700; width: 100%; text-align: center; box-shadow: 0 4px 15px rgba(245,158,11,0.05); }
         .status-box { display: none; text-align: center; padding: 8px; font-size: 12px; color: var(--accent-blue); }
     </style>
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -218,6 +217,7 @@
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -238,6 +238,7 @@
         </div>
     </div>
 
+    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -261,6 +262,7 @@
         </div>
     </div>
 
+    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -277,6 +279,7 @@
         </div>
     </div>
 
+    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -303,6 +306,7 @@
         </div>
     </div>
 
+    <!-- CONTACT SECTION -->
     <div class="container" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-box">
@@ -324,17 +328,19 @@
             </div>
             <div class="contact-right">
                 <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                <a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar" target="_blank" class="loc-pill">LOCATION: INDIA</a>
+                <a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar+Madhya+Pradesh" target="_blank" class="loc-pill">LOCATION: INDIA</a>
             </div>
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
         </div>
     </footer>
 
+    <!-- CENTRAL CONTROL MODAL OVERLAY -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">×</button>
@@ -344,6 +350,7 @@
                 <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">Sign Up</button>
             </div>
 
+            <!-- VIEW 1: SIGN IN PANELS -->
             <div id="view-login" class="tab-view">
                 <div class="input-group">
                     <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
@@ -362,6 +369,7 @@
                 <button type="button" class="social-btn" onclick="handleLinkedInLogin()"><i class="fab fa-linkedin-in"></i> LinkedIn</button>
             </div>
 
+            <!-- VIEW 2: SIGN UP PANELS -->
             <div id="view-register" class="tab-view">
                 <div class="input-group">
                     <input type="text" id="reg-fullname" class="auth-input" placeholder="Full Name">
@@ -371,6 +379,7 @@
                     <button type="button" id="btn-get-otp-reg" class="input-inline-btn" onclick="handleSendOTP('reg')">Get OTP</button>
                 </div>
                 
+                <!-- TIMER BLOCK REG -->
                 <div class="otp-timer-block" id="otp-timer-block-reg" style="display: none;">
                     <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
@@ -398,6 +407,7 @@
                 <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
             </div>
 
+            <!-- VIEW 4: FORGOT PASSWORD TAB SYSTEM -->
             <div id="view-forgot" class="tab-view">
                 <h3 style="font-size: 16px; font-weight: bold; color: var(--accent-blue); margin-bottom: 15px; text-align: center;"><i class="fas fa-key"></i> Reset Password</h3>
                 
@@ -406,6 +416,7 @@
                     <button type="button" id="btn-get-otp-forgot" class="input-inline-btn" onclick="handleSendOTP('forgot')">Get OTP</button>
                 </div>
 
+                <!-- TIMER BLOCK FORGOT -->
                 <div class="otp-timer-block" id="otp-timer-block-forgot" style="display: none;">
                     <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
@@ -437,6 +448,7 @@
                 </div>
             </div>
 
+            <!-- VIEW 3: SECURE EXPORT PORTAL SECURITY DASHBOARD -->
             <div id="view-dashboard" class="tab-view">
                 <div class="user-profile-card">
                     <div class="user-avatar-frame">
@@ -450,6 +462,7 @@
 
                 <h3 style="font-size: 13px; font-weight: 700; color: var(--accent-blue); margin-bottom: 10px;"><i class="fas fa-shield-alt"></i> Gated Executive Console</h3>
                 
+                <!-- MAIN PORTAL CHOICES HUB -->
                 <div id="dashboard-root-options" style="display: block;">
                     <div class="twin-dashboard-grid">
                         <div class="dashboard-main-card card-ach" onclick="showVaultSection('achievements')">
@@ -464,6 +477,7 @@
                     <button type="button" class="btn-logout-danger" onclick="handleLogout()">Log Out</button>
                 </div>
 
+                <!-- SUB PORTAL ARCHIVE A: ACADEMIC CREDENTIAL VERIFICATION MARKERS -->
                 <div id="sec-vault-achievements" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Portal</div>
                     <div class="vault-list-container">
@@ -472,13 +486,16 @@
                         <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners_certificate.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        <!-- FIXED: REMOVED _certificate EXTRA EXTENSION STRINGS TO PREVENT 404 AS PER REPO UPLOADS -->
+                        <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering[span_3](start_span)[span_3](end_span)</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                     </div>
                 </div>
 
+                <!-- SUB PORTAL ARCHIVE B: PROTECTED REPO REPLICAS LAYER -->
                 <div id="sec-vault-documents" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Portal</div>
                     
+                    <!-- GATE UNVERIFIED FORM -->
                     <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
                         <i class="fas fa-lock"></i>
                         <h4 style="font-size:14px; margin-bottom:5px; color:#fff;">Clearance Status Required</h4>
@@ -486,20 +503,22 @@
                         <button type="button" class="btn-auth" style="background:#fbbf24; color:#000;" onclick="handleSubmitAdminRequest()">Request System Clearance</button>
                     </div>
 
+                    <!-- PENDING APPROVAL VIEW CARD -->
                     <div id="doc-gate-pending-view" style="display:none;">
                         <div class="status-badge-pending">
                             <i class="fas fa-user-shield"></i> Status: Locked - Pending Validation
                         </div>
-                        <p style="font-size:12px; color:var(--text-gray); text-align:center; margin-top:14px; line-height:1.6;">Your node access is currently in the verification queue. Upon confirmation, data loops will initialize automatically in real-time.</p>
+                        <p style="font-size:12px; color:var(--text-gray); text-align:center; margin-top:14px; line-height:1.6;">Your authorization request is currently in the verification queue. Upon confirmation, data loops will initialize automatically in real-time.</p>
                     </div>
 
+                    <!-- ALLOWED CORE REPO ARCHIVES TARGET NODES -->
                     <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
-                        <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Professional Resume</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma[span_4](start_span)[span_4](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet[span_5](start_span)[span_5](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet[span_6](start_span)[span_6](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet[span_7](start_span)[span_7](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet[span_8](start_span)[span_8](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Professional Resume[span_9](start_span)[span_9](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                     </div>
                 </div>
 
@@ -509,6 +528,7 @@
         </div>
     </div>
 
+    <!-- JAVASCRIPT MASTER AUTHENTICATION INFRASTRUCTURE -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
