@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Executive Portfolio</title>
     
+    <!-- Supabase & FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -32,10 +33,27 @@
         .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
         .nav-links a:hover { color: var(--accent-blue); }
 
-        .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 1001; }
+        /* FIXED INTERACTION CLICKABLE ICON BUTTON */
+        .profile-login-btn { 
+            background: rgba(56, 189, 248, 0.08); 
+            border: 1px solid rgba(56, 189, 248, 0.2); 
+            width: 42px; 
+            height: 42px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); 
+            position: relative; 
+            z-index: 1010; 
+            flex-shrink: 0;
+        }
         .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
-        .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
-        .profile-login-btn img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
+        .profile-login-btn i { font-size: 18px; color: var(--accent-blue); }
+        .profile-login-btn img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .profile-login-btn * { pointer-events: none; } /* Guarantees clicks registers perfectly on master button boundary layout */
 
         /* HERO SECTION */
         .hero { display: flex; flex-direction: column; gap: 50px; padding: 40px 0; align-items: center; text-align: center; }
@@ -99,7 +117,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- MODERN A1 QUALITY APP MODAL --- */
+        /* --- MODERN RE-DESIGNED APP MODAL --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
@@ -107,7 +125,7 @@
             justify-content: center; align-items: center; padding: 15px;
         }
         .auth-container { 
-            background: #0c101d; border: 1px solid rgba(255, 255, 255, 0.05); 
+            background: #0c101d; border: 1px solid rgba(255, 255, 255, 0.06); 
             border-radius: 24px; width: 100%; max-width: 420px; padding: 26px; 
             box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8); position: relative;
         }
@@ -183,6 +201,7 @@
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -200,6 +219,7 @@
         </div>
     </header>
 
+    <!-- HERO SECTION -->
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
@@ -220,6 +240,7 @@
         </div>
     </div>
 
+    <!-- EXPERIENCE SECTION -->
     <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
@@ -243,6 +264,7 @@
         </div>
     </div>
 
+    <!-- EDUCATION SECTION -->
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
@@ -259,6 +281,7 @@
         </div>
     </div>
 
+    <!-- SKILLS SECTION -->
     <div class="container" id="skills">
         <h2 class="section-title">Technical Expertise</h2>
         <div class="skills-grid">
@@ -285,6 +308,7 @@
         </div>
     </div>
 
+    <!-- CONTACT SECTION -->
     <div class="container" id="contact">
         <h2 class="section-title">Get In Touch</h2>
         <div class="contact-box">
@@ -311,12 +335,14 @@
         </div>
     </div>
 
+    <!-- FOOTER -->
     <footer>
         <div class="container">
             <p>&copy; 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
         </div>
     </footer>
 
+    <!-- CENTRAL CONTROL MODAL OVERLAY -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">&times;</button>
@@ -326,6 +352,7 @@
                 <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">Sign Up</button>
             </div>
 
+            <!-- VIEW 1: SIGN IN PANELS -->
             <div id="view-login" class="tab-view active">
                 <div class="input-group">
                     <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
@@ -344,6 +371,7 @@
                 <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> LinkedIn</button>
             </div>
 
+            <!-- VIEW 2: SIGN UP PANELS WITH VERIFIED TICK ENGINE -->
             <div id="view-register" class="tab-view">
                 <div class="input-group">
                     <input type="text" id="reg-fullname" class="auth-input" placeholder="Full Name">
@@ -353,6 +381,7 @@
                     <button type="button" id="btn-get-otp-reg" class="input-inline-btn" onclick="handleSendOTP('reg')">Get OTP</button>
                 </div>
                 
+                <!-- TIMER BLOCK -->
                 <div class="otp-timer-block" id="otp-timer-block-reg">
                     <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-reg" class="resend-link disabled" onclick="handleSendOTP('reg')">Resend OTP</span>
@@ -368,6 +397,7 @@
                     <input type="password" id="reg-password" class="auth-input" placeholder="Create Password">
                 </div>
                 
+                <!-- PASSWORD STRENGTH METER LINE -->
                 <div class="strength-container" id="strength-container-reg">
                     <div class="strength-bar-bg"><div id="strength-bar-reg" class="strength-bar"></div></div>
                     <span id="strength-text-reg" class="strength-text">Password Strength</span>
@@ -380,6 +410,7 @@
                 <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
             </div>
 
+            <!-- VIEW 4: NEW FORGOT PASSWORD TAB SYSTEM -->
             <div id="view-forgot" class="tab-view">
                 <h3 style="font-size: 16px; font-weight: bold; color: var(--accent-blue); margin-bottom: 15px; text-align: center;"><i class="fas fa-key"></i> Reset Password</h3>
                 
@@ -388,6 +419,7 @@
                     <button type="button" id="btn-get-otp-forgot" class="input-inline-btn" onclick="handleSendOTP('forgot')">Get OTP</button>
                 </div>
 
+                <!-- TIMER BLOCK FORGOT -->
                 <div class="otp-timer-block" id="otp-timer-block-forgot">
                     <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-forgot" class="resend-link disabled" onclick="handleSendOTP('forgot')">Resend OTP</span>
@@ -403,6 +435,7 @@
                     <input type="password" id="forgot-password" class="auth-input" placeholder="New Password">
                 </div>
 
+                <!-- PASSWORD STRENGTH FORGOT -->
                 <div class="strength-container" id="strength-container-forgot">
                     <div class="strength-bar-bg"><div id="strength-bar-forgot" class="strength-bar"></div></div>
                     <span id="strength-text-forgot" class="strength-text">Password Strength</span>
@@ -419,6 +452,7 @@
                 </div>
             </div>
 
+            <!-- VIEW 3: CLEAN PREMIUM FILE VAULT -->
             <div id="view-dashboard" class="tab-view">
                 <div class="user-profile-card">
                     <div class="user-avatar-frame">
@@ -432,6 +466,7 @@
 
                 <h3 style="font-size: 13px; font-weight: 700; color: var(--accent-blue); margin-bottom: 10px;"><i class="fas fa-folder-open"></i> Gated Management Portal</h3>
                 
+                <!-- MAIN OPTIONS HUB: EXACTLY 2 CHOICES OUTSIDE -->
                 <div id="dashboard-root-options">
                     <div class="twin-dashboard-grid">
                         <div class="dashboard-main-card card-ach" onclick="showVaultSection('achievements')">
@@ -446,6 +481,7 @@
                     <button type="button" class="btn-logout-danger" id="btn-logout-action">Log Out</button>
                 </div>
 
+                <!-- SUB ROOT A: ACHIEVEMENTS SUITE VIEW (EXACT GITHUB SPACES INTEGRATED) -->
                 <div id="sec-vault-achievements" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     <div class="vault-list-container">
@@ -458,9 +494,11 @@
                     </div>
                 </div>
 
+                <!-- SUB ROOT B: REAL DOCUMENTS SECURE GATED VIEW -->
                 <div id="sec-vault-documents" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     
+                    <!-- REQUEST GATED FORM VIEW -->
                     <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
                         <i class="fas fa-lock"></i>
                         <h4 style="font-size:14px; margin-bottom:5px; color:#fff;">Access Verification Required</h4>
@@ -468,6 +506,7 @@
                         <button type="button" class="btn-auth" id="btn-submit-admin-request" style="background:#fbbf24; color:#000;">Send Access Request</button>
                     </div>
 
+                    <!-- PENDING APP STATE VIEW -->
                     <div id="doc-gate-pending-view" style="display:none;">
                         <div class="status-badge-pending">
                             <i class="fas fa-hourglass-half"></i> Status: Pending Admin Approval
@@ -475,6 +514,7 @@
                         <p style="font-size:12px; color:var(--text-gray); text-align:center; margin-top:12px; line-height:1.6;">Aapki request admin panel par submit ho chuki hai. Verification complete hote ही files open ho jayengi.</p>
                     </div>
 
+                    <!-- ALLOWED CORE ARCHIVES LIST VIEW -->
                     <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
                         <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
@@ -491,6 +531,7 @@
         </div>
     </div>
 
+    <!-- JAVASCRIPT MASTER AUTHENTICATION INFRASTRUCTURE -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -608,6 +649,14 @@
             switchAuthTab('login');
         }
 
+        document.getElementById('btn-logout-action').addEventListener('click', async () => {
+            await _supabase.auth.signOut();
+            closePanel();
+        });
+
+        function openPanel() { document.getElementById('auth-overlay').style.display = 'flex'; }
+        function closePanel() { document.getElementById('auth-overlay').style.display = 'none'; }
+
         function switchAuthTab(type) {
             blockAutoDashboard = (type === 'register' || type === 'forgot');
             
@@ -701,7 +750,7 @@
                 alert(" Handshake Error: Invalid token code."); 
                 isEmailVerified = false; 
             } else { 
-                alert(" OTPHANDSHAKE SUCCESSFUL!"); 
+                alert(" OTP HANDSHAKE SUCCESSFUL!"); 
                 isEmailVerified = true; 
                 document.getElementById(`btn-verify-otp-${type}`).style.display = "none";
                 document.getElementById(`badge-verified-${type}`).style.display = "inline-flex";
@@ -722,7 +771,6 @@
 
             const { error } = await _supabase.auth.updateUser({ password: password });
             if (error) {
-                // If update user gives token state mismatch error, run native signup fallback
                 const { error: signUpErr } = await _supabase.auth.signUp({ email, password });
                 if(signUpErr) alert(signUpErr.message);
                 else { alert("Account provision complete!"); switchAuthTab('login'); }
