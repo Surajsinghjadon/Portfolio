@@ -115,7 +115,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- THE LUXURY GRAND EXECUTIVE CONSOLE INTERFLOW MODAL --- */
+        /* --- NEW GRAND BROAD EXECUTIVE CONSOLE INTERFLOW MODAL --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(3, 5, 10, 0.88); backdrop-filter: blur(24px); 
@@ -124,8 +124,8 @@
         }
         .auth-container { 
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%); 
-            border: 1px solid rgba(56, 189, 248, 0.2); 
-            border-radius: 32px; width: 100%; max-width: 560px; padding: 45px 35px; /* RE-DESIGNED TO BE MUCH LARGER & BROAD */
+            border: 1px solid rgba(56, 189, 248, 0.22); 
+            border-radius: 32px; width: 100%; max-width: 680px; padding: 45px 35px; 
             box-shadow: 0 50px 100px rgba(0, 0, 0, 0.95), inset 0 1px 2px rgba(255, 255, 255, 0.06); 
             position: relative;
         }
@@ -138,8 +138,8 @@
         
         .tab-view { display: none; width: 100%; }
         
-        /* BROAD TWO-COLUMN GRID ARCHITECTURE */
-        .auth-split-grid { display: grid; grid-template-columns: 1fr; gap: 25px; align-items: center; }
+        /* BROAD TWO-COLUMN GRID ARCHITECTURE WITH PERFECT SYMETRY */
+        .auth-split-grid { display: grid; grid-template-columns: 1fr; gap: 30px; align-items: flex-start; }
         @media (min-width: 768px) { .auth-split-grid { grid-template-columns: 1.1fr 0.9fr; } }
         
         .input-group { position: relative; margin-bottom: 16px; width: 100%; }
@@ -162,9 +162,9 @@
         .btn-auth { width: 100%; padding: 16px; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
         .btn-auth:hover { transform: translateY(-1px); }
         
-        .social-grid-panel { display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.01); padding: 20px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.03); }
-        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; }
-        .social-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); transform: translateY(-2px); }
+        .social-grid-panel { display: flex; flex-direction: column; gap: 14px; background: rgba(255,255,255,0.01); padding: 25px 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.03); }
+        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; }
+        .social-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.4); }
         .btn-google i { color: #eb4335; } .btn-linkedin i { color: #0a66c2; }
         
         /* TWO HORIZONTAL EXPANSIVE HUBSTATIONS CARDS */
@@ -202,7 +202,7 @@
         .admin-form-box i { color: #f59e0b; font-size: 34px; margin-bottom: 14px; }
         .admin-form-box p { font-size: 14px; color: var(--text-gray); margin-bottom: 22px; line-height: 1.6; }
         
-        /* PREMIUM HIGHER GRADE BOLD FORWARD TEXT METERS WITHOUT TAGS */
+        /* PREMIUM HIGHER GRADE BOLD FORWARD TEXT METERS WITHOUT WRAPPING TAGS */
         .status-badge-pending { display: block; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.22); color: #f59e0b; padding: 18px; border-radius: 16px; font-size: 15px; font-weight: 800 !important; letter-spacing: 0.5px; width: 100%; text-align: center; max-width: 540px; margin: 0 auto; box-shadow: 0 4px 20px rgba(245,158,11,0.06); text-transform: uppercase; }
         .status-box { display: none; text-align: center; padding: 8px; font-size: 12px; color: var(--accent-blue); }
     </style>
@@ -250,21 +250,21 @@
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
             <div class="card-top">
-                <span class="company">Polyhose India Private Limited</span>
-                <span class="tag">Current • 1 Year</span>
+                [span_2](start_span)<span class="company">Polyhose India Private Limited[span_2](end_span)</span>
+                [span_3](start_span)<span class="tag">Current • 1 Year[span_3](end_span)</span>
             </div>
-            <div class="role">Invoice SAP Executive</div>
+            [span_4](start_span)<div class="role">Invoice SAP Executive[span_4](end_span)</div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
         </div>
         <div class="card">
-            <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
-            <div class="role">Store Data Analysis Operations</div>
+            [span_5](start_span)<div class="card-top"><span class="company">Hettich[span_5](end_span)[span_6](start_span)</span><span class="tag">1 Year[span_6](end_span)</span></div>
+            [span_7](start_span)<div class="role">Store Data Analysis Operations[span_7](end_span)</div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
         </div>
         <div class="card">
-            <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
-            <div class="role">Machine Operator</div>
+            [span_8](start_span)<div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd[span_8](end_span)[span_9](start_span)</span><span class="tag">2 Years[span_9](end_span)</span></div>
+            [span_10](start_span)<div class="role">Machine Operator[span_10](end_span)</div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
         </div>
     </div>
@@ -272,16 +272,16 @@
     <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
-            <div class="card-top"><span class="company">Diploma in Computer Applications (DCA)</span><span class="tag">2023</span></div>
-            <div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
+            [span_11](start_span)<div class="card-top"><span class="company">Diploma in Computer Applications (DCA)[span_11](end_span)[span_12](start_span)</span><span class="tag">2023[span_12](end_span)</span></div>
+            [span_13](start_span)<div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization[span_13](end_span)</div>
         </div>
         <div class="card">
-            <div class="card-top"><span class="company">12th Grade</span><span class="tag">2022</span></div>
-            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh State Open Board</div>
+            [span_14](start_span)<div class="card-top"><span class="company">12th Grade[span_14](end_span)[span_15](start_span)</span><span class="tag">2022[span_15](end_span)</span></div>
+            [span_16](start_span)<div class="desc-line" style="margin-top: 10px;">Madhya Pradesh State Open Board[span_16](end_span)</div>
         </div>
         <div class="card">
-            <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
-            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
+            [span_17](start_span)<div class="card-top"><span class="company">10th Grade[span_17](end_span)[span_18](start_span)</span><span class="tag">2020[span_18](end_span)</span></div>
+            [span_19](start_span)<div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board[span_19](end_span)</div>
         </div>
     </div>
 
@@ -291,20 +291,20 @@
             <div>
                 <div class="sub-title">DATA ANALYTICS EXPERTISE</div>
                 <div class="badge-grid">
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-database"></i></div> SAP Operations</div>
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-chart-line"></i></div> Advanced Excel</div>
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-file-word"></i></div> MS Office Suite</div>
-                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-bolt"></i></div> Data Analysis Speed</div>
+                    [span_20](start_span)<div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-database"></i></div> SAP Operations[span_20](end_span)</div>
+                    [span_21](start_span)<div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-chart-line"></i></div> Advanced Excel[span_21](end_span)</div>
+                    [span_22](start_span)<div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-file-word"></i></div> MS Office Suite[span_22](end_span)</div>
+                    [span_23](start_span)<div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-bolt"></i></div> Data Analysis Speed[span_23](end_span)</div>
                 </div>
             </div>
             <div style="padding-left: 10px;">
                 <div class="sub-title">COMMUNICATION SYSTEMS</div>
                 <div class="lang-item">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Hindi (Native) - 100%</span></div>
+                    [span_24](start_span)<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Hindi (Native) - 100%[span_24](end_span)</span></div>
                     <div class="bar"><div class="fill" style="width: 100%;"></div></div>
                 </div>
                 <div class="lang-item">
-                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>English (Professional) - 75%</span></div>
+                    [span_25](start_span)<div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>English (Professional) - 75%[span_25](end_span)</span></div>
                     <div class="bar"><div class="fill" style="width: 75%;"></div></div>
                 </div>
             </div>
@@ -319,20 +319,20 @@
                     <div class="icon-container"><i class="fas fa-envelope"></i></div>
                     <div>
                         <div class="label">Email Address</div>
-                        <div class="value">surajsinghrajput5040@gmail.com</div>
+                        [span_26](start_span)<div class="value">surajsinghrajput5040@gmail.com[span_26](end_span)</div>
                     </div>
                 </div>
                 <div class="contact-row">
                     <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
                     <div>
                         <div class="label">Contact Number</div>
-                        <div class="value">+91 78795 95821</div>
+                        [span_27](start_span)<div class="value">+91 78795 95821[span_27](end_span)</div>
                     </div>
                 </div>
             </div>
             <div class="contact-right">
                 <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                <a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar+Madhya+Pradesh" target="_blank" class="loc-pill">LOCATION: INDIA</a>
+                [span_28](start_span)<a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar+Madhya+Pradesh+454775" target="_blank" class="loc-pill">LOCATION: INDIA[span_28](end_span)</a>
             </div>
         </div>
     </div>
@@ -367,7 +367,7 @@
                         </div>
                     </div>
                     <div class="social-grid-panel">
-                        <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">ENTERPRISE SINGLE SIGN-ON</div>
+                        <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 8px; letter-spacing: 0.5px;">OR SIGN IN WITH</div>
                         <button type="button" class="social-btn" onclick="handleGoogleLogin()"><i class="fab fa-google"></i> Continue with Google</button>
                         <button type="button" class="social-btn" onclick="handleLinkedInLogin()"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
                     </div>
@@ -479,12 +479,12 @@
                 <div id="sec-vault-achievements" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Portal</div>
                     <div class="vault-list-container">
-                        <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        [span_29](start_span)<div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI[span_29](end_span)</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        [span_30](start_span)<div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL[span_30](end_span)</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        [span_31](start_span)<div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone[span_31](end_span)</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        [span_32](start_span)<div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners[span_32](end_span)</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        [span_33](start_span)<div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering[span_33](end_span)</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                     </div>
                 </div>
 
@@ -506,12 +506,12 @@
                     </div>
 
                     <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
-                        <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                        <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Professional Resume</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        [span_34](start_span)<div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma[span_34](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        [span_35](start_span)<div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet[span_35](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        [span_36](start_span)<div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet[span_36](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        [span_37](start_span)<div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet[span_37](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        [span_38](start_span)<div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet[span_38](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        [span_39](start_span)<div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Professional Resume[span_39](end_span)</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                     </div>
                 </div>
 
@@ -523,7 +523,7 @@
 
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
-        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixFfLGEwxSvlE6SWdDEC5vPG4";
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
         
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         let currentActiveSession = null;
@@ -744,6 +744,141 @@
         window.handleLinkedInLogin = function() {
             blockAutoDashboard = false;
             _supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc', options: { redirectTo: redirectLink } });
+        };
+
+        function switchAuthTab(type) {
+            activeTab = type;
+            blockAutoDashboard = (type === 'register' || type === 'forgot');
+            syncAuthUI();
+        }
+
+        function checkPasswordStrength(val, barId, textId, containerId) {
+            const container = document.getElementById(containerId);
+            const bar = document.getElementById(barId);
+            const txt = document.getElementById(textId);
+            
+            if (val.length === 0) {
+                container.style.display = "none";
+            } else {
+                container.style.display = "block";
+                if (val.length < 6) {
+                    bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444"; txt.innerText = "Weak Password"; txt.style.color = "#ff6b6b";
+                } else if (val.length >= 6 && (/[A-Z]/.test(val) || /[0-9]/.test(val))) {
+                    bar.style.width = "66%"; bar.style.backgroundColor = "#fbbf24"; txt.innerText = "Medium Password"; txt.style.color = "#fbbf24";
+                } else {
+                    bar.style.width = "100%"; bar.style.backgroundColor = "#4ade80"; txt.innerText = "Strong Password"; txt.style.color = "#4ade80";
+                }
+            }
+        }
+        document.getElementById('reg-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-reg', 'strength-text-reg', 'strength-container-reg'); });
+        document.getElementById('forgot-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-forgot', 'strength-text-forgot', 'strength-container-forgot'); });
+
+        function startOTPTimer(type) {
+            clearInterval(countdownInterval);
+            let secondsLeft = 60;
+            
+            const timerBlock = document.getElementById(`otp-timer-block-${type}`);
+            const timerDisplay = document.getElementById(`timer-display-${type}`);
+            const resendBtn = document.getElementById(`resend-link-btn-${type}`);
+            const getOtpBtn = document.getElementById(`btn-get-otp-${type}`);
+            
+            timerBlock.style.display = "flex";
+            timerDisplay.style.display = "inline";
+            resendBtn.style.display = "none";
+            getOtpBtn.disabled = true;
+            timerDisplay.innerText = `Resend in: ${secondsLeft}s`;
+
+            countdownInterval = setInterval(() => {
+                secondsLeft--;
+                timerDisplay.innerText = `Resend in: ${secondsLeft}s`;
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    timerDisplay.style.display = "none";
+                    resendBtn.style.display = "inline";
+                    getOtpBtn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        window.handleSendOTP = async function(type) {
+            const emailInput = (type === 'reg') ? 'reg-email' : 'forgot-email';
+            const email = document.getElementById(emailInput).value.trim();
+            if (!email) { alert("Enter Email Address first!"); return; }
+
+            const { error } = await _supabase.auth.signInWithOtp({ email });
+            if (error) alert(error.message);
+            else { alert("Verification token successfully sent!"); startOTPTimer(type); }
+        };
+
+        window.handleVerifyOTP = async function(type) {
+            const emailInput = (type === 'reg') ? 'reg-email' : 'forgot-email';
+            const codeInput = (type === 'reg') ? 'otp-code-reg' : 'otp-code-forgot';
+            
+            const email = document.getElementById(emailInput).value.trim();
+            const token = document.getElementById(codeInput).value.trim();
+            if(!email || !token) { alert("Fields are incomplete!"); return; }
+
+            blockAutoDashboard = true;
+
+            const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
+            if (error) { 
+                alert("Handshake Error: Invalid token code."); 
+                isEmailVerified = false; 
+            } else { 
+                alert("OTP verified successfully!"); 
+                isEmailVerified = true; 
+                document.getElementById(`btn-verify-otp-${type}`).style.display = "none";
+                document.getElementById(`badge-verified-${type}`).style.display = "inline-flex";
+            }
+        };
+
+        window.handleFinalRegister = async function() {
+            const email = document.getElementById('reg-email').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const confirm = document.getElementById('reg-confirm-password').value;
+
+            if(!isEmailVerified) { alert("Handshake verification status missing. Click Verify first."); return; }
+            if(!email || !password) { alert("Fields are empty."); return; }
+            if(password !== confirm) { alert("Passwords do not match."); return; }
+
+            blockAutoDashboard = false;
+
+            const { error } = await _supabase.auth.updateUser({ password: password });
+            if (error) {
+                const { error: signUpErr } = await _supabase.auth.signUp({ email, password });
+                if(signUpErr) alert(signUpErr.message);
+                else { alert("Account created successfully!"); switchAuthTab('login'); }
+            } else {
+                alert("Account created successfully!");
+                switchAuthTab('login');
+            }
+        };
+
+        window.handleResetPasswordSubmit = async function() {
+            const password = document.getElementById('forgot-password').value;
+            const confirm = document.getElementById('forgot-confirm-password').value;
+
+            if(!isEmailVerified) { alert("Handshake parameters missing."); return; }
+            if(!password || !confirm) { alert("Password fields are empty."); return; }
+            if(password !== confirm) { alert("Passwords do not match."); return; }
+
+            blockAutoDashboard = false;
+
+            const { error } = await _supabase.auth.updateUser({ password: password });
+            if (error) alert(error.message);
+            else {
+                alert("Password changed successfully! Redirecting to Sign In tab.");
+                switchAuthTab('login');
+            }
+        };
+
+        window.handleLoginSubmit = async function() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            blockAutoDashboard = false;
+
+            const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
+            if (error) alert(error.message);
         };
     </script>
 </body>
