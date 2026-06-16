@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CORE PORTFOLIO DESIGN --- */
+        /* --- CORE PORTFOLIO DESIGN (PREMIUM ORIGINAL) --- */
         :root {
             --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
             --accent-glow: rgba(56, 189, 248, 0.4); --text-white: #f8fafc; --text-gray: #94a3b8;
@@ -99,7 +99,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- POPUP MODAL --- */
+        /* --- CENTERED DIALOG TABS POPUP MODAL --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(8px); 
@@ -128,16 +128,19 @@
         .input-inline-btn:hover { background: rgba(56, 189, 248, 0.2); }
         .verify-btn { background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.2); color: #4ade80; }
 
+        /* LIVE STRENGTH STYLES */
         .strength-container { width: 100%; margin-top: -8px; margin-bottom: 14px; display: none; }
         .strength-bar-bg { background: #161b22; height: 5px; border-radius: 3px; overflow: hidden; }
         .strength-bar { height: 100%; width: 0%; transition: 0.3s; }
         .strength-text { font-size: 11px; color: var(--text-gray); display: block; text-align: right; margin-top: 4px; font-weight: 600; }
         
+        /* TIMER BLOCKS */
         .otp-timer-block { display: none; justify-content: space-between; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 14px; padding: 0 4px; }
         .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; }
         .resend-link.disabled { color: #4b5563; cursor: not-allowed; pointer-events: none; }
         
         .btn-auth { width: 100%; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: bold; cursor: pointer; border: none; }
+        .btn-primary { background: #38bdf8; color: #000; }
         .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 20px 0; }
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .divider:not(:empty)::before { margin-right: .8em; } .divider:not(:empty)::after { margin-left: .8em; }
@@ -146,8 +149,10 @@
         .social-btn:hover { border-color: #38bdf8; }
         .btn-google i { color: #db4437; } .btn-linkedin i { color: #0077b5; }
         
+        /* STATUS BOX */
         .status-box { display: none; background-color: #05070c; border: 1px solid #1a1a24; padding: 10px; border-radius: 8px; text-align: center; font-size: 12px; margin-top: 15px; color: #38bdf8; font-weight: 600; }
 
+        /* POST-LOGIN DASHBOARD STYLE */
         .dashboard-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
         .dash-btn { background: #161b22; border: 1px solid rgba(255,255,255,0.08); color: white; padding: 20px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; transition: 0.2s; }
         .dash-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.02); color: var(--accent-blue); }
@@ -359,7 +364,7 @@
                 <button type="button" class="social-btn oauth-linkedin-trigger"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
             </div>
 
-            <!-- VIEW 3: POST-LOGIN DASHBOARD -->
+            <!-- VIEW 3: POST-LOGIN SECURE SYSTEM DASHBOARD -->
             <div id="view-dashboard" class="tab-view">
                 <h3 style="font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 5px; color: var(--accent-blue);">🔒 Secure Portal Gateway</h3>
                 <p style="color: var(--text-gray); font-size: 13px; text-align: center; margin-bottom: 25px;">Select an authorized ledger dashboard link below.</p>
@@ -386,6 +391,39 @@
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         let isEmailVerified = false;
         let countdownInterval = null;
+        const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
+
+        // --- AUTOMATIC SESSION DETECTOR FIXED ---
+        // 1. Initial page load par active login session check karega
+        _supabase.auth.getSession().then(({ data }) => {
+            if (data.session) handleSocialLoginSuccess(data.session.user);
+        });
+
+        // 2. Real-time auth state tracker listener
+        _supabase.auth.onAuthStateChange((event, session) => {
+            if (session && (event === 'SIGNED_IN' || event === 'INITIAL_SESSION')) {
+                handleSocialLoginSuccess(session.user);
+            }
+        });
+
+        // Function to move UI into Secure Dashboard automatically upon login
+        function handleSocialLoginSuccess(user) {
+            const badge = document.getElementById('auth-status-badge');
+            if (badge) badge.innerHTML = '<div class="badge-dot" style="background:#4ade80;"></div> <span>Authorized Mode</span>';
+            
+            const icon = document.getElementById('user-icon');
+            if (icon) {
+                icon.className = "fas fa-user-check";
+                icon.style.color = "#4ade80";
+            }
+            
+            // Switch tabs inside modal automatically to reveal documents
+            document.getElementById('modal-tabs-header').style.display = "none";
+            document.getElementById('view-login').classList.remove('active');
+            document.getElementById('view-register').classList.remove('active');
+            document.getElementById('view-dashboard').classList.add('active');
+            document.getElementById('status-display').style.display = "none";
+        }
 
         function openPanel() { document.getElementById('auth-overlay').style.display = 'flex'; }
         function closePanel() { document.getElementById('auth-overlay').style.display = 'none'; }
@@ -447,12 +485,12 @@
             }, 1000);
         }
 
-        // --- FIXED REDIRECT TRIGGERS FOR GOOGLE & LINKEDIN ---
+        // Connect Global Trigger Social Buttons
         document.querySelectorAll('.oauth-google-trigger').forEach(el => {
             el.addEventListener('click', async () => {
                 const { error } = await _supabase.auth.signInWithOAuth({ 
                     provider: 'google',
-                    options: { redirectTo: 'https://surajsinghjadon.github.io/Portfolio/' }
+                    options: { redirectTo: redirectLink }
                 });
                 if (error) alert(error.message);
             });
@@ -462,7 +500,7 @@
             el.addEventListener('click', async () => {
                 const { error } = await _supabase.auth.signInWithOAuth({ 
                     provider: 'linkedin_oidc',
-                    options: { redirectTo: 'https://surajsinghjadon.github.io/Portfolio/' }
+                    options: { redirectTo: redirectLink }
                 });
                 if (error) alert(error.message);
             });
