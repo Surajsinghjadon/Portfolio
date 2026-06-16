@@ -45,13 +45,13 @@
             transition: all 0.3s; 
             box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); 
             position: relative; 
-            z-index: 100005; 
+            z-index: 99999999 !important; /* Forces top layer behavior override */
             flex-shrink: 0; 
             pointer-events: auto !important;
         }
         .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
-        .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
-        .profile-login-btn img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
+        .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none !important; }
+        .profile-login-btn img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none !important; }
 
         /* HERO SECTION */
         .hero { display: flex; flex-direction: column; gap: 50px; padding: 40px 0; align-items: center; text-align: center; }
@@ -208,9 +208,9 @@
                     <a href="#skills">Skills</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <button type="button" class="profile-login-btn" id="header-profile-trigger" onclick="openPanel()">
+                <div class="profile-login-btn" id="header-profile-trigger" onclick="openPanel()">
                     <i id="user-icon" class="fas fa-user"></i>
-                </button>
+                </div>
             </div>
         </div>
     </header>
@@ -368,7 +368,7 @@
                     <button type="button" id="btn-get-otp-reg" class="input-inline-btn" onclick="handleSendOTP('reg')">Get OTP</button>
                 </div>
                 
-                <div class="otp-timer-block" id="otp-timer-block-reg">
+                <div class="otp-timer-block" id="otp-timer-block-reg" style="display: none;">
                     <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
                 </div>
@@ -403,7 +403,7 @@
                     <button type="button" id="btn-get-otp-forgot" class="input-inline-btn" onclick="handleSendOTP('forgot')">Get OTP</button>
                 </div>
 
-                <div class="otp-timer-block" id="otp-timer-block-forgot">
+                <div class="otp-timer-block" id="otp-timer-block-forgot" style="display: none;">
                     <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
                     <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
                 </div>
@@ -517,7 +517,14 @@
         let blockAutoDashboard = false;
         let activeTab = 'login'; 
         let realtimeChannel = null; 
-        const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
+
+        // Global safe windows mapping declarations to bypass ReferenceErrors completely
+        window.openPanel = function() {
+            document.getElementById('auth-overlay').style.display = 'flex';
+        };
+        window.closePanel = function() {
+            document.getElementById('auth-overlay').style.display = 'none';
+        };
 
         function showVaultSection(sectionKey) {
             document.getElementById('dashboard-root-options').style.display = "none";
@@ -556,6 +563,7 @@
             }
         }
 
+        // REAL-TIME AUTO SOCKET HANDLER (TRIGGERS IN 1 SECOND AUTOMATICALLY)
         function subscribeToRealtimeDatabase(email) {
             if (realtimeChannel) _supabase.removeChannel(realtimeChannel);
 
@@ -567,7 +575,7 @@
                     table: 'document_requests', 
                     filter: `email=eq.${email}` 
                 }, (payload) => {
-                    if (document.getElementById('view-dashboard').style.display === "block" && document.getElementById('sec-vault-documents').style.display === "block") {
+                    if (document.getElementById('auth-overlay').style.display === "flex" && document.getElementById('sec-vault-documents').style.display === "block") {
                         handleDocumentAccessGate();
                     }
                 })
@@ -598,6 +606,7 @@
 
             if (currentActiveSession) {
                 document.getElementById('status-dot').style.background = "#4ade80";
+                document.getElementById('status-dot').style.boxShadow = "0 0 10px #4ade80";
                 document.getElementById('badge-text').innerText = "Secure Authorized Mode";
                 
                 const user = currentActiveSession.user;
@@ -629,8 +638,11 @@
                 document.getElementById('view-dashboard').style.display = "block";
             } else {
                 document.getElementById('status-dot').style.background = "#94a3b8";
+                document.getElementById('status-dot').style.boxShadow = "none";
                 document.getElementById('badge-text').innerText = "Public Visitor Mode";
-                document.getElementById('header-profile-trigger').innerHTML = `<i id="user-icon" class="fas fa-user" style="color: #38bdf8; font-size: 18px;"></i>`;
+                
+                const headerBtn = document.getElementById('header-profile-trigger');
+                if (headerBtn) headerBtn.innerHTML = `<i id="user-icon" class="fas fa-user"></i>`;
                 
                 if (realtimeChannel) { _supabase.removeChannel(realtimeChannel); realtimeChannel = null; }
                 returnToRootDashboard();
