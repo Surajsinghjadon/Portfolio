@@ -36,6 +36,7 @@
         .profile-login-btn { background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); width: 42px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s; box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); position: relative; overflow: hidden; z-index: 1001; }
         .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
         .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none; }
+        .profile-login-btn img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none; }
 
         /* HERO SECTION */
         .hero { display: flex; flex-direction: column; gap: 50px; padding: 40px 0; align-items: center; text-align: center; }
@@ -99,7 +100,7 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- CENTERED DIALOG TABS POPUP MODAL --- */
+        /* --- POPUP MODAL DIALOG --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(5, 7, 12, 0.6); backdrop-filter: blur(8px); 
@@ -108,7 +109,7 @@
         }
         .auth-container { 
             background: #0d111c; border: 1px solid rgba(255, 255, 255, 0.08); 
-            border-radius: 20px; width: 100%; max-width: 410px; padding: 30px; 
+            border-radius: 20px; width: 100%; max-width: 440px; padding: 30px; 
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7); position: relative; 
         }
         .close-auth { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #94a3b8; font-size: 26px; cursor: pointer; }
@@ -124,23 +125,12 @@
         .auth-input { width: 100%; padding: 13px 16px; background: #161b22; border: 1px solid #30363d; color: white; border-radius: 10px; font-size: 14px; outline: none; }
         .auth-input:focus { border-color: #38bdf8; }
         
-        .input-inline-btn { position: absolute; right: 8px; background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.2); color: #38bdf8; padding: 6px 12px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; }
-        .input-inline-btn:hover { background: rgba(56, 189, 248, 0.2); }
-        .verify-btn { background: rgba(74, 222, 128, 0.1); border-color: rgba(74, 222, 128, 0.2); color: #4ade80; }
-
-        /* LIVE STRENGTH STYLES */
         .strength-container { width: 100%; margin-top: -8px; margin-bottom: 14px; display: none; }
         .strength-bar-bg { background: #161b22; height: 5px; border-radius: 3px; overflow: hidden; }
         .strength-bar { height: 100%; width: 0%; transition: 0.3s; }
         .strength-text { font-size: 11px; color: var(--text-gray); display: block; text-align: right; margin-top: 4px; font-weight: 600; }
         
-        /* TIMER BLOCKS */
-        .otp-timer-block { display: none; justify-content: space-between; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -4px; margin-bottom: 14px; padding: 0 4px; }
-        .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; }
-        .resend-link.disabled { color: #4b5563; cursor: not-allowed; pointer-events: none; }
-        
         .btn-auth { width: 100%; padding: 14px; border-radius: 10px; font-size: 14px; font-weight: bold; cursor: pointer; border: none; }
-        .btn-primary { background: #38bdf8; color: #000; }
         .divider { display: flex; align-items: center; text-align: center; color: #94a3b8; font-size: 11px; margin: 20px 0; }
         .divider::before, .divider::after { content: ''; flex: 1; border-bottom: 1px solid rgba(255,255,255,0.08); }
         .divider:not(:empty)::before { margin-right: .8em; } .divider:not(:empty)::after { margin-left: .8em; }
@@ -149,15 +139,22 @@
         .social-btn:hover { border-color: #38bdf8; }
         .btn-google i { color: #db4437; } .btn-linkedin i { color: #0077b5; }
         
-        /* STATUS BOX */
         .status-box { display: none; background-color: #05070c; border: 1px solid #1a1a24; padding: 10px; border-radius: 8px; text-align: center; font-size: 12px; margin-top: 15px; color: #38bdf8; font-weight: 600; }
 
         /* POST-LOGIN DASHBOARD STYLE */
-        .dashboard-grid { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
-        .dash-btn { background: #161b22; border: 1px solid rgba(255,255,255,0.08); color: white; padding: 20px; border-radius: 12px; font-size: 16px; font-weight: bold; cursor: pointer; text-align: center; display: flex; align-items: center; justify-content: center; gap: 15px; transition: 0.2s; }
+        .dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 15px; max-height: 280px; overflow-y: auto; padding-right: 4px; }
+        .dash-btn { background: #161b22; border: 1px solid rgba(255,255,255,0.08); color: white; padding: 14px; border-radius: 10px; font-size: 12px; font-weight: 600; cursor: pointer; text-align: left; display: flex; align-items: center; gap: 12px; transition: 0.2s; }
         .dash-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.02); color: var(--accent-blue); }
-        .btn-logout-danger { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #ef4444 !important; }
-        .btn-logout-danger:hover { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; color: #ff6b6b !important; }
+        .btn-logout-danger { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444 !important; justify-content: center; margin-top: 15px; width: 100%; font-size: 13px; font-weight: 700; }
+        .btn-logout-danger:hover { background: rgba(239, 68, 68, 0.2); border-color: #ef4444; }
+
+        /* REAL PROFILE IDENTITY PANEL UI */
+        .user-profile-card { display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; margin-bottom: 20px; }
+        .user-avatar-frame { width: 48px; height: 48px; border-radius: 50%; border: 2px solid var(--accent-blue); overflow: hidden; background: #161b22; }
+        .user-avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
+        .user-meta-info { display: flex; flex-direction: column; gap: 2px; }
+        .user-meta-name { font-size: 14px; font-weight: 700; color: var(--text-white); }
+        .user-meta-email { font-size: 11px; color: var(--text-gray); }
     </style>
 </head>
 <body>
@@ -173,7 +170,7 @@
                     <a href="#skills">Skills</a>
                     <a href="#contact">Contact</a>
                 </div>
-                <button type="button" class="profile-login-btn" onclick="openPanel()">
+                <button type="button" class="profile-login-btn" id="header-profile-trigger" onclick="openPanel()">
                     <i id="user-icon" class="fas fa-user"></i>
                 </button>
             </div>
@@ -184,7 +181,7 @@
     <div class="container hero">
         <div style="flex: 1;">
             <div class="badge" id="auth-status-badge">
-                <div class="badge-dot" style="background: #94a3b8; box-shadow: none;"></div> <span id="badge-text">Public Visitor Mode</span>
+                <div class="badge-dot" id="status-dot" style="background: #94a3b8; box-shadow: none;"></div> <span id="badge-text">Public Visitor Mode</span>
             </div>
             <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
             <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
@@ -349,7 +346,7 @@
                     <input type="password" id="reg-confirm-password" class="auth-input" placeholder="Confirm Password">
                 </div>
 
-                <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000;">REGISTER ACCCOUNT</button>
+                <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000;">REGISTER ACCOUNT</button>
                 
                 <div class="divider">OR REGISTER WITH</div>
                 <button type="button" class="social-btn oauth-google-trigger"><i class="fab fa-google"></i> Continue with Google</button>
@@ -358,27 +355,38 @@
 
             <!-- VIEW 3: POST-LOGIN SECURE SYSTEM DASHBOARD -->
             <div id="view-dashboard" class="tab-view">
-                <h3 style="font-size: 20px; font-weight: 700; text-align: center; margin-bottom: 5px; color: var(--accent-blue);">🔒 Secure Portal Gateway</h3>
-                <p style="color: var(--text-gray); font-size: 13px; text-align: center; margin-bottom: 25px;">Select an authorized ledger dashboard link below.</p>
+                <!-- LIVE USER INFORMATION PANEL -->
+                <div class="user-profile-card">
+                    <div class="user-avatar-frame">
+                        <img id="dash-live-avatar" src="" alt="User Avatar">
+                    </div>
+                    <div class="user-meta-info">
+                        <span id="dash-live-name" class="user-meta-name">Loading Profile...</span>
+                        <span id="dash-live-email" class="user-meta-email">Loading Email Data...</span>
+                    </div>
+                </div>
+
+                <h3 style="font-size: 13px; font-weight: 700; margin-bottom: 12px; color: var(--accent-blue); border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 6px;">📂 Authorized Document Repositories</h3>
                 
                 <div class="dashboard-grid">
-                    <button type="button" class="dash-btn" onclick="requestSecureFile('achievement')">
-                        <i class="fas fa-trophy" style="color: #fbbf24; font-size: 20px;"></i> Achievements
-                    </button>
-                    <button type="button" class="dash-btn" onclick="requestSecureFile('dca')">
-                        <i class="fas fa-file-pdf" style="color: #ef4444; font-size: 20px;"></i> DCA Documents
-                    </button>
-                    <button type="button" class="dash-btn btn-logout-danger" id="btn-logout-action">
-                        <i class="fas fa-sign-out-alt"></i> Log Out Account
-                    </button>
+                    <button type="button" class="dash-btn" onclick="requestSecureFile('dca_diploma.pdf')"><i class="fas fa-file-pdf" style="color:#ef4444;"></i> DCA Diploma</button>
+                    <button type="button" class="dash-btn" onclick="requestSecureFile('dca_1Sam.pdf')"><i class="fas fa-file-pdf" style="color:#ef4444;"></i> DCA 1st Sem</button>
+                    <button type="button" class="dash-btn" onclick="requestSecureFile('dca_2Sam.pdf')"><i class="fas fa-file-pdf" style="color:#ef4444;"></i> DCA 2nd Sem</button>
+                    <button type="button" class="dash-btn" onclick="requestSecureFile('10th_marksheet.pdf')"><i class="fas fa-certificate" style="color:#fbbf24;"></i> 10th Marksheet</button>
+                    <button type="button" class="dash-btn" onclick="requestSecureFile('12th_marksheet.pdf')"><i class="fas fa-certificate" style="color:#fbbf24;"></i> 12th Marksheet</button>
+                    <button type="button" class="dash-btn" onclick="requestSecureFile('resume.pdf')"><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Executive Resume</button>
                 </div>
+
+                <button type="button" class="dash-btn btn-logout-danger" id="btn-logout-action">
+                    <i class="fas fa-sign-out-alt"></i> Log Out Security Terminal
+                </button>
             </div>
 
             <div class="status-box" id="status-display">Processing master terminal gateway...</div>
         </div>
     </div>
 
-    <!-- JAVASCRIPT SECURE AUTH ENGINE -->
+    <!-- JAVASCRIPT REAL AUTH GATEWAY -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -387,48 +395,48 @@
         let currentActiveSession = null;
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        // --- BYPASS PROOF FILE URL STORAGE (GATED BEHIND AUTH VARIABLES) ---
-        const SECURE_VAULT = {
-            dca: "dca_diploma.pdf",
-            achievement: "achievements.pdf"
-        };
-
-        // File opener check loop
-        function requestSecureFile(fileKey) {
+        function requestSecureFile(fileName) {
             if (!currentActiveSession) {
-                alert("Security Violation: Access denied! Please login first.");
+                alert("Security Violation: Access denied! Login session parameters missing.");
                 resetUIToVisitor();
                 return;
             }
-            // If secure session exists, load file dynamically
-            window.open(SECURE_VAULT[fileKey], '_blank');
+            window.open(fileName, '_blank');
         }
 
-        // Automatic Session Tracker System
         _supabase.auth.getSession().then(({ data }) => {
             if (data.session) {
                 currentActiveSession = data.session;
-                handleLoginSuccessState();
+                handleLoginSuccessState(data.session.user);
             }
         });
 
         _supabase.auth.onAuthStateChange((event, session) => {
             if (session) {
                 currentActiveSession = session;
-                handleLoginSuccessState();
+                handleLoginSuccessState(session.user);
             } else {
                 currentActiveSession = null;
                 resetUIToVisitor();
             }
         });
 
-        function handleLoginSuccessState() {
-            document.getElementById('auth-status-badge').querySelector('.badge-dot').style.background = "#4ade80";
-            document.getElementById('auth-status-badge').querySelector('.badge-dot').style.boxShadow = "0 0 10px #4ade80";
+        function handleLoginSuccessState(user) {
+            document.getElementById('status-dot').style.background = "#4ade80";
+            document.getElementById('status-dot').style.boxShadow = "0 0 10px #4ade80";
             document.getElementById('badge-text').innerText = "Secure Authorized Mode";
             
-            const icon = document.getElementById('user-icon');
-            if (icon) { icon.className = "fas fa-user-check"; icon.style.color = "#4ade80"; }
+            const userFullName = user.user_metadata.full_name || user.email.split('@')[0].toUpperCase();
+            const userAvatarUrl = user.user_metadata.avatar_url || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+            const headerBtn = document.getElementById('header-profile-trigger');
+            if (headerBtn) {
+                headerBtn.innerHTML = `<img src="${userAvatarUrl}" alt="User Avatar">`;
+            }
+            
+            document.getElementById('dash-live-avatar').src = userAvatarUrl;
+            document.getElementById('dash-live-name').innerText = userFullName;
+            document.getElementById('dash-live-email').innerText = user.email;
             
             document.getElementById('modal-tabs-header').style.display = "none";
             document.getElementById('view-login').classList.remove('active');
@@ -438,22 +446,23 @@
         }
 
         function resetUIToVisitor() {
-            document.getElementById('auth-status-badge').querySelector('.badge-dot').style.background = "#94a3b8";
-            document.getElementById('auth-status-badge').querySelector('.badge-dot').style.boxShadow = "none";
+            document.getElementById('status-dot').style.background = "#94a3b8";
+            document.getElementById('status-dot').style.boxShadow = "none";
             document.getElementById('badge-text').innerText = "Public Visitor Mode";
             
-            const icon = document.getElementById('user-icon');
-            if (icon) { icon.className = "fas fa-user"; icon.style.color = "#38bdf8"; }
+            const headerBtn = document.getElementById('header-profile-trigger');
+            if (headerBtn) {
+                headerBtn.innerHTML = `<i id="user-icon" class="fas fa-user" style="color: #38bdf8; font-size: 18px;"></i>`;
+            }
             
             document.getElementById('modal-tabs-header').style.display = "flex";
             document.getElementById('view-dashboard').classList.remove('active');
             switchAuthTab('login');
         }
 
-        // Logout Action Event
         document.getElementById('btn-logout-action').addEventListener('click', async () => {
             await _supabase.auth.signOut();
-            alert("Logged out securely!");
+            alert("Terminal connection terminated safely.");
             closePanel();
         });
 
@@ -472,7 +481,6 @@
             }
         }
 
-        // PASSWORD LIVE STRENGTH DETECTOR METER
         document.getElementById('reg-password').addEventListener('input', function() {
             const val = this.value;
             const container = document.getElementById('strength-container-block');
@@ -493,7 +501,6 @@
             }
         });
 
-        // Social Buttons Link Connectors
         document.querySelectorAll('.oauth-google-trigger').forEach(el => {
             el.addEventListener('click', async () => {
                 await _supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: redirectLink } });
@@ -506,48 +513,44 @@
             });
         });
 
-        // NATIVE REAL REGISTER HANDLER
         document.getElementById('btn-submit-request').addEventListener('click', async () => {
             const email = document.getElementById('reg-email').value.trim();
             const password = document.getElementById('reg-password').value;
             const confirm = document.getElementById('reg-confirm-password').value;
 
-            if(!email || !password) { alert("Email aur Password dono bharna zaroori hai!"); return; }
-            if(password !== confirm) { alert("Passwords match nahi ho rahe hain!"); return; }
+            if(!email || !password) { alert("Fields blanks mat chhodiye!"); return; }
+            if(password !== confirm) { alert("Passwords mapping matching failure."); return; }
 
             document.getElementById('status-display').style.display = "block";
-            document.getElementById('status-display').innerText = "Creating real account infrastructure...";
+            document.getElementById('status-display').innerText = "Deploying account index node...";
 
             const { data, error } = await _supabase.auth.signUp({ email, password });
-            
             if (error) {
                 alert(error.message);
                 document.getElementById('status-display').style.display = "none";
             } else {
-                alert("Real Account Created! Agar verification link chalu hai toh email check karein, nahi toh ab aap direct Login kar sakte hain.");
+                alert("Registration Complete! Ab aap direct login tab se access kar sakte hain.");
                 switchAuthTab('login');
                 document.getElementById('status-display').style.display = "none";
             }
         });
 
-        // NATIVE REAL LOGIN HANDLER
         document.getElementById('btn-login-submit').addEventListener('click', async () => {
             const email = document.getElementById('login-email').value.trim();
             const password = document.getElementById('login-password').value;
 
-            if(!email || !password) { alert("Email aur Password bhariye!"); return; }
+            if(!email || !password) { alert("Email aur Password pass kijiye."); return; }
 
             document.getElementById('status-display').style.display = "block";
-            document.getElementById('status-display').innerText = "Authenticating secure keys...";
+            document.getElementById('status-display').innerText = "Verifying profile index signatures...";
 
             const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
-
             if (error) {
-                alert("Login Failed: " + error.message);
+                alert("Fail: " + error.message);
                 document.getElementById('status-display').style.display = "none";
             } else {
                 currentActiveSession = data.session;
-                handleLoginSuccessState();
+                handleLoginSuccessState(data.session.user);
             }
         });
     </script>
