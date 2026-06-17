@@ -177,14 +177,13 @@
         .social-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.4); }
         .btn-google i { color: #eb4335; } .btn-linkedin i { color: #0a66c2; }
         
-        /* TWO HORIZONTAL EXPANSIVE HUBSTATIONS CARDS */
-        .twin-dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 20px; }
-        @media (min-width: 500px) { .twin-dashboard-grid { grid-template-columns: 1fr 1fr; } }
-        .dashboard-main-card { background: linear-gradient(135deg, #131b2e 0%, #080d16 100%); border: 1px solid rgba(56,189,248,0.15); border-radius: 24px; padding: 45px 20px; text-align: center; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+        /* EXPANSIVE HUBSTATIONS CARDS GRID */
+        .twin-dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; margin-top: 20px; }
+        .dashboard-main-card { background: linear-gradient(135deg, #131b2e 0%, #080d16 100%); border: 1px solid rgba(56,189,248,0.15); border-radius: 24px; padding: 30px 15px; text-align: center; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; gap: 12px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
         .dashboard-main-card:hover { border-color: var(--accent-blue); background: linear-gradient(135deg, #18233c 0%, #0b1322 100%); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(56,189,248,0.25); }
-        .dashboard-main-card i { font-size: 44px; color: var(--accent-blue); text-shadow: 0 0 15px var(--accent-glow); }
+        .dashboard-main-card i { font-size: 36px; color: var(--accent-blue); text-shadow: 0 0 15px var(--accent-glow); }
         .dashboard-main-card.card-ach i { color: #f59e0b; text-shadow: 0 0 15px rgba(245,158,11,0.3); }
-        .dashboard-main-card span { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
+        .dashboard-main-card span { font-size: 15px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
 
         /* BROAD EMBEDDED REPO CONTAINER CHIPS */
         .inner-vault-view { display: none; margin-top: 20px; }
@@ -497,6 +496,11 @@
                             <i class="fas fa-file-invoice"></i>
                             <span>Documents</span>
                         </div>
+                        <!-- SECRET ADMIN CARD CONTAINER - ONLY SHOWN TO SURAJ BHAIYA -->
+                        <div class="dashboard-main-card" id="admin-card" style="display: none; border-color: #fbbf24;" onclick="loadAdminPanel()">
+                            <i class="fas fa-user-shield" style="color: #fbbf24; text-shadow: 0 0 15px rgba(251,191,36,0.3);"></i>
+                            <span style="color: #fbbf24;">Admin Control</span>
+                        </div>
                     </div>
                     <button type="button" class="btn-logout-danger" onclick="handleLogout()">Log Out</button>
                 </div>
@@ -509,7 +513,6 @@
                         <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                        <!-- FIXED TARGET ARCHIVE EXTENSION BINDING FROM REPO MAPS -->
                         <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                     </div>
@@ -543,6 +546,15 @@
                         <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Professional Resume</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                    </div>
+                </div>
+
+                <!-- SUB ROOT C: REAL-TIME IN-APP ADMIN APPROVAL CONSOLE -->
+                <div id="sec-admin-panel" class="inner-vault-view">
+                    <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Portal</div>
+                    <h3 style="font-size: 14px; font-weight: 700; color: #fbbf24; margin-bottom: 12px;"><i class="fas fa-user-shield"></i> User Clearance Dashboard</h3>
+                    <div id="admin-requests-list" class="vault-list-container">
+                        <!-- Dynamic lines append cleanly inside core loop logic -->
                     </div>
                 </div>
 
@@ -591,6 +603,7 @@
         function returnToRootDashboard() {
             document.getElementById('sec-vault-achievements').style.display = "none";
             document.getElementById('sec-vault-documents').style.display = "none";
+            document.getElementById('sec-admin-panel').style.display = "none";
             document.getElementById('dashboard-root-options').style.display = "block";
             clearInterval(approvalPollingInterval);
         }
@@ -638,6 +651,56 @@
                     clearInterval(approvalPollingInterval);
                 }
             }, 2000); 
+        }
+
+        /* LIVE IN-APP ADMIN DATA LOADER */
+        async function loadAdminPanel() {
+            document.getElementById('dashboard-root-options').style.display = "none";
+            document.getElementById('sec-admin-panel').style.display = "block";
+            
+            const { data, error } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
+            const listContainer = document.getElementById('admin-requests-list');
+            listContainer.innerHTML = '';
+            
+            if(data && data.length > 0) {
+                data.forEach(req => {
+                    const row = document.createElement('div');
+                    row.className = 'file-item-row';
+                    row.style.flexDirection = 'column';
+                    row.style.alignItems = 'flex-start';
+                    row.style.gap = '12px';
+                    
+                    let statusColor = '#fbbf24';
+                    if(req.status === 'approved') statusColor = '#4ade80';
+                    
+                    row.innerHTML = `
+                        <div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
+                            <span style="font-size:12px; max-width:75%; overflow:hidden; text-overflow:ellipsis;"><strong>${req.name}</strong><br>${req.email}</span>
+                            <span style="color: ${statusColor}; font-size:11px; font-weight:800; text-transform:uppercase;">${req.status}</span>
+                        </div>
+                        <div style="display:flex; gap:8px; width:100%;">
+                            <button onclick="changeRequestStatus('${req.email}', 'approved')" style="background:#4ade80; border:none; color:#000; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:11px;">APPROVE</button>
+                            <button onclick="changeRequestStatus('${req.email}', 'pending')" style="background:#fbbf24; border:none; color:#000; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:11px;">PENDING</button>
+                            <button onclick="deleteRequest('${req.email}')" style="background:#ef4444; border:none; color:#fff; padding:6px 12px; border-radius:6px; font-weight:bold; cursor:pointer; font-size:11px;">DELETE</button>
+                        </div>
+                    `;
+                    listContainer.appendChild(row);
+                });
+            } else {
+                listContainer.innerHTML = '<p style="font-size:12px; color:var(--text-gray); text-align:center; width:100%; padding:20px 0;">No logs or clearance requests inside table node.</p>';
+            }
+        }
+
+        async function changeRequestStatus(targetEmail, newStatus) {
+            await _supabase.from('document_requests').update({ status: newStatus }).eq('email', targetEmail);
+            loadAdminPanel();
+        }
+
+        async function deleteRequest(targetEmail) {
+            if(confirm("Permanently destroy request validation pipeline for " + targetEmail + "?")) {
+                await _supabase.from('document_requests').delete().eq('email', targetEmail);
+                loadAdminPanel();
+            }
         }
 
         function subscribeToRealtimeDatabase(email) {
@@ -711,6 +774,13 @@
                 document.getElementById('dash-live-avatar').src = realAvatar;
                 document.getElementById('dash-live-name').innerText = realName;
                 document.getElementById('dash-live-email').innerText = user.email;
+
+                /* SECURE REAL-TIME OWNER ACCESS SWITCH LOOP BINDING */
+                if(user.email.toLowerCase() === 'surajsinghrajput5040@gmail.com') {
+                    document.getElementById('admin-card').style.display = "flex";
+                } else {
+                    document.getElementById('admin-card').style.display = "none";
+                }
 
                 subscribeToRealtimeDatabase(user.email);
                 document.getElementById('view-dashboard').style.display = "block";
