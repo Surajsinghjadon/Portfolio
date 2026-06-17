@@ -67,14 +67,22 @@
         .app-view.active-view { display: block; }
         @keyframes fadeInSPA { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* MODERN HEADER BAR WITH CORNER BACK BUTTON INSIDE APP VIEWS */
-        .view-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; width: 100%; gap: 15px; }
+        /* --- BRAND NEW COMPACT VIEW CARD WRAPPER TO PREVENT FULL-SCREEN STRETCH --- */
+        .view-card-wrapper {
+            background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
+            border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 32px;
+            width: 100%; max-width: 720px; padding: 40px 35px; margin: 0 auto;
+            box-shadow: 0 40px 80px rgba(0, 0, 0, 0.85), inset 0 1px 2px rgba(255, 255, 255, 0.06);
+        }
+
+        /* MODERN HEADER BAR WITH CORNER BACK BUTTON ALIGNED TO THE RIGHT SIDE */
+        .view-panel-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; width: 100%; gap: 15px; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px; }
         .corner-back-btn { 
-            background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.2); 
+            background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); 
             color: var(--accent-blue); padding: 10px 18px; border-radius: 12px; 
             font-size: 12px; font-weight: 800; cursor: pointer; display: inline-flex; 
             align-items: center; gap: 8px; transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
-            flex-shrink: 0;
+            flex-shrink: 0; margin-left: auto; /* Forces right alignment alignment loop */
         }
         .corner-back-btn:hover { background: var(--accent-blue); color: #05070c; box-shadow: 0 0 12px var(--accent-glow); transform: translateY(-1px); }
 
@@ -102,7 +110,7 @@
         /* DYNAMIC NATIVE CSS ANALYTICS DASHBOARD & CHART PATTERNS */
         .analytics-dashboard-title { font-size: 20px; font-weight: 800; margin: 40px 0 20px 0; color: #fff; letter-spacing: 0.5px; display: flex; align-items: center; gap: 10px; }
         .analytics-dashboard-title i { color: var(--accent-blue); }
-        .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
+        .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
         .metric-mini-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 22px; text-align: left; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .metric-mini-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-blue); }
         .metric-num { font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 4px; text-shadow: 0 0 10px rgba(56,189,248,0.2); }
@@ -118,7 +126,7 @@
         /* CARDS & LAYOUT FRAMEWORKS */
         .section-title { font-size: 24px; font-weight: 800; margin: 0; display: flex; align-items: center; color: #fff; }
         .section-title::before { content: ""; display: inline-block; width: 4px; height: 24px; background: var(--accent-blue); border-radius: 2px; margin-right: 12px; }
-        .card { background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.03); margin-bottom: 20px; }
+        .card { background: rgba(5,7,12,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; }
         .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
         .company { color: var(--text-white); font-size: 18px; }
         .tag { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); font-size: 11px; padding: 5px 12px; border-radius: 50px; border: 1px solid rgba(56, 189, 248, 0.1); }
@@ -127,18 +135,18 @@
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; }
 
         /* SKILLS ARCHITECTURE */
-        .skills-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 20px; }
+        .skills-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 10px; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
         .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-        .skill-tag { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 12px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+        .skill-tag { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); padding: 15px; border-radius: 12px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
         .skill-icon-box { background: rgba(56, 189, 248, 0.06); width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); }
         .lang-item { margin-bottom: 20px; font-size: 12px; }
         .bar { background: rgba(255,255,255,0.05); height: 6px; border-radius: 5px; margin-top: 8px; overflow: hidden; }
         .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
 
         /* CONTACT SYSTEM */
-        .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; }
+        .contact-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
         .contact-left { padding: 40px; flex: 1.2; }
         .contact-row { display: flex; align-items: center; gap: 18px; margin-bottom: 25px; }
@@ -149,8 +157,7 @@
         .real-earth-wrapper { width: 100px; height: 100px; background: var(--accent-blue); margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #05070c; }
         .loc-pill { display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 10px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); text-decoration: none; cursor: pointer; }
 
-        /* AUTH FLEXBOX INPUT ENGINE - COMPLETE ALIGNMENT FIX */
-        .auth-master-wrapper { background: linear-gradient(145deg, #0e1426 0%, #050811 100%); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 32px; width: 100%; max-width: 780px; padding: 45px 35px; margin: 0 auto; box-shadow: 0 50px 100px rgba(0, 0, 0, 0.95); }
+        /* AUTH FLEXBOX INPUT ENGINE */
         .input-group { display: flex; gap: 10px; margin-bottom: 16px; width: 100%; align-items: center; position: relative; }
         .auth-input { width: 100%; padding: 15px 18px; background: #0c101d; border: 1px solid rgba(255,255,255,0.06); color: white; border-radius: 14px; font-size: 14px; outline: none; transition: border-color 0.2s; min-width: 0; }
         .auth-input:focus { border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
@@ -182,6 +189,13 @@
         .file-item-row i { color: #ef4444; font-size: 18px; }
         .file-item-row i.fa-certificate { color: #fbbf24; }
 
+        /* --- BRAND NEW DETACHED CARD LAYOUT FOR ADMIN ENTRIES (Screenshot_20260617_171719.jpg FIX) --- */
+        .admin-request-card {
+            display: flex; flex-direction: column; align-items: stretch; gap: 14px; padding: 20px;
+            background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 18px;
+            color: #e2e8f0; box-shadow: 0 4px 12px rgba(0,0,0,0.2); transition: none; cursor: default;
+        }
+
         /* USER SYSTEM BRAND COMPONENT CARD */
         .user-menu-profile-card { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 12px; border-radius: 16px; margin-bottom: 5px; }
         .user-menu-avatar { width: 38px; height: 40px; border-radius: 50%; border: 1px solid var(--accent-blue); overflow: hidden; }
@@ -191,10 +205,9 @@
         .user-menu-meta-email { font-size: 11px; color: var(--text-gray); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
         .btn-menu-logout { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.25); color: #ef4444; width: 100%; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 11px; cursor: pointer; text-transform: uppercase; margin-bottom: 5px; }
 
-        .admin-form-box { background: #0c101d; border: 1px solid rgba(245,158,11,0.15); padding: 30px; border-radius: 20px; text-align: center; width: 100%; max-width: 540px; margin: 0 auto; }
+        .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 30px; border-radius: 20px; text-align: center; width: 100%; max-width: 540px; margin: 0 auto; }
         .admin-form-box i { color: #f59e0b; font-size: 34px; margin-bottom: 14px; }
         .admin-form-box p { font-size: 14px; color: var(--text-gray); margin-bottom: 22px; line-height: 1.6; }
-        .status-badge-pending { display: block; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.22); color: #f59e0b; padding: 18px; border-radius: 16px; font-size: 15px; font-weight: 800; text-transform: uppercase; text-align: center; max-width: 540px; margin: 0 auto; }
 
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; }
     </style>
@@ -245,7 +258,7 @@
 
     <div class="container">
 
-        <!-- VIEW SCREEN A: HOME COMPONENT WITH NEW ANALYTICS GRIDS & DASHBOARD PATTERNS -->
+        <!-- VIEW SCREEN A: HOME COMPONENT WITH NEW ANALYTICS GRIDS -->
         <div id="view-home" class="app-view active-view">
             <div class="hero">
                 <div class="hero-left-block">
@@ -266,7 +279,7 @@
                 </div>
             </div>
 
-            <!-- FILLS EMPTY SPACE: EXECUTIVE DATA AND GRAPHICAL PATTERNS -->
+            <!-- NATIVE ANALYTICS ENGINES -->
             <div class="analytics-dashboard-title">
                 <i class="fas fa-chart-pie"></i> Operational Insights & Analytics Snapshot
             </div>
@@ -317,113 +330,121 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN B: EXPERIENCE COMPONENT -->
+        <!-- VIEW SCREEN B: EXPERIENCE COMPONENT Inside Card Wrapper -->
         <div id="view-experience" class="app-view">
-            <div class="view-panel-header">
-                <h2 class="section-title">Professional Journey</h2>
-                <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-            </div>
-            <div class="card">
-                <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
-                <div class="role">Invoice SAP Executive</div>
-                <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
-                <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
-            </div>
-            <div class="card">
-                <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
-                <div class="role">Store Data Analysis Operations</div>
-                <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
-            </div>
-            <div class="card">
-                <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
-                <div class="role">Machine Operator</div>
-                <div class="desc-line"><i class="fas fa-check"></i> <span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <h2 class="section-title">Professional Journey</h2>
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
+                    <div class="role">Invoice SAP Executive</div>
+                    <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
+                    <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
+                    <div class="role">Store Data Analysis Operations</div>
+                    <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
+                    <div class="role">Machine Operator</div>
+                    <div class="desc-line"><i class="fas fa-check"></i> <span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
+                </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN C: EDUCATION DETAILS COMPONENT -->
+        <!-- VIEW SCREEN C: EDUCATION DETAILS COMPONENT Inside Card Wrapper -->
         <div id="view-user-edu" class="app-view">
-            <div class="view-panel-header">
-                <h2 class="section-title">Education Details</h2>
-                <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-            </div>
-            <div class="card">
-                <div class="card-top"><span class="company">Diploma in Computer Applications (DCA)</span><span class="tag">2023</span></div>
-                <div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
-            </div>
-            <div class="card">
-                <div class="card-top"><span class="company">12th Grade</span><span class="tag">2022</span></div>
-                <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh State Open Board</div>
-            </div>
-            <div class="card">
-                <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
-                <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <h2 class="section-title">Education Details</h2>
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">Diploma in Computer Applications (DCA)</span><span class="tag">2023</span></div>
+                    <div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">12th Grade</span><span class="tag">2022</span></div>
+                    <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh State Open Board</div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
+                    <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
+                </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN D: TECHNICAL SKILLS EXPERTISE COMPONENT -->
+        <!-- VIEW SCREEN D: TECHNICAL SKILLS EXPERTISE COMPONENT Inside Card Wrapper -->
         <div id="view-technical-skills" class="app-view">
-            <div class="view-panel-header">
-                <h2 class="section-title">Technical Expertise</h2>
-                <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-            </div>
-            <div class="skills-grid">
-                <div>
-                    <div class="sub-title">DATA ANALYTICS EXPERTISE</div>
-                    <div class="badge-grid">
-                        <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-database"></i></div> SAP Operations</div>
-                        <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-chart-line"></i></div> Advanced Excel</div>
-                        <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-file-word"></i></div> MS Office Suite</div>
-                        <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-bolt"></i></div> Data Analysis Speed</div>
-                    </div>
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <h2 class="section-title">Technical Expertise</h2>
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
                 </div>
-                <div style="padding-left: 10px;">
-                    <div class="sub-title">COMMUNICATION SYSTEMS</div>
-                    <div class="lang-item">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Hindi (Native) - 100%</span></div>
-                        <div class="bar"><div class="fill" style="width: 100%;"></div></div>
+                <div class="skills-grid">
+                    <div>
+                        <div class="sub-title">DATA ANALYTICS EXPERTISE</div>
+                        <div class="badge-grid">
+                            <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-database"></i></div> SAP Operations</div>
+                            <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-chart-line"></i></div> Advanced Excel</div>
+                            <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-file-word"></i></div> MS Office Suite</div>
+                            <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-bolt"></i></div> Data Analysis Speed</div>
+                        </div>
                     </div>
-                    <div class="lang-item">
-                        <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>English (Professional) - 75%</span></div>
-                        <div class="bar"><div class="fill" style="width: 75%;"></div></div>
+                    <div>
+                        <div class="sub-title">COMMUNICATION SYSTEMS</div>
+                        <div class="lang-item">
+                            <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Hindi (Native) - 100%</span></div>
+                            <div class="bar"><div class="fill" style="width: 100%;"></div></div>
+                        </div>
+                        <div class="lang-item">
+                            <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>English (Professional) - 75%</span></div>
+                            <div class="bar"><div class="fill" style="width: 75%;"></div></div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN E: CONTACT INFO COMPONENT -->
+        <!-- VIEW SCREEN E: CONTACT INFO COMPONENT Inside Card Wrapper -->
         <div id="view-user-contact" class="app-view">
-            <div class="view-panel-header">
-                <h2 class="section-title">Get In Touch</h2>
-                <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-            </div>
-            <div class="contact-box">
-                <div class="contact-left">
-                    <div class="contact-row">
-                        <div class="icon-container"><i class="fas fa-envelope"></i></div>
-                        <div>
-                            <div class="label">Email Address</div>
-                            <div class="value">surajsinghrajput5040@gmail.com</div>
-                        </div>
-                    </div>
-                    <div class="contact-row">
-                        <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
-                        <div>
-                            <div class="label">Contact Number</div>
-                            <div class="value">+91 78795 95821</div>
-                        </div>
-                    </div>
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <h2 class="section-title">Get In Touch</h2>
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
                 </div>
-                <div class="contact-right">
-                    <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                    <a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar+Madhya+Pradesh" target="_blank" class="loc-pill">LOCATION: INDIA</a>
+                <div class="contact-box">
+                    <div class="contact-left">
+                        <div class="contact-row">
+                            <div class="icon-container"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <div class="label">Email Address</div>
+                                <div class="value">surajsinghrajput5040@gmail.com</div>
+                            </div>
+                        </div>
+                        <div class="contact-row">
+                            <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
+                            <div>
+                                <div class="label">Contact Number</div>
+                                <div class="value">+91 78795 95821</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-right">
+                        <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
+                        <a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar+Madhya+Pradesh" target="_blank" class="loc-pill">LOCATION: INDIA</a>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN F: SIGN IN CORE SYSTEM -->
+        <!-- VIEW SCREEN F: SIGN IN CORE SYSTEM Inside Card Wrapper -->
         <div id="view-login" class="app-view">
-            <div class="auth-master-wrapper">
+            <div class="view-card-wrapper">
                 <div class="view-panel-header">
                     <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Sign In</h3>
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
@@ -447,9 +468,9 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN G: REGISTER (SIGN UP) TAB CONSOLE -->
+        <!-- VIEW SCREEN G: REGISTER (SIGN UP) TAB CONSOLE Inside Card Wrapper -->
         <div id="view-register" class="app-view">
-            <div class="auth-master-wrapper">
+            <div class="view-card-wrapper">
                 <div class="view-panel-header">
                     <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Registration</h3>
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
@@ -493,9 +514,9 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN H: FORGOT PASSWORD MODULE VIEW -->
+        <!-- VIEW SCREEN H: FORGOT PASSWORD MODULE VIEW Inside Card Wrapper -->
         <div id="view-forgot" class="app-view">
-            <div class="auth-master-wrapper">
+            <div class="view-card-wrapper">
                 <div class="view-panel-header">
                     <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;"><i class="fas fa-key"></i> Reset Password</h3>
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
@@ -527,62 +548,68 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN I: CERTIFICATES VAULT -->
+        <!-- VIEW SCREEN I: CERTIFICATES VAULT Inside Card Wrapper -->
         <div id="view-sec-vault-achievements" class="app-view">
-            <div class="view-panel-header">
-                <h2 class="section-title">Achievements & Verifications</h2>
-                <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-            </div>
-            <div class="vault-list-container">
-                <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <h2 class="section-title">Achievements & Verifications</h2>
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+                <div class="vault-list-container">
+                    <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO (STRICT STATE LOCK FIXED) -->
+        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO Inside Card Wrapper -->
         <div id="view-sec-vault-documents" class="app-view">
-            <div class="view-panel-header">
-                <h2 class="section-title">Encrypted System Records</h2>
-                <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-            </div>
-            
-            <!-- REQUEST GATED FORM VIEW -->
-            <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
-                <i class="fas fa-lock"></i>
-                <h4 style="font-size:16px; margin-bottom:5px; color:#fff;">Clearance Status Required</h4>
-                <p style="font-size:13px; color:var(--text-gray); line-height:1.5; margin-bottom:18px;">This node contains encrypted system logs and identity marksheets. Request validation to pull files from secure nodes.</p>
-                <button type="button" class="btn-auth" style="background:#fbbf24; color:#000;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
-            </div>
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <h2 class="section-title">Encrypted System Records</h2>
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+                
+                <!-- REQUEST GATED FORM VIEW -->
+                <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
+                    <i class="fas fa-lock"></i>
+                    <h4 style="font-size:16px; margin-bottom:5px; color:#fff;">Clearance Status Required</h4>
+                    <p style="font-size:13px; color:var(--text-gray); line-height:1.5; margin-bottom:18px;">This node contains encrypted system logs and identity marksheets. Request validation to pull files from secure nodes.</p>
+                    <button type="button" class="btn-auth" style="background:#fbbf24; color:#000;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
+                </div>
 
-            <!-- PENDING ACCESS -->
-            <div id="doc-gate-pending-view" style="display:none;">
-                <div class="status-badge-pending"><i class="fas fa-user-shield"></i> Request Send Pending For Approval</div>
-                <p style="font-size:13px; color:var(--text-gray); text-align:center; margin-top:14px; line-height:1.6;">Your node access is currently in the verification queue. Upon confirmation, data loops will initialize automatically in real-time.</p>
-            </div>
+                <!-- PENDING ACCESS -->
+                <div id="doc-gate-pending-view" style="display:none;">
+                    <div class="status-badge-pending"><i class="fas fa-user-shield"></i> Request Send Pending For Approval</div>
+                    <p style="font-size:13px; color:var(--text-gray); text-align:center; margin-top:14px; line-height:1.6;">Your node access is currently in the verification queue. Upon confirmation, data loops will initialize automatically in real-time.</p>
+                </div>
 
-            <!-- APPROVED RECORDS CONTAINER -->
-            <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
-                <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
-                <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Professional Resume</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                <!-- APPROVED RECORDS CONTAINER -->
+                <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
+                    <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Professional Resume</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN K: ADMIN APPROVAL CMS CONTROL DASHBOARD (EMPTY PLACEHOLDER FIXED) -->
+        <!-- VIEW SCREEN K: ADMIN APPROVAL CMS CONTROL Inside Card Wrapper (Screenshot_20260617_171719.jpg & 20280.jpg FIXED) -->
         <div id="view-sec-admin-panel" class="app-view">
-            <div class="view-panel-header">
-                <h2 class="section-title" style="color: #fbbf24;"><i class="fas fa-user-shield"></i> User Clearance Dashboard</h2>
-                <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-            </div>
-            <div id="admin-requests-list" class="vault-list-container" style="display: flex; flex-direction: column; gap: 15px;">
-                <!-- Dynamic streams update cleanly inside loop -->
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <h2 class="section-title" style="color: #fbbf24;"><i class="fas fa-user-shield"></i> User Clearance Dashboard</h2>
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                </div>
+                <div id="admin-requests-list" style="display: flex; flex-direction: column; gap: 18px; width: 100%;">
+                    <!-- Dynamic detached loop items fill cleanly -->
+                </div>
             </div>
         </div>
 
@@ -646,16 +673,11 @@
 
         async function handleDocumentAccessGate() {
             if(!currentActiveSession) { updateDocumentUIStatus('none'); return; }
-            
-            // STRICT SECURITY TIMING RESET TO ELIMINATE DIRECT OPEN FLASH GLITCH
             updateDocumentUIStatus('loading_reset');
             
             const { data: record, error } = await _supabase.from('document_requests').select('status').eq('email', currentActiveSession.user.email).maybeSingle();
-            if(error || !record) {
-                updateDocumentUIStatus('none');
-            } else {
-                updateDocumentUIStatus(record.status);
-            }
+            if(error || !record) updateDocumentUIStatus('none');
+            else updateDocumentUIStatus(record.status);
             startLiveSyncPolling(currentActiveSession.user.email);
         }
 
@@ -683,6 +705,7 @@
             window.open(fileName, '_blank');
         }
 
+        /* LIVE ADMINISTRATIVE CLIENT CMS INTERFACE LOADER - ISOLATED BUTTONS FIXED */
         async function loadAdminPanel() {
             if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
             
@@ -693,44 +716,43 @@
             if(data && data.length > 0) {
                 data.forEach(req => {
                     const block = document.createElement('div');
-                    block.className = 'file-item-row';
-                    block.style.flexDirection = 'column'; block.style.alignItems = 'stretch'; block.style.gap = '14px'; block.style.padding = '20px'; block.style.background = '#0e1322';
+                    block.className = 'admin-request-card'; // Detached independent box fix
+                    
                     let col = req.status === 'approved' ? '#4ade80' : '#fbbf24';
                     block.innerHTML = `
                         <div style="display:flex; justify-content:space-between; width:100%; align-items:center; border-bottom:1px solid rgba(255,255,255,0.04); padding-bottom:10px;">
-                            <div style="display:flex; flex-direction:column; gap:2px;">
+                            <div style="display:flex; flex-direction:column; gap:2px; text-align:left;">
                                 <span style="font-size:15px; color:#fff; font-weight:700;">${req.name}</span>
                                 <span style="font-size:12px; color:#64748b; font-family:monospace;">${req.email}</span>
                             </div>
                             <span style="color:${col}; font-size:11px; font-weight:800; text-transform:uppercase;">${req.status}</span>
                         </div>
                         <div style="display:flex; gap:10px; justify-content:flex-end;">
-                            <button type="button" onclick="changeStatus(event, '${req.email}', 'approved')" style="background:#4ade80; border:none; padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px;">APPROVE</button>
-                            <button type="button" onclick="changeStatus(event, '${req.email}', 'pending')" style="background:#fbbf24; border:none; padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px;">PENDING</button>
+                            <button type="button" onclick="changeStatus(event, '${req.email}', 'approved')" style="background:#4ade80; border:none; padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">APPROVE</button>
+                            <button type="button" onclick="changeStatus(event, '${req.email}', 'pending')" style="background:#fbbf24; border:none; padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">PENDING</button>
                             <button type="button" onclick="killRequest(event, '${req.email}')" style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.2); color:#ef4444; padding:8px 16px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px;">DELETE</button>
                         </div>
                     `;
                     container.appendChild(block);
                 });
             } else {
-                // FIXED SCREENSHOT_20260617_170951.JPG KHALI STATE ISSUE
                 container.innerHTML = `
-                    <div style="text-align:center; padding:50px 20px; background:#0d111c; border:1px dashed rgba(255,255,255,0.05); border-radius:20px; width:100%;">
+                    <div style="text-align:center; padding:50px 20px; background:rgba(5,7,12,0.4); border:1px dashed rgba(255,255,255,0.05); border-radius:20px; width:100%;">
                         <i class="fas fa-shield-alt" style="font-size:38px; color:#64748b; margin-bottom:15px;"></i>
                         <p style="font-size:14px; color:#fff; font-weight:700; margin:0;">System Network Status: Clear</p>
-                        <p style="font-size:12px; color:var(--text-gray); margin-top:5px;">No logs or pending authorization requests found inside the active data stream pipelines.</p>
+                        <p style="font-size:12px; color:var(--text-gray); margin-top:5px;">No logs or pending authorization requests found inside the pipelines.</p>
                     </div>`;
             }
         }
 
         async function changeStatus(e, email, status) {
-            e.stopPropagation();
+            if(e) { e.preventDefault(); e.stopPropagation(); } // Hard lock bubbling leak
             await _supabase.from('document_requests').update({ status: status }).eq('email', email);
             loadAdminPanel();
         }
 
         async function killRequest(e, email) {
-            e.stopPropagation();
+            if(e) { e.preventDefault(); e.stopPropagation(); } // Hard lock bubbling leak
             if(confirm("Destroy verification pipeline for " + email + "?")) {
                 await _supabase.from('document_requests').delete().eq('email', email);
                 loadAdminPanel();
