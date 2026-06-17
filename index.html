@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CORE SPA THEME SETUP --- */
+        /* --- CORE SPA APP DESIGN THEME --- */
         :root {
             --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
             --accent-glow: rgba(56, 189, 248, 0.4); --text-white: #f8fafc; --text-gray: #94a3b8;
@@ -19,16 +19,16 @@
         html, body { background-color: var(--bg-main); color: var(--text-white); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; margin: 0; padding: 0; overflow-x: hidden; }
         .container { max-width: 1040px; margin: 0 auto; padding: 120px 20px 40px 20px; position: relative; z-index: 1; box-sizing: border-box; }
 
-        /* HEADER INTEGRATION */
+        /* HEADER FRAMEWORK */
         header { background: rgba(5, 7, 12, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1040px; margin: 0 auto; padding: 0 20px; }
         .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); }
         .logo span { color: var(--text-white); }
         
-        /* HARD NAVIGATION LOCK WHEN INSIDE SUB PAGES */
+        /* HARD NAVIGATION LOCK LOGIC WHEN OUTSIDE HOME VIEW */
         .header-locked { pointer-events: none !important; opacity: 0.3; }
         
-        /* 3-DOT MENU STYLING */
+        /* 3-DOT SYSTEM MENU */
         .three-dot-menu-trigger {
             background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2);
             width: 44px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
@@ -38,7 +38,7 @@
         .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); }
         .three-dot-menu-trigger img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-        /* INTERACTIVE NAVIGATION CONTROL HUB PANEL */
+        /* FLOATING DROPDOWN MENU */
         .dropdown-panel {
             position: absolute; top: 75px; right: 20px; width: 320px; 
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
@@ -58,11 +58,11 @@
         .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); }
         .menu-link-row i { width: 20px; text-align: center; font-size: 15px; }
 
-        /* SOLID VIEW CODES ENGINE */
+        /* SOLID CODES SPA VIEW LAYOUTS ENGINE */
         .app-view { display: none; width: 100%; min-height: 100vh; background-color: var(--bg-main); padding-top: 120px; padding-bottom: 60px; position: absolute; top: 0; left: 0; z-index: 50; box-sizing: border-box; }
         .app-view.active-view { display: block; position: relative; z-index: 60; }
         
-        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER */
+        /* GRAND SCREEN WRAPPER ENGINE CONTAINER */
         .view-card-wrapper {
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
             border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 32px;
@@ -70,23 +70,23 @@
             box-shadow: 0 40px 90px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.06);
             box-sizing: border-box;
         }
-        @media (max-width: 768px) { .view-card-wrapper { padding: 30px 20px; border-radius: 20px; } }
+        @media (max-width: 768px) { .view-card-wrapper { padding: 40px 20px; border-radius: 20px; } }
 
-        /* LEFT-ALIGNED INTERACTIVE SPA HEADER CONSOLE */
+        /* HIGH-GRADE SECURED LEFT CORNER BACK BUTTON */
         .view-panel-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 35px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; box-sizing: border-box; }
         .corner-back-btn { 
             background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.25); 
-            color: var(--accent-blue); padding: 10px 20px; border-radius: 12px; 
+            color: var(--accent-blue); padding: 11px 22px; border-radius: 12px; 
             font-size: 12px; font-weight: 800; cursor: pointer; display: inline-flex; 
             align-items: center; gap: 8px; transition: all 0.2s ease; text-transform: uppercase; letter-spacing: 0.5px;
             width: max-content; box-sizing: border-box;
         }
         .corner-back-btn:hover { background: var(--accent-blue); color: #05070c; box-shadow: 0 0 12px var(--accent-glow); }
 
-        /* HERO INTERFACE */
+        /* HERO ARRANGEMENT */
         .hero { display: flex; flex-direction: column; gap: 40px; padding: 20px 0; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 50px; }
         @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
-        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(5,7,12,0.4); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
         .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
         .hero-left-block { padding-left: 45px; width: 100%; text-align: left; }
         @media (max-width: 768px) { .hero-left-block { padding-left: 0; text-align: center; } }
@@ -104,11 +104,11 @@
         .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* METRICS & CHARTS INTERFACE */
-        .analytics-dashboard-title { font-size: 20px; font-weight: 800; margin: 40px 0 20px 0; color: #fff; display: flex; align-items: center; gap: 10px; }
+        /* SNAPSHOT PATTERNS CSS */
+        .analytics-dashboard-title { font-size: 20px; font-weight: 800; margin: 45px 0 20px 0; color: #fff; display: flex; align-items: center; gap: 10px; }
         .analytics-dashboard-title i { color: var(--accent-blue); }
         .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 20px; }
-        .metric-mini-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 22px; position: relative; overflow: hidden; }
+        .metric-mini-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 22px; position: relative; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.2); }
         .metric-mini-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-blue); }
         .metric-num { font-size: 28px; font-weight: 800; color: #fff; margin-bottom: 4px; }
         .metric-label { font-size: 11px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
@@ -120,7 +120,13 @@
         .chart-bar-val { font-size: 11px; color: var(--accent-blue); font-weight: 800; position: absolute; top: -25px; width: 100%; text-align: center; }
         .chart-label-text { font-size: 11px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* INFRASTRUCTURE NODES */
+        .sub-analytics-bars-layout { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 25px; }
+        @media (min-width: 768px) { .sub-analytics-bars-layout { grid-template-columns: 1fr 1fr; } }
+        .mini-progress-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); padding: 22px; border-radius: 18px; box-sizing: border-box; }
+        .mini-progress-meta-row { display: flex; justify-content: space-between; font-size: 12px; font-weight: 700; color: #fff; }
+        .progress-track-bg { height: 8px; background: #070a12; border-radius: 6px; margin-top: 12px; overflow: hidden; width: 100%; }
+        .progress-track-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8 0%, var(--accent-blue) 100%); border-radius: 6px; box-shadow: 0 0 10px var(--accent-blue); }
+
         .project-nodes-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 25px; }
         @media (min-width: 768px) { .project-nodes-grid { grid-template-columns: 1fr 1fr; } }
         .node-tile-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 25px; display: flex; gap: 20px; align-items: flex-start; transition: all 0.2s; }
@@ -129,40 +135,77 @@
         .node-title-meta { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 5px; }
         .node-desc-text { font-size: 13px; color: var(--text-gray); line-height: 1.5; }
 
-        /* --- THE ADVANCED ENTERPRISE VALIDATION BANNER ENGINE --- */
+        /* --- THE ADVANCED ENTERPRISE VALIDATION BANNER NOTIFICATION CONSOLE --- */
         .validation-glowing-banner {
             display: none; align-items: center; gap: 14px; padding: 16px 20px; 
             border-radius: 14px; font-size: 13px; font-weight: 700; line-height: 1.5;
-            margin-bottom: 20px; width: 100%; box-sizing: border-box;
+            margin-bottom: 22px; width: 100%; box-sizing: border-box;
             animation: slideDownAlert 0.3s ease-out;
         }
         @keyframes slideDownAlert { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
         .validation-banner-error { background: rgba(239, 68, 68, 0.08) !important; border: 1px solid rgba(239, 68, 68, 0.28) !important; color: #ef4444 !important; box-shadow: 0 0 15px rgba(239, 68, 68, 0.05); }
         .validation-banner-success { background: rgba(74, 222, 128, 0.08) !important; border: 1px solid rgba(74, 222, 128, 0.28) !important; color: #4ade80 !important; box-shadow: 0 0 15px rgba(74, 222, 128, 0.05); }
 
-        /* INPUTS WRAPPERS SETUP */
+        /* --- STYLED SYSTEM GRAPH ARCHITECTURE: BINDING FIELDS (20366.jpg & 20365.jpg STABLE FIX) --- */
         .auth-input-container { display: flex; flex-direction: column; width: 100%; gap: 18px; margin-top: 10px; box-sizing: border-box; }
-        .input-row-block { display: flex; width: 100%; gap: 12px; align-items: center; box-sizing: border-box; position: relative; }
-        .auth-field-asset { width: 100% !important; display: block !important; background: #0c101d !important; border: 1px solid rgba(255,255,255,0.08) !important; padding: 16px 20px !important; color: #ffffff !important; border-radius: 14px !important; font-size: 14px !important; outline: none !important; box-sizing: border-box !important; height: auto !important; }
+        .input-row-block { display: flex; flex-direction: column; width: 100%; gap: 8px; box-sizing: border-box; align-items: flex-start; position: relative; }
+        .input-field-label-meta { font-size: 11px; font-weight: 800; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.8px; }
+        
+        .auth-field-asset { 
+            width: 100% !important; display: block !important; background: #0c101d !important; 
+            border: 1px solid rgba(255,255,255,0.08) !important; padding: 16px 20px !important; 
+            color: #ffffff !important; border-radius: 14px !important; font-size: 14px !important; 
+            outline: none !important; box-sizing: border-box !important; height: auto !important;
+        }
         .auth-field-asset:focus { border-color: var(--accent-blue) !important; box-shadow: 0 0 15px rgba(56,189,248,0.15); }
+        
+        /* AUTHENTIC DEEP SOCIAL BLOCK BUTTON BOXES (FIXES STANDARD BROKEN BOX PATTERNS) */
+        .social-grid-panel { display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.01); padding: 20px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.03); margin-top: 15px; width: 100%; box-sizing: border-box; }
+        .social-btn-box { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; box-sizing: border-box; }
+        .social-btn-box:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); }
         
         .inline-action-trigger { padding: 16px 22px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); color: #38bdf8; border-radius: 14px; font-size: 12px; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s; text-transform: uppercase; box-sizing: border-box; }
         .inline-action-trigger:hover { background: var(--accent-blue); color: #05070c; }
         .inline-verify-trigger { background: rgba(74, 222, 128, 0.12); border-color: rgba(74, 222, 128, 0.25); color: #4ade80; }
         .live-status-success-badge { font-size: 13px; font-weight: bold; color: #4ade80; display: none; align-items: center; gap: 6px; flex-shrink: 0; margin-left: 5px; }
-
         .btn-submit-action { width: 100%; padding: 18px; border-radius: 14px; font-size: 14px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; margin-top: 15px; box-sizing: border-box; }
         
-        /* GENERAL CARDS */
+        /* CONTENT OVERLAY COMPACT PANELS */
         .card { background: rgba(5,7,12,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; box-sizing: border-box; }
         .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
         .company { color: var(--text-white); font-size: 18px; }
         .tag { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); font-size: 11px; padding: 5px 12px; border-radius: 50px; border: 1px solid rgba(56, 189, 248, 0.1); }
         .role { color: var(--accent-blue); font-weight: 600; font-size: 13px; margin-bottom: 12px; }
         .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
-        .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; }
+        .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; flex-shrink: 0; }
 
-        .vault-list-container { display: flex; flex-direction: column; gap: 18px; width: 100%; box-sizing: border-box; }
+        /* SKILLS HUB DESIGN FRAMEWORK */
+        .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; }
+        @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
+        .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
+        .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 100%; }
+        .skill-tag { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); padding: 18px; border-radius: 14px; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 12px; box-sizing: border-box; }
+        .skill-icon-box { background: rgba(56,189,248,0.06); width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; flex-shrink: 0; }
+        .lang-item { margin-bottom: 22px; font-size: 13px; font-weight: 600; }
+
+        /* CONTACT LAYOUT CONTAINER SETUP */
+        .contact-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; width: 100%; box-sizing: border-box; }
+        @media (min-width: 768px) { .contact-box { flex-direction: row; } }
+        .contact-left { padding: 35px; flex: 1.2; box-sizing: border-box; }
+        .contact-row { display: flex; align-items: center; gap: 18px; margin-bottom: 25px; }
+        .icon-container { background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.1); width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 18px; flex-shrink: 0; }
+        .label { font-size: 10px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
+        .value { font-size: 14px; font-weight: 700; margin-top: 4px; color: #fff; }
+        .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 35px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-sizing: border-box; }
+        .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; }
+        .loc-pill { display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 11px 22px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; }
+
+        /* LOCKED MATRIX OVERFLOW CONTROLS FOR LIST SCROLL FILES */
+        .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
+        .vault-list-container::-webkit-scrollbar { width: 5px; }
+        .vault-list-container::-webkit-scrollbar-track { background: transparent; }
+        .vault-list-container::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.15); border-radius: 10px; }
+        
         .file-item-row { display: flex; align-items: center; justify-content: space-between; padding: 24px 28px; background: #0c101d; border: 1px solid rgba(255,255,255,0.05); border-radius: 20px; color: #e2e8f0; font-size: 15px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(0,0,0,0.2); box-sizing: border-box; }
         .file-item-row:hover { background: linear-gradient(90deg, rgba(56, 189, 248, 0.08) 0%, rgba(12, 16, 29, 1) 100%); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.35); transform: translateY(-2px); }
         .file-item-row div { display: flex; align-items: center; gap: 16px; }
@@ -170,14 +213,9 @@
         .file-item-row i.fa-certificate { color: #fbbf24; }
 
         .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); cursor: default; box-sizing: border-box; }
-
-        /* PENDING CLOCK DESIGN */
         .pending-box { text-align: center; padding: 65px 30px; background: rgba(245, 158, 11, 0.02); border: 2px dashed rgba(245, 158, 11, 0.25); border-radius: 28px; box-shadow: 0 10px 40px rgba(245, 158, 11, 0.03); margin: 10px auto; max-width: 100%; box-sizing: border-box; animation: glowPulse 3s infinite alternate; }
-        @keyframes glowPulse { from { border-color: rgba(245, 158, 11, 0.2); } to { border-color: rgba(245, 158, 11, 0.45); box-shadow: 0 0 25px rgba(245, 158, 11, 0.06); } }
         .pending-box i.fa-clock { font-size: 70px; color: #fbbf24; text-shadow: 0 0 25px rgba(251, 191, 36, 0.4); animation: rotateGear 20s linear infinite; }
         @keyframes rotateGear { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .status-msg { font-size: 18px; font-weight: 800; color: #fbbf24; margin-top: 25px; letter-spacing: 0.5px; text-transform: uppercase; line-height: 1.4; }
-        .status-sub { font-size: 13px; color: var(--text-gray); margin-top: 12px; max-width: 480px; margin-left: auto; margin-right: auto; line-height: 1.6; font-weight: 500; }
 
         .user-menu-profile-card { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); padding: 12px; border-radius: 16px; margin-bottom: 5px; }
         .user-menu-avatar { width: 38px; height: 40px; border-radius: 50%; border: 1px solid var(--accent-blue); overflow: hidden; }
@@ -186,17 +224,8 @@
         .user-menu-meta-name { font-size: 13px; font-weight: 700; color: #fff; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
         .user-menu-meta-email { font-size: 11px; color: var(--text-gray); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
         .btn-menu-logout { background: rgba(239, 68, 68, 0.12); border: 1px solid rgba(239, 68, 68, 0.25); color: #ef4444; width: 100%; padding: 10px; border-radius: 12px; font-weight: 700; font-size: 11px; cursor: pointer; text-transform: uppercase; margin-bottom: 5px; }
-
         .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
-        .admin-form-box p { font-size: 14px; color: var(--text-gray); margin-bottom: 24px; line-height: 1.6; }
-
-        .strength-container { width: 100%; margin-top: 2px; margin-bottom: 4px; display: none; }
-        .strength-bar-bg { background: #111624; height: 5px; border-radius: 3px; overflow: hidden; width: 100%; }
-        .strength-bar { height: 100%; width: 0%; transition: all 0.3s ease; }
-        .strength-text { font-size: 11px; display: block; text-align: right; margin-top: 5px; font-weight: 600; }
-        .otp-timer-block { display: none; justify-content: center; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: 4px; margin-bottom: 4px; }
-        .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; display: none; }
 
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; }
     </style>
@@ -212,7 +241,7 @@
                 <i class="fas fa-ellipsis-v" id="three-dot-icon"></i>
             </div>
 
-            <!-- FLOATING DROPDOWN MENU -->
+            <!-- FLOATING NAVIGATION HUB CONSOLE DROP PANEL -->
             <div class="dropdown-panel" id="system-dropdown-panel" onclick="event.stopPropagation();">
                 <div class="menu-auth-row" id="menu-guest-block">
                     <button type="button" class="menu-btn-auth menu-btn-signin" onclick="switchAppView('view-login')">Sign In</button>
@@ -247,7 +276,7 @@
 
     <div class="container">
 
-        <!-- VIEW SCREEN A: HOME COMPONENT -->
+        <!-- VIEW SCREEN A: HOME LAYOUT NODES -->
         <div id="view-home" class="app-view active-view">
             <div class="hero">
                 <div class="hero-left-block">
@@ -268,7 +297,7 @@
                 </div>
             </div>
 
-            <!-- ANALYTICS DATA Snapshot -->
+            <!-- ANALYTICS Snapshot -->
             <div class="analytics-dashboard-title">
                 <i class="fas fa-chart-pie"></i> Operational Insights & Analytics Snapshot
             </div>
@@ -318,7 +347,30 @@
                 </div>
             </div>
 
-            <!-- PROCESSING NODES DISPLAY GRID -->
+            <!-- PERFORMANCE TRACKS METERS -->
+            <div class="analytics-dashboard-title" style="margin-top:50px;">
+                <i class="fas fa-tasks"></i> Operational Engine Performance Meters
+            </div>
+            <div class="sub-analytics-bars-layout">
+                <div class="mini-progress-card">
+                    <div class="mini-progress-meta-row"><span>SAP Invoice Processing Load</span><span>88% Efficiency</span></div>
+                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 88%;"></div></div>
+                </div>
+                <div class="mini-progress-card">
+                    <div class="mini-progress-meta-row"><span>Log Validation Stream Clock</span><span>99.9% Integrity</span></div>
+                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 99.9%;"></div></div>
+                </div>
+                <div class="mini-progress-card">
+                    <div class="mini-progress-meta-row"><span>Database Parse Latency Meter</span><span>0.04ms Core Rate</span></div>
+                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 94%;"></div></div>
+                </div>
+                <div class="mini-progress-card">
+                    <div class="mini-progress-meta-row"><span>Analytical Metric Validation</span><span>96% Sync Flow</span></div>
+                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 96%;"></div></div>
+                </div>
+            </div>
+
+            <!-- PROCESSING TILES PLUGS -->
             <div class="analytics-dashboard-title" style="margin-top:50px;">
                 <i class="fas fa-network-wired"></i> Core Infrastructure & Processing Nodes
             </div>
@@ -340,7 +392,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN B: EXPERIENCE COMPONENT -->
+        <!-- VIEW SCREEN B: EXPERIENCE COMPONENT Inside Card Wrapper -->
         <div id="view-experience" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -366,7 +418,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN C: EDUCATION DETAILS COMPONENT -->
+        <!-- VIEW SCREEN C: EDUCATION DETAILS -->
         <div id="view-user-edu" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -433,107 +485,115 @@
                             <div class="icon-container"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <div class="label">Email Address</div>
-                                <div class="value">surajsinghrajput5040@gmail.com</div>
+                                <div class="value">user@example.com</div>
                             </div>
                         </div>
                         <div class="contact-row">
                             <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
                             <div>
                                 <div class="label">Contact Number</div>
-                                <div class="value">+91 78795 95821</div>
+                                <div class="value">+91 00000 00000</div>
                             </div>
                         </div>
                     </div>
                     <div class="contact-right">
                         <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
-                        <a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar+Madhya+Pradesh" target="_blank" class="loc-pill">LOCATION: INDIA</a>
+                        <a href="https://maps.google.com" target="_blank" class="loc-pill">LOCATION: INDIA</a>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN F: ACCOUNT SIGN IN -->
+        <!-- VIEW SCREEN F: ACCOUNT SIGN IN WITH PRO FIXED RESPONSIVE BOUNDARIES (20368.jpg REGISTERED) -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-                    <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Sign In</h3>
+                    <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0; margin-top:10px;">Account Sign In</h3>
                 </div>
                 
-                <!-- DYNAMIC Enterprise Validation Banner for Login Hub -->
                 <div id="login-validation-banner" class="validation-glowing-banner"></div>
                 
                 <div class="auth-input-container">
                     <div class="input-row-block">
-                        <input type="email" id="login-email" class="auth-field-asset" placeholder="Email Address">
+                        <span class="input-field-label-meta">Enter Email ID</span>
+                        <input type="email" id="login-email" class="auth-field-asset" placeholder="user@example.com">
                     </div>
                     <div class="input-row-block">
-                        <input type="password" id="login-password" class="auth-field-asset" placeholder="Password">
+                        <span class="input-field-label-meta">Enter Password Key</span>
+                        <input type="password" id="login-password" class="auth-field-asset" placeholder="••••••••">
                     </div>
-                    <button type="button" class="btn-submit-action" style="background-color: var(--accent-blue); color: #000;" onclick="handleLoginSubmit()">LOG IN</button>
+                    <button type="button" class="btn-submit-action" style="background-color: var(--accent-blue); color: #000;" onclick="handleLoginSubmit()">LOG IN NODE</button>
                     <div style="text-align: right; width: 100%;">
-                        <span style="color: var(--accent-blue); font-size: 13px; font-weight: bold; cursor: pointer;" onclick="switchAppView('view-forgot')">Forgot Password?</span>
+                        <span style="color: var(--accent-blue); font-size: 13px; font-weight: bold; cursor: pointer;" onclick="switchAppView('view-forgot')">Forgot Password Key?</span>
                     </div>
                 </div>
                 
                 <div class="social-grid-panel">
                     <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN IN WITH</div>
-                    <button type="button" class="social-btn" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign In with Google</button>
-                    <button type="button" class="social-btn" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign In with LinkedIn</button>
+                    <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign In with Google</button>
+                    <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign In with LinkedIn</button>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN G: REGISTER (SIGN UP) WITH RESTORED SOCIAL BUTTONS -->
+        <!-- VIEW SCREEN G: REGISTER (SIGN UP) WITH PRO FIXED RESPONSIVE BOUNDARIES (20369.jpg REGISTERED) -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-                    <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Registration</h3>
+                    <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0; margin-top:10px;">Account Registration</h3>
                 </div>
                 
-                <!-- DYNAMIC Enterprise Validation Banner for Register Hub -->
                 <div id="register-validation-banner" class="validation-glowing-banner"></div>
                 
                 <div class="auth-input-container">
                     <div class="input-row-block">
-                        <input type="text" id="reg-fullname" class="auth-field-asset" placeholder="Full Name">
+                        <span class="input-field-label-meta">Full User Identity Name</span>
+                        <input type="text" id="reg-fullname" class="auth-field-asset" placeholder="User Name">
                     </div>
                     
                     <div class="input-row-block">
-                        <input type="email" id="reg-email" class="auth-field-asset" placeholder="Email Address">
-                        <button type="button" id="btn-get-otp-reg" class="inline-action-trigger" onclick="handleSendOTP('reg')">Get OTP</button>
+                        <span class="input-field-label-meta">Target Email Identity Link</span>
+                        <div style="display:flex; width:100%; gap:12px; align-items:center;">
+                            <input type="email" id="reg-email" class="auth-field-asset" placeholder="user@example.com">
+                            <button type="button" id="btn-get-otp-reg" class="inline-action-trigger" onclick="handleSendOTP('reg')">Get OTP</button>
+                        </div>
                     </div>
                     
                     <div class="otp-timer-block" id="otp-timer-block-reg">
-                        <span id="timer-display-reg">Resend in: 60s</span>
-                        <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
+                        <span id="timer-display-reg" style="color:var(--text-gray); font-weight:700;">Resend in: 60s</span>
+                        <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP Now</span>
                     </div>
                     
                     <div class="input-row-block">
-                        <input type="text" id="otp-code-reg" class="auth-field-asset" placeholder="6-Digit OTP Code">
-                        <button type="button" id="btn-verify-otp-reg" class="inline-action-trigger inline-verify-trigger" onclick="handleVerifyOTP('reg')">Verify</button>
-                        <span id="badge-verified-reg" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                        <span class="input-field-label-meta">Input 6-Digit Verifier Code</span>
+                        <div style="display:flex; width:100%; gap:12px; align-items:center;">
+                            <input type="text" id="otp-code-reg" class="auth-field-asset" placeholder="000000">
+                            <button type="button" id="btn-verify-otp-reg" class="inline-action-trigger inline-verify-trigger" onclick="handleVerifyOTP('reg')">Verify</button>
+                            <span id="badge-verified-reg" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                        </div>
                     </div>
                     
                     <div class="input-row-block">
-                        <input type="password" id="reg-password" class="auth-field-asset" placeholder="Create Password">
+                        <span class="input-field-label-meta">Initialize Security Password</span>
+                        <input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••">
                     </div>
                     <div class="strength-container" id="strength-container-reg">
                         <div class="strength-bar-bg"><div id="strength-bar-reg" class="strength-bar"></div></div>
-                        <span id="strength-text-reg" class="strength-text">Password Strength</span>
+                        <span id="strength-text-reg" class="strength-text">Security Strength</span>
                     </div>
                     <div class="input-row-block">
-                        <input type="password" id="reg-confirm-password" class="auth-field-asset" placeholder="Confirm Password">
+                        <span class="input-field-label-meta">Confirm Security Password</span>
+                        <input type="password" id="reg-confirm-password" class="auth-field-asset" placeholder="••••••••">
                     </div>
-                    <button type="button" class="btn-submit-action" style="background-color: #4ade80; color: #000;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
+                    <button type="button" class="btn-submit-action" style="background-color: #4ade80; color: #000;" onclick="handleFinalRegister()">FINALIZE ACCOUNT CREATION</button>
                 </div>
 
-                <!-- RESTORED SOCIAL SIGN UP BUTTON LAYOUT BLOCK -->
                 <div class="social-grid-panel">
                     <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN UP WITH</div>
-                    <button type="button" class="social-btn" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign Up with Google</button>
-                    <button type="button" class="social-btn" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign Up with LinkedIn</button>
+                    <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign Up with Google</button>
+                    <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign Up with LinkedIn</button>
                 </div>
             </div>
         </div>
@@ -543,41 +603,49 @@
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-                    <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;"><i class="fas fa-key"></i> Reset Password</h3>
+                    <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0; margin-left:10px;"><i class="fas fa-key"></i> Reset Password</h3>
                 </div>
                 
                 <div id="forgot-validation-banner" class="validation-glowing-banner"></div>
 
                 <div class="auth-input-container">
                     <div class="input-row-block">
-                        <input type="email" id="forgot-email" class="auth-field-asset" placeholder="Enter Your Email ID">
-                        <button type="button" id="btn-get-otp-forgot" class="inline-action-trigger" onclick="handleSendOTP('forgot')">Get OTP</button>
+                        <span class="input-field-label-meta">Enter Email Identity</span>
+                        <div style="display:flex; width:100%; gap:12px; align-items:center;">
+                            <input type="email" id="forgot-email" class="auth-field-asset" placeholder="user@example.com">
+                            <button type="button" id="btn-get-otp-forgot" class="inline-action-trigger" onclick="handleSendOTP('forgot')">Get OTP</button>
+                        </div>
                     </div>
                     <div class="otp-timer-block" id="otp-timer-block-forgot">
-                        <span id="timer-display-forgot">Resend in: 60s</span>
+                        <span id="timer-display-forgot" style="color:var(--text-gray);">Resend in: 60s</span>
                         <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
                     </div>
                     <div class="input-row-block">
-                        <input type="text" id="otp-code-forgot" class="auth-field-asset" placeholder="6-Digit OTP Token">
-                        <button type="button" id="btn-verify-otp-forgot" class="inline-action-trigger inline-verify-trigger" onclick="handleVerifyOTP('forgot')">Verify</button>
-                        <span id="badge-verified-forgot" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                        <span class="input-field-label-meta">Enter Verified Token</span>
+                        <div style="display:flex; width:100%; gap:12px; align-items:center;">
+                            <input type="text" id="otp-code-forgot" class="auth-field-asset" placeholder="6-Digit Code">
+                            <button type="button" id="btn-verify-otp-forgot" class="inline-action-trigger inline-verify-trigger" onclick="handleVerifyOTP('forgot')">Verify</button>
+                            <span id="badge-verified-forgot" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span>
+                        </div>
                     </div>
                     <div class="input-row-block">
-                        <input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password">
+                        <span class="input-field-label-meta">New Secret Password</span>
+                        <input type="password" id="forgot-password" class="auth-field-asset" placeholder="••••••••">
                     </div>
                     <div class="strength-container" id="strength-container-forgot">
                         <div class="strength-bar-bg"><div id="strength-bar-forgot" class="strength-bar"></div></div>
                         <span id="strength-text-forgot" class="strength-text">Password Strength</span>
                     </div>
                     <div class="input-row-block">
-                        <input type="password" id="forgot-confirm-password" class="auth-field-asset" placeholder="Confirm New Password">
+                        <span class="input-field-label-meta">Confirm New Password</span>
+                        <input type="password" id="forgot-confirm-password" class="auth-input" placeholder="••••••••">
                     </div>
-                    <button type="button" class="btn-submit-action" style="background-color: var(--accent-blue); color: #000;" onclick="handleResetPasswordSubmit()">CHANGE PASSWORD</button>
+                    <button type="button" class="btn-submit-action" style="background-color: var(--accent-blue); color: #000;" onclick="handleResetPasswordSubmit()">CHANGE SYSTEM PASSWORD</button>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN I: CERTIFICATES VAULT -->
+        <!-- VIEW SCREEN I: CERTIFICATES VAULT WITH FIXED FRAME INTERNAL OVERFLOW SCROLLS -->
         <div id="view-sec-vault-achievements" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -637,7 +705,7 @@
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
                     <h2 class="section-title" style="color: #fbbf24;">User Clearance Dashboard</h2>
                 </div>
-                <div id="admin-requests-list" style="display: flex; flex-direction: column; gap: 18px; width: 100%;">
+                <div id="admin-requests-list" class="vault-list-container">
                     <!-- Dynamic streams -->
                 </div>
             </div>
@@ -669,13 +737,13 @@
             document.getElementById('system-dropdown-panel').classList.remove('show');
         });
 
-        /* --- STYLED VALIDATION BANNER DISPLAYER --- */
+        /* --- GLOWING NEON ENTERPRISE NOTIFICATION SYSTEM --- */
         function triggerAppValidationBanner(bannerId, textMessage, bannerType) {
             const activeBanner = document.getElementById(bannerId);
             if(!activeBanner) return;
             
             activeBanner.innerText = textMessage;
-            activeBanner.className = "validation-glowing-banner"; // reset css loop
+            activeBanner.className = "validation-glowing-banner"; 
             
             if(bannerType === 'error') {
                 activeBanner.classList.add('validation-banner-error');
@@ -692,7 +760,7 @@
             });
         }
 
-        /* --- SPA VIEW ENGINE CONTROL --- */
+        /* --- SYSTEM ROUTING CONTROLLER MATRIX --- */
         window.switchAppView = function(viewId) {
             clearAllValidationBanners();
             const headerElement = document.getElementById('main-header');
@@ -768,8 +836,9 @@
             window.open(fileName, '_blank');
         }
 
+        /* LIVE ADMINISTRATIVE CLIENT CMS INTERFACE LOADER */
         async function loadAdminPanel() {
-            if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
+            if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'admin@example.com') return; // Secure admin gate baseline
             
             const { data } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
             const container = document.getElementById('admin-requests-list');
@@ -841,7 +910,7 @@
                 document.getElementById('ml-achievements').style.display = "flex";
                 document.getElementById('ml-documents').style.display = "flex";
 
-                if(user.email.toLowerCase() === 'surajsinghrajput5040@gmail.com') {
+                if(user.email.toLowerCase() === 'admin@example.com') {
                     document.getElementById('ml-admin').style.display = "flex";
                     if(document.getElementById('view-sec-admin-panel').classList.contains('active-view')) loadAdminPanel();
                 } else {
@@ -881,7 +950,7 @@
             _supabase.auth.signInWithOAuth({ provider: provider, options: { redirectTo: redirectLink } });
         };
 
-        /* --- SIGN IN VERIFICATION WITH EMEDED PROFESSIONAL NOTIFICATIONS --- */
+        /* --- LOGIN SUBMIT STRICTOR POLICY ENGINE --- */
         window.handleLoginSubmit = async function() {
             clearAllValidationBanners();
             const email = document.getElementById('login-email').value.trim();
@@ -890,7 +959,7 @@
 
             const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
             if (error) {
-                if(error.message.includes("Invalid login credentials")) {
+                if(error.message.includes("Invalid login credentials") || error.message.includes("not found")) {
                     triggerAppValidationBanner('login-validation-banner', "Authentication Denied: This account email is not registered in our system node. Please go to Sign Up first.", 'error');
                 } else { triggerAppValidationBanner('login-validation-banner', error.message, 'error'); }
             } else { switchAppView('view-home'); }
@@ -902,7 +971,7 @@
             block.style.display = "flex";
             countdownInterval = setInterval(() => {
                 left--; document.getElementById(`timer-display-${type}`).innerText = `Resend in: ${left}s`;
-                if(left <= 0) { clearInterval(countdownInterval); document.getElementById(`timer-display-${type}`).style.display="none"; document.getElementById(`resend-link-btn-${type}`).style.display="inline"; }
+                if(left <= 0) { clearInterval(countdownInterval); document.getElementById('timer-display-reg').style.display="none"; document.getElementById(`resend-link-btn-${type}`).style.display="inline"; }
             }, 1000);
         }
 
@@ -916,14 +985,17 @@
             if (type === 'reg') {
                 const { data: existingCheck } = await _supabase.from('document_requests').select('email').eq('email', email).maybeSingle();
                 if(existingCheck) {
-                    triggerAppValidationBanner('register-validation-banner', "Registration Blocked: This email account already exists inside the active system records. Please use the Sign In section.", 'error');
+                    triggerAppValidationBanner('register-validation-banner', "Registration Blocked: This email account already exists inside active system records. Please use the Sign In page.", 'error');
                     return;
                 }
             }
 
             const { error } = await _supabase.auth.signInWithOtp({ email });
-            if(error) triggerAppValidationBanner(activeBannerId, error.message, 'error');
-            else { triggerAppValidationBanner(activeBannerId, "OTP verification handshake loop successfully sent to target mailbox.", 'success'); startOTPTimer(type); }
+            if(error) {
+                 if (error.message.includes("User already registered") || error.message.includes("already exists")) {
+                     triggerAppValidationBanner(activeBannerId, "Registration Blocked: This account already exists. Please use the Sign In page.", 'error');
+                 } else { triggerAppValidationBanner(activeBannerId, error.message, 'error'); }
+            } else { triggerAppValidationBanner(activeBannerId, "OTP verification handshake token successfully transmitted to destination mailbox.", 'success'); startOTPTimer(type); }
         };
 
         window.handleVerifyOTP = async function(type) {
@@ -949,11 +1021,11 @@
             const { error: signUpErr } = await _supabase.auth.signUp({ email, password });
             if(signUpErr) {
                 if(signUpErr.message.includes("User already registered") || signUpErr.message.includes("already exists")) {
-                    triggerAppValidationBanner('register-validation-banner', "Registration Blocked: This email account already exists inside the active system records. Please use the Sign In section.", 'error');
+                    triggerAppValidationBanner('register-validation-banner', "Registration Blocked: This account already exists. Please use the Sign In page.", 'error');
                 } else { triggerAppValidationBanner('register-validation-banner', signUpErr.message, 'error'); }
             } else { 
-                alert("Account successfully registered into database! Proceeding to Sign In."); 
-                switchAppView('view-login'); 
+                triggerAppValidationBanner('register-validation-banner', "Node registration completely verified. Redirecting inside login portal.", 'success');
+                setTimeout(() => { switchAppView('view-login'); }, 1500);
             }
         };
 
