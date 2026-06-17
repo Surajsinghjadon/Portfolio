@@ -38,29 +38,30 @@
         .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); }
         .three-dot-menu-trigger img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 
-        /* INTERACTIVE NAVIGATION CONTROL HUB PANEL */
+        /* INTERACTIVE NAVIGATION CONTROL HUB PANEL (20476.jpg FIXED ENLARGED & PROFESSIONAL) */
         .dropdown-panel {
-            position: absolute; top: 75px; right: 20px; width: 320px; 
+            position: absolute; top: 75px; right: 20px; width: 340px; 
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
-            border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 24px; padding: 20px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.8);
-            display: none; flex-direction: column; gap: 12px; z-index: 100010;
+            border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 24px; padding: 24px;
+            box-shadow: 0 35px 70px rgba(0,0,0,0.95);
+            display: none; flex-direction: column; gap: 14px; z-index: 100010;
         }
         .dropdown-panel.show { display: flex; }
 
-        .menu-auth-row { display: flex; gap: 10px; margin-bottom: 8px; }
-        .menu-btn-auth { flex: 1; padding: 12px; font-size: 11px; font-weight: 800; border-radius: 12px; border: none; cursor: pointer; text-transform: uppercase; text-align: center; text-decoration: none; transition: all 0.2s; }
-        .menu-btn-signin { background: var(--accent-blue); color: #05070c; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.2); }
-        .menu-btn-signup { background: rgba(255,255,255,0.03); color: white; border: 1px solid rgba(255,255,255,0.08); }
+        .menu-auth-row { display: flex; gap: 12px; margin-bottom: 10px; }
+        .menu-btn-auth { flex: 1; padding: 14px; font-size: 12px; font-weight: 800; border-radius: 12px; border: none; cursor: pointer; text-transform: uppercase; text-align: center; text-decoration: none; transition: all 0.2s; }
+        .menu-btn-signin { background: var(--accent-blue); color: #05070c; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25); }
+        .menu-btn-signup { background: rgba(255,255,255,0.04); color: white; border: 1px solid rgba(255,255,255,0.1); }
+        .menu-btn-signup:hover { background: rgba(255,255,255,0.08); }
         
-        .menu-divider { height: 1px; background: rgba(255,255,255,0.05); margin: 4px 0; }
-        .menu-link-row { display: flex; align-items: center; gap: 14px; padding: 12px 16px; color: var(--text-gray); font-size: 13px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; }
-        .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); }
-        .menu-link-row i { width: 20px; text-align: center; font-size: 15px; }
+        .menu-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
+        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s; }
+        .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); }
+        .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
 
-        /* SOLID VIEW CODES ENGINE */
-        .app-view { display: none; width: 100%; min-height: 100vh; background-color: var(--bg-main); padding-top: 120px; padding-bottom: 60px; position: absolute; top: 0; left: 0; z-index: 50; box-sizing: border-box; }
-        .app-view.active-view { display: block; position: relative; z-index: 60; }
+        /* STATIC DISPLAY VIEW MANAGER (PERMANENTLY FIXES 20475.jpg BACKGROUND SCROLL LEAKS) */
+        .app-view { display: none !important; width: 100%; background-color: var(--bg-main); box-sizing: border-box; }
+        .app-view.active-view { display: block !important; }
         
         /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER */
         .view-card-wrapper {
@@ -128,7 +129,6 @@
         .progress-track-bg { height: 8px; background: #05070c; border-radius: 4px; margin-top: 12px; overflow: hidden; width: 100%; }
         .progress-track-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8 0%, var(--accent-blue) 100%); border-radius: 4px; box-shadow: 0 0 10px var(--accent-blue); }
 
-        /* INFRASTRUCTURE NODES */
         .project-nodes-grid { display: grid; grid-template-columns: 1fr; gap: 20px; margin-top: 25px; }
         @media (min-width: 768px) { .project-nodes-grid { grid-template-columns: 1fr 1fr; } }
         .node-tile-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 25px; display: flex; gap: 20px; align-items: flex-start; transition: all 0.2s; }
@@ -159,13 +159,14 @@
         .inline-action-trigger:hover { background: var(--accent-blue); color: #05070c; }
         .inline-verify-trigger { background: rgba(74, 222, 128, 0.12); border-color: rgba(74, 222, 128, 0.25); color: #4ade80; }
         .live-status-success-badge { font-size: 13px; font-weight: bold; color: #4ade80; display: none; align-items: center; gap: 6px; flex-shrink: 0; margin-left: 5px; }
+        .btn-submit-action { width: 100%; padding: 18px; border-radius: 14px; font-size: 14px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; margin-top: 15px; box-sizing: border-box; }
 
-        /* THE DYNAMIC OTP COUNTDOWN CLOCK OVERLAY */
+        /* DYNAMIC RESEND TIMER LOGIC STRIPS */
         .otp-timer-block { display: none; justify-content: flex-start; align-items: center; width: 100%; font-size: 13px; color: #fbbf24; font-weight: bold; margin-top: 2px; margin-bottom: 4px; }
         .resend-action-btn { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--accent-blue); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: none; text-transform: uppercase; margin-top: 4px; }
         .resend-action-btn:hover { background: var(--accent-blue); color: #05070c; }
 
-        /* GENERAL PORTFOLIO DISPLAY MODULE CARDS */
+        /* GENERAL DISPLAY BLOCK CARDS */
         .card { background: rgba(5,7,12,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; box-sizing: border-box; }
         .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
         .company { color: var(--text-white); font-size: 18px; }
@@ -429,7 +430,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN D: TECHNICAL SKILLS EXPERTISE WITH PERCENTAGE BARS (RESTORED) -->
+        <!-- VIEW SCREEN D: TECHNICAL SKILLS EXPERTISE WITH PERCENTAGE BARS -->
         <div id="view-technical-skills" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -510,7 +511,7 @@
                 <div class="auth-input-container">
                     <div class="input-row-block">
                         <span class="input-field-label-meta">Email ID</span>
-                        <input type="email" id="login-email" class="auth-field-asset" placeholder="suraj@example.com">
+                        <input type="email" id="login-email" class="auth-field-asset" placeholder="yourname@example.com">
                     </div>
                     <div class="input-row-block">
                         <span class="input-field-label-meta">Password</span>
@@ -543,13 +544,13 @@
                 <div class="auth-input-container">
                     <div class="input-row-block">
                         <span class="input-field-label-meta">Full Name</span>
-                        <input type="text" id="reg-fullname" class="auth-field-asset" placeholder="User Name">
+                        <input type="text" id="reg-fullname" class="auth-field-asset" placeholder="Your Full Name">
                     </div>
                     
                     <div class="input-row-block">
                         <span class="input-field-label-meta">Email ID</span>
                         <div style="display:flex; width:100%; gap:12px; align-items:center;">
-                            <input type="email" id="reg-email" class="auth-field-asset" placeholder="suraj@example.com">
+                            <input type="email" id="reg-email" class="auth-field-asset" placeholder="yourname@example.com">
                             <button type="button" id="btn-get-otp-reg" class="inline-action-trigger" onclick="handleSendOTP('reg')">Get OTP</button>
                         </div>
                     </div>
@@ -605,7 +606,7 @@
                     <div class="input-row-block">
                         <span class="input-field-label-meta">Email ID</span>
                         <div style="display:flex; width:100%; gap:12px; align-items:center;">
-                            <input type="email" id="forgot-email" class="auth-field-asset" placeholder="suraj@example.com">
+                            <input type="email" id="forgot-email" class="auth-field-asset" placeholder="yourname@example.com">
                             <button type="button" id="btn-get-otp-forgot" class="inline-action-trigger" onclick="handleSendOTP('forgot')">Get OTP</button>
                         </div>
                     </div>
@@ -664,6 +665,7 @@
                     <h2 class="section-title">Encrypted System Records</h2>
                 </div>
                 
+                <!-- REQUEST GATED FORM VIEW -->
                 <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
                     <i class="fas fa-lock"></i>
                     <h4 style="font-size:16px; margin-bottom:5px; color:#fff;">Clearance Status Required</h4>
@@ -671,12 +673,14 @@
                     <button type="button" class="btn-submit-action" style="background:#fbbf24; color:#000; margin:0;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
                 </div>
 
+                <!-- PREMIUM PENDING STATE WITH BIG CLOCK ICON -->
                 <div id="doc-gate-pending-view" class="pending-box" style="display:none;">
                     <i class="fas fa-clock"></i>
                     <div class="status-msg">Verification & Validation Pipeline In Progress</div>
                     <div class="status-sub">Your data loop access request is currently inside the admin processing node queue. Live sync channels will initialize this screen automatically as soon as clearance updates in real-time.</div>
                 </div>
 
+                <!-- APPROVED RECORDS CONTAINER -->
                 <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
                     <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:12px;"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:12px;"></i></div>
@@ -759,7 +763,10 @@
                 headerElement.classList.remove('header-locked');
             }
 
-            document.querySelectorAll('.app-view').forEach(view => view.classList.remove('active-view'));
+            // Clean DOM Stacking reset to completely wipe background elements leaks
+            document.querySelectorAll('.app-view').forEach(view => {
+                view.classList.remove('active-view');
+            });
             document.querySelectorAll('.menu-link-row').forEach(row => row.classList.remove('active'));
             
             const targetView = document.getElementById(viewId);
