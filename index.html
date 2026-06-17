@@ -140,9 +140,11 @@
         .validation-banner-error { background: rgba(239, 68, 68, 0.08) !important; border: 1px solid rgba(239, 68, 68, 0.28) !important; color: #ef4444 !important; box-shadow: 0 0 15px rgba(239, 68, 68, 0.05); }
         .validation-banner-success { background: rgba(74, 222, 128, 0.08) !important; border: 1px solid rgba(74, 222, 128, 0.28) !important; color: #4ade80 !important; box-shadow: 0 0 15px rgba(74, 222, 128, 0.05); }
 
-        /* INPUTS WRAPPERS SETUP */
-        .auth-input-container { display: flex; flex-direction: column; width: 100%; gap: 18px; margin-top: 10px; box-sizing: border-box; }
-        .input-row-block { display: flex; width: 100%; gap: 12px; align-items: center; box-sizing: border-box; position: relative; }
+        /* --- STABLE RESPONSIVE FORM ALIGNMENT LOOPS (FIXES 20387/20386 OVERLAPS) --- */
+        .auth-input-container { display: flex; flex-direction: column; width: 100%; gap: 20px; margin-top: 10px; box-sizing: border-box; }
+        .input-row-block { display: flex; flex-direction: column; width: 100%; gap: 6px; box-sizing: border-box; align-items: stretch; position: relative; }
+        .input-field-label-meta { font-size: 12px; font-weight: 700; color: var(--text-gray); text-transform: none; text-align: left; }
+        
         .auth-field-asset { width: 100% !important; display: block !important; background: #0c101d !important; border: 1px solid rgba(255,255,255,0.08) !important; padding: 16px 20px !important; color: #ffffff !important; border-radius: 14px !important; font-size: 14px !important; outline: none !important; box-sizing: border-box !important; height: auto !important; }
         .auth-field-asset:focus { border-color: var(--accent-blue) !important; box-shadow: 0 0 15px rgba(56,189,248,0.15); }
         
@@ -153,6 +155,11 @@
 
         .btn-submit-action { width: 100%; padding: 18px; border-radius: 14px; font-size: 14px; font-weight: 800; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; margin-top: 15px; box-sizing: border-box; }
         
+        /* THE DYNAMIC SOCIAL BUTTON CARDS */
+        .social-grid-panel { display: flex; flex-direction: column; gap: 14px; background: rgba(255,255,255,0.01); padding: 25px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.04); margin-top: 25px; width: 100%; box-sizing: border-box; }
+        .social-btn-box { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.06); padding: 16px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; box-sizing: border-box; }
+        .social-btn-box:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); }
+
         /* GENERAL CARDS */
         .card { background: rgba(5,7,12,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; box-sizing: border-box; }
         .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -196,9 +203,9 @@
         .strength-bar { height: 100%; width: 0%; transition: all 0.3s ease; }
         .strength-text { font-size: 11px; display: block; text-align: right; margin-top: 5px; font-weight: 600; }
         
-        /* --- DYNAMIC TIMER DISPLAY CONTROL --- */
+        /* --- DYNAMIC RESEND TIMER OVERLAY SYSTEM --- */
         .otp-timer-block { display: none; justify-content: flex-start; align-items: center; width: 100%; font-size: 13px; color: #fbbf24; font-weight: bold; margin-top: 2px; margin-bottom: 4px; }
-        .resend-action-btn { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--accent-blue); padding: 6px 14px; border-radius: 8px; font-size: 11px; font-weight: 800; cursor: pointer; display: none; text-transform: uppercase; }
+        .resend-action-btn { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--accent-blue); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: none; text-transform: uppercase; margin-top: 4px; }
         .resend-action-btn:hover { background: var(--accent-blue); color: #05070c; }
 
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; }
@@ -455,7 +462,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN F: ACCOUNT SIGN IN -->
+        <!-- VIEW SCREEN F: ACCOUNT SIGN IN (20385.jpg GRID LOCKED ALIGNMENT) -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -463,7 +470,6 @@
                     <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Sign In</h3>
                 </div>
                 
-                <!-- DYNAMIC Enterprise Validation Banner for Login Hub -->
                 <div id="login-validation-banner" class="validation-glowing-banner"></div>
                 
                 <div class="auth-input-container">
@@ -483,13 +489,13 @@
                 
                 <div class="social-grid-panel">
                     <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN IN WITH</div>
-                    <button type="button" class="social-btn" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign In with Google</button>
-                    <button type="button" class="social-btn" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign In with LinkedIn</button>
+                    <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign In with Google</button>
+                    <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign In with LinkedIn</button>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN G: REGISTER (SIGN UP) CLEANED INFRASTRUCTURE (20375.jpg EXTRA TEXT REMOVED & TIMER MODIFIED) -->
+        <!-- VIEW SCREEN G: REGISTER (SIGN UP) CLEANED LABELS & AUTO-TIMER (20386.jpg GRID LOCKED ALIGNMENT) -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -497,7 +503,6 @@
                     <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Registration</h3>
                 </div>
                 
-                <!-- DYNAMIC Enterprise Validation Banner for Register Hub -->
                 <div id="register-validation-banner" class="validation-glowing-banner"></div>
                 
                 <div class="auth-input-container">
@@ -514,7 +519,7 @@
                         </div>
                     </div>
                     
-                    <!-- DYNAMIC RESPONSIVE RESEND PARAMS PANEL FRAME -->
+                    <!-- EXCLUSIVE DYNAMIC CLOCK RESEND TIMER ACTIONS -->
                     <div class="otp-timer-block" id="otp-timer-block-reg">
                         <span id="timer-display-reg">Resend in: 60s</span>
                         <button type="button" id="resend-action-btn-reg" class="resend-action-btn" onclick="handleSendOTP('reg')">Resend OTP</button>
@@ -546,8 +551,8 @@
 
                 <div class="social-grid-panel">
                     <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN UP WITH</div>
-                    <button type="button" class="social-btn" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign Up with Google</button>
-                    <button type="button" class="social-btn" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign Up with LinkedIn</button>
+                    <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign Up with Google</button>
+                    <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign Up with LinkedIn</button>
                 </div>
             </div>
         </div>
@@ -919,7 +924,7 @@
             } else { switchAppView('view-home'); }
         };
 
-        /* --- UPGRADED RESPONSIVE RESEND PARAMS CLOCK TIMERS (MODIFIED AS REQUESTED) --- */
+        /* --- TIMERS FOR SYSTEM HANDSHAKE CLOCKS --- */
         function startOTPTimer(type) {
             clearInterval(countdownInterval); 
             let left = 60;
@@ -927,7 +932,6 @@
             const displaySpan = document.getElementById(`timer-display-${type}`);
             const actionBtn = document.getElementById(`resend-action-btn-${type}`);
             
-            // Initial reset rules
             block.style.display = "flex";
             displaySpan.style.display = "inline";
             displaySpan.innerText = `Resend in: ${left}s`;
@@ -966,7 +970,7 @@
                  } else { triggerAppValidationBanner(activeBannerId, error.message, 'error'); }
             } else { 
                 triggerAppValidationBanner(activeBannerId, "OTP verification handshake token successfully transmitted to destination mailbox.", 'success'); 
-                startOTPTimer(type); // Triggers timer flow immediately on tap parameter loop
+                startOTPTimer(type);
             }
         };
 
