@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suraj Singh Jadon - Executive Dashboard Portfolio</title>
+    <title>Suraj Singh Jadon - Executive Portfolio</title>
     
+    <!-- Supabase & FontAwesome -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CORE PORTFOLIO DESIGN (PREMIUM DARK AESTHETIC) --- */
+        /* --- CORE PORTFOLIO DESIGN (PREMIUM ORIGINAL) --- */
         :root {
             --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
             --accent-glow: rgba(56, 189, 248, 0.4); --text-white: #f8fafc; --text-gray: #94a3b8;
@@ -20,57 +21,73 @@
         body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; padding-top: 110px; }
         .container { max-width: 1040px; margin: 0 auto; padding: 0 20px; position: relative; z-index: 1; }
 
-        /* MINIMALIST HEADER WITH HAMBURGER TOGGLE */
-        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 22px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
+        /* HEADER & BULLETPROOF HIGHEST LAYER BUTTON CLICKABLE FIX */
+        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); }
         .logo span { color: var(--text-white); }
         
-        .right-menu { display: flex; align-items: center; gap: 25px; }
-        .menu-icon-trigger { font-size: 26px; color: var(--accent-blue); cursor: pointer; transition: transform 0.2s; }
-        .menu-icon-trigger:hover { transform: scale(1.1); text-shadow: 0 0 10px var(--accent-glow); }
+        .right-menu { display: flex; align-items: center; gap: 25px; position: relative; z-index: 100001; }
+        .nav-links { display: flex; gap: 20px; }
+        @media (max-width: 768px) { .nav-links { display: none; } }
+        .nav-links a { text-decoration: none; color: var(--text-gray); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--accent-blue); }
 
-        /* SLIDING PLATFORM HAMBURGER MENU OVERLAY */
-        #menu-overlay { 
-            position: fixed; top: 0; right: -320px; width: 320px; height: 100%; 
-            background: linear-gradient(180deg, #0d1222 0%, #05070c 100%); 
-            border-left: 1px solid rgba(56, 189, 248, 0.15); 
-            z-index: 200000; padding: 40px 30px; 
-            box-shadow: -15px 0 40px rgba(0,0,0,0.8); 
-            transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        .profile-login-btn { 
+            background: rgba(56, 189, 248, 0.08); 
+            border: 1px solid rgba(56, 189, 248, 0.2); 
+            width: 42px; 
+            height: 42px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            box-shadow: 0 0 10px rgba(56, 189, 248, 0.1); 
+            position: relative; 
+            z-index: 200005 !important; 
+            flex-shrink: 0; 
+            pointer-events: auto !important;
         }
-        .close-menu-btn { text-align: right; font-size: 14px; font-weight: 700; color: #ef4444; cursor: pointer; margin-bottom: 30px; text-transform: uppercase; letter-spacing: 0.5px; }
-        .menu-item-link { display: block; padding: 18px 10px; font-size: 15px; font-weight: 700; color: var(--text-white); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.03); transition: all 0.2s; }
-        .menu-item-link:hover { color: var(--accent-blue); padding-left: 18px; background: rgba(56,189,248,0.03); }
-        .hidden { display: none !important; }
+        .profile-login-btn:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: scale(1.05); }
+        .profile-login-btn i { font-size: 18px; color: var(--accent-blue); pointer-events: none !important; }
+        .profile-login-btn img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; pointer-events: none !important; }
 
-        /* HERO AREA */
-        .hero { display: flex; flex-direction: column; gap: 40px; padding: 50px 0; align-items: center; text-align: center; }
+        /* HERO SECTION WITH MOBILE ANTI-CLIPPING RESPONSIVE LOOK */
+        .hero { display: flex; flex-direction: column; gap: 40px; padding: 40px 0; align-items: center; text-align: center; }
         @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
         .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
         .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
         
-        h1 { font-size: clamp(28px, 4.5vw, 42px); font-weight: 800; margin-bottom: 20px; line-height: 1.25; overflow-wrap: break-word; }
+        /* SHIFTED HERO CONTENT SLIGHTLY TO THE RIGHT AS REQUESTED */
+        .hero-left-block { padding-left: 45px; width: 100%; text-align: left; }
+        @media (max-width: 768px) { .hero-left-block { padding-left: 0; text-align: center; } }
+
+        h1 { font-size: clamp(26px, 4.5vw, 42px); font-weight: 800; margin-bottom: 20px; line-height: 1.25; max-width: 100%; word-wrap: break-word; overflow-wrap: break-word; }
+        @media (max-width: 480px) { h1 { font-size: 26px; line-height: 1.3; } }
+        
         .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
         .hero-p { font-size: 14px; color: var(--text-gray); margin-bottom: 35px; max-width: 540px; line-height: 1.7; }
         
-        .image-wrapper { position: relative; width: 280px; height: 340px; z-index: 10; }
-        .photo-box { width: 100%; height: 100%; border-radius: 24px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
+        /* FIXED BUTTON GROUP RESPONSIVE WRAPPING LAYER TO PREVENT OVERFLOW CLIPPING */
+        .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; width: 100%; }
+        @media (min-width: 768px) { .btn-group { justify-content: flex-start; flex-wrap: nowrap; } }
+        .btn { position: relative; z-index: 50; display: inline-flex; align-items: center; gap: 9px; text-decoration: none; padding: 13px 25px; font-weight: 700; border-radius: 8px; font-size: 13px; transition: all 0.3s; text-transform: uppercase; border: none; cursor: pointer; white-space: nowrap; }
+        .btn-blue { background: var(--accent-blue); color: #05070c; box-shadow: 0 5px 15px var(--accent-glow); }
+        .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--accent-blue); }
+        .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
+        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
+
+        /* PHOTO BOX */
+        .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; z-index: 10; }
+        .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); background: #1a1a24; }
         .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-        /* GREEN CLIMATE STYLE MATRIX DASHBOARD GRID */
-        .section-title { font-size: 22px; font-weight: 800; margin: 60px 0 25px 0; display: flex; align-items: center; }
+        /* SECTIONS & CARDS */
+        .section-title { font-size: 22px; font-weight: 800; margin: 70px 0 30px 0; display: flex; align-items: center; }
         .section-title::before { content: ""; display: inline-block; width: 4px; height: 24px; background: var(--accent-blue); border-radius: 2px; margin-right: 12px; }
         
-        .dashboard-matrix-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-bottom: 40px; }
-        .matrix-node-card { background: linear-gradient(135deg, #0d1222 0%, #070913 100%); border: 1px solid rgba(56,189,248,0.1); border-radius: 20px; padding: 35px 25px; text-align: center; cursor: pointer; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; gap: 14px; box-shadow: 0 12px 30px rgba(0,0,0,0.3); }
-        .matrix-node-card:hover { border-color: var(--accent-blue); background: rgba(56,189,248,0.04); transform: translateY(-4px); box-shadow: 0 16px 35px rgba(56,189,248,0.15); }
-        .matrix-node-card i { font-size: 38px; color: var(--accent-blue); }
-        .matrix-node-card.card-premium i { color: #fbbf24; }
-        .matrix-node-card span { font-size: 16px; font-weight: 700; color: #ffffff; }
-
-        /* STANDARD CARD VIEWS FOR STATIC CONTAINER PANELS */
-        .display-container-panel { display: none; margin-top: 30px; }
         .card { background: var(--bg-card); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.03); margin-bottom: 20px; }
         .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
         .company { color: var(--text-white); font-size: 18px; }
@@ -79,96 +96,151 @@
         .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; }
 
-        /* SECURE POPUP HUB (ORIGINAL LOOK CONTROL) */
+        /* SKILLS GRID */
+        .skills-grid { display: grid; grid-template-columns: 1fr; gap: 40px; margin-top: 20px; }
+        @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
+        .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
+        .badge-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .skill-tag { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); padding: 15px; border-radius: 12px; font-size: 12px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+        .skill-icon-box { background: rgba(56, 189, 248, 0.06); width: 30px; height: 30px; border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); }
+        
+        .lang-item { margin-bottom: 20px; font-size: 12px; }
+        .bar { background: rgba(255,255,255,0.05); height: 6px; border-radius: 5px; margin-top: 8px; overflow: hidden; }
+        .fill { background: var(--accent-blue); height: 100%; border-radius: 5px; box-shadow: 0 0 10px var(--accent-blue); }
+
+        /* CONTACT SECTION */
+        .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; display: flex; flex-direction: column; overflow: hidden; margin-top: 30px; margin-bottom: 60px; }
+        @media (min-width: 768px) { .contact-box { flex-direction: row; } }
+        .contact-left { padding: 40px; flex: 1.2; }
+        .contact-row { display: flex; align-items: center; gap: 18px; margin-bottom: 25px; }
+        .icon-container { background: rgba(56, 189, 248, 0.05); border: 1px solid rgba(56, 189, 248, 0.1); width: 45px; height: 45px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; }
+        .label { font-size: 10px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
+        .value { font-size: 13px; font-weight: 700; margin-top: 4px; }
+        
+        .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 40px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; position: relative; z-index: 20; }
+        .real-earth-wrapper { width: 100px; height: 100px; background: var(--accent-blue); margin-bottom: 20px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 40px; color: #05070c; }
+        .loc-pill { position: relative; z-index: 50; display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 10px 20px; border-radius: 50px; font-size: 11px; font-weight: 700; color: var(--accent-blue); text-decoration: none; transition: 0.3s; cursor: pointer; }
+        .loc-pill:hover { background: rgba(56, 189, 248, 0.15); }
+        
+        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
+
+        /* --- STABLE ORIGINAL POPUP MODAL ARCHITECTURE --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(2, 4, 8, 0.84); backdrop-filter: blur(16px); 
+            background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
             z-index: 999999 !important; display: none; 
             justify-content: center; align-items: center; padding: 15px;
         }
         .auth-container { 
             background: #0c101d; border: 1px solid rgba(255, 255, 255, 0.06); 
-            border-radius: 24px; width: 100%; max-width: 425px; padding: 28px; 
-            box-shadow: 0 35px 70px rgba(0, 0, 0, 0.85); position: relative;
+            border-radius: 24px; width: 100%; max-width: 420px; padding: 26px; 
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8); position: relative;
         }
         .close-auth { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #64748b; font-size: 24px; cursor: pointer; }
         .close-auth:hover { color: #ef4444; }
         
-        .auth-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 22px; background: rgba(255,255,255,0.02); padding: 4px; border-radius: 10px; }
-        .auth-tab-btn { flex: 1; background: none; border: none; color: var(--text-gray); font-size: 13px; font-weight: 700; cursor: pointer; padding: 11px; border-radius: 8px; text-align: center; }
+        .auth-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; background: rgba(255,255,255,0.02); padding: 4px; border-radius: 10px; }
+        .auth-tab-btn { flex: 1; background: none; border: none; color: var(--text-gray); font-size: 13px; font-weight: 700; cursor: pointer; padding: 10px; border-radius: 8px; text-align: center; transition: all 0.2s; }
         .auth-tab-btn.active { color: #000; background: var(--accent-blue); font-weight: 800; }
         
         .tab-view { display: none; width: 100%; }
-        .input-group { position: relative; margin-bottom: 14px; width: 100%; }
-        .auth-input { width: 100%; padding: 14px 16px; background: #121724; border: 1px solid rgba(255,255,255,0.05); color: white; border-radius: 11px; font-size: 14px; outline: none; }
+        
+        .input-group { position: relative; margin-bottom: 12px; width: 100%; }
+        .auth-input { width: 100%; padding: 13px 15px; background: #121724; border: 1px solid rgba(255,255,255,0.05); color: white; border-radius: 10px; font-size: 14px; outline: none; transition: border-color 0.2s; }
         .auth-input:focus { border-color: var(--accent-blue); }
         
-        .input-inline-btn { position: absolute; right: 8px; top: 8px; background: rgba(56, 189, 248, 0.15); border: 1px solid rgba(56, 189, 248, 0.3); color: #38bdf8; padding: 6px 12px; border-radius: 6px; font-size: 11px; font-weight: 700; cursor: pointer; }
-        .verify-btn { background: rgba(74, 222, 128, 0.15); border-color: rgba(74, 222, 128, 0.3); color: #4ade80; }
-        .verification-badge { position: absolute; right: 12px; top: 15px; font-size: 12px; font-weight: bold; display: none; align-items: center; gap: 4px; }
+        .input-inline-btn { position: absolute; right: 10px; top: 10px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); color: #38bdf8; padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+        .input-inline-btn:hover { background: var(--accent-blue); color: #000; }
+        .verify-btn { background: rgba(74, 222, 128, 0.12); border-color: rgba(74, 222, 128, 0.25); color: #4ade80; }
+        .verification-badge { position: absolute; right: 14px; top: 16px; font-size: 13px; font-weight: bold; display: none; align-items: center; gap: 5px; }
+
+        .strength-container { width: 100%; margin-top: -8px; margin-bottom: 16px; display: none; }
+        .strength-bar-bg { background: #111624; height: 5px; border-radius: 3px; overflow: hidden; width: 100%; }
+        .strength-bar { height: 100%; width: 0%; transition: all 0.3s ease; }
+        .strength-text { font-size: 11px; display: block; text-align: right; margin-top: 5px; font-weight: 600; }
+
+        .otp-timer-block { display: none; justify-content: center; align-items: center; width: 100%; font-size: 12px; color: var(--text-gray); margin-top: -6px; margin-bottom: 16px; }
+        .resend-link { color: var(--accent-blue); font-weight: bold; cursor: pointer; display: none; }
+
+        .btn-auth { width: 100%; padding: 16px; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
+        .btn-auth:hover { transform: translateY(-1px); }
         
-        .btn-auth { width: 100%; padding: 15px; border-radius: 11px; font-size: 13px; font-weight: 700; cursor: pointer; border: none; text-transform: uppercase; }
-        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.04); padding: 12px; border-radius: 11px; font-size: 13px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 10px; margin-bottom: 8px; background: rgba(255,255,255,0.01); }
+        .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; }
+        .social-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); transform: translateY(-2px); }
         .btn-google i { color: #eb4335; } .btn-linkedin i { color: #0a66c2; }
+        
+        /* 2 MAIN DASHBOARD CARDS */
+        .twin-dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        .dashboard-main-card { background: linear-gradient(135deg, #131b2e 0%, #080d16 100%); border: 1px solid rgba(56,189,248,0.15); border-radius: 24px; padding: 45px 20px; text-align: center; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
+        .dashboard-main-card:hover { border-color: var(--accent-blue); background: linear-gradient(135deg, #18233c 0%, #0b1322 100%); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(56,189,248,0.25); }
+        .dashboard-main-card i { font-size: 44px; color: var(--accent-blue); text-shadow: 0 0 15px var(--accent-glow); }
+        .dashboard-main-card.card-ach i { color: #f59e0b; text-shadow: 0 0 15px rgba(245,158,11,0.3); }
+        .dashboard-main-card span { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
 
-        /* INNER FILE NODE VIEWS */
-        .vault-list-container { display: flex; flex-direction: column; gap: 10px; max-height: 280px; overflow-y: auto; }
-        .file-item-row { display: flex; align-items: center; justify-content: space-between; padding: 13px 16px; background: #121724; border: 1px solid rgba(255,255,255,0.03); border-radius: 12px; color: #cbd5e1; font-size: 13px; font-weight: 600; cursor: pointer; }
-        .file-item-row:hover { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.15); }
-        .file-item-row div { display: flex; align-items: center; gap: 10px; }
-        .file-item-row i { color: #ef4444; } .file-item-row i.fa-certificate { color: #fbbf24; }
+        /* INNER VAULT RENDERS */
+        .inner-vault-view { display: none; margin-top: 20px; }
+        .vault-header-back { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--accent-blue); cursor: pointer; margin-bottom: 22px; width: max-content; }
+        .vault-list-container { display: grid; grid-template-columns: 1fr; gap: 14px; max-height: 340px; overflow-y: auto; padding-right: 4px; }
+        @media (min-width: 768px) { .vault-list-container { grid-template-columns: 1fr 1fr; } }
+        
+        .file-item-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; background: #0c101d; border: 1px solid rgba(56,255,255,0.04); border-radius: 18px; color: #e2e8f0; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .file-item-row:hover { background: linear-gradient(90deg, rgba(56,189,248,0.08) 0%, rgba(12,16,29,1) 100%); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.3); transform: translateY(-1px); }
+        .file-item-row div { display: flex; align-items: center; gap: 14px; }
+        .file-item-row i { color: #ef4444; font-size: 18px; }
+        .file-item-row i.fa-certificate { color: #fbbf24; }
 
-        .admin-form-box { background: #111522; border: 1px solid rgba(245,158,11,0.15); padding: 18px; border-radius: 14px; text-align: center; }
-        .admin-form-box i { color: #f59e0b; font-size: 26px; margin-bottom: 8px; }
-        .admin-form-box p { font-size: 12px; color: var(--text-gray); margin-bottom: 14px; line-height: 1.5; }
-        .status-badge-pending { display: inline-block; background: rgba(245,158,11,0.1); border: 1px solid rgba(245,158,11,0.2); color: #f59e0b; padding: 12px; border-radius: 10px; font-size: 12px; font-weight: 700; width: 100%; text-align: center; text-transform: uppercase; }
-
-        .user-profile-card { display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); padding: 12px; border-radius: 12px; margin-bottom: 15px; }
-        .user-avatar-frame { width: 44px; height: 44px; border-radius: 50%; border: 2px solid var(--accent-blue); overflow: hidden; }
+        /* USER IDENTITY CARD */
+        .user-profile-card { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 18px; border-radius: 20px; margin-bottom: 25px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.02); }
+        .user-avatar-frame { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--accent-blue); overflow: hidden; box-shadow: 0 0 12px var(--accent-glow); }
         .user-avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
-        .user-meta-name { font-size: 14px; font-weight: 700; color: #ffffff; }
-        .user-meta-email { font-size: 11px; color: #64748b; }
-        .btn-logout-danger { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; padding: 11px; border-radius: 10px; width: 100%; font-size: 12px; font-weight: 700; cursor: pointer; margin-top: 15px; text-transform: uppercase; }
+        .user-meta-name { font-size: 17px; font-weight: 700; color: #ffffff; }
+        .user-meta-email { font-size: 13px; color: #64748b; margin-top: 2px; }
+        
+        .btn-logout-danger { background: rgba(239, 68, 68, 0.08); border: 1px solid rgba(239, 68, 68, 0.2); color: #ef4444; padding: 16px; border-radius: 14px; width: 100%; font-size: 13px; font-weight: 700; cursor: pointer; margin-top: 30px; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
+        .btn-logout-danger:hover { background: rgba(239, 68, 68, 0.15); border-color: #ef4444; }
 
-        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; }
+        .admin-form-box { background: #0c101d; border: 1px solid rgba(245,158,11,0.15); padding: 30px; border-radius: 20px; text-align: center; width: 100%; max-width: 500px; margin: 0 auto; }
+        .admin-form-box i { color: #f59e0b; font-size: 34px; margin-bottom: 14px; }
+        .admin-form-box p { font-size: 14px; color: var(--text-gray); margin-bottom: 22px; line-height: 1.6; }
+        
+        /* PREMIUM APPLIED STATUS FOR PENDING VIEW */
+        .status-badge-pending { display: block; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.22); color: #f59e0b; padding: 18px; border-radius: 16px; font-size: 15px; font-weight: 800 !important; letter-spacing: 0.5px; width: 100%; text-align: center; max-width: 540px; margin: 0 auto; box-shadow: 0 4px 20px rgba(245,158,11,0.06); text-transform: uppercase; }
         .status-box { display: none; text-align: center; padding: 8px; font-size: 12px; color: var(--accent-blue); }
     </style>
 </head>
 <body>
 
+    <!-- HEADER -->
     <header>
         <div class="container nav-container">
             <a href="#" class="logo">Suraj Singh <span>Jadon</span></a>
             <div class="right-menu">
-                <div class="menu-icon-trigger" onclick="openMenuHub()"><i class="fas fa-ellipsis-v"></i></div>
+                <div class="nav-links">
+                    <a href="#experience">Experience</a>
+                    <a href="#education">Education</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="profile-login-btn" id="header-profile-trigger">
+                    <i id="user-icon" class="fas fa-user"></i>
+                </div>
             </div>
         </div>
     </header>
 
-    <div id="menu-overlay">
-        <div class="close-menu-btn" onclick="closeMenuHub()">✕ Close Menu</div>
-        
-        <div id="gated-menu-nodes" class="hidden">
-            <a href="#experience" class="menu-item-link" onclick="handleMenuScroll('experience')">Professional Experience</a>
-            <a href="#education" class="menu-item-link" onclick="handleMenuScroll('education')">Academic Credentials</a>
-            <div class="menu-item-link" onclick="triggerCardView('achievements')">Vault Achievements</div>
-            <div class="menu-item-link" onclick="triggerCardView('documents')">Secure Gated Documents</div>
-            <div class="menu-item-link" style="color: #ef4444;" onclick="handleLogout()">Term loops / Log Out</div>
-        </div>
-
-        <div id="public-menu-node">
-            <div class="menu-item-link" style="color: var(--accent-blue);" onclick="openPanel()">Sign In / Secure Access Portal</div>
-        </div>
-    </div>
-
+    <!-- HERO SECTION -->
     <div class="container hero">
-        <div style="flex: 1;">
-            <div class="badge">
-                <div class="badge-dot" id="status-dot" style="background: #94a3b8; box-shadow: none;"></div> 
-                <span id="badge-text">Public Visitor Mode</span>
+        <div class="hero-left-block">
+            <div class="badge" id="auth-status-badge">
+                <div class="badge-dot" id="status-dot" style="background: #94a3b8; box-shadow: none;"></div> <span id="badge-text">Public Visitor Mode</span>
             </div>
             <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
             <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
+            
+            <div class="btn-group">
+                <a href="mailto:surajsinghrajput5040@gmail.com" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</a>
+                <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
+            </div>
         </div>
         <div>
             <div class="image-wrapper">
@@ -177,24 +249,14 @@
         </div>
     </div>
 
-    <div class="container hidden" id="live-dashboard-matrix">
-        <h2 class="section-title">Enterprise Station Console</h2>
-        <div class="dashboard-matrix-grid">
-            <div class="matrix-node-card card-premium" onclick="triggerCardView('achievements')">
-                <i class="fas fa-trophy"></i>
-                <span>Achievements Vault</span>
-            </div>
-            <div class="matrix-node-card" onclick="triggerCardView('documents')">
-                <i class="fas fa-folder-open"></i>
-                <span>Secure Gated Folders</span>
-            </div>
-        </div>
-    </div>
-
-    <div class="container display-container-panel" id="experience">
+    <!-- EXPERIENCE SECTION -->
+    <div class="container" id="experience">
         <h2 class="section-title">Professional Journey</h2>
         <div class="card">
-            <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
+            <div class="card-top">
+                <span class="company">Polyhose India Private Limited</span>
+                <span class="tag">Current • 1 Year</span>
+            </div>
             <div class="role">Invoice SAP Executive</div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
@@ -204,20 +266,92 @@
             <div class="role">Store Data Analysis Operations</div>
             <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
         </div>
+        <div class="card">
+            <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
+            <div class="role">Machine Operator</div>
+            <div class="desc-line"><i class="fas fa-check"></i> <span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
+        </div>
     </div>
 
-    <div class="container display-container-panel" id="education">
+    <!-- EDUCATION SECTION -->
+    <div class="container" id="education">
         <h2 class="section-title">Education Details</h2>
         <div class="card">
             <div class="card-top"><span class="company">Diploma in Computer Applications (DCA)</span><span class="tag">2023</span></div>
-            [span_0](start_span)<div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi National University • Technical Specialization[span_0](end_span)</div>
+            <div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
         </div>
         <div class="card">
-            <div class="card-top"><span class="company">12th Grade (Higher Secondary open Board)</span><span class="tag">2022</span></div>
-            [span_1](start_span)<div class="desc-line" style="margin-top: 10px;">Madhya Pradesh State Open School Board, Bhopal[span_1](end_span)</div>
+            <div class="card-top"><span class="company">12th Grade</span><span class="tag">2022</span></div>
+            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh State Open Board</div>
+        </div>
+        <div class="card">
+            <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
+            <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
         </div>
     </div>
 
+    <!-- SKILLS SECTION -->
+    <div class="container" id="skills">
+        <h2 class="section-title">Technical Expertise</h2>
+        <div class="skills-grid">
+            <div>
+                <div class="sub-title">DATA ANALYTICS EXPERTISE</div>
+                <div class="badge-grid">
+                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-database"></i></div> SAP Operations</div>
+                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-chart-line"></i></div> Advanced Excel</div>
+                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-file-word"></i></div> MS Office Suite</div>
+                    <div class="skill-tag"><div class="skill-icon-box"><i class="fas fa-bolt"></i></div> Data Analysis Speed</div>
+                </div>
+            </div>
+            <div style="padding-left: 10px;">
+                <div class="sub-title">COMMUNICATION SYSTEMS</div>
+                <div class="lang-item">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>Hindi (Native) - 100%</span></div>
+                    <div class="bar"><div class="fill" style="width: 100%;"></div></div>
+                </div>
+                <div class="lang-item">
+                    <div style="display:flex; justify-content:space-between; margin-bottom:5px;"><span>English (Professional) - 75%</span></div>
+                    <div class="bar"><div class="fill" style="width: 75%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <div class="container" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-box">
+            <div class="contact-left">
+                <div class="contact-row">
+                    <div class="icon-container"><i class="fas fa-envelope"></i></div>
+                    <div>
+                        <div class="label">Email Address</div>
+                        <div class="value">surajsinghrajput5040@gmail.com</div>
+                    </div>
+                </div>
+                <div class="contact-row">
+                    <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
+                    <div>
+                        <div class="label">Contact Number</div>
+                        <div class="value">+91 78795 95821</div>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-right">
+                <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
+                <a href="https://maps.google.com/?q=Nalchha+Road+Sagore+Pithampur+Dhar+Madhya+Pradesh" target="_blank" class="loc-pill">LOCATION: INDIA</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
+        </div>
+    </footer>
+
+    <!-- CENTRAL CONTROL MODAL OVERLAY -->
     <div id="auth-overlay">
         <div class="auth-container">
             <button type="button" class="close-auth" onclick="closePanel()">×</button>
@@ -227,163 +361,313 @@
                 <button type="button" id="tab-register" class="auth-tab-btn" onclick="switchAuthTab('register')">Sign Up</button>
             </div>
 
+            <!-- VIEW 1: SIGN IN PANELS -->
             <div id="view-login" class="tab-view">
-                <div class="input-group"><input type="email" id="login-email" class="auth-input" placeholder="Email Address"></div>
-                <div class="input-group"><input type="password" id="login-password" class="auth-input" placeholder="Password"></div>
-                <button type="button" class="btn-auth" style="background: var(--accent-blue); color: #000;" onclick="handleLoginSubmit()">LOG IN</button>
-                <div class="divider" style="color: #64748b; font-size: 11px; margin: 16px 0; text-align: center;">OR SIGN IN WITH</div>
-                <button type="button" class="social-btn" onclick="handleGoogleLogin()"><i class="fab fa-google"></i> Continue with Google</button>
-                <button type="button" class="social-btn" onclick="handleLinkedInLogin()"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
+                <div class="auth-split-grid">
+                    <div>
+                        <div class="input-group">
+                            <input type="email" id="login-email" class="auth-input" placeholder="Email Address">
+                        </div>
+                        <div class="input-group">
+                            <input type="password" id="login-password" class="auth-input" placeholder="Password">
+                        </div>
+                        <button type="button" id="btn-login-submit" class="btn-auth" style="background-color: var(--accent-blue); color: #000;" onclick="handleLoginSubmit()">LOG IN</button>
+                        <div style="text-align: right; margin-top: 12px;">
+                            <span style="color: var(--accent-blue); font-size: 13px; font-weight: bold; cursor: pointer;" onclick="switchAuthTab('forgot')">Forgot Password?</span>
+                        </div>
+                    </div>
+                    <div class="social-grid-panel">
+                        <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 8px; letter-spacing: 0.5px;">OR SIGN IN WITH</div>
+                        <button type="button" class="social-btn" onclick="handleGoogleLogin()"><i class="fab fa-google"></i> Continue with Google</button>
+                        <button type="button" class="social-btn" onclick="handleLinkedInLogin()"><i class="fab fa-linkedin-in"></i> Continue with LinkedIn</button>
+                    </div>
+                </div>
             </div>
 
+            <!-- VIEW 2: SIGN UP PANELS -->
             <div id="view-register" class="tab-view">
-                <div class="input-group"><input type="text" id="reg-fullname" class="auth-input" placeholder="Full Name"></div>
+                <div class="input-group">
+                    <input type="text" id="reg-fullname" class="auth-input" placeholder="Full Name">
+                </div>
                 <div class="input-group">
                     <input type="email" id="reg-email" class="auth-input" style="padding-right: 90px;" placeholder="Email Address">
                     <button type="button" id="btn-get-otp-reg" class="input-inline-btn" onclick="handleSendOTP('reg')">Get OTP</button>
                 </div>
+                
+                <!-- TIMER BLOCK REG -->
+                <div class="otp-timer-block" id="otp-timer-block-reg" style="display: none;">
+                    <span id="timer-display-reg" style="color: var(--text-gray);">Resend in: 60s</span>
+                    <span id="resend-link-btn-reg" class="resend-link" onclick="handleSendOTP('reg')">Resend OTP</span>
+                </div>
+
                 <div class="input-group">
                     <input type="text" id="otp-code-reg" class="auth-input" style="padding-right: 95px;" placeholder="6-Digit OTP Code">
                     <button type="button" id="btn-verify-otp-reg" class="input-inline-btn verify-btn" onclick="handleVerifyOTP('reg')">Verify</button>
-                    <span id="badge-verified-reg" class="verification-badge" style="color:#4ade80;"><i class="fas fa-check-circle"></i> Verified</span>
+                    <span id="badge-verified-reg" class="verification-badge" style="color: #4ade80;"><i class="fas fa-check-circle"></i> Verified</span>
                 </div>
-                <div class="input-group" style="margin-top:10px;"><input type="password" id="reg-password" class="auth-input" placeholder="Create Password"></div>
-                <div class="input-group"><input type="password" id="reg-confirm-password" class="auth-input" placeholder="Confirm Password"></div>
-                <button type="button" class="btn-auth" style="background:#4ade80; color:#000;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
+
+                <div class="input-group" style="margin-top: 15px;">
+                    <input type="password" id="reg-password" class="auth-input" placeholder="Create Password">
+                </div>
+                
+                <div class="strength-container" id="strength-container-reg">
+                    <div class="strength-bar-bg"><div id="strength-bar-reg" class="strength-bar"></div></div>
+                    <span id="strength-text-reg" class="strength-text">Password Strength</span>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="reg-confirm-password" class="auth-input" placeholder="Confirm Password">
+                </div>
+
+                <button type="button" id="btn-submit-request" class="btn-auth" style="background-color: #4ade80; color: #000; margin-top: 5px;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
             </div>
 
+            <!-- VIEW 4: FORGOT PASSWORD TAB SYSTEM -->
+            <div id="view-forgot" class="tab-view">
+                <h3 style="font-size: 16px; font-weight: bold; color: var(--accent-blue); margin-bottom: 15px; text-align: center;"><i class="fas fa-key"></i> Reset Password</h3>
+                
+                <div class="input-group">
+                    <input type="email" id="forgot-email" class="auth-input" style="padding-right: 90px;" placeholder="Enter Your Email ID">
+                    <button type="button" id="btn-get-otp-forgot" class="input-inline-btn" onclick="handleSendOTP('forgot')">Get OTP</button>
+                </div>
+
+                <!-- TIMER BLOCK FORGOT -->
+                <div class="otp-timer-block" id="otp-timer-block-forgot" style="display: none;">
+                    <span id="timer-display-forgot" style="color: var(--text-gray);">Resend in: 60s</span>
+                    <span id="resend-link-btn-forgot" class="resend-link" onclick="handleSendOTP('forgot')">Resend OTP</span>
+                </div>
+
+                <div class="input-group">
+                    <input type="text" id="otp-code-forgot" class="auth-input" style="padding-right: 95px;" placeholder="6-Digit OTP Token">
+                    <button type="button" id="btn-verify-otp-forgot" class="input-inline-btn verify-btn" onclick="handleVerifyOTP('forgot')">Verify</button>
+                    <span id="badge-verified-forgot" class="verification-badge" style="color: #4ade80;"><i class="fas fa-check-circle"></i> Verified</span>
+                </div>
+
+                <div class="input-group" style="margin-top: 15px;">
+                    <input type="password" id="forgot-password" class="auth-input" placeholder="New Password">
+                </div>
+
+                <div class="strength-container" id="strength-container-forgot">
+                    <div class="strength-bar-bg"><div id="strength-bar-forgot" class="strength-bar"></div></div>
+                    <span id="strength-text-forgot" class="strength-text">Password Strength</span>
+                </div>
+
+                <div class="input-group">
+                    <input type="password" id="forgot-confirm-password" class="auth-input" placeholder="Confirm New Password">
+                </div>
+
+                <button type="button" class="btn-auth" style="background-color: var(--accent-blue); color: #000; margin-top: 5px;" onclick="handleResetPasswordSubmit()">CHANGE PASSWORD</button>
+                
+                <div style="text-align: center; margin-top: 15px;">
+                    <span style="color: #64748b; font-size: 12px; cursor: pointer; font-weight: bold;" onclick="switchAuthTab('login')"><i class="fas fa-arrow-left"></i> Back to Login</span>
+                </div>
+            </div>
+
+            <!-- VIEW 3: SECURE DASHBOARD VIEW -->
             <div id="view-dashboard" class="tab-view">
                 <div class="user-profile-card">
-                    <div class="user-avatar-frame"><img id="dash-live-avatar" src="" alt="Avatar"></div>
-                    <div>
-                        <div id="dash-live-name" class="user-meta-name">User Name</div>
-                        <div id="dash-live-email" class="user-meta-email">User Email</div>
+                    <div class="user-avatar-frame">
+                        <img id="dash-live-avatar" src="" alt="Avatar">
+                    </div>
+                    <div class="user-meta-info">
+                        <span id="dash-live-name" class="user-meta-name">User Name</span>
+                        <span id="dash-live-email" class="user-meta-email">User Email</span>
                     </div>
                 </div>
 
-                <div id="sec-vault-achievements" style="display: none;">
-                    <h3 style="font-size:14px; margin-bottom:12px; color:var(--accent-blue);"><i class="fas fa-medal"></i> Achievements Vault</h3>
+                <h3 style="font-size: 14px; font-weight: 700; color: var(--accent-blue); margin-bottom: 10px;"><i class="fas fa-shield-alt"></i> Gated Enterprise Station</h3>
+                
+                <!-- MAIN OPTIONS HUB -->
+                <div id="dashboard-root-options" style="display: block;">
+                    <div class="twin-dashboard-grid">
+                        <div class="dashboard-main-card card-ach" onclick="showVaultSection('achievements')">
+                            <i class="fas fa-award"></i>
+                            <span>Achievements</span>
+                        </div>
+                        <div class="dashboard-main-card" onclick="handleDocumentAccessGate()">
+                            <i class="fas fa-file-invoice"></i>
+                            <span>Documents</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-logout-danger" onclick="handleLogout()">Log Out</button>
+                </div>
+
+                <!-- SUB ROOT A: ACHIEVEMENTS SUITE VIEW (404 STRICTLY RE-ROUTED) -->
+                <div id="sec-vault-achievements" class="inner-vault-view">
+                    <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Portal</div>
                     <div class="vault-list-container">
-                        [span_2](start_span)<div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt"></i></div>[span_2](end_span)
-                        [span_3](start_span)<div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>[span_3](end_span)
-                        [span_4](start_span)<div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>[span_4](end_span)
-                        [span_5](start_span)<div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt"></i></div>[span_5](end_span)
-                        <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt"></i></div>
-                        [span_6](start_span)<div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt"></i></div>[span_6](end_span)
+                        <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        <!-- FIXED: LINK MAPPED TO EXACT NAME 'Introduction_to_Generative_AI_Studio.pdf' AS RECORDED ON REPO -->
+                        <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                     </div>
                 </div>
 
-                <div id="sec-vault-documents" style="display: none;">
-                    <h3 style="font-size:14px; margin-bottom:12px; color:var(--accent-blue);"><i class="fas fa-lock"></i> Gated Documents</h3>
+                <!-- SUB ROOT B: REAL DOCUMENTS SECURE GATED VIEW -->
+                <div id="sec-vault-documents" class="inner-vault-view">
+                    <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
                     
+                    <!-- REQUEST GATED FORM VIEW -->
                     <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
-                        <i class="fas fa-shield-alt"></i>
-                        <p>This node contains system logs and credentials. Submit verification to initialize data download tunnels.</p>
-                        <button type="button" class="btn-auth" style="background:#fbbf24; color:#000;" onclick="handleSubmitAdminRequest()">Request System Clearance</button>
+                        <i class="fas fa-lock"></i>
+                        <h4 style="font-size:14px; margin-bottom:5px; color:#fff;">Clearance Status Required</h4>
+                        <p style="font-size:12px; color:var(--text-gray); line-height:1.5; margin-bottom:12px;">This node contains encrypted system logs and identity marksheets. Request validation to pull files from secure nodes.</p>
+                        <button type="button" class="btn-auth" style="background:#fbbf24; color:#000;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
                     </div>
 
+                    <!-- PENDING APP STATE VIEW -->
                     <div id="doc-gate-pending-view" style="display:none;">
-                        <div class="status-badge-pending"><i class="fas fa-user-shield"></i> Request Send Pending For Approval</div>
+                        <div class="status-badge-pending">
+                            <i class="fas fa-user-shield"></i> Request Send Pending For Approval
+                        </div>
+                        <p style="font-size:12px; color:var(--text-gray); text-align:center; margin-top:14px; line-height:1.6;">Your node access is currently in the verification queue. Upon confirmation, data loops will initialize automatically in real-time.</p>
                     </div>
 
+                    <!-- ALLOWED CORE ARCHIVES LIST VIEW -->
                     <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
-                        [span_7](start_span)<div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download"></i></div>[span_7](end_span)
-                        [span_8](start_span)<div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Sem Marksheet</div><i class="fas fa-download"></i></div>[span_8](end_span)
-                        [span_9](start_span)<div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Sem Marksheet</div><i class="fas fa-download"></i></div>[span_9](end_span)
-                        [span_10](start_span)<div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th open Marksheet</div><i class="fas fa-download"></i></div>[span_10](end_span)
-                        [span_11](start_span)<div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Board Marksheet</div><i class="fas fa-download"></i></div>[span_11](end_span)
+                        <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
+                        <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt" style="color:#38bdf8;"></i> Professional Resume</div><i class="fas fa-download" style="color:#64748b; font-size:11px;"></i></div>
                     </div>
                 </div>
 
             </div>
+
             <div class="status-box" id="status-display"></div>
         </div>
     </div>
 
-    <footer><p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Hamburger Grid Framework.</p></footer>
-
+    <!-- JAVASCRIPT MASTER AUTHENTICATION INFRASTRUCTURE -->
     <script>
-        const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co";
+        const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
-        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
         let currentActiveSession = null;
         let isEmailVerified = false;
-        let activeTab = 'login';
-        let approvalPollingInterval = null;
+        let countdownInterval = null;
+        let blockAutoDashboard = false;
+        let activeTab = 'login'; 
+        let realtimeChannel = null; 
+        let approvalPollingInterval = null; 
+        const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        function openMenuHub() { document.getElementById('menu-overlay').style.right = '0px'; }
-        function closeMenuHub() { document.getElementById('menu-overlay').style.right = '-320px'; }
-
-        function handleMenuScroll(id) {
-            closeMenuHub();
-            document.getElementById('experience').style.display = 'block';
-            document.getElementById('education').style.display = 'block';
-            setTimeout(() => { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }, 150);
-        }
-
-        window.openPanel = function() { openPanel(); };
-        function openPanel() {
-            closeMenuHub();
+        window.openPanel = function() {
             document.getElementById('auth-overlay').style.display = 'flex';
-        }
-        function closePanel() {
+        };
+        window.closePanel = function() {
             document.getElementById('auth-overlay').style.display = 'none';
+            clearInterval(approvalPollingInterval);
+        };
+
+        document.getElementById('header-profile-trigger').addEventListener('click', window.openPanel);
+        document.getElementById('header-profile-trigger').addEventListener('touchstart', window.openPanel, {passive: true});
+
+        function showVaultSection(sectionKey) {
+            document.getElementById('dashboard-root-options').style.display = "none";
+            if(sectionKey === 'achievements') {
+                document.getElementById('sec-vault-achievements').style.display = "block";
+            }
+        }
+
+        function returnToRootDashboard() {
+            document.getElementById('sec-vault-achievements').style.display = "none";
+            document.getElementById('sec-vault-documents').style.display = "none";
+            document.getElementById('dashboard-root-options').style.display = "block";
             clearInterval(approvalPollingInterval);
         }
 
-        function triggerCardView(node) {
-            closeMenuHub();
-            openPanel();
-            document.getElementById('view-login').style.display = 'none';
-            document.getElementById('view-register').style.display = 'none';
-            document.getElementById('view-dashboard').style.display = 'block';
-            document.getElementById('sec-vault-achievements').style.display = (node === 'achievements') ? 'block' : 'none';
-            document.getElementById('sec-vault-documents').style.display = (node === 'documents') ? 'block' : 'none';
-            if(node === 'documents') handleDocumentAccessGate();
-        }
-
-        function switchAuthTab(type) {
-            activeTab = type;
-            syncAuthUI();
-        }
-
-        async function updateDocumentUIStatus(status) {
+        function updateDocumentUIStatus(status) {
             document.getElementById('doc-gate-form-view').style.display = "none";
             document.getElementById('doc-gate-pending-view').style.display = "none";
             document.getElementById('doc-gate-allowed-view').style.display = "none";
-            if (status === 'approved') document.getElementById('doc-gate-allowed-view').style.display = "block";
-            else if (status === 'pending') document.getElementById('doc-gate-pending-view').style.display = "block";
-            else document.getElementById('doc-gate-form-view').style.display = "block";
+
+            if (status === 'approved') {
+                document.getElementById('doc-gate-allowed-view').style.display = "block";
+            } else if (status === 'pending') {
+                document.getElementById('doc-gate-pending-view').style.display = "block";
+            } else {
+                document.getElementById('doc-gate-form-view').style.display = "block";
+                clearInterval(approvalPollingInterval);
+            }
         }
 
         async function handleDocumentAccessGate() {
             if(!currentActiveSession) return;
             const user = currentActiveSession.user;
+
+            document.getElementById('dashboard-root-options').style.display = "none";
+            document.getElementById('sec-vault-documents').style.display = "block";
+
             const { data: record } = await _supabase.from('document_requests').select('status').eq('email', user.email).maybeSingle();
-            updateDocumentUIStatus(record ? record.status : 'none');
+            const currentStatus = record ? record.status : 'none';
+            updateDocumentUIStatus(currentStatus);
+
+            startHybridApprovalSync(user.email);
+        }
+
+        function startHybridApprovalSync(email) {
             clearInterval(approvalPollingInterval);
+            
             approvalPollingInterval = setInterval(async () => {
-                const { data: live } = await _supabase.from('document_requests').select('status').eq('email', user.email).maybeSingle();
-                updateDocumentUIStatus(live ? live.status : 'none');
-            }, 2500);
+                if (document.getElementById('auth-overlay').style.display === "flex" && 
+                    document.getElementById('sec-vault-documents').style.display === "block") {
+                    
+                    const { data: record } = await _supabase.from('document_requests').select('status').eq('email', email).maybeSingle();
+                    const liveStatus = record ? record.status : 'none';
+                    updateDocumentUIStatus(liveStatus);
+                } else {
+                    clearInterval(approvalPollingInterval);
+                }
+            }, 2000); 
+        }
+
+        function subscribeToRealtimeDatabase(email) {
+            if (realtimeChannel) _supabase.removeChannel(realtimeChannel);
+
+            realtimeChannel = _supabase
+                .channel('realtime-global-sync')
+                .on('postgres_changes', { 
+                    event: '*', 
+                    schema: 'public', 
+                    table: 'document_requests'
+                }, (payload) => {
+                    const newDoc = payload.new;
+                    if (newDoc && newDoc.email && newDoc.email.toLowerCase() === email.toLowerCase()) {
+                        if (document.getElementById('auth-overlay').style.display === "flex" && document.getElementById('sec-vault-documents').style.display === "block") {
+                            updateDocumentUIStatus(newDoc.status);
+                        }
+                    }
+                })
+                .subscribe();
         }
 
         window.handleSubmitAdminRequest = async function() {
             if(!currentActiveSession) return;
             const user = currentActiveSession.user;
-            await _supabase.from('document_requests').insert([{ name: user.email.split('@')[0].toUpperCase(), email: user.email, status: 'pending' }]);
+            const meta = user.user_metadata || {};
+            const nameValue = meta.full_name || meta.name || user.email.split('@')[0].toUpperCase();
+
+            await _supabase.from('document_requests').insert([{ name: nameValue, email: user.email, status: 'pending' }]);
             handleDocumentAccessGate();
         };
 
-        function requestSecureFile(file) {
-            window.open(file, '_blank');
+        function requestSecureFile(fileName) {
+            if (!currentActiveSession) { alert("Access Failure: Missing parameters."); return; }
+            window.open(fileName, '_blank');
         }
 
         function syncAuthUI() {
             document.getElementById('modal-tabs-header').style.display = "none";
             document.getElementById('view-login').style.display = "none";
             document.getElementById('view-register').style.display = "none";
+            document.getElementById('view-forgot').style.display = "none";
             document.getElementById('view-dashboard').style.display = "none";
 
             if (currentActiveSession) {
@@ -391,35 +675,54 @@
                 document.getElementById('status-dot').style.boxShadow = "0 0 10px #4ade80";
                 document.getElementById('badge-text').innerText = "Secure Authorized Mode";
                 
-                document.getElementById('gated-menu-nodes').classList.remove('hidden');
-                document.getElementById('public-menu-node').classList.add('hidden');
-                document.getElementById('live-dashboard-matrix').classList.remove('hidden');
-                document.getElementById('experience').style.display = 'block';
-                document.getElementById('education').style.display = 'block';
-
                 const user = currentActiveSession.user;
                 const meta = user.user_metadata || {};
-                document.getElementById('dash-live-avatar').src = meta.picture || "https://cdn-icons-png.flaticon.com/512/149/149071.png";
-                document.getElementById('dash-live-name').innerText = meta.full_name || user.email.split('@')[0].toUpperCase();
+                const provider = user.app_metadata?.provider || '';
+                
+                let realName = "User Account";
+                let realAvatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+                if (provider === 'google' || meta.full_name || meta.picture) {
+                    realName = meta.full_name || meta.name;
+                    realAvatar = meta.picture || meta.avatar_url;
+                } else if (provider === 'linkedin' || provider === 'linkedin_oidc') {
+                    realName = meta.name || meta.preferred_username;
+                    realAvatar = meta.picture || meta.avatar_url;
+                }
+
+                if(!realName || realName === "undefined") realName = user.email.split('@')[0].toUpperCase();
+                if(!realAvatar || realAvatar === "undefined") realAvatar = "https://cdn-icons-png.flaticon.com/512/149/149071.png";
+
+                const headerBtn = document.getElementById('header-profile-trigger');
+                if (headerBtn) headerBtn.innerHTML = `<img src="${realAvatar}" alt="Profile">`;
+                
+                document.getElementById('dash-live-avatar').src = realAvatar;
+                document.getElementById('dash-live-name').innerText = realName;
                 document.getElementById('dash-live-email').innerText = user.email;
+
+                subscribeToRealtimeDatabase(user.email);
                 document.getElementById('view-dashboard').style.display = "block";
             } else {
                 document.getElementById('status-dot').style.background = "#94a3b8";
                 document.getElementById('status-dot').style.boxShadow = "none";
                 document.getElementById('badge-text').innerText = "Public Visitor Mode";
                 
-                document.getElementById('gated-menu-nodes').classList.add('hidden');
-                document.getElementById('public-menu-node').classList.remove('hidden');
-                document.getElementById('live-dashboard-matrix').classList.add('hidden');
-                document.getElementById('experience').style.display = 'none';
-                document.getElementById('education').style.display = 'none';
+                const headerBtn = document.getElementById('header-profile-trigger');
+                if (headerBtn) headerBtn.innerHTML = `<i id="user-icon" class="fas fa-user"></i>`;
                 
-                document.getElementById('modal-tabs-header').style.display = "flex";
+                if (realtimeChannel) { _supabase.removeChannel(realtimeChannel); realtimeChannel = null; }
+                clearInterval(approvalPollingInterval);
+                returnToRootDashboard();
+                
                 if (activeTab === 'register') {
+                    document.getElementById('modal-tabs-header').style.display = "flex";
                     document.getElementById('tab-register').classList.add('active');
                     document.getElementById('tab-login').classList.remove('active');
                     document.getElementById('view-register').style.display = "block";
+                } else if (activeTab === 'forgot') {
+                    document.getElementById('view-forgot').style.display = "block";
                 } else {
+                    document.getElementById('modal-tabs-header').style.display = "flex";
                     document.getElementById('tab-login').classList.add('active');
                     document.getElementById('tab-register').classList.remove('active');
                     document.getElementById('view-login').style.display = "block";
@@ -428,58 +731,42 @@
         }
 
         _supabase.auth.getSession().then(({ data }) => {
-            currentActiveSession = data.session;
-            syncAuthUI();
+            if (data.session) {
+                currentActiveSession = data.session;
+                if (!blockAutoDashboard) syncAuthUI();
+            } else {
+                syncAuthUI();
+            }
         });
 
         _supabase.auth.onAuthStateChange((event, session) => {
-            currentActiveSession = session;
-            syncAuthUI();
+            if (session) {
+                currentActiveSession = session;
+                if (!blockAutoDashboard) syncAuthUI();
+            } else {
+                currentActiveSession = null;
+                syncAuthUI();
+            }
         });
 
         window.handleLogout = async function() {
+            clearInterval(approvalPollingInterval);
             await _supabase.auth.signOut();
+            localStorage.clear();
+            sessionStorage.clear();
             currentActiveSession = null;
             syncAuthUI();
             closePanel();
         };
 
-        window.handleGoogleLogin = function() { _supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: 'https://surajsinghjadon.github.io/Portfolio/' } }); };
-        window.handleLinkedInLogin = function() { _supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc', options: { redirectTo: 'https://surajsinghjadon.github.io/Portfolio/' } }); };
-
-        window.handleSendOTP = async function(type) {
-            const email = document.getElementById('reg-email').value.trim();
-            if (!email) return alert("Enter email first!");
-            const { error } = await _supabase.auth.signInWithOtp({ email });
-            if (error) alert(error.message);
-            else alert("OTP Sent!");
+        window.handleGoogleLogin = function() {
+            blockAutoDashboard = false;
+            _supabase.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: redirectLink } });
         };
 
-        window.handleVerifyOTP = async function(type) {
-            const email = document.getElementById('reg-email').value.trim();
-            const token = document.getElementById('otp-code-reg').value.trim();
-            const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
-            if (error) alert("Verification failed.");
-            else {
-                isEmailVerified = true;
-                document.getElementById('btn-verify-otp-reg').style.display = "none";
-                document.getElementById('badge-verified-reg').style.display = "inline-flex";
-            }
-        };
-
-        window.handleFinalRegister = async function() {
-            const email = document.getElementById('reg-email').value.trim();
-            const password = document.getElementById('reg-password').value;
-            if(!isEmailVerified) return alert("Verify Email via OTP loop first.");
-            await _supabase.auth.updateUser({ password: password });
-            switchAuthTab('login');
-        };
-
-        window.handleLoginSubmit = async function() {
-            const email = document.getElementById('login-email').value.trim();
-            const password = document.getElementById('login-password').value;
-            const { error } = await _supabase.auth.signInWithPassword({ email, password });
-            if (error) alert(error.message);
+        window.handleLinkedInLogin = function() {
+            blockAutoDashboard = false;
+            _supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc', options: { redirectTo: redirectLink } });
         };
     </script>
 </body>
