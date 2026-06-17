@@ -124,30 +124,36 @@
         
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 40px; }
 
-        /* --- STABLE ORIGINAL POPUP MODAL ARCHITECTURE --- */
+        /* --- THE LUXURY GRAND EXECUTIVE CONSOLE INTERFLOW MODAL LOCKED --- */
         #auth-overlay { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            background: rgba(2, 4, 8, 0.8); backdrop-filter: blur(14px); 
+            background: rgba(3, 5, 10, 0.88); backdrop-filter: blur(24px); 
             z-index: 999999 !important; display: none; 
             justify-content: center; align-items: center; padding: 15px;
         }
         .auth-container { 
-            background: #0c101d; border: 1px solid rgba(255, 255, 255, 0.06); 
-            border-radius: 24px; width: 100%; max-width: 420px; padding: 26px; 
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8); position: relative;
+            background: linear-gradient(145deg, #0e1426 0%, #050811 100%); 
+            border: 1px solid rgba(56, 189, 248, 0.22); 
+            border-radius: 32px; width: 100%; max-width: 680px; padding: 45px 35px; 
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.95), inset 0 1px 2px rgba(255, 255, 255, 0.06); 
+            position: relative;
         }
-        .close-auth { position: absolute; top: 20px; right: 20px; background: none; border: none; color: #64748b; font-size: 24px; cursor: pointer; }
+        .close-auth { position: absolute; top: 25px; right: 25px; background: none; border: none; color: #475569; font-size: 28px; cursor: pointer; transition: color 0.2s; }
         .close-auth:hover { color: #ef4444; }
         
-        .auth-tabs { display: flex; justify-content: center; gap: 10px; margin-bottom: 20px; background: rgba(255,255,255,0.02); padding: 4px; border-radius: 10px; }
-        .auth-tab-btn { flex: 1; background: none; border: none; color: var(--text-gray); font-size: 13px; font-weight: 700; cursor: pointer; padding: 10px; border-radius: 8px; text-align: center; transition: all 0.2s; }
-        .auth-tab-btn.active { color: #000; background: var(--accent-blue); font-weight: 800; }
+        .auth-tabs { display: flex; justify-content: center; gap: 12px; margin-bottom: 30px; background: rgba(255,255,255,0.02); padding: 6px; border-radius: 14px; max-width: 320px; margin-left: auto; margin-right: auto; }
+        .auth-tab-btn { flex: 1; background: none; border: none; color: var(--text-gray); font-size: 14px; font-weight: 700; cursor: pointer; padding: 11px; border-radius: 10px; text-align: center; transition: all 0.2s; }
+        .auth-tab-btn.active { color: #05070c; background: var(--accent-blue); font-weight: 800; box-shadow: 0 4px 15px var(--accent-glow); }
         
         .tab-view { display: none; width: 100%; }
         
-        .input-group { position: relative; margin-bottom: 12px; width: 100%; }
-        .auth-input { width: 100%; padding: 13px 15px; background: #121724; border: 1px solid rgba(255,255,255,0.05); color: white; border-radius: 10px; font-size: 14px; outline: none; transition: border-color 0.2s; }
-        .auth-input:focus { border-color: var(--accent-blue); }
+        /* TWO-COLUMN LAYOUT DISTRIBUTION FOR LOGIN HUB RESTORED */
+        .auth-split-grid { display: grid; grid-template-columns: 1fr; gap: 25px; align-items: start; }
+        @media (min-width: 768px) { .auth-split-grid { grid-template-columns: 1.1fr 0.9fr; } }
+        
+        .input-group { position: relative; margin-bottom: 16px; width: 100%; }
+        .auth-input { width: 100%; padding: 15px 18px; background: #0c101d; border: 1px solid rgba(255,255,255,0.06); color: white; border-radius: 14px; font-size: 14px; outline: none; transition: border-color 0.2s; }
+        .auth-input:focus { border-color: var(--accent-blue); box-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
         
         .input-inline-btn { position: absolute; right: 10px; top: 10px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); color: #38bdf8; padding: 8px 16px; border-radius: 10px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.2s; }
         .input-inline-btn:hover { background: var(--accent-blue); color: #000; }
@@ -165,31 +171,33 @@
         .btn-auth { width: 100%; padding: 16px; border-radius: 14px; font-size: 14px; font-weight: 700; cursor: pointer; border: none; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; }
         .btn-auth:hover { transform: translateY(-1px); }
         
+        .social-grid-panel { display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.01); padding: 20px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.03); }
         .social-btn { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 14px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; }
-        .social-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); transform: translateY(-2px); }
+        .social-btn:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.4); }
         .btn-google i { color: #eb4335; } .btn-linkedin i { color: #0a66c2; }
         
-        /* 2 MAIN DASHBOARD CARDS */
-        .twin-dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 15px; }
+        /* TWO HORIZONTAL EXPANSIVE HUBSTATIONS CARDS */
+        .twin-dashboard-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 20px; }
+        @media (min-width: 500px) { .twin-dashboard-grid { grid-template-columns: 1fr 1fr; } }
         .dashboard-main-card { background: linear-gradient(135deg, #131b2e 0%, #080d16 100%); border: 1px solid rgba(56,189,248,0.15); border-radius: 24px; padding: 45px 20px; text-align: center; cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column; align-items: center; gap: 16px; box-shadow: 0 15px 35px rgba(0,0,0,0.4); }
         .dashboard-main-card:hover { border-color: var(--accent-blue); background: linear-gradient(135deg, #18233c 0%, #0b1322 100%); transform: translateY(-5px); box-shadow: 0 20px 40px rgba(56,189,248,0.25); }
         .dashboard-main-card i { font-size: 44px; color: var(--accent-blue); text-shadow: 0 0 15px var(--accent-glow); }
         .dashboard-main-card.card-ach i { color: #f59e0b; text-shadow: 0 0 15px rgba(245,158,11,0.3); }
         .dashboard-main-card span { font-size: 17px; font-weight: 700; color: #ffffff; letter-spacing: 0.5px; }
 
-        /* INNER VAULT RENDERS */
+        /* BROAD EMBEDDED REPO CONTAINER CHIPS */
         .inner-vault-view { display: none; margin-top: 20px; }
         .vault-header-back { display: flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: var(--accent-blue); cursor: pointer; margin-bottom: 22px; width: max-content; }
         .vault-list-container { display: grid; grid-template-columns: 1fr; gap: 14px; max-height: 340px; overflow-y: auto; padding-right: 4px; }
         @media (min-width: 768px) { .vault-list-container { grid-template-columns: 1fr 1fr; } }
         
-        .file-item-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; background: #0c101d; border: 1px solid rgba(56,255,255,0.04); border-radius: 18px; color: #e2e8f0; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
+        .file-item-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; background: #0c101d; border: 1px solid rgba(255,255,255,0.04); border-radius: 18px; color: #e2e8f0; font-size: 14px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 10px rgba(0,0,0,0.15); }
         .file-item-row:hover { background: linear-gradient(90deg, rgba(56,189,248,0.08) 0%, rgba(12,16,29,1) 100%); color: var(--accent-blue); border-color: rgba(56, 189, 248, 0.3); transform: translateY(-1px); }
         .file-item-row div { display: flex; align-items: center; gap: 14px; }
         .file-item-row i { color: #ef4444; font-size: 18px; }
         .file-item-row i.fa-certificate { color: #fbbf24; }
 
-        /* USER IDENTITY CARD */
+        /* SECURITY CONSOLE HEADER PACK */
         .user-profile-card { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 18px; border-radius: 20px; margin-bottom: 25px; box-shadow: inset 0 1px 1px rgba(255,255,255,0.02); }
         .user-avatar-frame { width: 52px; height: 52px; border-radius: 50%; border: 2px solid var(--accent-blue); overflow: hidden; box-shadow: 0 0 12px var(--accent-glow); }
         .user-avatar-frame img { width: 100%; height: 100%; object-fit: cover; }
@@ -203,7 +211,7 @@
         .admin-form-box i { color: #f59e0b; font-size: 34px; margin-bottom: 14px; }
         .admin-form-box p { font-size: 14px; color: var(--text-gray); margin-bottom: 22px; line-height: 1.6; }
         
-        /* PREMIUM APPLIED STATUS FOR PENDING VIEW */
+        /* PREMIUM HIGHER GRADE BOLD FORWARD TEXT METERS WITHOUT TAGS */
         .status-badge-pending { display: block; background: rgba(245,158,11,0.08); border: 1px solid rgba(245,158,11,0.22); color: #f59e0b; padding: 18px; border-radius: 16px; font-size: 15px; font-weight: 800 !important; letter-spacing: 0.5px; width: 100%; text-align: center; max-width: 540px; margin: 0 auto; box-shadow: 0 4px 20px rgba(245,158,11,0.06); text-transform: uppercase; }
         .status-box { display: none; text-align: center; padding: 8px; font-size: 12px; color: var(--accent-blue); }
     </style>
@@ -492,7 +500,7 @@
                     <button type="button" class="btn-logout-danger" onclick="handleLogout()">Log Out</button>
                 </div>
 
-                <!-- SUB ROOT A: ACHIEVEMENTS SUITE VIEW (404 STRICTLY RE-ROUTED) -->
+                <!-- SUB ROOT A: ACHIEVEMENTS SUITE VIEW -->
                 <div id="sec-vault-achievements" class="inner-vault-view">
                     <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Portal</div>
                     <div class="vault-list-container">
@@ -500,7 +508,7 @@
                         <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
-                        <!-- FIXED: LINK MAPPED TO EXACT NAME 'Introduction_to_Generative_AI_Studio.pdf' AS RECORDED ON REPO -->
+                        <!-- FIXED TARGET ARCHIVE EXTENSION BINDING FROM REPO MAPS -->
                         <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                         <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt" style="color:#64748b; font-size:10px;"></i></div>
                     </div>
@@ -508,7 +516,7 @@
 
                 <!-- SUB ROOT B: REAL DOCUMENTS SECURE GATED VIEW -->
                 <div id="sec-vault-documents" class="inner-vault-view">
-                    <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Options</div>
+                    <div class="vault-header-back" onclick="returnToRootDashboard()"><i class="fas fa-arrow-left"></i> Back to Main Portal</div>
                     
                     <!-- REQUEST GATED FORM VIEW -->
                     <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
@@ -767,6 +775,141 @@
         window.handleLinkedInLogin = function() {
             blockAutoDashboard = false;
             _supabase.auth.signInWithOAuth({ provider: 'linkedin_oidc', options: { redirectTo: redirectLink } });
+        };
+
+        function switchAuthTab(type) {
+            activeTab = type;
+            blockAutoDashboard = (type === 'register' || type === 'forgot');
+            syncAuthUI();
+        }
+
+        function checkPasswordStrength(val, barId, textId, containerId) {
+            const container = document.getElementById(containerId);
+            const bar = document.getElementById(barId);
+            const txt = document.getElementById(textId);
+            
+            if (val.length === 0) {
+                container.style.display = "none";
+            } else {
+                container.style.display = "block";
+                if (val.length < 6) {
+                    bar.style.width = "33%"; bar.style.backgroundColor = "#ef4444"; txt.innerText = "Weak Password"; txt.style.color = "#ff6b6b";
+                } else if (val.length >= 6 && (/[A-Z]/.test(val) || /[0-9]/.test(val))) {
+                    bar.style.width = "66%"; bar.style.backgroundColor = "#fbbf24"; txt.innerText = "Medium Password"; txt.style.color = "#fbbf24";
+                } else {
+                    bar.style.width = "100%"; bar.style.backgroundColor = "#4ade80"; txt.innerText = "Strong Password"; txt.style.color = "#4ade80";
+                }
+            }
+        }
+        document.getElementById('reg-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-reg', 'strength-text-reg', 'strength-container-reg'); });
+        document.getElementById('forgot-password').addEventListener('input', function() { checkPasswordStrength(this.value, 'strength-bar-forgot', 'strength-text-forgot', 'strength-container-forgot'); });
+
+        function startOTPTimer(type) {
+            clearInterval(countdownInterval);
+            let secondsLeft = 60;
+            
+            const timerBlock = document.getElementById(`otp-timer-block-${type}`);
+            const timerDisplay = document.getElementById(`timer-display-${type}`);
+            const resendBtn = document.getElementById(`resend-link-btn-${type}`);
+            const getOtpBtn = document.getElementById(`btn-get-otp-${type}`);
+            
+            timerBlock.style.display = "flex";
+            timerDisplay.style.display = "inline";
+            resendBtn.style.display = "none";
+            getOtpBtn.disabled = true;
+            timerDisplay.innerText = `Resend in: ${secondsLeft}s`;
+
+            countdownInterval = setInterval(() => {
+                secondsLeft--;
+                timerDisplay.innerText = `Resend in: ${secondsLeft}s`;
+                if (secondsLeft <= 0) {
+                    clearInterval(countdownInterval);
+                    timerDisplay.style.display = "none";
+                    resendBtn.style.display = "inline";
+                    getOtpBtn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        window.handleSendOTP = async function(type) {
+            const emailInput = (type === 'reg') ? 'reg-email' : 'forgot-email';
+            const email = document.getElementById(emailInput).value.trim();
+            if (!email) { alert("Enter Email Address first!"); return; }
+
+            const { error } = await _supabase.auth.signInWithOtp({ email });
+            if (error) alert(error.message);
+            else { alert("Verification token successfully sent!"); startOTPTimer(type); }
+        };
+
+        window.handleVerifyOTP = async function(type) {
+            const emailInput = (type === 'reg') ? 'reg-email' : 'forgot-email';
+            const codeInput = (type === 'reg') ? 'otp-code-reg' : 'otp-code-forgot';
+            
+            const email = document.getElementById(emailInput).value.trim();
+            const token = document.getElementById(codeInput).value.trim();
+            if(!email || !token) { alert("Fields are incomplete!"); return; }
+
+            blockAutoDashboard = true;
+
+            const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
+            if (error) { 
+                alert("Handshake Error: Invalid token code."); 
+                isEmailVerified = false; 
+            } else { 
+                alert("OTP verified successfully!"); 
+                isEmailVerified = true; 
+                document.getElementById(`btn-verify-otp-${type}`).style.display = "none";
+                document.getElementById(`badge-verified-${type}`).style.display = "inline-flex";
+            }
+        };
+
+        window.handleFinalRegister = async function() {
+            const email = document.getElementById('reg-email').value.trim();
+            const password = document.getElementById('reg-password').value;
+            const confirm = document.getElementById('reg-confirm-password').value;
+
+            if(!isEmailVerified) { alert("Handshake verification status missing. Click Verify first."); return; }
+            if(!email || !password) { alert("Fields are empty."); return; }
+            if(password !== confirm) { alert("Passwords do not match."); return; }
+
+            blockAutoDashboard = false;
+
+            const { error } = await _supabase.auth.updateUser({ password: password });
+            if (error) {
+                const { error: signUpErr } = await _supabase.auth.signUp({ email, password });
+                if(signUpErr) alert(signUpErr.message);
+                else { alert("Account created successfully!"); switchAuthTab('login'); }
+            } else {
+                alert("Account created successfully!");
+                switchAuthTab('login');
+            }
+        };
+
+        window.handleResetPasswordSubmit = async function() {
+            const password = document.getElementById('forgot-password').value;
+            const confirm = document.getElementById('forgot-confirm-password').value;
+
+            if(!isEmailVerified) { alert("Handshake parameters missing."); return; }
+            if(!password || !confirm) { alert("Password fields are empty."); return; }
+            if(password !== confirm) { alert("Passwords do not match."); return; }
+
+            blockAutoDashboard = false;
+
+            const { error } = await _supabase.auth.updateUser({ password: password });
+            if (error) alert(error.message);
+            else {
+                alert("Password changed successfully! Redirecting to Sign In tab.");
+                switchAuthTab('login');
+            }
+        };
+
+        window.handleLoginSubmit = async function() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value;
+            blockAutoDashboard = false;
+
+            const { data, error } = await _supabase.auth.signInWithPassword({ email, password });
+            if (error) alert(error.message);
         };
     </script>
 </body>
