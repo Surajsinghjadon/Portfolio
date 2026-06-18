@@ -39,29 +39,30 @@
         .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); }
         .three-dot-menu-trigger img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
 
-        /* THE DYNAMIC ENLARGED PROFESSIONAL SYSTEM DROPDOWN PANEL */
+        /* THE DYNAMIC ENLARGED PROFESSIONAL SYSTEM DROPDOWN PANEL (ENLARGED & PROFESSIONALIZED) */
         .dropdown-panel {
-            position: absolute; top: 75px; right: 20px; width: 340px; 
+            position: absolute; top: 80px; right: 20px; width: 380px; 
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
-            border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 24px; padding: 24px;
-            box-shadow: 0 35px 70px rgba(0,0,0,0.95), inset 0 1px 2px rgba(255,255,255,0.05);
-            display: none; flex-direction: column; gap: 14px; z-index: 100010;
+            border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 26px; padding: 26px;
+            box-shadow: 0 45px 85px rgba(0,0,0,0.95), inset 0 1px 2px rgba(255,255,255,0.05);
+            display: none; flex-direction: column; gap: 16px; z-index: 100010;
         }
         .dropdown-panel.show { display: flex; }
 
-        .menu-auth-row { display: flex; gap: 12px; margin-bottom: 8px; }
-        .menu-btn-auth { flex: 1; padding: 14px; font-size: 12px; font-weight: 800; border-radius: 12px; border: none; cursor: pointer; text-transform: uppercase; text-align: center; text-decoration: none; transition: all 0.2s; }
+        .menu-auth-row { display: flex; gap: 12px; margin-bottom: 4px; }
+        .menu-btn-auth { flex: 1; padding: 16px; font-size: 13px; font-weight: 800; border-radius: 14px; border: none; cursor: pointer; text-transform: uppercase; text-align: center; text-decoration: none; transition: all 0.2s; }
         .menu-btn-signin { background: var(--accent-blue); color: #05070c; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25); }
+        .menu-btn-signin:hover { background: #7dd3fc; }
         .menu-btn-signup { background: rgba(255,255,255,0.04); color: white; border: 1px solid rgba(255,255,255,0.1); }
         .menu-btn-signup:hover { background: rgba(255,255,255,0.08); }
         
         .menu-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
-        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; }
+        .menu-link-row { display: flex; align-items: center; gap: 18px; padding: 15px 20px; color: var(--text-gray); font-size: 15px; font-weight: 700; text-decoration: none; border-radius: 14px; cursor: pointer; transition: all 0.2s ease; }
         .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); }
-        .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
+        .menu-link-row i { width: 24px; text-align: center; font-size: 18px; }
 
-        /* RIGID CANVAS VIEWS STRUCTURE ENGINE (PREVENTS DESKTOP SITE DROP BY ENFORCING CONTINUOUS VIEWPORT HEIGHT) */
-        .app-view { display: none !important; width: 100%; min-height: 100vh !important; background-color: var(--bg-main); box-sizing: border-box; }
+        /* RIGID CANVAS VIEWS STRUCTURE ENGINE (STABILIZED VIEWPORTS TO LOCK DESKTOP SITE ENGINE) */
+        .app-view { display: none !important; width: 100%; min-height: 100vh; background-color: var(--bg-main); box-sizing: border-box; }
         .app-view.active-view { display: block !important; position: relative; }
         
         /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER */
@@ -74,7 +75,7 @@
         }
         @media (max-width: 768px) { .view-card-wrapper { padding: 35px 20px; border-radius: 20px; } }
 
-        /* THE  CAPSULE BACK BUTTON STYLE RESTORED ON ALL PAGES */
+        /* THE CAPSULE BACK BUTTON STYLE RESTORED ON ALL PAGES */
         .view-panel-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 35px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; box-sizing: border-box; }
         .corner-back-btn { 
             background: rgba(5, 7, 12, 0.4) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; 
@@ -158,7 +159,7 @@
         .live-status-success-badge { font-size: 13px; font-weight: bold; color: #4ade80; display: none; align-items: center; gap: 6px; flex-shrink: 0; margin-left: 5px; }
         .btn-submit-action { width: 100% !important; display: block !important; padding: 18px !important; border-radius: 14px !important; font-size: 14px !important; font-weight: 800 !important; cursor: pointer !important; border: none !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; transition: all 0.2s ease !important; margin-top: 15px !important; color: #000000 !important; text-align: center !important; outline: none !important; }
 
-        /* THE DYNAMIC PASSWORD STRENGTH INDICATOR PACK (HIDDEN BY DEFAULT AS REQUESTED) */
+        /* THE DYNAMIC PASSWORD STRENGTH INDICATOR PACK (HIDDEN BY DEFAULT - TRIGGERED ON TYPING) */
         .strength-container { display: none; margin-top: 4px; margin-bottom: 4px; text-align: left; width: 100%; box-sizing: border-box; }
         .strength-bar-bg { height: 6px; background: #05070c; border-radius: 3px; overflow: hidden; width: 100%; margin-top: 6px; }
         .strength-bar { height: 100%; width: 0%; transition: all 0.3s ease; border-radius: 3px; }
@@ -194,7 +195,7 @@
         .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; }
         .loc-pill { display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 11px 22px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; }
 
-        /* SKILLS PROGRESS BLOCK TILES */
+        /* SKILLS PROGRESS BLOCK TILES (20555.jpg LEVELING FIXED) */
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; align-items: stretch; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
@@ -221,21 +222,21 @@
         .file-item-row i.fa-certificate { color: #fbbf24 !important; font-size: 22px !important; }
         .file-item-row i.fa-download, .file-item-row i.fa-external-link-alt { color: #64748b !important; font-size: 13px !important; }
 
-        /* THE PREMIUM PENDING ACCESS SCREEN MODULE (20556.jpg LABELS PERFECTED TO PENDING FOR APPROVAL) */
+        /* THE PREMIUM PENDING ACCESS SCREEN MODULE (20556.jpg RE-DESIGNED TO PENDING FOR APPROVAL IN LARGE TEXT) */
         .pending-box { text-align: center; padding: 50px 30px; background: rgba(251, 191, 36, 0.02); border: 1px dashed rgba(251, 191, 36, 0.25); border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); margin: 20px auto; width: 100%; box-sizing: border-box; }
         .pending-box i.fa-clock { font-size: 56px; color: #fbbf24; text-shadow: 0 0 25px rgba(251, 191, 36, 0.4); margin-bottom: 20px; animation: rotateClockGear 16s linear infinite; display: inline-block; }
         .status-msg { font-size: 24px; font-weight: 800; color: #fbbf24; margin-bottom: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
         .status-sub { font-size: 13px; color: var(--text-gray); line-height: 1.6; max-width: 620px; margin: 0 auto; }
         @keyframes rotateClockGear { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* THE PROFESSIONAL RETINOID DESIGN FOR LOGGED USER INSIDE MENU DROPDOWN PANEL */
-        .user-menu-profile-card { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 16px; margin-bottom: 5px; width: 100%; box-sizing: border-box; }
-        .user-menu-avatar { width: 44px; height: 44px; border-radius: 12px; background: #fb923c; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: #fff; flex-shrink: 0; }
-        .user-menu-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+        /* THE PROFESSIONAL DESIGN FOR LOGGED USER INSIDE MENU DROPDOWN PANEL (ENLARGED) */
+        .user-menu-profile-card { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 16px; border-radius: 18px; margin-bottom: 5px; width: 100%; box-sizing: border-box; }
+        .user-menu-avatar { width: 48px; height: 48px; border-radius: 14px; background: #fb923c; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; color: #fff; flex-shrink: 0; }
+        .user-menu-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
         .user-menu-meta { display: flex; flex-direction: column; text-align: left; max-width: 210px; overflow: hidden; }
-        .user-menu-meta-name { font-size: 14px; font-weight: 700; color: #fff; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
-        .user-menu-meta-email { font-size: 12px; color: var(--text-gray); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-top: 2px; }
-        .btn-menu-logout { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); color: #ef4444; width: 100%; padding: 12px; border-radius: 12px; font-weight: 700; font-size: 12px; cursor: pointer; text-transform: uppercase; margin-top: 10px; margin-bottom: 5px; transition: all 0.2s; box-sizing: border-box; }
+        .user-menu-meta-name { font-size: 15px; font-weight: 700; color: #fff; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
+        .user-menu-meta-email { font-size: 12px; color: var(--text-gray); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-top: 3px; }
+        .btn-menu-logout { background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.25); color: #ef4444; width: 100%; padding: 14px; border-radius: 14px; font-weight: 700; font-size: 12px; cursor: pointer; text-transform: uppercase; margin-top: 12px; margin-bottom: 5px; transition: all 0.2s; box-sizing: border-box; }
         .btn-menu-logout:hover { background: #ef4444; color: #fff; }
 
         .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); cursor: default; box-sizing: border-box; }
@@ -559,7 +560,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN G: REGISTER CONSOLE HUB (STRENGTH indicators METER LOCKED) -->
+        <!-- VIEW SCREEN G: REGISTER CONSOLE HUB -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -693,7 +694,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO (20556.jpg RE-DESIGNED TO PENDING FOR APPROVAL IN LARGE TEXT) -->
+        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO -->
         <div id="view-sec-vault-documents" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -755,8 +756,8 @@
         let countdownInterval = null;
         let approvalPollingInterval = null;
         
-        // DYNAMIC ORIGIN FORWARDING DETECT LOGIC (PREVENTS USER AGENT VIEWPORT RESET AND DESKTOP SITE DROPPING UPON EXTERNAL OAUTH LANDINGS)
-        const redirectLink = window.location.origin + window.location.pathname;
+        // HARD RESTORED ORIGINAL REDIRECT LINK TO PREVENT MOBILE BROWSERS DROPPING THE DESKTOP SITE AGENT PREFERENCE
+        const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         function toggleSystemMenu(event) {
             if(event) event.stopPropagation();
@@ -1011,12 +1012,12 @@
             
             bar.className = "strength-bar";
             if (pass.length === 0) {
-                container.style.display = "none"; // Hide panel completely when empty
+                container.style.display = "none"; 
                 bar.style.width = "0%";
                 text.innerText = "Password Strength";
                 text.style.color = "var(--text-gray)";
             } else {
-                container.style.display = "block"; // Turn visible on dynamic keystroke events
+                container.style.display = "block"; 
                 if (pass.length < 6) {
                     bar.classList.add('strength-weak');
                     text.innerText = "Password Strength: Weak";
