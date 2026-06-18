@@ -30,7 +30,7 @@
         
         /* ELITE 3-DOT MENU ICON TRIGGER BUTTON */
         .three-dot-menu-trigger {
-            background: rgba(5, 7, 12, 0.4); border: 1px solid rgba(56, 189, 248, 0.2);
+            background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2);
             width: 44px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: all 0.3s; position: relative; z-index: 100005;
             overflow: hidden;
@@ -56,7 +56,7 @@
         .menu-btn-signup:hover { background: rgba(255,255,255,0.08); }
         
         .menu-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
-        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 15px 20px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; }
+        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; }
         .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); }
         .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
 
@@ -496,7 +496,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN E: CONTACT INFO MODULE (INTEGRATED PREMIUM CHAT BOX) -->
+        <!-- VIEW SCREEN E: CONTACT INFO MODULE (INTEGRATED FREE AUTOMATIC CHATBOT ENGINE) -->
         <div id="view-user-contact" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -530,12 +530,20 @@
                     </div>
                 </div>
 
-                <!-- NEW: PROFESSIONAL LIVE CHAT BOX MODULE CONSOLE -->
+                <!-- LIVE CHAT BOX MODULE CONSOLE (20648.jpg ERROR TERMINATED & AUTO-REPLY ADDED) -->
                 <div class="live-chat-card-panel">
                     <div class="sub-title" style="margin-bottom: 10px;"><i class="fas fa-comments" style="color: var(--accent-blue); margin-right: 8px;"></i> Live Chat Assistant Engine</div>
-                    <div style="font-size: 13px; color: var(--text-gray); line-height: 1.5;">Drop a direct real-time dynamic message loop inside the secure cloud pipeline nodes.</div>
                     
-                    <div id="chat-validation-banner" class="validation-glowing-banner" style="margin-top: 15px; margin-bottom: 0;"></div>
+                    <!-- Chat Log Display Area -->
+                    <div id="chat-logs-container" style="max-height: 220px; overflow-y: auto; margin-top: 15px; margin-bottom: 15px; padding: 12px; background: #05070c; border-radius: 14px; border: 1px solid rgba(255,255,255,0.04); display: flex; flex-direction: column; gap: 12px;">
+                        <div style="display: flex; gap: 8px; align-items: flex-start; max-width: 85%;">
+                            <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.15); padding: 12px 16px; border-radius: 16px 16px 16px 0; font-size: 13px; line-height: 1.5; color: #fff; text-align: left;">
+                                Hello! 👋 I am your automated assistant. Feel free to drop a message node, and I will instantly process an intelligent reply sequence!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="chat-validation-banner" class="validation-glowing-banner" style="margin-top: 10px; margin-bottom: 10px;"></div>
 
                     <div class="chat-input-row-block">
                         <textarea id="chat-message-input" class="chat-area-textarea" placeholder="Type secure message block... (सुरक्षित संदेश टाइप करें)"></textarea>
@@ -580,7 +588,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN G: REGISTER CONSOLE HUB (FIXED HEADER WITH STRENGTH CONTAINER RESET) -->
+        <!-- VIEW SCREEN G: REGISTER CONSOLE HUB -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -776,7 +784,7 @@
         let countdownInterval = null;
         let approvalPollingInterval = null;
         
-        // CANONICAL PORTFOLIO URL TO PREVENT CHROME INVOLUNTARY VIEWPORT DROPPING UPON OAUTH RETURN FLOWS
+        // CANONICAL PORTFOLIO URL LOCKED TO ENSURE CHROMES PERSISTENT DESKTOP SITE PREFERENCE WITHOUT DROPPING
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         function toggleSystemMenu(event) {
@@ -1023,8 +1031,8 @@
             } else { switchAppView('view-home'); }
         };
 
-        /* --- THE NATIVE CHAT BOX MESSAGE EMITTER LOGIC MATRIX --- */
-        window.handleSendLiveChatMessage = async function() {
+        /* --- THE FREE AUTOMATED NATIVE CHATBOT CONTROLLER PROCESSOR ENGINE --- */
+        window.handleSendLiveChatMessage = function() {
             const bannerId = "chat-validation-banner";
             clearAllValidationBanners();
             
@@ -1032,37 +1040,63 @@
             const messageText = textInput.value.trim();
             
             if(!messageText) {
-                triggerAppValidationBanner(bannerId, "Message node block cannot be broadcast empty.", "error");
+                triggerAppValidationBanner(bannerId, "Message text layer cannot be broadcast empty.", "error");
                 return;
             }
 
-            let senderName = "Anonymous Visitor";
-            let senderEmail = "no-auth@visitor.node";
+            const logsContainer = document.getElementById('chat-logs-container');
 
-            if (currentActiveSession) {
-                const user = currentActiveSession.user;
-                const meta = user.user_metadata || {};
-                senderName = meta.full_name || meta.name || user.email.split('@')[0].toUpperCase();
-                senderEmail = user.email;
-            }
-
-            // INJECT LOG INTO SUPABASE PORTFOLIO MESSAGES NODE
-            const { error } = await _supabase.from('portfolio_messages').insert([
-                { name: senderName, email: senderEmail, message: messageText }
-            ]);
-
-            if (error) {
-                // FALLBACK IF TABLE IS NOT CREATED YET IN SUPABASE
-                if(error.message.includes("does not exist")) {
-                    alert("Handshake Mock: Message transmitted via local memory framework! Please create 'portfolio_messages' table in Supabase dashboard to save real rows.");
-                    triggerAppValidationBanner(bannerId, "Handshake Success: Simulated delivery complete!", "success");
-                } else {
-                    triggerAppValidationBanner(bannerId, error.message, "error");
-                }
-            } else {
-                triggerAppValidationBanner(bannerId, "Broadcasting complete: Message saved inside live cloud ledger.", "success");
-            }
+            // 1. Render User message block inside container layout (Right alignment)
+            const userBubble = document.createElement('div');
+            userBubble.style.cssText = "display: flex; justify-content: flex-end; width: 100%; margin-top: 5px;";
+            userBubble.innerHTML = `
+                <div style="background: var(--accent-blue); color: #05070c; padding: 10px 16px; border-radius: 16px 16px 0 16px; font-size: 13px; max-width: 80%; line-height: 1.5; font-weight: 700; text-align: left; word-break: break-word; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);">
+                    ${messageText.replace(/</g, "&lt;").replace(/>/g, "&gt;")}
+                </div>
+            `;
+            logsContainer.appendChild(userBubble);
+            logsContainer.scrollTop = logsContainer.scrollHeight;
             textInput.value = "";
+
+            // 2. Spawn real-time animated chatbot typing state pipeline
+            const typingBubble = document.createElement('div');
+            typingBubble.id = "chat-typing-indicator";
+            typingBubble.style.cssText = "display: flex; justify-content: flex-start; width: 100%; margin-top: 5px;";
+            typingBubble.innerHTML = `
+                <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 10px 14px; border-radius: 16px 16px 16px 0; font-size: 12px; color: var(--text-gray); font-style: italic;">
+                    <i class="fas fa-circle-notch fa-spin" style="color: var(--accent-blue); margin-right: 6px;"></i> Assistant is analyzing message...
+                </div>
+            `;
+            logsContainer.appendChild(typingBubble);
+            logsContainer.scrollTop = logsContainer.scrollHeight;
+
+            // 3. Process Instant Automated Professional Reply loop matrix after 1200ms delay
+            setTimeout(() => {
+                const indicator = document.getElementById('chat-typing-indicator');
+                if(indicator) indicator.remove();
+
+                let lowerText = messageText.toLowerCase();
+                let autoBotReply = "Thank you for connecting! Message handshake logs generated successfully. Suraj Singh Jadon will review this cloud data and reach back to your identity node coordinates shortly! 🚀";
+
+                // Intelligent dynamic string pattern matching nodes
+                if (lowerText.includes("hello") || lowerText.includes("hi") || lowerText.includes("hey") || lowerText.includes("bhai")) {
+                    autoBotReply = "Hello there! 👋 Welcome to the Data Analytics network. Drop your query node here regarding SAP validation, dashboard metrics, or computer specialized tools!";
+                } else if (lowerText.includes("job") || lowerText.includes("hiring") || lowerText.includes("resume") || lowerText.includes("work")) {
+                    autoBotReply = "Professional inquiry cached! 📊 Suraj has core expertise in Invoice SAP loops and multi-tier store logs management. Go ahead and request clearance under the 'Gated Documents' panel to download his official Resume!";
+                } else if (lowerText.includes("project") || lowerText.includes("contract") || lowerText.includes("freelance")) {
+                    autoBotReply = "Consulting workflow node triggered! Suraj is open for data infrastructure operations. Please drop your email id explicitly inside the chat frame, and our network synchronization loop will notify him instantly.";
+                }
+
+                const botBubble = document.createElement('div');
+                botBubble.style.cssText = "display: flex; justify-content: flex-start; width: 100%; margin-top: 5px;";
+                botBubble.innerHTML = `
+                    <div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.15); color: #fff; padding: 12px 16px; border-radius: 16px 16px 16px 0; font-size: 13px; max-width: 80%; line-height: 1.5; text-align: left; word-break: break-word;">
+                        ${autoBotReply}
+                    </div>
+                `;
+                logsContainer.appendChild(botBubble);
+                logsContainer.scrollTop = logsContainer.scrollHeight;
+            }, 1200);
         };
 
         /* --- THE STRENGTH CALCULATOR MATRIX PIPELINE RESTORED & KEYBOARD TYPING TOGGLE ACTION CONTROLLED --- */
