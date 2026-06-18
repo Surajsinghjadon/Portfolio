@@ -45,7 +45,7 @@
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
             border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 24px; padding: 24px;
             box-shadow: 0 35px 70px rgba(0,0,0,0.95), inset 0 1px 2px rgba(255,255,255,0.05);
-            display: none; flex-direction: column; gap: 14px; z-index: 100010;
+            display: none; flex-direction: column; gap: 12px; z-index: 100010;
         }
         .dropdown-panel.show { display: flex; }
 
@@ -56,7 +56,7 @@
         .menu-btn-signup:hover { background: rgba(255,255,255,0.08); }
         
         .menu-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
-        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; }
+        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 15px 20px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; }
         .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); }
         .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
 
@@ -185,7 +185,7 @@
         .contact-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; width: 100%; box-sizing: border-box; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
         .contact-left { padding: 35px; flex: 1.2; box-sizing: border-box; }
-        .contact-row { display: flex; align-items: center; gap: 18px; }
+        .contact-left-row { display: flex; align-items: center; gap: 18px; }
         .icon-container { background: rgba(5, 7, 12, 0.4); border: 1px solid rgba(255, 255, 255, 0.04); width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 18px; flex-shrink: 0; }
         .label { font-size: 11px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
         .value { font-size: 14px; font-weight: 700; margin-top: 4px; color: #fff; word-break: break-all; }
@@ -194,8 +194,8 @@
         .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; }
         .loc-pill { display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 11px 22px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; }
 
-        /* NATIVE LIVE CHAT SYSTEM CONSOLE INTERFACE STYLE ARCHITECTURE */
-        .live-chat-card-panel { background: rgba(13, 17, 28, 0.6); border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 24px; padding: 30px; margin-top: 30px; box-sizing: border-box; width: 100%; }
+        /* DETACHED DEDICATED LIVE CHAT AGENT ARCHITECTURE FRONT-END MATRIX */
+        .live-chat-card-panel { background: transparent; box-sizing: border-box; width: 100%; display: flex; flex-direction: column; gap: 5px; }
         .chat-input-row-block { display: flex; gap: 15px; width: 100%; margin-top: 15px; box-sizing: border-box; align-items: center; }
         .chat-area-textarea { flex: 1; background: #05070c; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 16px; color: #fff; font-size: 14px; font-family: inherit; resize: none; height: 55px; outline: none; box-sizing: border-box; }
         .chat-area-textarea:focus { border-color: var(--accent-blue); box-shadow: 0 0 12px rgba(56, 189, 248, 0.15); }
@@ -234,9 +234,9 @@
         .pending-box i.fa-clock { font-size: 56px; color: #fbbf24; text-shadow: 0 0 25px rgba(251, 191, 36, 0.4); margin-bottom: 20px; animation: rotateClockGear 16s linear infinite; display: inline-block; }
         .status-msg { font-size: 24px; font-weight: 800; color: #fbbf24; margin-bottom: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
         .status-sub { font-size: 13px; color: var(--text-gray); line-height: 1.6; max-width: 620px; margin: 0 auto; }
-        @keyframes rotateClockGear { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes rotateClockGear { transform: rotate(360deg); }
 
-        /* THE ENLARGED EXTRA SPACIOUS USER DROPDOWN CONSOLE PANEL PROFILE CARD (360PX WIDE & PROFESSIONAL) */
+        /* THE ENLARGED EXTRA SPACIOUS USER DROPDOWN PANEL (360PX WIDE & PROFESSIONAL) */
         .user-menu-profile-card { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 18px; border-radius: 18px; margin-bottom: 5px; width: 100%; box-sizing: border-box; }
         .user-menu-avatar { width: 52px; height: 52px; border-radius: 14px; background: #fb923c; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: #fff; flex-shrink: 0; }
         .user-menu-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
@@ -289,6 +289,7 @@
                 <div class="menu-link-row" id="ml-edu" onclick="switchAppView('view-user-edu')"><i class="fas fa-graduation-cap"></i> Education</div>
                 <div class="menu-link-row" id="ml-skills" onclick="switchAppView('view-technical-skills')"><i class="fas fa-tools"></i> Technical Skills</div>
                 <div class="menu-link-row" id="ml-contact" onclick="switchAppView('view-user-contact')"><i class="fas fa-envelope"></i> Contact Info</div>
+                <div class="menu-link-row" id="ml-chatbot" onclick="switchAppView('view-live-chatbot')"><i class="fas fa-robot" style="color: var(--accent-blue);"></i> Live Chat AI</div>
                 
                 <div class="menu-link-row" id="ml-achievements" style="display: none;" onclick="switchAppView('view-sec-vault-achievements')"><i class="fas fa-award" style="color: #fbbf24;"></i> Achievements</div>
                 <div class="menu-link-row" id="ml-documents" style="display: none;" onclick="switchAppView('view-sec-vault-documents')"><i class="fas fa-file-invoice" style="color: #38bdf8;"></i> Gated Documents</div>
@@ -496,7 +497,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN E: CONTACT INFO MODULE (INTEGRATED FREE AUTOMATIC CHATBOT ENGINE) -->
+        <!-- VIEW SCREEN E: CONTACT INFO MODULE (CLEAN SIDE BY SIDE CHAT RE-ROUTE INTERFACE - 20649.jpg FIXED) -->
         <div id="view-user-contact" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -505,7 +506,7 @@
                 </div>
                 <div class="contact-box">
                     <div class="contact-left">
-                        <div class="contact-row">
+                        <div class="contact-left-row">
                             <div class="icon-container"><i class="fas fa-envelope"></i></div>
                             <div>
                                 <div class="label">Email Address / ईमेल पता</div>
@@ -515,7 +516,7 @@
                         
                         <div class="sep-line"></div>
                         
-                        <div class="contact-row">
+                        <div class="contact-left-row">
                             <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
                             <div>
                                 <div class="label">Contact Number / संपर्क नंबर</div>
@@ -529,21 +530,28 @@
                         <a href="https://maps.google.com/?q=Sagore,Pithampur,Madhya+Pradesh" target="_blank" class="loc-pill">LIVE LOCATION</a>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <!-- LIVE CHAT BOX MODULE CONSOLE (20648.jpg ERROR TERMINATED & AUTO-REPLY ADDED) -->
+        <!-- NEW SEPARATE SCREEN F: LIVE CHAT AI INTERFACE AGENT NODE -->
+        <div id="view-live-chatbot" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2 class="section-title"><i class="fas fa-robot" style="color: var(--accent-blue); margin-right: 10px;"></i> Live Chat Assistant</h2>
+                </div>
+                
                 <div class="live-chat-card-panel">
-                    <div class="sub-title" style="margin-bottom: 10px;"><i class="fas fa-comments" style="color: var(--accent-blue); margin-right: 8px;"></i> Live Chat Assistant Engine</div>
-                    
                     <!-- Chat Log Display Area -->
-                    <div id="chat-logs-container" style="max-height: 220px; overflow-y: auto; margin-top: 15px; margin-bottom: 15px; padding: 12px; background: #05070c; border-radius: 14px; border: 1px solid rgba(255,255,255,0.04); display: flex; flex-direction: column; gap: 12px;">
+                    <div id="chat-logs-container" style="max-height: 380px; overflow-y: auto; margin-top: 5px; margin-bottom: 15px; padding: 20px; background: #05070c; border-radius: 20px; border: 1px solid rgba(255,255,255,0.04); display: flex; flex-direction: column; gap: 14px;">
                         <div style="display: flex; gap: 8px; align-items: flex-start; max-width: 85%;">
-                            <div style="background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.15); padding: 12px 16px; border-radius: 16px 16px 16px 0; font-size: 13px; line-height: 1.5; color: #fff; text-align: left;">
-                                Hello! 👋 I am your automated assistant. Feel free to drop a message node, and I will instantly process an intelligent reply sequence!
+                            <div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.15); padding: 14px 18px; border-radius: 16px 16px 16px 0; font-size: 14px; line-height: 1.6; color: #fff; text-align: left;">
+                                Hello! 👋 I am your dedicated automated assistant. Drop any queries or operational questions inside the matrix below, and my loop system will respond automatically!
                             </div>
                         </div>
                     </div>
                     
-                    <div id="chat-validation-banner" class="validation-glowing-banner" style="margin-top: 10px; margin-bottom: 10px;"></div>
+                    <div id="chat-validation-banner" class="validation-glowing-banner" style="margin-top: 5px; margin-bottom: 5px;"></div>
 
                     <div class="chat-input-row-block">
                         <textarea id="chat-message-input" class="chat-area-textarea" placeholder="Type secure message block... (सुरक्षित संदेश टाइप करें)"></textarea>
@@ -553,7 +561,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN F: ACCOUNT SIGN IN PORTAL -->
+        <!-- VIEW SCREEN G: ACCOUNT SIGN IN PORTAL -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -588,7 +596,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN G: REGISTER CONSOLE HUB -->
+        <!-- VIEW SCREEN H: REGISTER CONSOLE HUB -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -653,7 +661,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN H: FORGOT PASSWORD -->
+        <!-- VIEW SCREEN I: FORGOT PASSWORD -->
         <div id="view-forgot" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -704,7 +712,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN I: ENCRYPTED VAULT CERTIFICATES -->
+        <!-- VIEW SCREEN J: ENCRYPTED VAULT CERTIFICATES -->
         <div id="view-sec-vault-achievements" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -722,7 +730,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO -->
+        <!-- VIEW SCREEN K: GATED DOCUMENTS REPO -->
         <div id="view-sec-vault-documents" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -754,7 +762,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN K: ADMIN SYSTEM CONSOLE -->
+        <!-- VIEW SCREEN L: ADMIN SYSTEM CONSOLE -->
         <div id="view-sec-admin-panel" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -784,7 +792,7 @@
         let countdownInterval = null;
         let approvalPollingInterval = null;
         
-        // CANONICAL PORTFOLIO URL LOCKED TO ENSURE CHROMES PERSISTENT DESKTOP SITE PREFERENCE WITHOUT DROPPING
+        // BASE DIRECT DIRECTORY PATH REGISTER MATRIX FOR CHROME MOBILE AGENTS
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         function toggleSystemMenu(event) {
@@ -836,6 +844,7 @@
             if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
             if(viewId === 'view-technical-skills') document.getElementById('ml-skills').classList.add('active');
             if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
+            if(viewId === 'view-live-chatbot') document.getElementById('ml-chatbot').classList.add('active');
             if(viewId === 'view-sec-vault-achievements') document.getElementById('ml-achievements').classList.add('active');
             if(viewId === 'view-sec-vault-documents') document.getElementById('ml-documents').classList.add('active');
             if(viewId === 'view-sec-admin-panel') document.getElementById('ml-admin').classList.add('active');
@@ -995,7 +1004,7 @@
                 document.getElementById('ml-admin').style.display = "none";
                 
                 clearInterval(approvalPollingInterval);
-                if(['view-sec-vault-achievements', 'view-sec-vault-documents', 'view-sec-admin-panel'].includes(document.querySelector('.app-view.active-view')?.id)) {
+                if(['view-sec-vault-achievements', 'view-sec-vault-documents', 'view-sec-admin-panel', 'view-live-chatbot'].includes(document.querySelector('.app-view.active-view')?.id)) {
                     switchAppView('view-home');
                 }
             }
@@ -1046,7 +1055,7 @@
 
             const logsContainer = document.getElementById('chat-logs-container');
 
-            // 1. Render User message block inside container layout (Right alignment)
+            // Render User message block inside container layout (Right alignment)
             const userBubble = document.createElement('div');
             userBubble.style.cssText = "display: flex; justify-content: flex-end; width: 100%; margin-top: 5px;";
             userBubble.innerHTML = `
@@ -1058,7 +1067,7 @@
             logsContainer.scrollTop = logsContainer.scrollHeight;
             textInput.value = "";
 
-            // 2. Spawn real-time animated chatbot typing state pipeline
+            // Spawn real-time animated chatbot typing state pipeline
             const typingBubble = document.createElement('div');
             typingBubble.id = "chat-typing-indicator";
             typingBubble.style.cssText = "display: flex; justify-content: flex-start; width: 100%; margin-top: 5px;";
@@ -1070,7 +1079,7 @@
             logsContainer.appendChild(typingBubble);
             logsContainer.scrollTop = logsContainer.scrollHeight;
 
-            // 3. Process Instant Automated Professional Reply loop matrix after 1200ms delay
+            // Process Instant Automated Professional Reply loop matrix after 1200ms delay
             setTimeout(() => {
                 const indicator = document.getElementById('chat-typing-indicator');
                 if(indicator) indicator.remove();
@@ -1078,7 +1087,6 @@
                 let lowerText = messageText.toLowerCase();
                 let autoBotReply = "Thank you for connecting! Message handshake logs generated successfully. Suraj Singh Jadon will review this cloud data and reach back to your identity node coordinates shortly! 🚀";
 
-                // Intelligent dynamic string pattern matching nodes
                 if (lowerText.includes("hello") || lowerText.includes("hi") || lowerText.includes("hey") || lowerText.includes("bhai")) {
                     autoBotReply = "Hello there! 👋 Welcome to the Data Analytics network. Drop your query node here regarding SAP validation, dashboard metrics, or computer specialized tools!";
                 } else if (lowerText.includes("job") || lowerText.includes("hiring") || lowerText.includes("resume") || lowerText.includes("work")) {
