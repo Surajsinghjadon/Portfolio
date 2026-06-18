@@ -194,7 +194,7 @@
         .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; }
         .loc-pill { display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 11px 22px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; }
 
-        /* --- MODERN FIXED FLOATING LIVE CHAT CONSUL SOFTWARE WIDGET STYLE --- */
+        /* --- AUTOMATED SOFTWARE FLOATING CHAT ASSISTANT STYLING MATRIX --- */
         .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         .chat-widget-trigger { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-blue); color: #05070c; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 8px 24px var(--accent-glow); transition: all 0.2s ease; }
         .chat-widget-trigger:hover { transform: scale(1.05); background: #7dd3fc; }
@@ -230,7 +230,7 @@
         .file-item-row div { display: flex !important; align-items: center !important; gap: 16px !important; }
         .file-item-row i.fa-file-pdf, .file-item-row i.fa-file-invoice { color: #ef4444 !important; font-size: 22px !important; }
         .file-item-row i.fa-file-alt { color: #38bdf8 !important; font-size: 22px !important; }
-        .file-item-row i.fa-certificate { color: #fbbf24 !important; font-size: 22px !important; }
+        .file-item-row i.fa-certificate { color: #fbbf24 !important; font-size: 22px !primary; }
         .file-item-row i.fa-download, .file-item-row i.fa-external-link-alt { color: #64748b !important; font-size: 13px !important; }
 
         /* THE PREMIUM PENDING ACCESS SCREEN MODULE */
@@ -738,7 +738,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN K: ADMIN SYSTEM CONSOLE (WITH FIXED AUTO REAL-TIME CHAT SYNC INTERFACE) -->
+        <!-- VIEW SCREEN K: ADMIN SYSTEM CONSOLE (WITH DYNAMIC TWO-WAY LIVE REPLIER TERMINAL) -->
         <div id="view-sec-admin-panel" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -775,6 +775,7 @@
                 <div onclick="toggleChatWidget(event)" style="cursor:pointer; color:var(--text-gray);"><i class="fas fa-times"></i></div>
             </div>
             <div class="chat-widget-body" id="chat-widget-logs">
+                <!-- Welcome greeting prompt template loaded locally -->
                 <div style="display: flex; gap: 8px; align-items: flex-start; max-width: 85%;">
                     <div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.15); padding: 12px 16px; border-radius: 16px 16px 16px 0; font-size: 13px; line-height: 1.5; color: #fff; text-align: left;">
                         Hello! 👋 I am your advanced portfolio assistant. Feel free to ask anything about Suraj's Education, Experience, Technical Skills, or Contact details!
@@ -803,9 +804,9 @@
         let countdownInterval = null;
         let approvalPollingInterval = null;
         let chatWidgetSyncInterval = null;
-        let adminPanelLiveInterval = null; // New live thread synchronization interval
+        let adminPanelLiveInterval = null; 
         
-        // HARD EMBEDDED ORIGINAL ABSOLUTE ROUTE TARGET LINK PATH - COMPLETELY KEEPS MOBILE CHROMES DESKTOP SITE MODE CHECKS UNTOUCHED
+        // BASE ROOT PATH DOMAIN KEY FOR MOBILES TO PERSIST DESKTOP SITE MODE CHECKS
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         window.toggleChatWidget = function(e) {
@@ -819,10 +820,11 @@
             }
         };
 
-        function toggleSystemMenu(event) {
+        // EXPLICITLY ATTACHED TO WINDOW INTERFACE SCOPE TO PREVENT dynamic INLINE CALL FAULTS
+        window.toggleSystemMenu = function(event) {
             if(event) event.stopPropagation();
             document.getElementById('system-dropdown-panel').classList.toggle('show');
-        }
+        };
         document.addEventListener('click', function() {
             document.getElementById('system-dropdown-panel').classList.remove('show');
         });
@@ -849,7 +851,7 @@
 
         window.switchAppView = function(viewId) {
             clearAllValidationBanners();
-            clearInterval(adminPanelLiveInterval); // Reset admin loop trace interval on transitions
+            clearInterval(adminPanelLiveInterval); 
             const headerElement = document.getElementById('main-header');
             
             if(viewId !== 'view-home') {
@@ -879,7 +881,6 @@
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
             if(viewId === 'view-sec-admin-panel') {
                 loadAdminPanel();
-                // SET INTERNET CHAT STREAM SYNC BACKGROUND INTERVAL ONCE EVERY 4 SECONDS FOR DYNAMIC MANUAL RESPONSES
                 adminPanelLiveInterval = setInterval(loadAdminPanel, 4000);
             }
         };
@@ -927,8 +928,8 @@
             window.open(fileName, '_blank');
         }
 
-        /* --- ADVANCED TWO-WAY CORE LIVE TERMINAL ENGINE (LOAD REQUESTS + INCOMING CHATS) --- */
-        async function loadAdminPanel() {
+        /* --- ADVANCED TWO-WAY CORE LIVE TERMINAL ENGINE FIXED WINDOW ACCESS --- */
+        window.loadAdminPanel = async function() {
             if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return; 
             
             // Task A: Render document clearance rows
@@ -971,7 +972,6 @@
                 if(!error && messages && messages.length > 0) {
                     let threadEmails = [...new Set(messages.map(m => m.email))].filter(Boolean);
                     
-                    // Maintain scroll focus states during background interval paints
                     let activeInputValues = {};
                     document.querySelectorAll('[id^="admin-chat-reply-input-"]').forEach(inp => {
                         activeInputValues[inp.id] = inp.value;
@@ -1015,7 +1015,21 @@
             }
         }
 
-        /* --- GLOBAL ADMIN REPLY EMITTER ACTION HOOK --- */
+        /* --- GLOBAL ACTIONS ATTACHED EXPLICITLY TO WINDOW INTERFACE SCOPE --- */
+        window.changeStatus = async function(e, email, status) {
+            if(e) { e.preventDefault(); e.stopPropagation(); } 
+            await _supabase.from('document_requests').update({ status: status }).eq('email', email);
+            window.loadAdminPanel();
+        };
+
+        window.killRequest = async function(e, email) {
+            if(e) { e.preventDefault(); e.stopPropagation(); } 
+            if(confirm("Destroy verification pipeline for " + email + "?")) {
+                await _supabase.from('document_requests').delete().eq('email', email);
+                window.loadAdminPanel();
+            }
+        };
+
         window.handleSendAdminReply = async function(targetUserEmail, inputSelectorId) {
             const inputField = document.getElementById(`admin-chat-reply-input-${inputSelectorId}`);
             const textStr = inputField.value.trim();
@@ -1027,7 +1041,7 @@
 
             if(!error) {
                 inputField.value = "";
-                loadAdminPanel();
+                window.loadAdminPanel();
             } else {
                 alert("Transmit fault: " + error.message);
             }
@@ -1073,7 +1087,7 @@
 
                 if(user.email.toLowerCase() === 'surajsinghrajput5040@gmail.com') {
                     document.getElementById('ml-admin').style.display = "flex";
-                    if(document.getElementById('view-sec-admin-panel').classList.contains('active-view')) loadAdminPanel();
+                    if(document.getElementById('view-sec-admin-panel').classList.contains('active-view')) window.loadAdminPanel();
                 } else {
                     document.getElementById('ml-admin').style.display = "none";
                 }
