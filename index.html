@@ -39,7 +39,7 @@
         .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); }
         .three-dot-menu-trigger img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
 
-        /* THE DYNAMIC ENLARGED ULTRA-PROFESSIONAL MENU PANEL (20565.jpg / 20566.jpg RESTORED & WIDENED) */
+        /* THE DYNAMIC ENLARGED ULTRA-PROFESSIONAL MENU PANEL (WIDENED TO 380PX FOR COMFORT VIEW) */
         .dropdown-panel {
             position: absolute; top: 75px; right: 20px; width: 380px; 
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
@@ -60,7 +60,7 @@
         .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); }
         .menu-link-row i { width: 24px; text-align: center; font-size: 16px; }
 
-        /* CANVAS VIEWS DISPLAY STRUCTURE ENGINE (NATURAL AUTO HEIGHT TO CORRECT GAP OVERFLOWS) */
+        /* CANVAS VIEWS DISPLAY STRUCTURE ENGINE (CLEAN COMPACT FLOW - NO MORE HEIGHT LEAKS) */
         .app-view { display: none !important; width: 100%; height: auto !important; background-color: var(--bg-main); box-sizing: border-box; }
         .app-view.active-view { display: block !important; position: relative; }
         
@@ -194,7 +194,7 @@
         .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; }
         .loc-pill { display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 11px 22px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; }
 
-        /* SKILLS PROGRESS BLOCK TILES (20555.jpg BARABAR LEVEL ALIGNMENT SECURED) */
+        /* SKILLS PROGRESS BLOCK TILES (HORIZONTAL LEVEL ALIGNMENT RESTORED) */
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; align-items: stretch; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
@@ -221,14 +221,14 @@
         .file-item-row i.fa-certificate { color: #fbbf24 !important; font-size: 22px !important; }
         .file-item-row i.fa-download, .file-item-row i.fa-external-link-alt { color: #64748b !important; font-size: 13px !important; }
 
-        /* THE PREMIUM PENDING ACCESS SCREEN MODULE (20556.jpg RE-DESIGNED TO PENDING FOR APPROVAL IN LARGE TEXT) */
+        /* THE PREMIUM PENDING ACCESS SCREEN MODULE (20556.jpg RE-DESIGNED TO PENDING FOR APPROVAL) */
         .pending-box { text-align: center; padding: 50px 30px; background: rgba(251, 191, 36, 0.02); border: 1px dashed rgba(251, 191, 36, 0.25); border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); margin: 20px auto; width: 100%; box-sizing: border-box; }
         .pending-box i.fa-clock { font-size: 56px; color: #fbbf24; text-shadow: 0 0 25px rgba(251, 191, 36, 0.4); margin-bottom: 20px; animation: rotateClockGear 16s linear infinite; display: inline-block; }
         .status-msg { font-size: 24px; font-weight: 800; color: #fbbf24; margin-bottom: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
         .status-sub { font-size: 13px; color: var(--text-gray); line-height: 1.6; max-width: 620px; margin: 0 auto; }
         @keyframes rotateClockGear { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
-        /* THE ENLARGED EXTRA SPACIOUS USER DROPDOWN CONSOLE PANEL PROFILE CARD (20566.jpg MAGNIFIED COMPONENT) */
+        /* THE ENLARGED EXTRA SPACIOUS USER DROPDOWN CONSOLE PANEL PROFILE CARD (360PX WIDE & PROFESSIONAL) */
         .user-menu-profile-card { display: flex; align-items: center; gap: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 18px; border-radius: 18px; margin-bottom: 5px; width: 100%; box-sizing: border-box; }
         .user-menu-avatar { width: 52px; height: 52px; border-radius: 14px; background: #fb923c; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 800; color: #fff; flex-shrink: 0; }
         .user-menu-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; }
@@ -256,7 +256,7 @@
                 <i class="fas fa-ellipsis-v" id="three-dot-icon"></i>
             </div>
 
-            <!-- FLOATING OPTIONS DROPDOWN PANEL (20566.jpg DYNAMIC SCALING PRESERVED) -->
+            <!-- FLOATING OPTIONS DROPDOWN PANEL -->
             <div class="dropdown-panel" id="system-dropdown-panel" onclick="event.stopPropagation();">
                 <div class="menu-auth-row" id="menu-guest-block">
                     <button type="button" class="menu-btn-auth menu-btn-signin" onclick="switchAppView('view-login')">Sign In</button>
@@ -565,7 +565,7 @@
                 <div class="auth-card-compact">
                     <div class="view-panel-header">
                         <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-                        <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Registration</h3>
+                        h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Registration</h3>
                     </div>
                     
                     <div id="register-validation-banner" class="validation-glowing-banner"></div>
@@ -755,7 +755,7 @@
         let countdownInterval = null;
         let approvalPollingInterval = null;
         
-        // RE-LOCKED THE ABSOLUTE URL TO PREVENT THE TAB STATES RESETTING THE USER AGENT PREFERENCE FOR DESKTOP SITES
+        // FIXED REDIRECT ADDRESS PIPELINE - LOCKS CORRESPONDING ROOT BASE PATHS TO KEEP CHROME MOBILE DESKTOP USER AGENT PERSISTENT
         const redirectLink = window.location.origin + window.location.pathname;
 
         function toggleSystemMenu(event) {
