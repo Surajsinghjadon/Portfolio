@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Corporate Ecosystem</title>
     
+    <!-- Supabase Clients & FontAwesome Engines -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -185,7 +186,7 @@
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
         .contact-left { padding: 35px; flex: 1.2; box-sizing: border-box; }
         .contact-left-row { display: flex; align-items: center; gap: 18px; }
-        .icon-container { background: rgba(5, 7, 12, 0.4) ; border: 1px solid rgba(255, 255, 255, 0.04); width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 18px; flex-shrink: 0; }
+        .icon-container { background: rgba(5, 7, 12, 0.4); border: 1px solid rgba(255, 255, 255, 0.04); width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 18px; flex-shrink: 0; }
         .label { font-size: 11px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
         .value { font-size: 14px; font-weight: 700; margin-top: 4px; color: #fff; word-break: break-all; }
         .sep-line { height: 1px; background: rgba(56, 189, 248, 0.2); margin: 20px 0; width: 100%; }
@@ -193,7 +194,7 @@
         .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; }
         .loc-pill { display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 11px 22px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; }
 
-        /* --- AUTOMATED SOFTWARE FLOATING CHAT ASSISTANT STYLING MATRIX --- */
+        /* --- MODERN FIXED FLOATING LIVE CHAT CONSUL SOFTWARE WIDGET STYLE --- */
         .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
         .chat-widget-trigger { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-blue); color: #05070c; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 8px 24px var(--accent-glow); transition: all 0.2s ease; }
         .chat-widget-trigger:hover { transform: scale(1.05); background: #7dd3fc; }
@@ -258,6 +259,7 @@
 </head>
 <body>
 
+    <!-- MASTER GLOBAL HEADER -->
     <header id="main-header">
         <div class="nav-container">
             <a href="javascript:void(0)" onclick="switchAppView('view-home')" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -266,6 +268,7 @@
                 <i class="fas fa-ellipsis-v" id="three-dot-icon"></i>
             </div>
 
+            <!-- FLOATING OPTIONS DROPDOWN PANEL -->
             <div class="dropdown-panel" id="system-dropdown-panel" onclick="event.stopPropagation();">
                 <div class="menu-auth-row" id="menu-guest-block">
                     <button type="button" class="menu-btn-auth menu-btn-signin" onclick="switchAppView('view-login')">Sign In</button>
@@ -301,6 +304,7 @@
 
     <div class="container">
 
+        <!-- VIEW SCREEN A: HOME COMPONENT -->
         <div id="view-home" class="app-view active-view">
             <div class="hero">
                 <div class="hero-left-block">
@@ -321,6 +325,7 @@
                 </div>
             </div>
 
+            <!-- ANALYTICS DATA Snapshot -->
             <div class="analytics-dashboard-title">
                 <i class="fas fa-chart-pie"></i> Operational Insights & Analytics Snapshot
             </div>
@@ -370,6 +375,7 @@
                 </div>
             </div>
 
+            <!-- ENGINE PERFORMANCE TILES -->
             <div class="analytics-dashboard-title" style="margin-top:50px;">
                 <i class="fas fa-tasks"></i> Operational Engine Performance Meters
             </div>
@@ -413,6 +419,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN B: EXPERIENCE PATHWAY -->
         <div id="view-experience" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -438,6 +445,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN C: ACADEMIC TIMELINES -->
         <div id="view-user-edu" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -459,6 +467,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN D: TECHNICAL SKILLS PERFORMANCE METERS -->
         <div id="view-technical-skills" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -492,6 +501,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN E: CONTACT INFO MODULE -->
         <div id="view-user-contact" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -527,6 +537,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN F: ACCOUNT SIGN IN PORTAL -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -561,6 +572,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN G: REGISTER CONSOLE HUB -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -603,6 +615,7 @@
                             <span class="input-field-label-meta">Password</span>
                             <input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••" oninput="checkPasswordStrength('reg')">
                         </div>
+                        <!-- ACTIVE GRAPHIC STRENGTH METER HOOK -->
                         <div class="strength-container" id="strength-container-reg">
                             <div class="strength-bar-bg"><div id="strength-bar-reg" class="strength-bar"></div></div>
                             <span id="strength-text-reg" class="strength-text">Password Strength</span>
@@ -624,6 +637,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN H: FORGOT PASSWORD -->
         <div id="view-forgot" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -658,6 +672,7 @@
                             <span class="input-field-label-meta">New Password</span>
                             <input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password" oninput="checkPasswordStrength('forgot')">
                         </div>
+                        <!-- ACTIVE GRAPHIC STRENGTH METER HOOK -->
                         <div class="strength-container" id="strength-container-forgot">
                             <div class="strength-bar-bg"><div id="strength-bar-forgot" class="strength-bar"></div></div>
                             <span id="strength-text-forgot" class="strength-text">Password Strength</span>
@@ -673,6 +688,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN I: ENCRYPTED VAULT CERTIFICATES -->
         <div id="view-sec-vault-achievements" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -690,6 +706,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO -->
         <div id="view-sec-vault-documents" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -721,6 +738,7 @@
             </div>
         </div>
 
+        <!-- VIEW SCREEN K: ADMIN SYSTEM CONSOLE (WITH FIXED AUTO REAL-TIME CHAT SYNC INTERFACE) -->
         <div id="view-sec-admin-panel" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -728,18 +746,22 @@
                     <h2 class="section-title" style="color: #fbbf24;">User Clearance Dashboard</h2>
                 </div>
                 <div id="admin-requests-list" class="vault-list-container">
-                    </div>
+                    <!-- Dynamic requests streams -->
+                </div>
 
+                <!-- ADMIN LIVE CHAT MANUAL REPLIER ENGINE PORTAL -->
                 <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 30px;">
                     <h2 class="section-title" style="color: var(--accent-blue); display:flex; align-items:center; gap:10px;"><i class="fas fa-comments"></i> User Live Chat Terminal</h2>
                     <div id="admin-chat-messages-container" class="vault-list-container" style="margin-top:20px;">
-                        </div>
+                        <!-- Dynamic user chat groups stream in here via background real-time poller loops -->
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
 
+    <!-- SOFTWARE FLOATING CHAT COMPONENT ENGINE WIDGET (CRISP / TAWK STYLE) -->
     <div class="floating-chat-widget" onclick="event.stopPropagation();">
         <div class="chat-widget-trigger" onclick="toggleChatWidget(event)">
             <i class="fas fa-comments"></i>
@@ -770,6 +792,7 @@
         <p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
     </footer>
 
+    <!-- INTERACTIVE MASTER CORE JAVASCRIPT MACHINERY -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -780,8 +803,9 @@
         let countdownInterval = null;
         let approvalPollingInterval = null;
         let chatWidgetSyncInterval = null;
+        let adminPanelLiveInterval = null; // New live thread synchronization interval
         
-        // HARD FIXED SYSTEM REFORWARD REDIRECT MATRICES TO INSURE BROWSER PERSISTENT USER AGENT ENGINE VALUES
+        // HARD EMBEDDED ORIGINAL ABSOLUTE ROUTE TARGET LINK PATH - COMPLETELY KEEPS MOBILE CHROMES DESKTOP SITE MODE CHECKS UNTOUCHED
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
         window.toggleChatWidget = function(e) {
@@ -825,6 +849,7 @@
 
         window.switchAppView = function(viewId) {
             clearAllValidationBanners();
+            clearInterval(adminPanelLiveInterval); // Reset admin loop trace interval on transitions
             const headerElement = document.getElementById('main-header');
             
             if(viewId !== 'view-home') {
@@ -852,7 +877,11 @@
             window.scrollTo({ top: 0, behavior: 'instant' });
             
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
-            if(viewId === 'view-sec-admin-panel') loadAdminPanel();
+            if(viewId === 'view-sec-admin-panel') {
+                loadAdminPanel();
+                // SET INTERNET CHAT STREAM SYNC BACKGROUND INTERVAL ONCE EVERY 4 SECONDS FOR DYNAMIC MANUAL RESPONSES
+                adminPanelLiveInterval = setInterval(loadAdminPanel, 4000);
+            }
         };
 
         function updateDocumentUIStatus(status) {
@@ -905,43 +934,50 @@
             // Task A: Render document clearance rows
             const { data: requests } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
             const container = document.getElementById('admin-requests-list');
-            container.innerHTML = '';
-            
-            if(requests && requests.length > 0) {
-                requests.forEach(req => {
-                    const block = document.createElement('div');
-                    block.className = 'admin-request-card'; 
-                    let col = req.status === 'approved' ? '#4ade80' : '#fbbf24';
-                    block.innerHTML = `
-                        <div style="display:flex; justify-content:space-between; width:100%; align-items:center; border-bottom:1px solid rgba(255,255,255,0.04); padding-bottom:10px;">
-                            <div style="display:flex; flex-direction:column; gap:2px; text-align:left;">
-                                <span style="font-size:16px; color:#fff; font-weight:700;">${req.name}</span>
-                                <span style="font-size:12px; color:#64748b; font-family:monospace;">${req.email}</span>
+            if(container) {
+                container.innerHTML = '';
+                if(requests && requests.length > 0) {
+                    requests.forEach(req => {
+                        const block = document.createElement('div');
+                        block.className = 'admin-request-card'; 
+                        let col = req.status === 'approved' ? '#4ade80' : '#fbbf24';
+                        block.innerHTML = `
+                            <div style="display:flex; justify-content:space-between; width:100%; align-items:center; border-bottom:1px solid rgba(255,255,255,0.04); padding-bottom:10px;">
+                                <div style="display:flex; flex-direction:column; gap:2px; text-align:left;">
+                                    <span style="font-size:16px; color:#fff; font-weight:700;">${req.name}</span>
+                                    <span style="font-size:12px; color:#64748b; font-family:monospace;">${req.email}</span>
+                                </div>
+                                <span style="color:${col}; font-size:11px; font-weight:800; text-transform:uppercase;">${req.status}</span>
                             </div>
-                            <span style="color:${col}; font-size:11px; font-weight:800; text-transform:uppercase;">${req.status}</span>
-                        </div>
-                        <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:10px;">
-                            <button type="button" onclick="changeStatus(event, '${req.email}', 'approved')" style="background:#4ade80; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">APPROVE</button>
-                            <button type="button" onclick="changeStatus(event, '${req.email}', 'pending')" style="background:#fbbf24; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">PENDING</button>
-                            <button type="button" onclick="killRequest(event, '${req.email}')" style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.2); color:#ef4444; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px;">DELETE</button>
-                        </div>
-                    `;
-                    container.appendChild(block);
-                });
-            } else {
-                container.innerHTML = `<p style="font-size:13px; color:var(--text-gray); text-align:center;">No pending clearance data loops inside registry.</p>`;
+                            <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:10px;">
+                                <button type="button" onclick="changeStatus(event, '${req.email}', 'approved')" style="background:#4ade80; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">APPROVE</button>
+                                <button type="button" onclick="changeStatus(event, '${req.email}', 'pending')" style="background:#fbbf24; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">PENDING</button>
+                                <button type="button" onclick="killRequest(event, '${req.email}')" style="background:rgba(239,68,68,0.1); border:1px solid rgba(239,68,68,0.2); color:#ef4444; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px;">DELETE</button>
+                            </div>
+                        `;
+                        container.appendChild(block);
+                    });
+                } else {
+                    container.innerHTML = `<p style="font-size:13px; color:var(--text-gray); text-align:center;">No pending clearance data loops inside registry.</p>`;
+                }
             }
 
             // Task B: Fetch and Group user chat threads for Suraj's response terminal
             const chatBoxContainer = document.getElementById('admin-chat-messages-container');
-            chatBoxContainer.innerHTML = '';
+            if(!chatBoxContainer) return;
             
             try {
                 const { data: messages, error } = await _supabase.from('portfolio_messages').select('*').order('id', { ascending: true });
                 if(!error && messages && messages.length > 0) {
-                    // Filter unique tracking user streams
                     let threadEmails = [...new Set(messages.map(m => m.email))].filter(Boolean);
                     
+                    // Maintain scroll focus states during background interval paints
+                    let activeInputValues = {};
+                    document.querySelectorAll('[id^="admin-chat-reply-input-"]').forEach(inp => {
+                        activeInputValues[inp.id] = inp.value;
+                    });
+
+                    chatBoxContainer.innerHTML = '';
                     threadEmails.forEach(userEmail => {
                         const threadGroup = messages.filter(m => m.email === userEmail);
                         const chatCard = document.createElement('div');
@@ -949,6 +985,8 @@
                         chatCard.style.cssText = "display:flex; flex-direction:column; gap:10px; background: rgba(13,17,28,0.8);";
                         
                         let safeIdId = userEmail.replace(/[@.]/g, '_');
+                        let previousValue = activeInputValues[`admin-chat-reply-input-${safeIdId}`] || "";
+
                         chatCard.innerHTML = `
                             <div style="font-size:14px; font-weight:800; border-bottom:1px solid rgba(255,255,255,0.05); padding-bottom:8px; color:var(--accent-blue);">
                                 <i class="fas fa-user-circle"></i> Conversation Node: ${userEmail}
@@ -967,6 +1005,7 @@
                             </div>
                         `;
                         chatBoxContainer.appendChild(chatCard);
+                        document.getElementById(`admin-chat-reply-input-${safeIdId}`).value = previousValue;
                     });
                 } else {
                     chatBoxContainer.innerHTML = `<div style="text-align:center; color:var(--text-gray); font-size:13px; padding:20px; border:1px dashed rgba(255,255,255,0.05); border-radius:12px;">No active visitor live chat channels open inside Supabase yet.</div>`;
@@ -1010,19 +1049,23 @@
                 document.getElementById('menu-user-email').innerText = user.email;
                 
                 const avatarContainer = document.getElementById('menu-avatar-badge');
-                if (userDisplayPic) {
-                    avatarContainer.innerHTML = `<img src="${userDisplayPic}" alt="User Avatar">`;
-                    avatarContainer.style.background = "transparent";
-                } else {
-                    avatarContainer.innerHTML = name.charAt(0).toUpperCase();
-                    avatarContainer.style.background = "#fb923c";
+                if (avatarContainer) {
+                    if (userDisplayPic) {
+                        avatarContainer.innerHTML = `<img src="${userDisplayPic}" alt="User Avatar">`;
+                        avatarContainer.style.background = "transparent";
+                    } else {
+                        avatarContainer.innerHTML = name.charAt(0).toUpperCase();
+                        avatarContainer.style.background = "#fb923c";
+                    }
                 }
 
                 const triggerContainer = document.getElementById('three-dot-trigger');
-                if (userDisplayPic) {
-                    triggerContainer.innerHTML = `<img src="${userDisplayPic}" alt="User Avatar">`;
-                } else {
-                    triggerContainer.innerHTML = `<i class="fas fa-ellipsis-v" id="three-dot-icon"></i>`;
+                if (triggerContainer) {
+                    if (userDisplayPic) {
+                        triggerContainer.innerHTML = `<img src="${userDisplayPic}" alt="User Avatar">`;
+                    } else {
+                        triggerContainer.innerHTML = `<i class="fas fa-ellipsis-v" id="three-dot-icon"></i>`;
+                    }
                 }
 
                 document.getElementById('ml-achievements').style.display = "flex";
@@ -1082,9 +1125,10 @@
             } else { switchAppView('view-home'); }
         };
 
-        /* --- ADVANCED INTELLIGENT CHAT MATRIX AND ASYNC RE-POLLING SYSTEM --- */
+        /* --- THE FREE AUTOMATED NATIVE WIDGET CHATBOT CONSOLE PROCESSOR ENGINE --- */
         function appendVisualChatBubble(name, text, isUser) {
             const logsContainer = document.getElementById('chat-widget-logs');
+            if(!logsContainer) return;
             const bubbleRow = document.createElement('div');
             bubbleRow.style.cssText = `display:flex; width:100%; justify-content: ${isUser ? 'flex-end' : 'flex-start'}; margin-top:3px;`;
             
@@ -1141,19 +1185,15 @@
                 clientEmail = user.email;
             }
 
-            // Append User side text locally for instant preview loop
             appendVisualChatBubble(clientName, msgStr, true);
             inputField.value = "";
-            clearAllValidationBanners();
 
-            // Insert stream token log row inside Supabase Portfolio DB
             try {
                 await _supabase.from('portfolio_messages').insert([
                     { name: clientName, email: clientEmail, message: msgStr, is_admin: false }
                 ]);
             } catch(e){}
 
-            // ADVANCED DICTIONARY PARSE SYSTEM (Answers each question individually in real-time)
             const trackingUniqueId = "bot-type-" + Date.now();
             const logsContainer = document.getElementById('chat-widget-logs');
             const typingBubble = document.createElement('div');
@@ -1183,14 +1223,13 @@
                 } else if (tokenQuery.includes("contact") || tokenQuery.includes("number") || tokenQuery.includes("phone") || tokenQuery.includes("mobile") || tokenQuery.includes("call") || tokenQuery.includes("email") || tokenQuery.includes("address") || tokenQuery.includes("location") || tokenQuery.includes("pithampur")) {
                     botResultResponse = "Direct node coordinates: Reach Suraj instantly on his personal line **+91 78795 95821** or dispatch an enterprise email message to **surajsinghrajput5040@gmail.com**. Physical site: Sagore, Pithampur, Madhya Pradesh. 📞";
                 } else if (tokenQuery.includes("resume") || tokenQuery.includes("cv") || tokenQuery.includes("marksheet") || tokenQuery.includes("document") || tokenQuery.includes("diploma")) {
-                    botResultResponse = "All identity marksheets and files are encrypted. Please go to 'Sign In / Sign Up' at the top 3-dot panel, authorize your portal node, and submit a secure data pull loop under the 'Gated Documents' console screen! 🔒";
+                    botResultResponse = "All identity marksheets and files are encrypted. Please go to 'Sign In / Sign Up' at the top 3-dot panel, authorize your portfolio node, and submit a secure data pull loop under the 'Gated Documents' console screen! 🔒";
                 } else if (tokenQuery.includes("salary") || tokenQuery.includes("package") || tokenQuery.includes("ctc")) {
                     botResultResponse = "Suraj's target compensation parameters are flexible depending upon corporate system node levels and operational loads. You can initiate dial checks on his call node (+91 78795 95821) for full pipeline discussion.";
                 }
 
                 appendVisualChatBubble("Live Chat AI", botResultResponse, false);
                 
-                // Mirror copy bot statement into DB loop trace so Suraj can review context
                 try {
                     await _supabase.from('portfolio_messages').insert([
                         { name: "Live Chat AI", email: clientEmail, message: botResultResponse, is_admin: true }
@@ -1199,33 +1238,37 @@
             }, 1100);
         };
 
-        /* --- THE STRENGTH CALCULATOR MATRIX PIPELINE RESTORED & KEYBOARD TYPING TOGGLE ACTION CONTROLLED --- */
+        /* --- THE STRENGTH CALCULATOR MATRIX PIPELINE --- */
         window.checkPasswordStrength = function(type) {
             const pass = document.getElementById(type === 'reg' ? 'reg-password' : 'forgot-password').value;
             const container = document.getElementById(`strength-container-${type}`);
             const bar = document.getElementById(`strength-bar-${type}`);
             const text = document.getElementById(`strength-text-${type}`);
             
-            bar.className = "strength-bar";
+            if(bar) bar.className = "strength-bar";
             if (pass.length === 0) {
-                container.style.display = "none"; 
-                bar.style.width = "0%";
-                text.innerText = "Password Strength";
-                text.style.color = "var(--text-gray)";
+                if(container) container.style.display = "none"; 
+                if(bar) bar.style.width = "0%";
+                if(text) {
+                    text.innerText = "Password Strength";
+                    text.style.color = "var(--text-gray)";
+                }
             } else {
-                container.style.display = "block"; 
-                if (pass.length < 6) {
-                    bar.classList.add('strength-weak');
-                    text.innerText = "Password Strength: Weak";
-                    text.style.color = "#ef4444";
-                } else if (pass.length < 10) {
-                    bar.classList.add('strength-medium');
-                    text.innerText = "Password Strength: Medium";
-                    text.style.color = "#fbbf24";
-                } else {
-                    bar.classList.add('strength-strong');
-                    text.innerText = "Password Strength: Strong";
-                    text.style.color = "#4ade80";
+                if(container) container.style.display = "block"; 
+                if(bar && text) {
+                    if (pass.length < 6) {
+                        bar.classList.add('strength-weak');
+                        text.innerText = "Password Strength: Weak";
+                        text.style.color = "#ef4444";
+                    } else if (pass.length < 10) {
+                        bar.classList.add('strength-medium');
+                        text.innerText = "Password Strength: Medium";
+                        text.style.color = "#fbbf24";
+                    } else {
+                        bar.classList.add('strength-strong');
+                        text.innerText = "Password Strength: Strong";
+                        text.style.color = "#4ade80";
+                    }
                 }
             }
         };
@@ -1237,18 +1280,20 @@
             const displaySpan = document.getElementById(`timer-display-${type}`);
             const actionBtn = document.getElementById(`resend-action-btn-${type}`);
             
-            block.style.display = "flex";
-            displaySpan.style.display = "inline";
-            displaySpan.innerText = `Resend in: ${left}s`;
-            actionBtn.style.display = "none";
+            if(block) block.style.display = "flex";
+            if(displaySpan) {
+                displaySpan.style.display = "inline";
+                displaySpan.innerText = `Resend in: ${left}s`;
+            }
+            if(actionBtn) actionBtn.style.display = "none";
             
             countdownInterval = setInterval(() => {
                 left--; 
-                displaySpan.innerText = `Resend in: ${left}s`;
+                if(displaySpan) displaySpan.innerText = `Resend in: ${left}s`;
                 if(left <= 0) { 
                     clearInterval(countdownInterval); 
-                    displaySpan.style.display = "none"; 
-                    actionBtn.style.display = "inline-block"; 
+                    if(displaySpan) displaySpan.style.display = "none"; 
+                    if(actionBtn) actionBtn.style.display = "inline-block"; 
                 }
             }, 1000);
         }
