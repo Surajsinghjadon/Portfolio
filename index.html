@@ -41,7 +41,7 @@
 
         /* THE DYNAMIC ENLARGED ULTRA-PROFESSIONAL MENU PANEL */
         .dropdown-panel {
-            position: absolute; top: 75px; right: 20px; width: 360px; 
+            position: absolute; top: 75px; right: 20px; width: 340px; 
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
             border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 24px; padding: 24px;
             box-shadow: 0 35px 70px rgba(0,0,0,0.95), inset 0 1px 2px rgba(255,255,255,0.05);
@@ -56,7 +56,7 @@
         .menu-btn-signup:hover { background: rgba(255,255,255,0.08); }
         
         .menu-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
-        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 15px 20px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; }
+        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; }
         .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); }
         .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
 
@@ -137,7 +137,7 @@
         @media (min-width: 768px) { .project-nodes-grid { grid-template-columns: 1fr 1fr; } }
         .node-tile-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px; display: flex; gap: 20px; align-items: flex-start; transition: all 0.2s; }
         .node-tile-card:hover { border-color: rgba(56, 189, 248, 0.3); background: #111726; transform: translateY(-2px); }
-        .node-icon-box { background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.15); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 20px; flex-shrink: 0; }
+        .node-icon-box { background: rgba(56,189,248,0.06); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 20px; flex-shrink: 0; }
         .node-title-meta { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 5px; }
         .node-desc-text { font-size: 13px; color: var(--text-gray); line-height: 1.5; }
 
@@ -194,13 +194,17 @@
         .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; }
         .loc-pill { display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 11px 22px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; }
 
-        /* DETACHED DEDICATED LIVE CHAT AGENT ARCHITECTURE FRONT-END MATRIX */
-        .live-chat-card-panel { background: transparent; box-sizing: border-box; width: 100%; display: flex; flex-direction: column; gap: 5px; }
-        .chat-input-row-block { display: flex; gap: 15px; width: 100%; margin-top: 15px; box-sizing: border-box; align-items: center; }
-        .chat-area-textarea { flex: 1; background: #05070c; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 14px; padding: 16px; color: #fff; font-size: 14px; font-family: inherit; resize: none; height: 55px; outline: none; box-sizing: border-box; }
-        .chat-area-textarea:focus { border-color: var(--accent-blue); box-shadow: 0 0 12px rgba(56, 189, 248, 0.15); }
-        .chat-send-trigger-btn { background: var(--accent-blue); color: #05070c; width: 55px; height: 55px; border-radius: 14px; border: none; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 18px; transition: all 0.2s; flex-shrink: 0; box-shadow: 0 4px 12px var(--accent-glow); }
-        .chat-send-trigger-btn:hover { background: #7dd3fc; transform: scale(1.03); }
+        /* --- REAL-TIME FLOATING LIVE CHAT CONSOLE WIDGET SYSTEM ARCHITECTURE --- */
+        .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .chat-widget-trigger { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-blue); color: #05070c; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 8px 24px var(--accent-glow); transition: all 0.2s ease; }
+        .chat-widget-trigger:hover { transform: scale(1.05); background: #7dd3fc; }
+        .chat-widget-window { position: absolute; bottom: 70px; right: 0; width: 360px; height: 460px; background: linear-gradient(145deg, #0e1426 0%, #050811 100%); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 22px; box-shadow: 0 25px 60px rgba(0,0,0,0.95); display: none; flex-direction: column; overflow: hidden; box-sizing: border-box; }
+        .chat-widget-window.show { display: flex; }
+        .chat-widget-header { background: rgba(13, 17, 28, 0.95); padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        .chat-widget-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #05070c; box-sizing: border-box; }
+        .chat-widget-body::-webkit-scrollbar { width: 4px; }
+        .chat-widget-body::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.2); border-radius: 4px; }
+        .chat-widget-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; align-items: center; background: #0d111c; box-sizing: border-box; }
 
         /* SKILLS PROGRESS BLOCK TILES (HORIZONTAL LEVEL ALIGNMENT RESTORED) */
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; align-items: stretch; }
@@ -289,7 +293,7 @@
                 <div class="menu-link-row" id="ml-edu" onclick="switchAppView('view-user-edu')"><i class="fas fa-graduation-cap"></i> Education</div>
                 <div class="menu-link-row" id="ml-skills" onclick="switchAppView('view-technical-skills')"><i class="fas fa-tools"></i> Technical Skills</div>
                 <div class="menu-link-row" id="ml-contact" onclick="switchAppView('view-user-contact')"><i class="fas fa-envelope"></i> Contact Info</div>
-                <div class="menu-link-row" id="ml-chatbot" onclick="switchAppView('view-live-chatbot')"><i class="fas fa-robot" style="color: var(--accent-blue);"></i> Live Chat AI</div>
+                <div class="menu-link-row" id="ml-chatbot" onclick="toggleChatWidget(event)"><i class="fas fa-robot" style="color: var(--accent-blue);"></i> Live Chat AI</div>
                 
                 <div class="menu-link-row" id="ml-achievements" style="display: none;" onclick="switchAppView('view-sec-vault-achievements')"><i class="fas fa-award" style="color: #fbbf24;"></i> Achievements</div>
                 <div class="menu-link-row" id="ml-documents" style="display: none;" onclick="switchAppView('view-sec-vault-documents')"><i class="fas fa-file-invoice" style="color: #38bdf8;"></i> Gated Documents</div>
@@ -497,7 +501,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN E: CONTACT INFO MODULE (CLEAN SIDE BY SIDE CHAT RE-ROUTE INTERFACE - 20649.jpg FIXED) -->
+        <!-- VIEW SCREEN E: CONTACT INFO MODULE -->
         <div id="view-user-contact" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -533,35 +537,7 @@
             </div>
         </div>
 
-        <!-- NEW SEPARATE SCREEN F: LIVE CHAT AI INTERFACE AGENT NODE -->
-        <div id="view-live-chatbot" class="app-view">
-            <div class="view-card-wrapper">
-                <div class="view-panel-header">
-                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-                    <h2 class="section-title"><i class="fas fa-robot" style="color: var(--accent-blue); margin-right: 10px;"></i> Live Chat Assistant</h2>
-                </div>
-                
-                <div class="live-chat-card-panel">
-                    <!-- Chat Log Display Area -->
-                    <div id="chat-logs-container" style="max-height: 380px; overflow-y: auto; margin-top: 5px; margin-bottom: 15px; padding: 20px; background: #05070c; border-radius: 20px; border: 1px solid rgba(255,255,255,0.04); display: flex; flex-direction: column; gap: 14px;">
-                        <div style="display: flex; gap: 8px; align-items: flex-start; max-width: 85%;">
-                            <div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.15); padding: 14px 18px; border-radius: 16px 16px 16px 0; font-size: 14px; line-height: 1.6; color: #fff; text-align: left;">
-                                Hello! 👋 I am your dedicated automated assistant. Drop any queries or operational questions inside the matrix below, and my loop system will respond automatically!
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div id="chat-validation-banner" class="validation-glowing-banner" style="margin-top: 5px; margin-bottom: 5px;"></div>
-
-                    <div class="chat-input-row-block">
-                        <textarea id="chat-message-input" class="chat-area-textarea" placeholder="Type secure message block... (सुरक्षित संदेश टाइप करें)"></textarea>
-                        <button type="button" class="chat-send-trigger-btn" onclick="handleSendLiveChatMessage()"><i class="fas fa-paper-plane"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- VIEW SCREEN G: ACCOUNT SIGN IN PORTAL -->
+        <!-- VIEW SCREEN F: ACCOUNT SIGN IN PORTAL -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -596,7 +572,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN H: REGISTER CONSOLE HUB -->
+        <!-- VIEW SCREEN G: REGISTER CONSOLE HUB -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -661,7 +637,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN I: FORGOT PASSWORD -->
+        <!-- VIEW SCREEN H: FORGOT PASSWORD -->
         <div id="view-forgot" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -712,7 +688,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN J: ENCRYPTED VAULT CERTIFICATES -->
+        <!-- VIEW SCREEN I: ENCRYPTED VAULT CERTIFICATES -->
         <div id="view-sec-vault-achievements" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -730,7 +706,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN K: GATED DOCUMENTS REPO -->
+        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO -->
         <div id="view-sec-vault-documents" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -742,6 +718,7 @@
                     <i class="fas fa-lock"></i>
                     <h4 style="font-size:16px; margin-bottom:5px; color:#fff;">Clearance Status Required</h4>
                     <p style="font-size:13px; color:var(--text-gray); line-height:1.5; margin-bottom:18px;">This node contains encrypted system logs and identity marksheets. Request validation to pull files from secure nodes.</p>
+                    <p id="chat-validation-banner" class="validation-glowing-banner" style="margin-top: 5px; margin-bottom: 5px;"></p>
                     <button type="button" class="btn-submit-action" style="background:#fbbf24; margin:0;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
                 </div>
 
@@ -762,7 +739,7 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN L: ADMIN SYSTEM CONSOLE -->
+        <!-- VIEW SCREEN K: ADMIN SYSTEM CONSOLE -->
         <div id="view-sec-admin-panel" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -775,6 +752,33 @@
             </div>
         </div>
 
+    </div>
+
+    <!-- REAL-TIME FLOATING LIVE CHAT SOFTWARE SYSTEM WIDGET ARCHITECTURE -->
+    <div class="floating-chat-widget" onclick="event.stopPropagation();">
+        <div class="chat-widget-trigger" onclick="toggleChatWidget(event)">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="chat-widget-window" id="chat-widget-window">
+            <div class="chat-widget-header">
+                <div style="display:flex; align-items:center; gap:10px;">
+                    <div style="width:10px; height:10px; background:#4ade80; border-radius:50%; box-shadow:0 0 8px #4ade80;"></div>
+                    <span style="font-weight:800; font-size:13px; color:#fff; text-transform:uppercase; letter-spacing:0.5px;">Live Chat Assistant</span>
+                </div>
+                <div onclick="toggleChatWidget(event)" style="cursor:pointer; color:var(--text-gray);"><i class="fas fa-times"></i></div>
+            </div>
+            <div class="chat-widget-body" id="chat-widget-logs">
+                <div style="display: flex; gap: 8px; align-items: flex-start; max-width: 85%;">
+                    <div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.15); padding: 12px 16px; border-radius: 16px 16px 16px 0; font-size: 13px; line-height: 1.5; color: #fff; text-align: left;">
+                        Hello! 👋 I am your automated assistant. Feel free to drop a message node, and I will instantly process an intelligent reply sequence!
+                    </div>
+                </div>
+            </div>
+            <div class="chat-widget-footer">
+                <textarea id="chat-widget-input" style="flex:1; background:#05070c; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; color:#fff; font-size:13px; font-family:inherit; resize:none; height:42px; outline:none; box-sizing:border-box;" placeholder="Type message block..."></textarea>
+                <button type="button" style="background:var(--accent-blue); color:#05070c; width:42px; height:42px; border-radius:12px; border:none; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0;" onclick="handleSendLiveChatMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
     </div>
 
     <footer>
@@ -792,8 +796,13 @@
         let countdownInterval = null;
         let approvalPollingInterval = null;
         
-        // BASE DIRECT DIRECTORY PATH REGISTER MATRIX FOR CHROME MOBILE AGENTS
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
+
+        // WIDGET TOGGLE CONTROLLER
+        window.toggleChatWidget = function(e) {
+            if(e) { e.preventDefault(); e.stopPropagation(); }
+            document.getElementById('chat-widget-window').classList.toggle('show');
+        };
 
         function toggleSystemMenu(event) {
             if(event) event.stopPropagation();
@@ -844,7 +853,6 @@
             if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
             if(viewId === 'view-technical-skills') document.getElementById('ml-skills').classList.add('active');
             if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
-            if(viewId === 'view-live-chatbot') document.getElementById('ml-chatbot').classList.add('active');
             if(viewId === 'view-sec-vault-achievements') document.getElementById('ml-achievements').classList.add('active');
             if(viewId === 'view-sec-vault-documents') document.getElementById('ml-documents').classList.add('active');
             if(viewId === 'view-sec-admin-panel') document.getElementById('ml-admin').classList.add('active');
@@ -1004,7 +1012,7 @@
                 document.getElementById('ml-admin').style.display = "none";
                 
                 clearInterval(approvalPollingInterval);
-                if(['view-sec-vault-achievements', 'view-sec-vault-documents', 'view-sec-admin-panel', 'view-live-chatbot'].includes(document.querySelector('.app-view.active-view')?.id)) {
+                if(['view-sec-vault-achievements', 'view-sec-vault-documents', 'view-sec-admin-panel'].includes(document.querySelector('.app-view.active-view')?.id)) {
                     switchAppView('view-home');
                 }
             }
@@ -1040,22 +1048,15 @@
             } else { switchAppView('view-home'); }
         };
 
-        /* --- THE FREE AUTOMATED NATIVE CHATBOT CONTROLLER PROCESSOR ENGINE --- */
+        /* --- THE FREE AUTOMATED NATIVE WIDGET CHATBOT CONSOLE PROCESSOR ENGINE --- */
         window.handleSendLiveChatMessage = function() {
-            const bannerId = "chat-validation-banner";
-            clearAllValidationBanners();
-            
-            const textInput = document.getElementById('chat-message-input');
+            const textInput = document.getElementById('chat-widget-input');
             const messageText = textInput.value.trim();
-            
-            if(!messageText) {
-                triggerAppValidationBanner(bannerId, "Message text layer cannot be broadcast empty.", "error");
-                return;
-            }
+            if(!messageText) return;
 
-            const logsContainer = document.getElementById('chat-logs-container');
+            const logsContainer = document.getElementById('chat-widget-logs');
 
-            // Render User message block inside container layout (Right alignment)
+            // Render User bubble inside framework
             const userBubble = document.createElement('div');
             userBubble.style.cssText = "display: flex; justify-content: flex-end; width: 100%; margin-top: 5px;";
             userBubble.innerHTML = `
@@ -1067,32 +1068,35 @@
             logsContainer.scrollTop = logsContainer.scrollHeight;
             textInput.value = "";
 
-            // Spawn real-time animated chatbot typing state pipeline
+            // Spawn unique secure typing timestamp indicator loop
+            const uniqueTypeIndicatorId = "typing-" + Date.now();
             const typingBubble = document.createElement('div');
-            typingBubble.id = "chat-typing-indicator";
+            typingBubble.id = uniqueTypeIndicatorId;
             typingBubble.style.cssText = "display: flex; justify-content: flex-start; width: 100%; margin-top: 5px;";
             typingBubble.innerHTML = `
                 <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); padding: 10px 14px; border-radius: 16px 16px 16px 0; font-size: 12px; color: var(--text-gray); font-style: italic;">
-                    <i class="fas fa-circle-notch fa-spin" style="color: var(--accent-blue); margin-right: 6px;"></i> Assistant is analyzing message...
+                    <i class="fas fa-circle-notch fa-spin" style="color: var(--accent-blue); margin-right: 6px;"></i> Assistant typing...
                 </div>
             `;
             logsContainer.appendChild(typingBubble);
             logsContainer.scrollTop = logsContainer.scrollHeight;
 
-            // Process Instant Automated Professional Reply loop matrix after 1200ms delay
+            // Delayed processor auto reply pipeline
             setTimeout(() => {
-                const indicator = document.getElementById('chat-typing-indicator');
-                if(indicator) indicator.remove();
+                const targetTypingNode = document.getElementById(uniqueTypeIndicatorId);
+                if(targetTypingNode) targetTypingNode.remove();
 
                 let lowerText = messageText.toLowerCase();
-                let autoBotReply = "Thank you for connecting! Message handshake logs generated successfully. Suraj Singh Jadon will review this cloud data and reach back to your identity node coordinates shortly! 🚀";
+                let autoBotReply = "Thank you for connecting! Your message has been logged inside our secure cloud system network coordinates. Suraj Singh Jadon will review this data sequence and respond shortly! 🚀";
 
                 if (lowerText.includes("hello") || lowerText.includes("hi") || lowerText.includes("hey") || lowerText.includes("bhai")) {
-                    autoBotReply = "Hello there! 👋 Welcome to the Data Analytics network. Drop your query node here regarding SAP validation, dashboard metrics, or computer specialized tools!";
-                } else if (lowerText.includes("job") || lowerText.includes("hiring") || lowerText.includes("resume") || lowerText.includes("work")) {
-                    autoBotReply = "Professional inquiry cached! 📊 Suraj has core expertise in Invoice SAP loops and multi-tier store logs management. Go ahead and request clearance under the 'Gated Documents' panel to download his official Resume!";
+                    autoBotReply = "Hello there! 👋 Welcome to the system network console. How can I assist you with data analytics, SAP operations, or project validation nodes today?";
+                } else if (lowerText.includes("job") || lowerText.includes("hiring") || lowerText.includes("resume") || lowerText.includes("work") || lowerText.includes("cv")) {
+                    autoBotReply = "Professional inquiry matched! 📊 Suraj is a specialized Data Analyst & SAP Invoice Executive with 4+ years of experience. You can authorize via Sign In to view and download his official documents inside the secure Gated Documents vault section!";
+                } else if (lowerText.includes("contact") || lowerText.includes("number") || lowerText.includes("phone") || lowerText.includes("mobile") || lowerText.includes("call") || lowerText.includes("email")) {
+                    autoBotReply = "Direct contact data available: You can reach Suraj Singh Jadon directly via mobile at **+91 78795 95821** or transmit an email request node directly to **surajsinghrajput5040@gmail.com**! 📞";
                 } else if (lowerText.includes("project") || lowerText.includes("contract") || lowerText.includes("freelance")) {
-                    autoBotReply = "Consulting workflow node triggered! Suraj is open for data infrastructure operations. Please drop your email id explicitly inside the chat frame, and our network synchronization loop will notify him instantly.";
+                    autoBotReply = "Consulting loop initialized! Suraj handles enterprise data volume structures and ledger parse checks. Drop your email id node inside the chat box container, and he will sync with you directly.";
                 }
 
                 const botBubble = document.createElement('div');
@@ -1103,8 +1107,10 @@
                     </div>
                 `;
                 logsContainer.appendChild(botBubble);
-                logsContainer.scrollTop = logsContainer.scrollHeight;
-            }, 1200);
+                
+                // Final calculation scroll lock
+                setTimeout(() => { logsContainer.scrollTop = logsContainer.scrollHeight; }, 30);
+            }, 1000);
         };
 
         /* --- THE STRENGTH CALCULATOR MATRIX PIPELINE RESTORED & KEYBOARD TYPING TOGGLE ACTION CONTROLLED --- */
