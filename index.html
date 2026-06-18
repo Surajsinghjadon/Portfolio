@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Corporate Ecosystem</title>
     
-    <!-- Supabase Clients & FontAwesome Engines -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
@@ -33,10 +32,11 @@
             background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2);
             width: 44px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: all 0.3s; position: relative; z-index: 100005;
+            overflow: hidden;
         }
         .three-dot-menu-trigger:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); }
         .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); }
-        .three-dot-menu-trigger img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
+        .three-dot-menu-trigger img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
 
         /* THE DYNAMIC ENLARGED PROFESSIONAL SYSTEM DROPDOWN PANEL (20488.jpg FIXED LABELS) */
         .dropdown-panel {
@@ -217,7 +217,7 @@
         /* THE PROFESSIONAL RETINOID DESIGN FOR LOGGED USER INSIDE MENU DROPDOWN PANEL (20488.jpg FIXED) */
         .user-menu-profile-card { display: flex; align-items: center; gap: 14px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.06); padding: 14px; border-radius: 16px; margin-bottom: 5px; width: 100%; box-sizing: border-box; }
         .user-menu-avatar { width: 44px; height: 44px; border-radius: 12px; background: #fb923c; border: 1px solid rgba(255,255,255,0.1); overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 800; color: #fff; flex-shrink: 0; }
-        .user-menu-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .user-menu-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
         .user-menu-meta { display: flex; flex-direction: column; text-align: left; max-width: 210px; overflow: hidden; }
         .user-menu-meta-name { font-size: 14px; font-weight: 700; color: #fff; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; }
         .user-menu-meta-email { font-size: 12px; color: var(--text-gray); text-overflow: ellipsis; overflow: hidden; white-space: nowrap; margin-top: 2px; }
@@ -233,7 +233,6 @@
 </head>
 <body>
 
-    <!-- MASTER GLOBAL HEADER -->
     <header id="main-header">
         <div class="nav-container">
             <a href="javascript:void(0)" onclick="switchAppView('view-home')" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -242,7 +241,6 @@
                 <i class="fas fa-ellipsis-v" id="three-dot-icon"></i>
             </div>
 
-            <!-- FLOATING OPTIONS DROPDOWN PANEL (20488.jpg FIXED PROFILE INTEGRATION) -->
             <div class="dropdown-panel" id="system-dropdown-panel" onclick="event.stopPropagation();">
                 <div class="menu-auth-row" id="menu-guest-block">
                     <button type="button" class="menu-btn-auth menu-btn-signin" onclick="switchAppView('view-login')">Sign In</button>
@@ -277,7 +275,6 @@
 
     <div class="container">
 
-        <!-- VIEW SCREEN A: HOME COMPONENT -->
         <div id="view-home" class="app-view active-view">
             <div class="hero">
                 <div class="hero-left-block">
@@ -288,7 +285,7 @@
                     <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
                     <div class="btn-group">
                         <button type="button" onclick="switchAppView('view-user-contact')" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</button>
-                        <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
+                        <a href="https://www.linkedin.com/in/surajsinghjadon-bb320a274" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
                     </div>
                 </div>
                 <div>
@@ -298,7 +295,6 @@
                 </div>
             </div>
 
-            <!-- ANALYTICS DATA Snapshot -->
             <div class="analytics-dashboard-title">
                 <i class="fas fa-chart-pie"></i> Operational Insights & Analytics Snapshot
             </div>
@@ -348,7 +344,6 @@
                 </div>
             </div>
 
-            <!-- ENGINE PERFORMANCE TILES -->
             <div class="analytics-dashboard-title" style="margin-top:50px;">
                 <i class="fas fa-tasks"></i> Operational Engine Performance Meters
             </div>
@@ -392,7 +387,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN B: EXPERIENCE PATHWAY -->
         <div id="view-experience" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -418,7 +412,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN C: ACADEMIC TIMELINES -->
         <div id="view-user-edu" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -440,7 +433,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN D: TECHNICAL SKILLS PERFORMANCE METERS -->
         <div id="view-technical-skills" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -472,7 +464,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN E: CONTACT INFO MODULE -->
         <div id="view-user-contact" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -508,7 +499,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN F: ACCOUNT SIGN IN PORTAL -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -543,7 +533,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN G: REGISTER CONSOLE HUB -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -602,7 +591,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN H: FORGOT PASSWORD -->
         <div id="view-forgot" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -647,7 +635,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN I: ENCRYPTED VAULT CERTIFICATES (20489.jpg SUCCESS STATE RESTORED) -->
         <div id="view-sec-vault-achievements" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -665,7 +652,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO (20490.jpg SUCCESS STATE RESTORED) -->
         <div id="view-sec-vault-documents" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -697,7 +683,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN K: ADMIN SYSTEM CONSOLE -->
         <div id="view-sec-admin-panel" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -705,8 +690,7 @@
                     <h2 class="section-title" style="color: #fbbf24;">User Clearance Dashboard</h2>
                 </div>
                 <div id="admin-requests-list" class="vault-list-container">
-                    <!-- Dynamic streams -->
-                </div>
+                    </div>
             </div>
         </div>
 
@@ -716,7 +700,6 @@
         <p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
     </footer>
 
-    <!-- INTERACTIVE MASTER CORE JAVASCRIPT MACHINERY -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -870,18 +853,21 @@
             }
         }
 
-        async function changeStatus(email, status) {
+        async function changeStatus(e, email, status) {
+            if(e) { e.preventDefault(); e.stopPropagation(); } 
             await _supabase.from('document_requests').update({ status: status }).eq('email', email);
             loadAdminPanel();
         }
 
-        async function killRequest(email) {
+        async function killRequest(e, email) {
+            if(e) { e.preventDefault(); e.stopPropagation(); } 
             if(confirm("Destroy verification pipeline for " + email + "?")) {
                 await _supabase.from('document_requests').delete().eq('email', email);
                 loadAdminPanel();
             }
         }
 
+        /* --- UPGRADED REAL-TIME PROFILE PICTURE HANDLER SYNCHRONIZER (20491.jpg FIXED) --- */
         function syncAuthUI() {
             if (currentActiveSession) {
                 document.getElementById('status-dot').style.background = "#4ade80";
@@ -892,10 +878,28 @@
                 const user = currentActiveSession.user;
                 const meta = user.user_metadata || {};
                 let name = meta.full_name || meta.name || user.email.split('@')[0].toUpperCase();
-                
+                let userDisplayPic = meta.avatar_url || meta.picture || "";
+
                 document.getElementById('menu-user-name').innerText = name;
                 document.getElementById('menu-user-email').innerText = user.email;
-                document.getElementById('menu-avatar-badge').innerText = name.charAt(0).toUpperCase();
+                
+                // Dropdown Avatar Controller
+                const avatarContainer = document.getElementById('menu-avatar-badge');
+                if (userDisplayPic) {
+                    avatarContainer.innerHTML = `<img src="${userDisplayPic}" alt="User Avatar">`;
+                    avatarContainer.style.background = "transparent";
+                } else {
+                    avatarContainer.innerHTML = name.charAt(0).toUpperCase();
+                    avatarContainer.style.background = "#fb923c";
+                }
+
+                // Header Profile Button Trigger Controller
+                const triggerContainer = document.getElementById('three-dot-trigger');
+                if (userDisplayPic) {
+                    triggerContainer.innerHTML = `<img src="${userDisplayPic}" alt="User Avatar">`;
+                } else {
+                    triggerContainer.innerHTML = `<i class="fas fa-ellipsis-v" id="three-dot-icon"></i>`;
+                }
 
                 document.getElementById('ml-achievements').style.display = "flex";
                 document.getElementById('ml-documents').style.display = "flex";
@@ -940,6 +944,7 @@
             _supabase.auth.signInWithOAuth({ provider: provider, options: { redirectTo: redirectLink } });
         };
 
+        /* --- LOGIN SUBMIT STRIC POLICY ENGINE --- */
         window.handleLoginSubmit = async function() {
             clearAllValidationBanners();
             const email = document.getElementById('login-email').value.trim();
@@ -954,6 +959,7 @@
             } else { switchAppView('view-home'); }
         };
 
+        /* --- TIMERS FOR SYSTEM HANDSHAKE CLOCKS --- */
         function startOTPTimer(type) {
             clearInterval(countdownInterval); 
             let left = 60;
