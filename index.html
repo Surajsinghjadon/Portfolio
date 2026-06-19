@@ -9,6 +9,12 @@
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- PWA APPLICATION CAPABILITIES INJECTOR -->
+    <meta name="theme-color" content="#05070c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="378.jpg">
+
     <style>
         /* --- CORE SPA SYSTEM DESIGN MATRIX --- */
         :root {
@@ -137,7 +143,7 @@
         @media (min-width: 768px) { .project-nodes-grid { grid-template-columns: 1fr 1fr; } }
         .node-tile-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px; display: flex; gap: 20px; align-items: flex-start; transition: all 0.2s; }
         .node-tile-card:hover { border-color: rgba(56, 189, 248, 0.3); background: #111726; transform: translateY(-2px); }
-        .node-icon-box { background: rgba(56,189,248,0.06); border: 1px solid rgba(56,189,248,0.15); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 20px; flex-shrink: 0; }
+        .node-icon-box { background: rgba(56,189,248,0.06); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 20px; flex-shrink: 0; }
         .node-title-meta { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 5px; }
         .node-desc-text { font-size: 13px; color: var(--text-gray); line-height: 1.5; }
 
@@ -230,7 +236,7 @@
         .file-item-row div { display: flex !important; align-items: center !important; gap: 16px !important; }
         .file-item-row i.fa-file-pdf, .file-item-row i.fa-file-invoice { color: #ef4444 !important; font-size: 22px !important; }
         .file-item-row i.fa-file-alt { color: #38bdf8 !important; font-size: 22px !important; }
-        .file-item-row i.fa-certificate { color: #fbbf24 !important; font-size: 22px !primary; }
+        .file-item-row i.fa-certificate { color: #fbbf24 !important; font-size: 22px !important; }
         .file-item-row i.fa-download, .file-item-row i.fa-external-link-alt { color: #64748b !important; font-size: 13px !important; }
 
         /* THE PREMIUM PENDING ACCESS SCREEN MODULE */
@@ -472,7 +478,7 @@
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-                    <h2 class="section-title">Technical Expertise</h2>
+                    h2 class="section-title">Technical Expertise</h2>
                 </div>
                 <div class="skills-grid">
                     <div>
@@ -566,7 +572,7 @@
                     <div class="social-grid-panel">
                         <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN IN WITH</div>
                         <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign In with Google</button>
-                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign In with LinkedIn</button>
+                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign Up with LinkedIn</button>
                     </div>
                 </div>
             </div>
@@ -700,8 +706,8 @@
                     <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-download"></i></div>
                 </div>
             </div>
         </div>
@@ -806,8 +812,28 @@
         let chatWidgetSyncInterval = null;
         let adminPanelLiveInterval = null; 
         
-        // BASE ROOT PATH DOMAIN KEY FOR MOBILES TO PERSIST DESKTOP SITE MODE CHECKS
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
+
+        // DYNAMIC NATIVE MANIFEST INJECTOR FOR 100% FREE PWA APPLICATION CAPABILITIES
+        (function injectPWAManifest() {
+            const manifestObj = {
+                "name": "Suraj Singh Jadon Ecosystem",
+                "short_name": "Suraj App",
+                "start_url": redirectLink,
+                "display": "standalone",
+                "background_color": "#05070c",
+                "theme_color": "#05070c",
+                "icons": [
+                    { "src": "378.jpg", "sizes": "512x512", "type": "image/jpg" }
+                ]
+            };
+            const stringBlob = JSON.stringify(manifestObj);
+            const blobUri = 'data:application/json;base64,' + btoa(unescape(encodeURIComponent(stringBlob)));
+            const manifestLinkTag = document.createElement('link');
+            manifestLinkTag.rel = 'manifest';
+            manifestLinkTag.href = blobUri;
+            document.head.appendChild(manifestLinkTag);
+        })();
 
         window.toggleChatWidget = function(e) {
             if(e) { e.preventDefault(); e.stopPropagation(); }
@@ -820,7 +846,6 @@
             }
         };
 
-        // EXPLICITLY ATTACHED TO WINDOW INTERFACE SCOPE TO PREVENT dynamic INLINE CALL FAULTS
         window.toggleSystemMenu = function(event) {
             if(event) event.stopPropagation();
             document.getElementById('system-dropdown-panel').classList.toggle('show');
@@ -880,8 +905,8 @@
             
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
             if(viewId === 'view-sec-admin-panel') {
-                loadAdminPanel();
-                adminPanelLiveInterval = setInterval(loadAdminPanel, 4000);
+                window.loadAdminPanel();
+                adminPanelLiveInterval = setInterval(window.loadAdminPanel, 4000);
             }
         };
 
@@ -949,7 +974,7 @@
                                     <span style="font-size:12px; color:#64748b; font-family:monospace;">${req.email}</span>
                                 </div>
                                 <span style="color:${col}; font-size:11px; font-weight:800; text-transform:uppercase;">${req.status}</span>
-                            </div>
+                        </div>
                             <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:10px;">
                                 <button type="button" onclick="changeStatus(event, '${req.email}', 'approved')" style="background:#4ade80; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">APPROVE</button>
                                 <button type="button" onclick="changeStatus(event, '${req.email}', 'pending')" style="background:#fbbf24; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">PENDING</button>
@@ -1011,7 +1036,7 @@
                     chatBoxContainer.innerHTML = `<div style="text-align:center; color:var(--text-gray); font-size:13px; padding:20px; border:1px dashed rgba(255,255,255,0.05); border-radius:12px;">No active visitor live chat channels open inside Supabase yet.</div>`;
                 }
             } catch(e) {
-                chatBoxContainer.innerHTML = `<div style="color:#ef4444; font-size:12px;">Table initialization schema error: Please run the SQL editor script provided up top.</div>`;
+                chatBoxContainer.innerHTML = `<div style="color:#ef4444; font-size:12px;">Table initialization schema error: Please run the SQL editor script inside Supabase.</div>`;
             }
         }
 
