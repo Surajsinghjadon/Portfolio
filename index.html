@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Corporate Ecosystem</title>
     
-    <!-- Supabase Clients & FontAwesome Engines -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- PWA APPLICATION CAPABILITIES INJECTOR -->
     <meta name="theme-color" content="#05070c">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -94,12 +93,12 @@
         /* FORM COMPACT SHEET WRAPPER GRID */
         .auth-card-compact { max-width: 520px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
-        /* HERO INTERFACE */
-        .hero { display: flex; flex-direction: column; gap: 40px; padding: 20px 0; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 50px; }
+        /* HERO INTERFACE WITH DYNAMIC 3D WORKSPACE LAYOUT */
+        .hero { display: flex; flex-direction: column; gap: 40px; padding: 20px 0; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 50px; position: relative; }
         @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
         .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
         .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
-        .hero-left-block { padding-left: 45px; width: 100%; text-align: left; }
+        .hero-left-block { padding-left: 45px; width: 100%; text-align: left; position: relative; z-index: 10; }
         @media (max-width: 768px) { .hero-left-block { padding-left: 0; text-align: center; } }
         h1 { font-size: clamp(28px, 4.5vw, 44px); font-weight: 800; margin-bottom: 20px; line-height: 1.25; }
         .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
@@ -111,9 +110,12 @@
         .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--accent-blue); }
         .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
         .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
-        .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; }
-        .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); }
-        .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        /* 3D WEB-CANVAS CONTAINER PORTS RESTORED */
+        .image-wrapper { position: relative; width: 290px; height: 355px; margin: 0 auto; z-index: 10; }
+        .photo-box { width: 100%; height: 100%; border-radius: 28px; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.05); box-shadow: 0 25px 50px rgba(0,0,0,0.6); position: relative; }
+        .photo-box img { width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 5; }
+        #canvas-3d-node-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; border-radius: 28px; }
 
         /* METRICS CONTROLLERS */
         .analytics-dashboard-title { font-size: 20px; font-weight: 800; margin: 40px 0 20px 0; color: #fff; display: flex; align-items: center; gap: 10px; }
@@ -265,7 +267,6 @@
 </head>
 <body>
 
-    <!-- MASTER GLOBAL HEADER -->
     <header id="main-header">
         <div class="nav-container">
             <a href="javascript:void(0)" onclick="switchAppView('view-home')" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -274,7 +275,6 @@
                 <i class="fas fa-ellipsis-v" id="three-dot-icon"></i>
             </div>
 
-            <!-- FLOATING OPTIONS DROPDOWN PANEL -->
             <div class="dropdown-panel" id="system-dropdown-panel" onclick="event.stopPropagation();">
                 <div class="menu-auth-row" id="menu-guest-block">
                     <button type="button" class="menu-btn-auth menu-btn-signin" onclick="switchAppView('view-login')">Sign In</button>
@@ -310,7 +310,6 @@
 
     <div class="container">
 
-        <!-- VIEW SCREEN A: HOME COMPONENT -->
         <div id="view-home" class="app-view active-view">
             <div class="hero">
                 <div class="hero-left-block">
@@ -321,17 +320,19 @@
                     <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
                     <div class="btn-group">
                         <button type="button" onclick="switchAppView('view-user-contact')" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</button>
-                        <a href="https://www.linkedin.com/in/surajsinghjadon-bb320a274" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
+                        <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
                     </div>
                 </div>
                 <div>
                     <div class="image-wrapper">
-                        <div class="photo-box"><img src="378.jpg" alt="Suraj Singh Jadon"></div>
+                        <div class="photo-box">
+                            <div id="canvas-3d-node-layer"></div>
+                            <img src="378.jpg" alt="Suraj Singh Jadon">
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ANALYTICS DATA Snapshot -->
             <div class="analytics-dashboard-title">
                 <i class="fas fa-chart-pie"></i> Operational Insights & Analytics Snapshot
             </div>
@@ -381,7 +382,6 @@
                 </div>
             </div>
 
-            <!-- ENGINE PERFORMANCE TILES -->
             <div class="analytics-dashboard-title" style="margin-top:50px;">
                 <i class="fas fa-tasks"></i> Operational Engine Performance Meters
             </div>
@@ -425,7 +425,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN B: EXPERIENCE PATHWAY -->
         <div id="view-experience" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -451,7 +450,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN C: ACADEMIC TIMELINES -->
         <div id="view-user-edu" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -473,12 +471,11 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN D: TECHNICAL SKILLS PERFORMANCE METERS -->
         <div id="view-technical-skills" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
-                    h2 class="section-title">Technical Expertise</h2>
+                    <h2 class="section-title">Technical Expertise</h2>
                 </div>
                 <div class="skills-grid">
                     <div>
@@ -507,7 +504,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN E: CONTACT INFO MODULE -->
         <div id="view-user-contact" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -543,7 +539,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN F: ACCOUNT SIGN IN PORTAL -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -578,7 +573,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN G: REGISTER CONSOLE HUB -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -621,7 +615,6 @@
                             <span class="input-field-label-meta">Password</span>
                             <input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••" oninput="checkPasswordStrength('reg')">
                         </div>
-                        <!-- ACTIVE GRAPHIC STRENGTH METER HOOK -->
                         <div class="strength-container" id="strength-container-reg">
                             <div class="strength-bar-bg"><div id="strength-bar-reg" class="strength-bar"></div></div>
                             <span id="strength-text-reg" class="strength-text">Password Strength</span>
@@ -643,7 +636,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN H: FORGOT PASSWORD -->
         <div id="view-forgot" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -678,7 +670,6 @@
                             <span class="input-field-label-meta">New Password</span>
                             <input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password" oninput="checkPasswordStrength('forgot')">
                         </div>
-                        <!-- ACTIVE GRAPHIC STRENGTH METER HOOK -->
                         <div class="strength-container" id="strength-container-forgot">
                             <div class="strength-bar-bg"><div id="strength-bar-forgot" class="strength-bar"></div></div>
                             <span id="strength-text-forgot" class="strength-text">Password Strength</span>
@@ -694,7 +685,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN I: ENCRYPTED VAULT CERTIFICATES -->
         <div id="view-sec-vault-achievements" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -706,13 +696,12 @@
                     <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-download"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt"></i></div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO -->
         <div id="view-sec-vault-documents" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -744,7 +733,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN K: ADMIN SYSTEM CONSOLE (WITH DYNAMIC TWO-WAY LIVE REPLIER TERMINAL) -->
         <div id="view-sec-admin-panel" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -752,22 +740,18 @@
                     <h2 class="section-title" style="color: #fbbf24;">User Clearance Dashboard</h2>
                 </div>
                 <div id="admin-requests-list" class="vault-list-container">
-                    <!-- Dynamic requests streams -->
-                </div>
+                    </div>
 
-                <!-- ADMIN LIVE CHAT MANUAL REPLIER ENGINE PORTAL -->
                 <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 30px;">
                     <h2 class="section-title" style="color: var(--accent-blue); display:flex; align-items:center; gap:10px;"><i class="fas fa-comments"></i> User Live Chat Terminal</h2>
                     <div id="admin-chat-messages-container" class="vault-list-container" style="margin-top:20px;">
-                        <!-- Dynamic user chat groups stream in here via background real-time poller loops -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- SOFTWARE FLOATING CHAT COMPONENT ENGINE WIDGET (CRISP / TAWK STYLE) -->
     <div class="floating-chat-widget" onclick="event.stopPropagation();">
         <div class="chat-widget-trigger" onclick="toggleChatWidget(event)">
             <i class="fas fa-comments"></i>
@@ -781,7 +765,6 @@
                 <div onclick="toggleChatWidget(event)" style="cursor:pointer; color:var(--text-gray);"><i class="fas fa-times"></i></div>
             </div>
             <div class="chat-widget-body" id="chat-widget-logs">
-                <!-- Welcome greeting prompt template loaded locally -->
                 <div style="display: flex; gap: 8px; align-items: flex-start; max-width: 85%;">
                     <div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.15); padding: 12px 16px; border-radius: 16px 16px 16px 0; font-size: 13px; line-height: 1.5; color: #fff; text-align: left;">
                         Hello! 👋 I am your advanced portfolio assistant. Feel free to ask anything about Suraj's Education, Experience, Technical Skills, or Contact details!
@@ -799,7 +782,6 @@
         <p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
     </footer>
 
-    <!-- INTERACTIVE MASTER CORE JAVASCRIPT MACHINERY -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -812,28 +794,81 @@
         let chatWidgetSyncInterval = null;
         let adminPanelLiveInterval = null; 
         
+        // HARD EMBEDDED ORIGINAL PORTFOLIO REDIRECT LINK LOCK
         const redirectLink = 'https://surajsinghjadon.github.io/Portfolio/';
 
-        // DYNAMIC NATIVE MANIFEST INJECTOR FOR 100% FREE PWA APPLICATION CAPABILITIES
-        (function injectPWAManifest() {
-            const manifestObj = {
-                "name": "Suraj Singh Jadon Ecosystem",
-                "short_name": "Suraj App",
-                "start_url": redirectLink,
-                "display": "standalone",
-                "background_color": "#05070c",
-                "theme_color": "#05070c",
-                "icons": [
-                    { "src": "378.jpg", "sizes": "512x512", "type": "image/jpg" }
-                ]
-            };
-            const stringBlob = JSON.stringify(manifestObj);
-            const blobUri = 'data:application/json;base64,' + btoa(unescape(encodeURIComponent(stringBlob)));
-            const manifestLinkTag = document.createElement('link');
-            manifestLinkTag.rel = 'manifest';
-            manifestLinkTag.href = blobUri;
-            document.head.appendChild(manifestLinkTag);
-        })();
+        // --- DYNAMIC NATIVE THREE.JS 3D INTERACTIVE GRAPHICS ENGINE ---
+        function init3DMatrixScene() {
+            const containerNode = document.getElementById('canvas-3d-node-layer');
+            if(!containerNode) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, 290 / 355, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            
+            renderer.setSize(290, 355);
+            containerNode.innerHTML = "";
+            containerNode.appendChild(renderer.domElement);
+
+            // Create interactive floating particle sphere node
+            const geometry = new THREE.SphereGeometry(1.4, 24, 24);
+            const material = new THREE.MeshBasicMaterial({
+                color: 0x38bdf8,
+                wireframe: true,
+                transparent: true,
+                opacity: 0.15
+            });
+            const sphereMesh = new THREE.Mesh(geometry, material);
+            scene.add(sphereMesh);
+
+            // Add floating high-tech processing data points
+            const particleGeo = new THREE.BufferGeometry();
+            const particleCount = 120;
+            const posArray = new Float32Array(particleCount * 3);
+
+            for(let i=0; i < particleCount * 3; i++) {
+                posArray[i] = (Math.random() - 0.5) * 4.5;
+            }
+            particleGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            const particleMat = new THREE.PointsMaterial({
+                size: 0.035,
+                color: 0x38bdf8,
+                transparent: true,
+                opacity: 0.8
+            });
+            const particlesMesh = new THREE.Points(particleGeo, particleMat);
+            scene.add(particlesMesh);
+
+            camera.position.z = 3.2;
+
+            // Tracking coordinates map logic
+            let targetMouseX = 0, targetMouseY = 0;
+            document.addEventListener('mousemove', (event) => {
+                targetMouseX = (event.clientX - window.innerWidth / 2) * 0.0015;
+                targetMouseY = (event.clientY - window.innerHeight / 2) * 0.0015;
+            });
+
+            function animate3DFrame() {
+                requestAnimationFrame(animate3DFrame);
+                
+                // Real-time loop rotation + responsive mouse mapping tracking vectors
+                sphereMesh.rotation.y += 0.002;
+                sphereMesh.rotation.x += 0.001;
+                particlesMesh.rotation.y -= 0.0015;
+
+                sphereMesh.rotation.y += (targetMouseX - sphereMesh.rotation.y) * 0.1;
+                sphereMesh.rotation.x += (targetMouseY - sphereMesh.rotation.x) * 0.1;
+                particlesMesh.rotation.y += (targetMouseX - particlesMesh.rotation.y) * 0.1;
+
+                renderer.render(scene, camera);
+            }
+            animate3DFrame();
+        }
+
+        // Initialize 3D nodes upon system boot loader channels
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(init3DMatrixScene, 500);
+        });
 
         window.toggleChatWidget = function(e) {
             if(e) { e.preventDefault(); e.stopPropagation(); }
@@ -891,7 +926,10 @@
             const targetView = document.getElementById(viewId);
             if(targetView) targetView.classList.add('active-view');
             
-            if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
+            if(viewId === 'view-home') {
+                document.getElementById('ml-home').classList.add('active');
+                setTimeout(init3DMatrixScene, 100);
+            }
             if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
             if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
             if(viewId === 'view-technical-skills') document.getElementById('ml-skills').classList.add('active');
@@ -957,7 +995,6 @@
         window.loadAdminPanel = async function() {
             if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return; 
             
-            // Task A: Render document clearance rows
             const { data: requests } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
             const container = document.getElementById('admin-requests-list');
             if(container) {
@@ -974,7 +1011,7 @@
                                     <span style="font-size:12px; color:#64748b; font-family:monospace;">${req.email}</span>
                                 </div>
                                 <span style="color:${col}; font-size:11px; font-weight:800; text-transform:uppercase;">${req.status}</span>
-                        </div>
+                            </div>
                             <div style="display:flex; gap:10px; justify-content:flex-end; margin-top:10px;">
                                 <button type="button" onclick="changeStatus(event, '${req.email}', 'approved')" style="background:#4ade80; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">APPROVE</button>
                                 <button type="button" onclick="changeStatus(event, '${req.email}', 'pending')" style="background:#fbbf24; border:none; padding:10px 20px; border-radius:8px; font-weight:bold; cursor:pointer; font-size:12px; color:#05070c;">PENDING</button>
@@ -988,7 +1025,6 @@
                 }
             }
 
-            // Task B: Fetch and Group user chat threads for Suraj's response terminal
             const chatBoxContainer = document.getElementById('admin-chat-messages-container');
             if(!chatBoxContainer) return;
             
@@ -1036,11 +1072,10 @@
                     chatBoxContainer.innerHTML = `<div style="text-align:center; color:var(--text-gray); font-size:13px; padding:20px; border:1px dashed rgba(255,255,255,0.05); border-radius:12px;">No active visitor live chat channels open inside Supabase yet.</div>`;
                 }
             } catch(e) {
-                chatBoxContainer.innerHTML = `<div style="color:#ef4444; font-size:12px;">Table initialization schema error: Please run the SQL editor script inside Supabase.</div>`;
+                chatBoxContainer.innerHTML = `<div style="color:#ef4444; font-size:12px;">Table initialization schema error: Please run the SQL editor script inside Supabase dashboard.</div>`;
             }
         }
 
-        /* --- GLOBAL ACTIONS ATTACHED EXPLICITLY TO WINDOW INTERFACE SCOPE --- */
         window.changeStatus = async function(e, email, status) {
             if(e) { e.preventDefault(); e.stopPropagation(); } 
             await _supabase.from('document_requests').update({ status: status }).eq('email', email);
@@ -1351,7 +1386,7 @@
                 }
             }
 
-            const { error } = await _supabase.auth.signInWithOtp({ email });
+            const { error = null } = await _supabase.auth.signInWithOtp({ email });
             if(error) {
                  if (error.message.includes("User already registered") || error.message.includes("already exists")) {
                      triggerAppValidationBanner(activeBannerId, "Registration Blocked: This account already exists. Please use the Sign In page.", 'error');
