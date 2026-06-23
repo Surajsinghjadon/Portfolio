@@ -5,12 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Suraj Singh Jadon - Corporate Ecosystem</title>
     
-    <!-- Supabase Clients, FontAwesome & Three.js 3D Graphics Engines -->
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <!-- PWA APPLICATION CAPABILITIES INJECTOR -->
     <meta name="theme-color" content="#05070c">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -64,6 +62,7 @@
         
         .menu-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
         .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; }
+        .menu-link-row { border: none; outline: none; }
         .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); }
         .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
 
@@ -71,7 +70,7 @@
         .app-view { display: none !important; width: 100%; height: auto !important; background-color: var(--bg-main); box-sizing: border-box; }
         .app-view.active-view { display: block !important; position: relative; }
         
-        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER (WIDENED TO 1100PX FOR EXTRA SPHERE AREA) */
+        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER */
         .view-card-wrapper {
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
             border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 32px;
@@ -95,7 +94,7 @@
         /* FORM COMPACT SHEET WRAPPER GRID */
         .auth-card-compact { max-width: 520px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
-        /* HERO INTERFACE WIT IMMERSIVE ADVANCED 3D CARTOON CHARACTER CANALS MATRIX */
+        /* HERO INTERFACE WIT IMMERSIVE ADVANCED 3D WORKSPACE LAYOUT */
         .hero { display: flex; flex-direction: column; gap: 40px; padding: 20px 0; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 50px; position: relative; }
         @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
         .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
@@ -113,8 +112,8 @@
         .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
         .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
         
-        /* CINEMATIC ENLARGED 3D CHARACTER DISPLAY DOCK AREA */
-        .image-wrapper { position: relative; width: 460px; height: 460px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
+        /* CINEMATIC ENLARGED 3D DISPLAY CONTAINER PORT */
+        .image-wrapper { position: relative; width: 480px; height: 480px; margin: 0 auto; display: flex; align-items: center; justify-content: center; }
         @media (max-width: 768px) { .image-wrapper { width: 320px; height: 320px; } }
         #canvas-3d-hero-container { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 2; pointer-events: auto; }
 
@@ -257,13 +256,10 @@
         .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); cursor: default; box-sizing: border-box; }
         .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
-
-        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
     </style>
 </head>
 <body>
 
-    <!-- MASTER GLOBAL HEADER -->
     <header id="main-header">
         <div class="nav-container">
             <a href="javascript:void(0)" onclick="switchAppView('view-home')" class="logo">Suraj Singh <span>Jadon</span></a>
@@ -272,7 +268,6 @@
                 <i class="fas fa-ellipsis-v" id="three-dot-icon"></i>
             </div>
 
-            <!-- FLOATING OPTIONS DROPDOWN PANEL -->
             <div class="dropdown-panel" id="system-dropdown-panel" onclick="event.stopPropagation();">
                 <div class="menu-auth-row" id="menu-guest-block">
                     <button type="button" class="menu-btn-auth menu-btn-signin" onclick="switchAppView('view-login')">Sign In</button>
@@ -308,7 +303,6 @@
 
     <div class="container">
 
-        <!-- VIEW SCREEN A: HOME COMPONENT (3D ECOSYSTEM ADVANCED SELECTION) -->
         <div id="view-home" class="app-view active-view">
             <div class="hero">
                 <div class="hero-left-block">
@@ -324,13 +318,11 @@
                 </div>
                 <div>
                     <div class="image-wrapper">
-                        <!-- Immersive Three.js dynamic vector tracking full character container canvas -->
                         <div id="canvas-3d-hero-container"></div>
                     </div>
                 </div>
             </div>
 
-            <!-- ANALYTICS DATA Snapshot -->
             <div class="analytics-dashboard-title">
                 <i class="fas fa-chart-pie"></i> Operational Insights & Analytics Snapshot
             </div>
@@ -380,7 +372,6 @@
                 </div>
             </div>
 
-            <!-- ENGINE PERFORMANCE TILES -->
             <div class="analytics-dashboard-title" style="margin-top:50px;">
                 <i class="fas fa-tasks"></i> Operational Engine Performance Meters
             </div>
@@ -424,7 +415,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN B: EXPERIENCE PATHWAY -->
         <div id="view-experience" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -450,7 +440,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN C: ACADEMIC TIMELINES -->
         <div id="view-user-edu" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -472,7 +461,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN D: TECHNICAL SKILLS PATH (3D EXTENDED TRACE DOCK) -->
         <div id="view-technical-skills" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -482,7 +470,6 @@
                 <div class="skills-grid">
                     <div>
                         <div class="sub-title">DATA ANALYTICS TIMELINE STRUCTURE</div>
-                        <!-- Bouncing spheres 3D physics mapping frame workspace -->
                         <div id="canvas-3d-techstack-portal" class="canvas-3d-techstack-portal"></div>
                     </div>
                     <div>
@@ -502,7 +489,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN E: CONTACT INFO MODULE -->
         <div id="view-user-contact" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -538,7 +524,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN F: ACCOUNT SIGN IN PORTAL -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -573,7 +558,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN G: ACCOUNT REGISTRATION PORTAL -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -616,7 +600,6 @@
                             <span class="input-field-label-meta">Password</span>
                             <input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••" oninput="checkPasswordStrength('reg')">
                         </div>
-                        <!-- ACTIVE GRAPHIC STRENGTH METER HOOK -->
                         <div class="strength-container" id="strength-container-reg">
                             <div class="strength-bar-bg"><div id="strength-bar-reg" class="strength-bar"></div></div>
                             <span id="strength-text-reg" class="strength-text">Password Strength</span>
@@ -638,7 +621,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN H: FORGOT PASSWORD -->
         <div id="view-forgot" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -673,7 +655,6 @@
                             <span class="input-field-label-meta">New Password</span>
                             <input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password" oninput="checkPasswordStrength('forgot')">
                         </div>
-                        <!-- ACTIVE GRAPHIC STRENGTH METER HOOK -->
                         <div class="strength-container" id="strength-container-forgot">
                             <div class="strength-bar-bg"><div id="strength-bar-forgot" class="strength-bar"></div></div>
                             <span id="strength-text-forgot" class="strength-text">Password Strength</span>
@@ -689,7 +670,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN I: ENCRYPTED VAULT CERTIFICATES -->
         <div id="view-sec-vault-achievements" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -707,7 +687,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN J: GATED DOCUMENTS REPO -->
         <div id="view-sec-vault-documents" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -739,7 +718,6 @@
             </div>
         </div>
 
-        <!-- VIEW SCREEN K: ADMIN SYSTEM CONSOLE (WITH DYNAMIC TWO-WAY LIVE REPLIER TERMINAL) -->
         <div id="view-sec-admin-panel" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -747,22 +725,18 @@
                     <h2 class="section-title" style="color: #fbbf24;">User Clearance Dashboard</h2>
                 </div>
                 <div id="admin-requests-list" class="vault-list-container">
-                    <!-- Dynamic requests streams -->
-                </div>
+                    </div>
 
-                <!-- ADMIN LIVE CHAT MANUAL REPLIER ENGINE PORTAL -->
                 <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 30px;">
                     <h2 class="section-title" style="color: var(--accent-blue); display:flex; align-items:center; gap:10px;"><i class="fas fa-comments"></i> User Live Chat Terminal</h2>
                     <div id="admin-chat-messages-container" class="vault-list-container" style="margin-top:20px;">
-                        <!-- Dynamic user chat groups stream in here via background real-time poller loops -->
-                    </div>
+                        </div>
                 </div>
             </div>
         </div>
 
     </div>
 
-    <!-- SOFTWARE FLOATING CHAT COMPONENT ENGINE WIDGET (CRISP / TAWK STYLE) -->
     <div class="floating-chat-widget" onclick="event.stopPropagation();">
         <div class="chat-widget-trigger" onclick="toggleChatWidget(event)">
             <i class="fas fa-comments"></i>
@@ -789,11 +763,6 @@
         </div>
     </div>
 
-    <footer>
-        <p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p>
-    </footer>
-
-    <!-- INTERACTIVE MASTER CORE JAVASCRIPT MACHINERY -->
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
@@ -847,49 +816,78 @@
             // Create Master Character assembly root group
             const characterGroup = new THREE.Group();
 
-            // 1. CARTOON HEAD MESH NODE
-            const headGeo = new THREE.SphereGeometry(1.0, 32, 32);
+            // 1. CARTOON TORSO BODY MESH
+            const bodyGeo = new THREE.CylinderGeometry(0.5, 0.6, 1.2, 32);
+            const bodyMat = new THREE.MeshStandardMaterial({ color: 0x1e293b, roughness: 0.5 });
+            const bodyMesh = new THREE.Mesh(bodyGeo, bodyMat);
+            bodyMesh.position.y = -1.1;
+            characterGroup.add(bodyMesh);
+
+            // 2. CARTOON HEAD MESH NODE
+            const headGeo = new THREE.SphereGeometry(0.75, 32, 32);
             const headMat = new THREE.MeshStandardMaterial({ color: 0xdb997b, roughness: 0.6, metalness: 0.1 });
             const headMesh = new THREE.Mesh(headGeo, headMat);
+            headMesh.position.y = 0.1;
             characterGroup.add(headMesh);
 
-            // 2. DYNAMIC STYLIZED CAP NODES ( hemispherical mesh mapping)
-            const capGeo = new THREE.SphereGeometry(1.05, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
+            // 3. DYNAMIC STYLIZED CAP NODES ( hemispherical mesh mapping)
+            const capGeo = new THREE.SphereGeometry(0.79, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2);
             const capMat = new THREE.MeshStandardMaterial({ color: 0x3f3f46, roughness: 0.4 });
             const capMesh = new THREE.Mesh(capGeo, capMat);
-            capMesh.rotation.x = -0.3; // Tilt back standard as video
+            capMesh.position.set(0, 0.12, 0);
+            capMesh.rotation.x = -0.25; 
             characterGroup.add(capMesh);
 
-            // 3. CAP FRONT VISOR/BRIM NODE (Extended structural block mapping)
-            const brimGeo = new THREE.BoxGeometry(1.4, 0.08, 0.7);
+            // 4. CAP FRONT VISOR/BRIM NODE (Extended structural block mapping)
+            const brimGeo = new THREE.BoxGeometry(1.0, 0.06, 0.5);
             const brimMesh = new THREE.Mesh(brimGeo, capMat);
-            brimMesh.position.set(0, 0.35, 0.85);
-            brimMesh.rotation.x = 0.15;
+            brimMesh.position.set(0, 0.36, 0.6);
+            brimMesh.rotation.x = 0.1;
             characterGroup.add(brimMesh);
 
-            // 4. DETAILED INTERACTIVE EYES MESH DOCK
-            const eyeWhiteGeo = new THREE.SphereGeometry(0.18, 16, 16);
+            // 5. DETAILED INTERACTIVE EYES MESH DOCK
+            const eyeWhiteGeo = new THREE.SphereGeometry(0.14, 16, 16);
             const eyeWhiteMat = new THREE.MeshBasicMaterial({ color: 0xffffff });
             
             const leftEyeWhite = new THREE.Mesh(eyeWhiteGeo, eyeWhiteMat);
-            leftEyeWhite.position.set(-0.32, 0.08, 0.84);
+            leftEyeWhite.position.set(-0.24, 0.12, 0.64);
             characterGroup.add(leftEyeWhite);
 
             const rightEyeWhite = leftEyeWhite.clone();
-            rightEyeWhite.position.x = 0.32;
+            rightEyeWhite.position.x = 0.24;
             characterGroup.add(rightEyeWhite);
 
-            // 5. MOVING PUPIL ENGINE DOCK STRUCTURES
-            const pupilGeo = new THREE.SphereGeometry(0.08, 16, 16);
+            // 6. MOVING PUPIL ENGINE DOCK STRUCTURES
+            const pupilGeo = new THREE.SphereGeometry(0.06, 16, 16);
             const pupilMat = new THREE.MeshBasicMaterial({ color: 0x0f172a });
             
             const leftPupil = new THREE.Mesh(pupilGeo, pupilMat);
-            leftPupil.position.set(-0.32, 0.08, 1.0);
+            leftPupil.position.set(-0.24, 0.12, 0.76);
             characterGroup.add(leftPupil);
 
             const rightPupil = leftPupil.clone();
-            rightPupil.position.x = 0.32;
+            rightPupil.position.x = 0.24;
             characterGroup.add(rightPupil);
+
+            // 7. SLEEK CORPORATE DESK TABLE INTEGRATION (00:05 MATCH)
+            const tableGeo = new THREE.BoxGeometry(3.2, 0.1, 1.2);
+            const tableMat = new THREE.MeshStandardMaterial({ color: 0x0f172a, roughness: 0.3 });
+            const tableMesh = new THREE.Mesh(tableGeo, tableMat);
+            tableMesh.position.set(0, -0.9, 0.6);
+            characterGroup.add(tableMesh);
+
+            // 8. HIGH-TECH LAPTOP COMPUTER (00:11 MATCH)
+            const lapBaseGeo = new THREE.BoxGeometry(1.0, 0.04, 0.7);
+            const lapMat = new THREE.MeshStandardMaterial({ color: 0x64748b, metalness: 0.8, roughness: 0.2 });
+            const lapBaseMesh = new THREE.Mesh(lapBaseGeo, lapMat);
+            lapBaseMesh.position.set(0, -0.83, 0.7);
+            characterGroup.add(lapBaseMesh);
+
+            const lapScreenGeo = new THREE.BoxGeometry(1.0, 0.65, 0.03);
+            const lapScreenMesh = new THREE.Mesh(lapScreenGeo, lapMat);
+            lapScreenMesh.position.set(0, -0.52, 0.36);
+            lapScreenMesh.rotation.x = -0.3; // Open hinge position
+            characterGroup.add(lapScreenMesh);
 
             // Inject composite array group into global matrix scene
             scene.add(characterGroup);
@@ -902,27 +900,34 @@
             directionalLight.position.set(4, 5, 4);
             scene.add(directionalLight);
 
-            camera.position.z = 3.6;
+            camera.position.set(0, -0.1, 3.4);
 
             // Smooth spring mathematics tracking loops
             let mouseTargetX = 0, mouseTargetY = 0;
             window.addEventListener('mousemove', (e) => {
-                mouseTargetX = (e.clientX - window.innerWidth / 2) * 0.0022;
-                mouseTargetY = (e.clientY - window.innerHeight / 2) * 0.0022;
+                mouseTargetX = (e.clientX - window.innerWidth / 2) * 0.0018;
+                mouseTargetY = (e.clientY - window.innerHeight / 2) * 0.0018;
             });
+
+            let clock = new THREE.Clock();
 
             function renderLoop() {
                 hero3DInstance = requestAnimationFrame(renderLoop);
+                let time = clock.getElapsedTime();
+
+                // Idle breathing cycle loops
+                characterGroup.position.y = Math.sin(time * 2) * 0.02;
+                lapScreenMesh.rotation.x = -0.3 + Math.sin(time * 1.5) * 0.01;
 
                 // Smoothly ease rotational tracking matrices to look at mouse pointer coordinates
                 characterGroup.rotation.y += (mouseTargetX - characterGroup.rotation.y) * 0.06;
                 characterGroup.rotation.x += (mouseTargetY - characterGroup.rotation.x) * 0.06;
                 
                 // Fine micro-pupil adjustments loop tracking maps
-                leftPupil.position.x = -0.32 + (mouseTargetX * 0.12);
-                rightPupil.position.x = 0.32 + (mouseTargetX * 0.12);
-                leftPupil.position.y = 0.08 - (mouseTargetY * 0.12);
-                rightPupil.position.y = 0.08 - (mouseTargetY * 0.12);
+                leftPupil.position.x = -0.24 + (mouseTargetX * 0.08);
+                rightPupil.position.x = 0.24 + (mouseTargetX * 0.08);
+                leftPupil.position.y = 0.12 - (mouseTargetY * 0.08);
+                rightPupil.position.y = 0.12 - (mouseTargetY * 0.08);
 
                 renderer.render(scene, camera);
             }
@@ -1194,7 +1199,7 @@
                         document.getElementById(`admin-chat-reply-input-${safeIdId}`).value = previousValue;
                     });
                 } else {
-                    chatBoxContainer.innerHTML = `<div style="text-align:center; color:var(--text-gray); font-size:13px; padding:20px; border:1px dashed rgba(255,255,255,0.05); border-radius:20px; width:100%;">No active visitor live chat channels open inside Supabase yet.</div>`;
+                    chatBoxContainer.innerHTML = `<div style="text-align:center; color:var(--text-gray); font-size:13px; padding:20px; border:1px dashed rgba(255,255,255,0.05); border-radius:24px;">No active visitor live chat channels open inside Supabase yet.</div>`;
                 }
             } catch(e) {
                 chatBoxContainer.innerHTML = `<div style="color:#ef4444; font-size:12px;">Table initialization schema error: Please run the SQL editor script inside Supabase dashboard.</div>`;
