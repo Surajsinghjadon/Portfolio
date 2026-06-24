@@ -161,7 +161,6 @@
         .social-btn-box:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); }
         .inline-action-trigger { padding: 16px 22px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); color: #38bdf8; border-radius: 14px; font-size: 12px; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s; text-transform: uppercase; box-sizing: border-box; }
         .inline-action-trigger:hover { background: var(--accent-blue); color: #05070c; }
-        .inline-verify-trigger { background: rgba(74, 222, 128, 0.12); border-color: rgba(74, 222, 128, 0.25); color: #4ade80; }
         .live-status-success-badge { font-size: 13px; font-weight: bold; color: #4ade80; display: none; align-items: center; gap: 6px; flex-shrink: 0; margin-left: 5px; }
         .btn-submit-action { width: 100% !important; display: block !important; padding: 18px !important; border-radius: 14px !important; font-size: 14px !important; font-weight: 800 !important; cursor: pointer !important; border: none !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; transition: all 0.2s ease !important; margin-top: 15px !important; color: #000000 !important; text-align: center !important; outline: none !important; }
 
@@ -222,6 +221,9 @@
         .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
         .vault-list-container::-webkit-scrollbar { width: 5px; }
         .vault-list-container::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.15); border-radius: 10px; }
+        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); cursor: default; box-sizing: border-box; }
+        .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
+        .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
     </style>
 </head>
 <body>
@@ -261,7 +263,7 @@
                 <div class="menu-link-row" id="ml-chatbot-trigger-menu" onclick="toggleChatWidget(event)"><i class="fas fa-robot" style="color: var(--accent-blue);"></i> Live Chat AI</div>
                 
                 <div class="menu-link-row" id="ml-achievements" style="display: none;" onclick="switchAppView('view-sec-vault-achievements')"><i class="fas fa-award" style="color: #fbbf24;"></i> Achievements</div>
-                <div class="menu-link-row" id="ml-documents" style="display: none;" onclick="switchAppView('view-sec-vault-documents')"><i class="fas fa-file-invoice" style="color: #38bder;"></i> Gated Documents</div>
+                <div class="menu-link-row" id="ml-documents" style="display: none;" onclick="switchAppView('view-sec-vault-documents')"><i class="fas fa-file-invoice" style="color: #38bdf8;"></i> Gated Documents</div>
                 <div class="menu-link-row" id="ml-admin" style="display: none;" onclick="switchAppView('view-sec-admin-panel')"><i class="fas fa-user-shield" style="color: #4ade80;"></i> Admin Console</div>
             </div>
         </div>
@@ -391,7 +393,6 @@
                     <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
                     <div class="role">Invoice SAP Executive</div>
                     <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
-                    <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
                 </div>
                 <div class="card">
                     <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
@@ -555,20 +556,11 @@
                             <span class="input-field-label-meta">Password</span>
                             <input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••" oninput="checkPasswordStrength('reg')">
                         </div>
-                        <div class="strength-container" id="strength-container-reg">
-                            <div class="strength-bar-bg"><div id="strength-bar-reg" class="strength-bar"></div></div>
-                            <span id="strength-text-reg" class="strength-text">Password Strength</span>
-                        </div>
                         <div class="input-row-block">
                             <span class="input-field-label-meta">Confirm Password</span>
                             <input type="password" id="reg-confirm-password" class="auth-field-asset" placeholder="••••••••">
                         </div>
                         <button type="button" class="btn-submit-action" style="background-color: #4ade80;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
-                    </div>
-                    <div class="social-grid-panel">
-                        <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN UP WITH</div>
-                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign Up with Google</button>
-                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign Up with LinkedIn</button>
                     </div>
                 </div>
             </div>
@@ -605,14 +597,6 @@
                         <div class="input-row-block">
                             <span class="input-field-label-meta">New Password</span>
                             <input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password" oninput="checkPasswordStrength('forgot')">
-                        </div>
-                        <div class="strength-container" id="strength-container-forgot">
-                            <div class="strength-bar-bg"><div id="strength-bar-forgot" class="strength-bar"></div></div>
-                            <span id="strength-text-forgot" class="strength-text">Password Strength</span>
-                        </div>
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Confirm New Password</span>
-                            <input type="password" id="forgot-confirm-password" class="auth-field-asset" placeholder="Confirm Password">
                         </div>
                         <button type="button" class="btn-submit-action" style="background-color: var(--accent-blue);" onclick="handleResetPasswordSubmit()">CHANGE PASSWORD</button>
                     </div>
@@ -829,46 +813,4 @@
             }, 1000);
         };
 
-        function initializeWidgetChatPolling() {
-            clearInterval(chatWidgetSyncInterval);
-            chatWidgetSyncInterval = setInterval(async () => {
-                if(!document.getElementById('chat-widget-window').classList.contains('show')) return;
-                let email = currentActiveSession ? currentActiveSession.user.email : "anonymous_guest@node.com";
-                const { data } = await _supabase.from('portfolio_messages').select('*').eq('email', email).order('id', { ascending: true });
-                if(data) {
-                    const log = document.getElementById('chat-widget-logs'); log.innerHTML = '';
-                    data.forEach(m => appendVisualChatBubble(m.name, m.message, !m.is_admin));
-                }
-            }, 3000);
-        }
-
-        window.handleSendOTP = async function(type) {
-            const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
-            await _supabase.auth.signInWithOtp({ email });
-        };
-        window.handleVerifyOTP = async function(type) {
-            const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
-            const token = document.getElementById(type === 'reg' ? 'otp-code-reg' : 'otp-code-forgot').value.trim();
-            const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
-            if(!error) { isEmailVerified = true; document.getElementById(`badge-verified-${type}`).style.display="inline-flex"; }
-        };
-        window.handleFinalRegister = async function() {
-            const email = document.getElementById('reg-email').value.trim(), password = document.getElementById('reg-password').value;
-            await _supabase.auth.signUp({ email, password }); switchAppView('view-login');
-        };
-        window.handleResetPasswordSubmit = async function() {
-            const password = document.getElementById('forgot-password').value;
-            await _supabase.auth.updateUser({ password }); switchAppView('view-login');
-        };
-
-        function initTechStack3DWorkspace() {
-            const mount = document.getElementById('canvas-3d-techstack-portal'); if(!mount) return; mount.innerHTML = "";
-            mount.innerHTML = `<div style="padding:40px; text-align:center; color:var(--text-gray); font-size:14px;"><i class="fas fa-cubes" style="font-size:24px; color:#38bdf8; margin-bottom:10px;"></i><br>3D Skills Engine Initialized & Running Fluid Handshakes...</div>`;
-        }
-        window.addEventListener('DOMContentLoaded', () => { setTimeout(initTechStack3DWorkspace, 1000); });
-        function requestSecureFile(f) { window.open(f, '_blank'); }
-        function clearAllValidationBanners() {}
-        function checkPasswordStrength() {}
-    </script>
-</body>
-</html>
+        function initializeWidgetChat
