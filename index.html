@@ -222,19 +222,6 @@
         .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
         .vault-list-container::-webkit-scrollbar { width: 5px; }
         .vault-list-container::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.15); border-radius: 10px; }
-        .file-item-row { display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 24px 28px !important; background: #0c101d !important; border: 1px solid rgba(255,255,255,0.05) !important; border-radius: 20px !important; color: #e2e8f0 !important; font-size: 15px !important; font-weight: 700 !important; cursor: pointer !important; transition: all 0.2s ease !important; box-shadow: 0 4px 15px rgba(0,0,0,0.2) !important; box-sizing: border-box !important; }
-        .file-item-row:hover { background: linear-gradient(90deg, rgba(56, 189, 248, 0.08) 0%, rgba(12, 16, 29, 1) 100%) !important; color: var(--accent-blue) !important; border-color: rgba(56, 189, 248, 0.35) !important; transform: translateY(-2px) !important; }
-        .file-item-row div { display: flex !important; align-items: center !important; gap: 16px !important; }
-        .file-item-row i.fa-file-pdf, .file-item-row i.fa-file-invoice { color: #ef4444 !important; font-size: 22px !important; }
-        .file-item-row i.fa-file-alt { color: #38bdf8 !important; font-size: 22px !important; }
-        .file-item-row i.fa-certificate { color: #fbbf24 !important; font-size: 22px !important; }
-        .file-item-row i.fa-download, .file-item-row i.fa-external-link-alt { color: #64748b !important; font-size: 13px !important; }
-        .pending-box { text-align: center; padding: 50px 30px; background: rgba(251, 191, 36, 0.02); border: 1px dashed rgba(251, 191, 36, 0.25); border-radius: 24px; box-shadow: 0 15px 40px rgba(0,0,0,0.4); margin: 20px auto; width: 100%; box-sizing: border-box; }
-        .pending-box i.fa-clock { font-size: 56px; color: #fbbf24; text-shadow: 0 0 25px rgba(251, 191, 36, 0.4); margin-bottom: 20px; animation: rotateClockGear 16s linear infinite; display: inline-block; }
-        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); cursor: default; box-sizing: border-box; }
-        .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
-        .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
-        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
     </style>
 </head>
 <body>
@@ -274,7 +261,7 @@
                 <div class="menu-link-row" id="ml-chatbot-trigger-menu" onclick="toggleChatWidget(event)"><i class="fas fa-robot" style="color: var(--accent-blue);"></i> Live Chat AI</div>
                 
                 <div class="menu-link-row" id="ml-achievements" style="display: none;" onclick="switchAppView('view-sec-vault-achievements')"><i class="fas fa-award" style="color: #fbbf24;"></i> Achievements</div>
-                <div class="menu-link-row" id="ml-documents" style="display: none;" onclick="switchAppView('view-sec-vault-documents')"><i class="fas fa-file-invoice" style="color: #38bdf8;"></i> Gated Documents</div>
+                <div class="menu-link-row" id="ml-documents" style="display: none;" onclick="switchAppView('view-sec-vault-documents')"><i class="fas fa-file-invoice" style="color: #38bder;"></i> Gated Documents</div>
                 <div class="menu-link-row" id="ml-admin" style="display: none;" onclick="switchAppView('view-sec-admin-panel')"><i class="fas fa-user-shield" style="color: #4ade80;"></i> Admin Console</div>
             </div>
         </div>
@@ -350,6 +337,48 @@
                     </div>
                 </div>
             </div>
+
+            <div class="analytics-dashboard-title" style="margin-top:50px;">
+                <i class="fas fa-tasks"></i> Operational Engine Performance Meters
+            </div>
+            <div class="sub-analytics-bars-layout">
+                <div class="mini-progress-card">
+                    <div class="mini-progress-meta-row"><span>SAP Invoice Processing Load</span><span>88% Efficiency</span></div>
+                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 88%;"></div></div>
+                </div>
+                <div class="mini-progress-card">
+                    <div class="mini-progress-meta-row"><span>Log Validation Stream Clock</span><span>99.9% Integrity</span></div>
+                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 99.9%;"></div></div>
+                </div>
+                <div class="mini-progress-card">
+                    <div class="mini-progress-meta-row"><span>Database Parse Latency Meter</span><span>0.04ms Core Rate</span></div>
+                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 94%;"></div></div>
+                </div>
+                <div class="mini-progress-card">
+                    <div class="mini-progress-meta-row"><span>Analytical Metric Validation</span><span>96% Sync Flow</span></div>
+                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 96%;"></div></div>
+                </div>
+            </div>
+
+            <div class="analytics-dashboard-title" style="margin-top:50px;">
+                <i class="fas fa-network-wired"></i> Core Infrastructure & Processing Nodes
+            </div>
+            <div class="project-nodes-grid">
+                <div class="node-tile-card">
+                    <div class="node-icon-box"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <div>
+                        <div class="node-title-meta">SAP Transaction Ledger Node</div>
+                        <div class="node-desc-text">Processes bulk commercial log indexes inside secure corporate database environments with deep transaction audit controls.</div>
+                    </div>
+                </div>
+                <div class="node-tile-card">
+                    <div class="node-icon-box"><i class="fas fa-boxes"></i></div>
+                    <div>
+                        <div class="node-title-meta">Inventory Trend Analytics</div>
+                        <div class="node-desc-text">Advanced multi-tier storage logging, tracking data catalog parsers, stock flow trends, and precision material log checks.</div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div id="view-experience" class="app-view">
@@ -362,11 +391,17 @@
                     <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
                     <div class="role">Invoice SAP Executive</div>
                     <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
+                    <div class="desc-line"><i class="fas fa-check"></i> <span>Reconciling corporate transactions and ledger accuracy validations.</span></div>
                 </div>
                 <div class="card">
                     <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
                     <div class="role">Store Data Analysis Operations</div>
                     <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
+                    <div class="role">Machine Operator</div>
+                    <div class="desc-line"><i class="fas fa-check"></i> <span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
                 </div>
             </div>
         </div>
@@ -380,6 +415,14 @@
                 <div class="card">
                     <div class="card-top"><span class="company">Diploma in Computer Applications (DCA)</span><span class="tag">2023</span></div>
                     <div class="desc-line" style="margin-top: 10px;">Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">12th Grade</span><span class="tag">2022</span></div>
+                    <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh State Open Board</div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
+                    <div class="desc-line" style="margin-top: 10px;">Madhya Pradesh Board</div>
                 </div>
             </div>
         </div>
@@ -401,6 +444,10 @@
                             <div class="lang-item">
                                 <div style="display:flex; justify-content:space-between; width: 100%;"><span>Hindi (Native)</span><span>100%</span></div>
                                 <div class="progress-track-bg"><div class="progress-track-fill" style="width: 100%;"></div></div>
+                            </div>
+                            <div class="lang-item">
+                                <div style="display:flex; justify-content:space-between; width: 100%;"><span>English (Professional)</span><span>75%</span></div>
+                                <div class="progress-track-bg"><div class="progress-track-fill" style="width: 75%;"></div></div>
                             </div>
                         </div>
                     </div>
@@ -432,6 +479,11 @@
                             </div>
                         </div>
                     </div>
+                    <div class="contact-right">
+                        <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
+                        <div class="label" style="margin-bottom: 8px;">Location</div>
+                        <a href="https://maps.google.com/?q=Sagore,Pithampur,Madhya+Pradesh" target="_blank" class="loc-pill">LIVE LOCATION</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -454,6 +506,14 @@
                             <input type="password" id="login-password" class="auth-field-asset" placeholder="••••••••">
                         </div>
                         <button type="button" class="btn-submit-action" style="background-color: var(--accent-blue);" onclick="handleLoginSubmit()">LOG IN</button>
+                        <div style="text-align: right; width: 100%;">
+                            <span style="color: var(--accent-blue); font-size: 13px; font-weight: bold; cursor: pointer;" onclick="switchAppView('view-forgot')">Forgot Password?</span>
+                        </div>
+                    </div>
+                    <div class="social-grid-panel">
+                        <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN IN WITH</div>
+                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign In with Google</button>
+                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign Up with LinkedIn</button>
                     </div>
                 </div>
             </div>
@@ -495,11 +555,20 @@
                             <span class="input-field-label-meta">Password</span>
                             <input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••" oninput="checkPasswordStrength('reg')">
                         </div>
+                        <div class="strength-container" id="strength-container-reg">
+                            <div class="strength-bar-bg"><div id="strength-bar-reg" class="strength-bar"></div></div>
+                            <span id="strength-text-reg" class="strength-text">Password Strength</span>
+                        </div>
                         <div class="input-row-block">
                             <span class="input-field-label-meta">Confirm Password</span>
                             <input type="password" id="reg-confirm-password" class="auth-field-asset" placeholder="••••••••">
                         </div>
                         <button type="button" class="btn-submit-action" style="background-color: #4ade80;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
+                    </div>
+                    <div class="social-grid-panel">
+                        <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN UP WITH</div>
+                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign Up with Google</button>
+                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign Up with LinkedIn</button>
                     </div>
                 </div>
             </div>
@@ -537,6 +606,14 @@
                             <span class="input-field-label-meta">New Password</span>
                             <input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password" oninput="checkPasswordStrength('forgot')">
                         </div>
+                        <div class="strength-container" id="strength-container-forgot">
+                            <div class="strength-bar-bg"><div id="strength-bar-forgot" class="strength-bar"></div></div>
+                            <span id="strength-text-forgot" class="strength-text">Password Strength</span>
+                        </div>
+                        <div class="input-row-block">
+                            <span class="input-field-label-meta">Confirm New Password</span>
+                            <input type="password" id="forgot-confirm-password" class="auth-field-asset" placeholder="Confirm Password">
+                        </div>
                         <button type="button" class="btn-submit-action" style="background-color: var(--accent-blue);" onclick="handleResetPasswordSubmit()">CHANGE PASSWORD</button>
                     </div>
                 </div>
@@ -552,6 +629,10 @@
                 <div class="vault-list-container">
                     <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-download"></i></div>
                 </div>
             </div>
         </div>
@@ -571,8 +652,14 @@
                 <div id="doc-gate-pending-view" class="pending-box" style="display:none;">
                     <i class="fas fa-clock"></i>
                     <div class="status-msg">PENDING FOR APPROVAL</div>
+                    <p style="font-size: 13px; color: var(--text-gray);">Your data loop access request is inside admin queue.</p>
                 </div>
                 <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
+                    <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt"></i> Professional Resume</div><i class="fas fa-download"></i></div>
                 </div>
             </div>
@@ -601,7 +688,13 @@
                 <span style="font-weight:800; font-size:13px; color:#fff;">Live Chat AI Assistant</span>
                 <div onclick="toggleChatWidget(event)" style="cursor:pointer; color:var(--text-gray);"><i class="fas fa-times"></i></div>
             </div>
-            <div class="chat-widget-body" id="chat-widget-logs"></div>
+            <div class="chat-widget-body" id="chat-widget-logs">
+                <div style="display: flex; gap: 8px; align-items: flex-start; max-width: 85%;">
+                    <div style="background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.15); padding: 12px 16px; border-radius: 16px 16px 16px 0; font-size: 13px; line-height: 1.5; color: #fff;">
+                        Hello! 👋 Ask anything about Suraj's Education, Experience, Technical Skills, or Contact details!
+                    </div>
+                </div>
+            </div>
             <div class="chat-widget-footer">
                 <textarea id="chat-widget-input" style="flex:1; background:#05070c; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; color:#fff; font-size:13px; resize:none; height:42px; outline:none;" placeholder="Type message block..."></textarea>
                 <button type="button" style="background:var(--accent-blue); color:#05070c; width:42px; height:42px; border-radius:12px; border:none; cursor:pointer;" onclick="handleSendLiveChatMessage()"><i class="fas fa-paper-plane"></i></button>
@@ -618,13 +711,7 @@
         let currentActiveSession = null, isEmailVerified = false, countdownInterval = null, approvalPollingInterval = null, chatWidgetSyncInterval = null, adminPanelLiveInterval = null; 
         const redirectLink = window.location.origin + window.location.pathname;
 
-        // PWA AUTO CAPABILITY Handshake
-        (function injectPWAManifest() {
-            const manifestObj = { "name": "Suraj App", "short_name": "Suraj", "start_url": redirectLink, "display": "standalone", "background_color": "#05070c", "theme_color": "#05070c", "icons": [{ "src": "378.jpg", "sizes": "512x512", "type": "image/jpg" }] };
-            const link = document.createElement('link'); link.rel = 'manifest'; link.href = 'data:application/json;base64,' + btoa(JSON.stringify(manifestObj)); document.head.appendChild(link);
-        })();
-
-        window.toggleChatWidget = function(e) { e.preventDefault(); document.getElementById('chat-widget-window').classList.toggle('show'); if(document.getElementById('chat-widget-window').classList.contains('show')) initializeWidgetChatPolling(); };
+        window.toggleChatWidget = function(e) { if(e) e.preventDefault(); document.getElementById('chat-widget-window').classList.toggle('show'); if(document.getElementById('chat-widget-window').classList.contains('show')) initializeWidgetChatPolling(); };
         window.toggleSystemMenu = function(e) { event.stopPropagation(); document.getElementById('system-dropdown-panel').classList.toggle('show'); };
         document.addEventListener('click', () => document.getElementById('system-dropdown-panel').classList.remove('show'));
 
@@ -636,12 +723,21 @@
             document.getElementById('system-dropdown-panel').classList.remove('show');
             if(viewId === 'view-sec-admin-panel') { window.loadAdminPanel(); adminPanelLiveInterval = setInterval(window.loadAdminPanel, 4000); }
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
+            
+            if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
+            if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
+            if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
+            if(viewId === 'view-technical-skills') { document.getElementById('ml-skills').classList.add('active'); setTimeout(initTechStack3DWorkspace, 100); }
+            if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
         };
 
-        async function handleDocumentAccessGate() {
-            if(!currentActiveSession) return;
-            const { data } = await _supabase.from('document_requests').select('status').eq('email', currentActiveSession.user.email).maybeSingle();
-            updateDocumentUIStatus(data ? data.status : 'none');
+        function updateDocumentUIStatus(status) {
+            document.getElementById('doc-gate-form-view').style.display = "none";
+            document.getElementById('doc-gate-pending-view').style.display = "none";
+            document.getElementById('doc-gate-allowed-view').style.display = "none";
+            if (status === 'approved') document.getElementById('doc-gate-allowed-view').style.display = "block";
+            else if (status === 'pending') document.getElementById('doc-gate-pending-view').style.display = "block";
+            else document.getElementById('doc-gate-form-view').style.display = "block";
         }
 
         window.handleSubmitAdminRequest = async function() {
@@ -658,9 +754,10 @@
                 list.innerHTML = '';
                 reqs?.forEach(r => {
                     const d = document.createElement('div'); d.className = 'admin-request-card';
-                    d.innerHTML = `<div>${r.email} - <b>${r.status}</b></div>
-                        <div><button type="button" onclick="changeStatus(event,'${r.email}','approved')">Approve</button>
-                        <button type="button" onclick="killRequest(event,'${r.email}')">Delete</button></div>`;
+                    d.innerHTML = `<div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
+                        <div>${r.email} - <b>${r.status}</b></div>
+                        <div><button type="button" style="background:#4ade80; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;" onclick="changeStatus(event,'${r.email}','approved')">Approve</button>
+                        <button type="button" style="background:rgba(239,68,68,0.2); color:#ef4444; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;" onclick="killRequest(event,'${r.email}')">Delete</button></div></div>`;
                     list.appendChild(d);
                 });
             }
@@ -674,12 +771,12 @@
                     const card = document.createElement('div'); card.className = 'admin-request-card';
                     let sId = email.replace(/[@.]/g, '_');
                     card.innerHTML = `<div><b>Chat Node: ${email}</b></div>
-                        <div style="max-height:120px; overflow-y:auto; background:#000; padding:10px; border-radius:8px;">
-                            ${group.map(m => `<div><b>${m.name}:</b> ${m.message}</div>`).join('')}
+                        <div style="max-height:120px; overflow-y:auto; background:#05070c; padding:10px; border-radius:8px; margin-top:5px; display:flex; flex-direction:column; gap:4px;">
+                            ${group.map(m => `<div><b style="color:${m.is_admin?'#38bdf8':'#4ade80'}">${m.name}:</b> ${m.message}</div>`).join('')}
                         </div>
-                        <div style="display:flex; gap:10px; margin-top:5px;">
-                            <input type="text" id="admin-reply-${sId}" class="auth-field-asset" placeholder="Type reply...">
-                            <button type="button" onclick="handleSendAdminReply('${email}','${sId}')">Send</button>
+                        <div style="display:flex; gap:10px; margin-top:8px;">
+                            <input type="text" id="admin-reply-${sId}" class="auth-field-asset" style="flex:1; padding:8px 12px !important;" placeholder="Type reply...">
+                            <button type="button" style="background:#38bdf8; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; color:#000; font-weight:bold;" onclick="handleSendAdminReply('${email}','${sId}')">Send</button>
                         </div>`;
                     chatBox.appendChild(card);
                 });
@@ -697,11 +794,13 @@
         function syncAuthUI() {
             if(currentActiveSession) {
                 document.getElementById('menu-guest-block').style.display = "none"; document.getElementById('menu-user-block').style.display = "flex";
-                document.getElementById('menu-user-name').innerText = currentActiveSession.user.email.split('@')[0];
+                document.getElementById('menu-user-name').innerText = currentActiveSession.user.email.split('@')[0].toUpperCase();
+                document.getElementById('menu-user-email').innerText = currentActiveSession.user.email;
                 document.getElementById('ml-achievements').style.display = "flex"; document.getElementById('ml-documents').style.display = "flex";
                 if(currentActiveSession.user.email.toLowerCase() === 'surajsinghrajput5040@gmail.com') document.getElementById('ml-admin').style.display = "flex";
             } else {
                 document.getElementById('menu-guest-block').style.display = "flex"; document.getElementById('menu-user-block').style.display = "none";
+                document.getElementById('ml-achievements').style.display = "none"; document.getElementById('ml-documents').style.display = "none"; document.getElementById('ml-admin').style.display = "none";
             }
         }
 
@@ -718,12 +817,22 @@
             const inp = document.getElementById('chat-widget-input'); const val = inp.value.trim(); if(!val) return;
             let email = currentActiveSession ? currentActiveSession.user.email : "anonymous_guest@node.com";
             appendVisualChatBubble("You", val, true); inp.value = '';
-            await _supabase.from('portfolio_messages').insert([{ name: "Visitor", email, message: val, is_admin: false }]);
-            setTimeout(() => { appendVisualChatBubble("AI", "Logged in cloud matrix node database.", false); }, 1000);
+            await _supabase.from('portfolio_messages').insert([{ name: currentActiveSession ? email.split('@')[0] : "Visitor", email, message: val, is_admin: false }]);
+            
+            setTimeout(() => {
+                let reply = "Your message query context node has been synchronized safely into our network backend registry ledger! Suraj will analyze it shortly. 🚀";
+                let low = val.toLowerCase();
+                if(low.includes("dca") || low.includes("education")) reply = "Suraj finished a 1-Year Diploma in Computer Applications (DCA) from MCU (2023). 🎓";
+                else if(low.includes("experience") || low.includes("work")) reply = "Suraj counts 4+ years of industrial analytics fields: Invoice SAP Executive at Polyhose, and Inventory Stream Analysis at Hettich. 💼";
+                else if(low.includes("contact") || low.includes("number") || low.includes("phone")) reply = "Direct terminal matrix connection route: Reach Suraj instantly via call node at +91 78795 95821. 📞";
+                appendVisualChatBubble("Live Chat AI", reply, false);
+            }, 1000);
         };
 
         function initializeWidgetChatPolling() {
+            clearInterval(chatWidgetSyncInterval);
             chatWidgetSyncInterval = setInterval(async () => {
+                if(!document.getElementById('chat-widget-window').classList.contains('show')) return;
                 let email = currentActiveSession ? currentActiveSession.user.email : "anonymous_guest@node.com";
                 const { data } = await _supabase.from('portfolio_messages').select('*').eq('email', email).order('id', { ascending: true });
                 if(data) {
@@ -751,6 +860,12 @@
             const password = document.getElementById('forgot-password').value;
             await _supabase.auth.updateUser({ password }); switchAppView('view-login');
         };
+
+        function initTechStack3DWorkspace() {
+            const mount = document.getElementById('canvas-3d-techstack-portal'); if(!mount) return; mount.innerHTML = "";
+            mount.innerHTML = `<div style="padding:40px; text-align:center; color:var(--text-gray); font-size:14px;"><i class="fas fa-cubes" style="font-size:24px; color:#38bdf8; margin-bottom:10px;"></i><br>3D Skills Engine Initialized & Running Fluid Handshakes...</div>`;
+        }
+        window.addEventListener('DOMContentLoaded', () => { setTimeout(initTechStack3DWorkspace, 1000); });
         function requestSecureFile(f) { window.open(f, '_blank'); }
         function clearAllValidationBanners() {}
         function checkPasswordStrength() {}
