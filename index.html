@@ -78,7 +78,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER with 3D PERSPECTIVE HOVER EFFECTS */
+        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER */
         .view-card-wrapper {
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
             border: 1px solid rgba(94, 234, 212, 0.22); border-radius: 32px;
@@ -133,7 +133,6 @@
         .analytics-dashboard-title i { color: var(--accent-blue); }
         .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
         
-        /* 3D HOVER MOTION FOR DATA TILES */
         .metric-mini-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 24px; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
         .metric-mini-card:hover { transform: translateY(-5px) scale(1.03); border-color: rgba(94, 234, 212, 0.3); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
         .metric-mini-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-blue); }
@@ -243,6 +242,9 @@
         .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); box-sizing: border-box; }
         .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
+        .pending-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(251,191,36,0.2); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
+        .pending-box i { color: #fbbf24; font-size: 38px; margin-bottom: 16px; }
+        .status-msg { font-size: 16px; font-weight: 800; color: #fbbf24; margin-bottom: 5px; }
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
     </style>
 </head>
@@ -620,9 +622,12 @@
                     <h2 class="section-title">Achievements & Verifications</h2>
                 </div>
                 <div class="vault-list-container">
-                    <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Data_Analytics_with_AI.pdf', false)"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_SQL.pdf', false)"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('ChatGPT_for_Everyone.pdf', false)"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf', false)"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Intro_to_Generative_AI.pdf', false)"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Intro_to_Prompt_Engineering.pdf', false)"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt"></i></div>
                 </div>
             </div>
         </div>
@@ -633,9 +638,26 @@
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
                     <h2 class="section-title">Encrypted System Records</h2>
                 </div>
-                <div id="doc-gate-allowed-view" class="vault-list-container">
-                    <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt"></i> Professional Resume</div><i class="fas fa-download"></i></div>
+                
+                <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
+                    <i class="fas fa-lock"></i>
+                    <h4>Clearance Status Required</h4>
+                    <p>Request validation to pull files from secure nodes.</p>
+                    <button type="button" class="btn-submit-action" style="background:#fbbf24; margin:0;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
+                </div>
+                <div id="doc-gate-pending-view" class="pending-box" style="display:none;">
+                    <i class="fas fa-clock"></i>
+                    <div class="status-msg">PENDING FOR APPROVAL</div>
+                    <p style="font-size: 13px; color: var(--text-gray);">Your data loop access request is inside admin queue.</p>
+                </div>
+
+                <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
+                    <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf', true)"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('resume.pdf', true)"><div><i class="fas fa-file-alt"></i> Professional Resume</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf', true)"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf', true)"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf', true)"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf', true)"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download"></i></div>
                 </div>
             </div>
         </div>
@@ -673,7 +695,7 @@
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        let currentActiveSession = null, isEmailVerified = false, chatWidgetSyncInterval = null; 
+        let currentActiveSession = null, isEmailVerified = false; 
         const redirectLink = window.location.origin + window.location.pathname;
 
         window.toggleChatWidget = function(e) { if(e) e.preventDefault(); document.getElementById('chat-widget-window').classList.toggle('show'); };
@@ -700,6 +722,7 @@
             document.getElementById('system-dropdown-panel').classList.remove('show');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
+            if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
             if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
             if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
             if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
@@ -707,7 +730,59 @@
             if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
         };
 
-        // ⚡ FIXED: DEFINED OAUTH HANDLER LOGIC FOR GOOGLE & LINKEDIN SIGN IN
+        // 🔒 FIXED SECURITY ENGINE Handshaking
+        window.requestSecureFile = async function(file, isDocument = false) {
+            if (!currentActiveSession) {
+                alert("🔒 Access Denied: Please Sign In to verify credentials and pull nodes.");
+                switchAppView('view-login');
+                return;
+            }
+            if (isDocument) {
+                const { data } = await _supabase.from('document_requests')
+                    .select('status')
+                    .eq('email', currentActiveSession.user.email)
+                    .maybeSingle();
+                if (!data || data.status !== 'approved') {
+                    alert("🚫 Access Denied: Clearances pending on administrative loops.");
+                    return;
+                }
+            }
+            window.open(file, '_blank');
+        };
+
+        // 🎯 DYNAMIC VIEW INTERFACE STATUS TOGGLE
+        function updateDocumentUIStatus(status) {
+            const formView = document.getElementById('doc-gate-form-view');
+            const pendingView = document.getElementById('doc-gate-pending-view');
+            const allowedView = document.getElementById('doc-gate-allowed-view');
+            if(!formView || !pendingView || !allowedView) return;
+
+            formView.style.display = 'none';
+            pendingView.style.display = 'none';
+            allowedView.style.display = 'none';
+
+            if (status === 'approved') {
+                allowedView.style.display = 'block';
+            } else if (status === 'pending') {
+                pendingView.style.display = 'block';
+            } else {
+                formView.style.display = 'block';
+            }
+        }
+
+        async function handleDocumentAccessGate() {
+            if(!currentActiveSession) return;
+            const { data } = await _supabase.from('document_requests').select('status').eq('email', currentActiveSession.user.email).maybeSingle();
+            updateDocumentUIStatus(data ? data.status : 'none');
+        }
+
+        window.handleSubmitAdminRequest = async function() {
+            if(!currentActiveSession) return;
+            const user = currentActiveSession.user;
+            await _supabase.from('document_requests').insert([{ name: user.email.split('@')[0], email: user.email, status: 'pending' }]);
+            handleDocumentAccessGate();
+        };
+
         window.handleOAuthLogin = async function(provider) {
             const { error } = await _supabase.auth.signInWithOAuth({
                 provider: provider,
@@ -744,12 +819,11 @@
         window.handleSendLiveChatMessage = async function() {
             const inp = document.getElementById('chat-widget-input'); const val = inp.value.trim(); if(!val) return;
             appendVisualChatBubble("You", val, true); inp.value = '';
-            
             setTimeout(() => {
-                let reply = "Your context node data query synchronized successfully. Suraj will analyze it loop shortly. 🚀";
+                let reply = "Your context query registry has synchronized. Suraj will analyze it soon. 🚀";
                 let low = val.toLowerCase();
                 if(low.includes("dca") || low.includes("education")) reply = "Suraj finished a 1-Year Diploma in Computer Applications (DCA) from MCU (2023). 🎓";
-                else if(low.includes("experience") || low.includes("work")) reply = "Suraj counts industrial analytics loops: Invoice SAP Executive at Polyhose, and Store Data at Hettich. 💼";
+                else if(low.includes("experience") || low.includes("work")) reply = "Suraj counts industrial loops: Invoice SAP Executive at Polyhose, and Store Data at Hettich. 💼";
                 appendVisualChatBubble("Live Chat AI", reply, false);
             }, 800);
         };
@@ -778,9 +852,8 @@
 
         function initTechStack3DWorkspace() {
             const mount = document.getElementById('canvas-3d-techstack-portal'); if(!mount) return; mount.innerHTML = "";
-            mount.innerHTML = `<div style="padding:40px; text-align:center; color:var(--text-gray); font-size:14px;"><i class="fas fa-cubes" style="font-size:24px; color:#5eead4; margin-bottom:10px; animation: rotatingCube 3s linear infinite;"></i><br>Interactive 3D Skills Matrix Synchronization Engine Active...</div>`;
+            mount.innerHTML = `<div style="padding:40px; text-align:center; color:var(--text-gray); font-size:14px;"><i class="fas fa-cubes" style="font-size:24px; color:#5eead4; margin-bottom:10px;"></i><br>Interactive 3D Skills Matrix Synchronization Engine Active...</div>`;
         }
-        function requestSecureFile(f) { window.open(f, '_blank'); }
     </script>
 </body>
 </html>
