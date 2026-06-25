@@ -24,27 +24,38 @@
         html, body { background-color: var(--bg-main); color: var(--text-white); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
         .container { max-width: 1240px; margin: 0 auto; padding: 120px 20px 40px 20px; position: relative; z-index: 5; box-sizing: border-box; }
 
-        /* ⚡ HOLOGRAPHIC BOOT PRELOADER CANVAS */
+        /* HOLOGRAPHIC BOOT PRELOADER CANVAS */
         #cyber-boot-preloader {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
             background: #05070c; z-index: 999999; display: flex; flex-direction: column; 
             align-items: center; justify-content: center; font-family: monospace; font-size: 13px; color: var(--accent-blue);
-            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+            transition: opacity 0.4s ease, visibility 0.4s;
         }
         .boot-terminal-box { width: 290px; text-align: left; display: flex; flex-direction: column; gap: 6px; text-shadow: 0 0 8px var(--accent-glow); }
         .boot-line { overflow: hidden; white-space: nowrap; border-right: 2px solid transparent; width: 0; }
-        .bl-1 { animation: bootType 0.4s steps(30) forwards; }
-        .bl-2 { animation: bootType 0.4s steps(30) 0.4s forwards; }
-        .bl-3 { animation: bootType 0.4s steps(30) 0.8s forwards; }
-        .bl-4 { animation: bootType 0.2s steps(10) 1.2s forwards, cursorFlash 0.5s step-end infinite; border-right-color: var(--accent-blue); font-weight: bold; color: #fff; }
+        .bl-1 { animation: bootType 0.3s steps(30) forwards; }
+        .bl-2 { animation: bootType 0.3s steps(30) 0.3s forwards; }
+        .bl-3 { animation: bootType 0.3s steps(30) 0.6s forwards; }
+        .bl-4 { animation: bootType 0.2s steps(10) 0.9s forwards, cursorFlash 0.5s step-end infinite; border-right-color: var(--accent-blue); font-weight: bold; color: #fff; }
         
         @keyframes bootType { from { width: 0; } to { width: 100%; } }
         @keyframes cursorFlash { from, to { border-right-color: transparent; } 50% { border-right-color: var(--accent-blue); } }
 
-        /* ⚡ DYNAMIC BG MATRIX PACK DATA STREAM ROUTERS */
-        .bg-matrix-layer { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 2; opacity: 0.12; background: linear-gradient(rgba(94, 234, 212, 0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(94, 234, 212, 0.02) 1px, transparent 1px); background-size: 30px 30px; }
-        .bg-matrix-stream { position: absolute; width: 100%; height: 100%; top: 0; left: 0; background: linear-gradient(0deg, transparent, rgba(94, 234, 212, 0.1) 50%, transparent 100%); background-size: 100% 200px; animation: globalStreamMove 8s linear infinite; }
-        @keyframes globalStreamMove { from { background-position-y: 0px; } to { background-position-y: 600px; } }
+        /* ⚡ ULTIMATE HIGH-END 3D PERSPECTIVE GRID BACKGROUND MATRIX SHIFT */
+        .bg-matrix-layer { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            pointer-events: none; z-index: 2; perspective: 360px; overflow: hidden; opacity: 0.18;
+        }
+        .bg-matrix-stream { 
+            position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; 
+            background-image: linear-gradient(rgba(94, 234, 212, 0.15) 1.5px, transparent 1px), linear-gradient(90deg, rgba(94, 234, 212, 0.15) 1.5px, transparent 1px); 
+            background-size: 45px 44px; transform: rotateX(65deg); transform-origin: center center;
+            animation: endless3DGridMove 14s linear infinite;
+        }
+        @keyframes endless3DGridMove { 
+            from { background-position-y: 0px; } 
+            to { background-position-y: 616px; } 
+        }
 
         /* FIXED PROFESSIONAL SYSTEM HEADER */
         header { background: rgba(5, 7, 12, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
@@ -84,7 +95,7 @@
         .menu-link-row:hover, .menu-link-row.active { background: rgba(94, 234, 212, 0.08); color: var(--accent-blue); }
         .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
 
-        /* USER PROFILE STRIPS */
+        /* USER PROFILE MENU STRIPS WITHOUT STATIC SLOTS */
         .user-menu-profile-card { display: flex; align-items: center; gap: 14px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 14px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.04); }
         .user-menu-avatar { width: 38px; height: 38px; background: rgba(94, 234, 212, 0.1); color: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; border: 1px solid rgba(94, 234, 212, 0.3); text-shadow: 0 0 5px var(--accent-glow); }
         .user-menu-meta { display: flex; flex-direction: column; overflow: hidden; }
@@ -179,7 +190,7 @@
         .chart-bar-val { font-size: 11px; color: var(--accent-blue); font-weight: 800; position: absolute; top: -25px; width: 100%; text-align: center; }
         .chart-day-text { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* ⚡ 4 DOMAIN DATA MATRIX METERS CHARTS (NO DUPLICATIONS ALIGNED) */
+        /* 4 DOMAIN DATA MATRIX METERS CHARTS */
         .advanced-charts-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
         .cyber-chart-card { background: var(--bg-card); border: 1px solid rgba(94, 234, 212, 0.12); border-radius: 20px; padding: 20px; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; transition: all 0.3s ease; }
         .cyber-chart-card:hover { border-color: var(--accent-blue); transform: translateY(-4px); box-shadow: 0 15px 35px rgba(94, 234, 212, 0.08); }
@@ -211,7 +222,7 @@
         .pill-b1 { animation-delay: 0.2s; } .pill-b2 { animation-delay: 0.8s; } .pill-b3 { animation-delay: 0.4s; }
         @keyframes dcaClusterScale { from { height: 15%; } to { height: 85%; } }
 
-        /* PERFORMANCE METERS FLOW INDICATORS */
+        /* PERFORMANCE PERFORMANCE INDICATORS */
         .sub-analytics-bars-layout { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
         @media (min-width: 768px) { .sub-analytics-bars-layout { grid-template-columns: 1fr 1fr; } }
         .mini-progress-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); padding: 24px; border-radius: 18px; box-sizing: border-box; transition: all 0.3s; }
@@ -260,12 +271,12 @@
         .strength-bar { height: 100%; width: 0%; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s; border-radius: 4px; }
         .strength-text { font-size: 12px; font-weight: 700; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
 
-        /* THE OTP RETRY ACTION MODULES ELEMENTS */
+        /* RETRY VERIFICATIONS TIMERS MODULES */
         .otp-timer-block { display: none; justify-content: flex-start; align-items: center; width: 100%; font-size: 13px; color: #fbbf24; font-weight: bold; margin-top: 2px; margin-bottom: 4px; }
         .resend-action-btn { background: rgba(94, 234, 212, 0.12); border: 1px solid rgba(94, 234, 212, 0.3); color: var(--accent-blue); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: none; text-transform: uppercase; margin-top: 4px; }
         .resend-action-btn:hover { background: var(--accent-blue); color: #05070c; }
 
-        /* CARDS TIMELINES MATRIX CORES */
+        /* COMPONENT TIMELINE BLOCK MATRICES */
         .card { background: rgba(5,7,12,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; box-sizing: border-box; transition: transform 0.2s, border-color 0.2s; }
         .card:hover { transform: translateX(5px); border-color: rgba(94, 234, 212, 0.15); }
         .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -275,7 +286,7 @@
         .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; flex-shrink: 0; }
 
-        /* CLEAN CONTACT SECTIONS */
+        /* CONTACT LAYOUT CARDS CONFIGS */
         .contact-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; width: 100%; box-sizing: border-box; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
         .contact-left { padding: 35px; flex: 1.2; box-sizing: border-box; }
@@ -290,7 +301,7 @@
         .loc-pill { display: inline-block; background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.25); padding: 12px 24px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .loc-pill:hover { background: var(--accent-blue); color: #05070c; box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-2px); }
 
-        /* THE DYNAMIC FLOATING SOFTWARE CHAT INTERFACE CONFIGS */
+        /* THE DYNAMIC FLOATING SOFTWARE CHAT WIDGET INTERFACES PANEL */
         .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000; }
         .chat-widget-trigger { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-blue); color: #05070c; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 8px 24px var(--accent-glow); transition: all 0.2s ease; }
         .chat-widget-trigger:hover { transform: scale(1.05); background: #7dd3fc; }
@@ -300,13 +311,32 @@
         .chat-widget-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #05070c; box-sizing: border-box; }
         .chat-widget-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; align-items: center; background: #0d111c; box-sizing: border-box; }
 
-        /* SKILLS GRID INTEGRATION PORTS */
+        /* SKILLS PANEL CONFIGURATION CONTROLLERS */
         .canvas-3d-techstack-portal { width: 100%; height: auto !important; min-height: 280px; background: #05070c; border: 1px solid rgba(94, 234, 212, 0.2); border-radius: 20px; overflow: hidden; box-shadow: inset 0 0 25px rgba(0,0,0,0.8); position: relative; }
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; align-items: stretch; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
         
-        /* GATED DOUMENTS GATE TIMERS PACK */
+        /* SECURE VAULT ENGINE REGISTRIES LAYOUTS */
+        .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
+        
+        /* ⚡ RE-DESIGNED VAULT FILE ITEM RECORD CARD (FIXED FOR Screenshot `23697.jpg`) */
+        .file-item-row { 
+            background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(94, 234, 212, 0.12); 
+            border-radius: 16px; padding: 20px 24px; display: flex; justify-content: space-between; 
+            align-items: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: inset 0 0 12px rgba(94, 234, 212, 0.02); margin-bottom: 4px;
+        }
+        .file-item-row:hover { 
+            background: rgba(94, 234, 212, 0.06); border-color: var(--accent-blue); 
+            color: var(--accent-blue); transform: translateX(4px); box-shadow: 0 5px 15px rgba(94, 234, 212, 0.1);
+        }
+        .file-item-row div { display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 700; }
+        .file-item-row div i { color: var(--accent-blue); font-size: 16px; text-shadow: 0 0 8px var(--accent-glow); }
+        .file-item-row > i { font-size: 14px; color: var(--text-gray); transition: color 0.2s; }
+        .file-item-row:hover > i { color: var(--accent-blue); }
+
+        /* RADARS CLOCKS ROTATION BASES */
         .pending-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(251,191,36,0.2); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .pending-box i.fa-clock { color: #fbbf24; font-size: 38px; margin-bottom: 16px; animation: dynamicClockSpin 3s linear infinite; }
         @keyframes dynamicClockSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -314,8 +344,8 @@
         .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
 
-        /* ADMINISTRATIVE CLEARANCES VISUAL PANELS */
-        .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
+        /* SYSTEM DATA TILES BLOCK INTERACT MATRIX */
+        .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.3s; position: relative; }
         .admin-request-tile:hover { border-color: rgba(94, 234, 212, 0.3); background: rgba(255,255,255,0.04); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
         .admin-user-info { display: flex; align-items: center; gap: 14px; overflow: hidden; }
         .admin-avatar-mini { width: 40px; height: 40px; background: rgba(94, 234, 212, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; flex-shrink: 0; border: 1px solid rgba(94, 234, 212, 0.2); }
@@ -341,7 +371,7 @@
 </head>
 <body>
 
-    <!-- ⚡ REAL INTRO HOLOGRAPHIC PRELOADER -->
+    <!-- REAL INTRO HOLOGRAPHIC PRELOADER -->
     <div id="cyber-boot-preloader">
         <div class="boot-terminal-box">
             <div class="boot-line bl-1">&gt; INITIALIZING SQL ENGINE...</div>
@@ -351,7 +381,7 @@
         </div>
     </div>
 
-    <!-- ⚡ REAL DYNAMIC SCROLL GRAPH BACKGROUND LAYERS -->
+    <!-- ⚡ NEW REAL DYNAMIC SCROLL HARDWARE-ACCELERATED 3D VANISHING MATRIX LAYER GRID -->
     <div class="bg-matrix-layer"><div class="bg-matrix-stream"></div></div>
 
     <header id="main-header">
@@ -636,7 +666,7 @@
                                 <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-language" style="color:var(--accent-blue); margin-right:8px;"></i>Hindi (Native)</span><span style="color:var(--accent-blue);">100%</span></div>
                                 <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 100%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                             </div>
-                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
+                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(15px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
                                 <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-globe" style="color:var(--accent-blue); margin-right:8px;"></i>English (Professional)</span><span style="color:var(--accent-blue);">75%</span></div>
                                 <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 75%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                             </div>
@@ -833,7 +863,7 @@
                     <p style="font-size: 13px; color: var(--text-gray);">Your data loop access request is inside admin queue.</p>
                 </div>
 
-                <!-- Secure List View -->
+                <!-- ⚡ FIXED PREMIUM CARDS LAYOUT ARRAYS FOR ENCRYPTED RECORDS (Screenshot `23697.jpg`) -->
                 <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
                     <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf', true)"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('resume.pdf', true)"><div><i class="fas fa-file-alt"></i> Professional Resume</div><i class="fas fa-download"></i></div>
@@ -887,7 +917,6 @@
         let currentActiveSession = null, isEmailVerified = false, adminPanelLiveInterval = null; 
         const redirectLink = window.location.origin + window.location.pathname;
 
-        // ⚡ AUTO-HIDE LOAD TIMEOUT FOR TERMINAL PRELOADER HANDSHAKE
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 const loader = document.getElementById('cyber-boot-preloader');
