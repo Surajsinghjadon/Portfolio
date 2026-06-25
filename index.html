@@ -93,16 +93,17 @@
         .view-card-wrapper:hover { border-color: var(--accent-blue); transform: translateY(-5px) rotateY(1deg) rotateX(1deg); box-shadow: 0 50px 110px rgba(94, 234, 212, 0.09); }
         @media (max-width: 768px) { .view-card-wrapper { padding: 35px 20px; border-radius: 20px; } }
 
-        /* CAPSULE BACK BUTTON STYLE */
-        .view-panel-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 35px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; box-sizing: border-box; }
+        /* ⚡ CAPSULE BACK BUTTON COGNITIVE MULTI-PLANE TOUCH MATRIX LOCK */
+        .view-panel-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 35px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; box-sizing: border-box; transform-style: preserve-3d; }
         .corner-back-btn { 
             background: rgba(5, 7, 12, 0.4) !important; border: 1px solid rgba(94, 234, 212, 0.2) !important; 
             color: var(--accent-blue) !important; padding: 11px 22px !important; border-radius: 12px !important; 
             font-size: 12px !important; font-weight: 800 !important; cursor: pointer !important; display: inline-flex !important; 
             align-items: center !important; gap: 8px !important; transition: all 0.2s ease !important; text-transform: uppercase !important; letter-spacing: 0.5px !important;
-            width: max-content !important; box-sizing: border-box !important; height: auto !important; outline: none !important; position: relative; z-index: 500;
+            width: max-content !important; box-sizing: border-box !important; height: auto !important; outline: none !important; 
+            position: relative !important; z-index: 999999 !important; pointer-events: auto !important; transform: translateZ(120px) !important;
         }
-        .corner-back-btn:hover { background: var(--accent-blue) !important; color: #05070c !important; box-shadow: 0 0 12px var(--accent-glow) !important; transform: scale(1.02); }
+        .corner-back-btn:hover { background: var(--accent-blue) !important; color: #05070c !important; box-shadow: 0 0 15px var(--accent-glow) !important; transform: translateZ(120px) scale(1.05) !important; }
 
         /* HERO INTERFACE WITH IMMERSIVE 3D SPACE LAYOUT */
         .hero { display: flex; flex-direction: column; gap: 40px; padding: 20px 0; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 50px; position: relative; perspective: 1000px; }
@@ -172,6 +173,13 @@
         /* IMMERSIVE 3D FLOATING LASER LINE FOR MATRIX METERS */
         .progress-track-bg::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 30px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: laserScan 2s linear infinite; }
         @keyframes laserScan { 0% { left: -10%; } 100% { left: 110%; } }
+
+        /* ⚡ CYBER INTERACTIVE 3D FLOATING ANIMATION KEYFRAME REGISTRY */
+        @keyframes cyberChatFloat {
+            0% { transform: translateY(0) rotateX(5deg) rotateY(-5deg); filter: drop-shadow(0 0 10px rgba(94, 234, 212, 0.2)); }
+            50% { transform: translateY(-8px) rotateX(-5deg) rotateY(8deg); filter: drop-shadow(0 0 25px var(--accent-glow)) brightness(1.15); }
+            100% { transform: translateY(0) rotateX(5deg) rotateY(-5deg); filter: drop-shadow(0 0 10px rgba(94, 234, 212, 0.2)); }
+        }
 
         .project-nodes-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
         @media (min-width: 768px) { .project-nodes-grid { grid-template-columns: 1fr 1fr; } }
@@ -516,7 +524,6 @@
                     </div>
                     <div>
                         <div class="sub-title">COMMUNICATION PERFORMANCE METERS</div>
-                        <!-- ⚡ UPGRADED RIGHT SIDE METERS TO MATCH 3D PERSPECTIVE GLOW LOGIC CARDS -->
                         <div class="meters-vertical-aligner" style="display: flex; flex-direction: column; gap: 20px; perspective: 1000px;">
                             <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(10px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
                                 <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-language" style="color:var(--accent-blue); margin-right:8px;"></i>Hindi (Native)</span><span style="color:var(--accent-blue);">100%</span></div>
@@ -789,7 +796,6 @@
             logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
         }
 
-        // 🎯 FIXED SYNTAX COMPILATION EXTENSION (BACK BUTTONS RESTORED GLOBAL EDGE LIFECYCLE)
         window.switchAppView = function(viewId) {
             clearInterval(adminPanelLiveInterval);
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
@@ -803,7 +809,7 @@
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
             if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
             if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
-            if(viewId === 'view-user-edu') { document.getElementById('ml-edu').classList.add('active'); }
+            if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
             if(viewId === 'view-technical-skills') { document.getElementById('ml-skills').classList.add('active'); initTechStack3DWorkspace(); }
             if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
         };
@@ -882,7 +888,15 @@
                             chatBox.appendChild(card);
                         });
                     } else {
-                        chatBox.innerHTML = `<div style="padding:20px; text-align:center; color:var(--text-gray); font-size:13px;"><i class="fas fa-comment-slash" style="font-size:20px; color:rgba(255,255,255,0.15); margin-bottom:6px;"></i><br>No live chat transmission packages received.</div>`;
+                        // ⚡ UPGRADED CHAT EMPTY STATE WITH AN IMMERSIVE 3D FLOATING DATA MATRIX GRAPHIC
+                        chatBox.innerHTML = `
+                            <div style="padding: 45px 20px; text-align: center; background: rgba(94, 234, 212, 0.01); border: 1px dashed rgba(94, 234, 212, 0.15); border-radius: 20px; perspective: 1000px; transform-style: preserve-3d;">
+                                <div style="animation: cyberChatFloat 3s ease-in-out infinite; display: inline-block; transform: translateZ(30px);">
+                                    <i class="fas fa-network-wired" style="font-size: 38px; color: var(--accent-blue); text-shadow: 0 0 25px var(--accent-glow); margin-bottom: 15px;"></i>
+                                </div>
+                                <h4 style="font-size: 14px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px 0; text-shadow: 0 0 8px var(--accent-glow);">Awaiting Data Transmission</h4>
+                                <p style="font-size: 12px; color: var(--text-gray); max-width: 320px; margin: 0 auto; line-height: 1.6;">Active Chat Stream Core is Standby. Ready to index incoming packets from client validation blocks.</p>
+                            </div>`;
                     }
                 }
             } catch(e) { console.error("Chat Thread Err:", e); }
@@ -1040,8 +1054,7 @@
                         <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-network-wired" style="color:var(--accent-blue); margin-right:8px;"></i>Data Parsing Architecture</span><span style="color:var(--accent-blue);">88%</span></div>
                         <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 88%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                     </div>
-                </div>
-            `;
+                </div>`;
         }
     </script>
 </body>
