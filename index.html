@@ -41,7 +41,7 @@
         @keyframes bootType { from { width: 0; } to { width: 100%; } }
         @keyframes cursorFlash { from, to { border-right-color: transparent; } 50% { border-right-color: var(--accent-blue); } }
 
-        /* ⚡ ULTIMATE HIGH-END 3D PERSPECTIVE GRID BACKGROUND STABILIZED PACK */
+        /* ULTIMATE HIGH-END 3D PERSPECTIVE GRID BACKGROUND MATRIX SHIFT */
         .bg-matrix-layer { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             pointer-events: none; z-index: 2; perspective: 360px; overflow: hidden; opacity: 0.18;
@@ -68,14 +68,15 @@
         .logo:hover { transform: scale(1.03); }
         .logo span { color: var(--text-white); }
         
-        /* ELITE 3-DOT MENU ICON TRIGGER BUTTON */
+        /* ELITE 3-DOT MENU ICON TRIGGER BUTTON WITH STABILIZED CONTROLS */
         .three-dot-menu-trigger {
             background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.2);
             width: 44px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; z-index: 100005;
+            cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; 
+            z-index: 100005 !important; pointer-events: auto !important;
         }
         .three-dot-menu-trigger:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: rotate(90deg); }
-        .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); }
+        .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); pointer-events: none; }
 
         /* THE DYNAMIC ENLARGED ULTRA-PROFESSIONAL MENU PANEL */
         .dropdown-panel {
@@ -251,7 +252,7 @@
         .input-row-block { display: flex; flex-direction: column; width: 100%; gap: 8px; box-sizing: border-box; align-items: stretch; position: relative; }
         .input-field-label-meta { font-size: 13px; font-weight: 700; color: var(--text-gray); text-align: left; }
         
-        /* ⚡ FONT-SIZE UPGRADED TO 16PX TO ABSOLUTELY PREVENT MOBILE VIEWPORT ZOOM GATES[span_3](start_span)[span_3](end_span) */
+        /* ⚡ 16PX LOCK PREVENTS MOBILE AUTO ZOOM FIELDS GATE LOOP OVERRIDES[span_2](start_span)[span_2](end_span) */
         .auth-field-asset { width: 100% !important; display: block !important; background: #0c101d !important; border: 1px solid rgba(255,255,255,0.08) !important; padding: 16px 20px !important; color: #ffffff !important; border-radius: 14px !important; font-size: 16px !important; outline: none !important; box-sizing: border-box !important; height: auto !important; transition: border-color 0.2s; }
         .auth-field-asset:focus { border-color: var(--accent-blue) !important; box-shadow: 0 0 15px rgba(94, 234, 212, 0.15); }
         
@@ -320,7 +321,6 @@
         /* SECURE VAULT ENGINE REGISTRIES LAYOUTS */
         .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
         
-        /* Premium Vault Assets List Item Row Matrix */
         .file-item-row { 
             background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(94, 234, 212, 0.12); 
             border-radius: 16px; padding: 20px 24px; display: flex; justify-content: space-between; 
@@ -366,8 +366,8 @@
         .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); box-sizing: border-box; transition: transform 0.3s; }
         .admin-request-card:hover { border-color: rgba(94, 234, 212, 0.2); }
 
-        /* ⚡ MAIN ORGANIC REAL FOOTER RESTORED EXACTLY AT THE BOTTOM */
-        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
+        /* ⚡ GLOBAL FOOTER SYSTEM BINDINGS BASE CONTROL STYLE */
+        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; display: block; }
     </style>
 </head>
 <body>
@@ -442,7 +442,6 @@
                     </div>
                 </div>
                 <div>
-                    <!-- MOTION LAYERED 3D NEON CHARTS -->
                     <div class="image-wrapper">
                         <div class="hologram-text-layer">
                             <span class="holo-pulse-tag"><i class="fas fa-database"></i> SQL_ANALYTICS: LOADED</span>
@@ -915,8 +914,8 @@
         </div>
     </div>
 
-    <!-- ⚡ ORIGINAL BOTTOM FOOTER BINDINGS -->
-    <footer><p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p></footer>
+    <!-- ⚡ REAL GLOBAL FOOTER (ROUTER AUTOMATICALLY STYLES IT ON VIEW CHANGES)[span_3](start_span)[span_3](end_span) -->
+    <footer id="global-system-footer"><p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p></footer>
 
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
@@ -952,6 +951,7 @@
             logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
         }
 
+        /* ⚡ ROUTER ENGINE CONDITIONAL DISPLAY SWITCH (HIDES FOOTER ON ALL PAGES EXCEPT HOME)[span_4](start_span)[span_4](end_span) */
         window.switchAppView = function(viewId) {
             clearInterval(adminPanelLiveInterval);
             document.getElementById('system-dropdown-panel').classList.remove('show');
@@ -961,6 +961,15 @@
             const target = document.getElementById(viewId); 
             if(target) target.classList.add('active-view');
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const footer = document.getElementById('global-system-footer');
+            if(footer) {
+                if(viewId === 'view-home') {
+                    footer.style.setProperty('display', 'block', 'important');
+                } else {
+                    footer.style.setProperty('display', 'none', 'important');
+                }
+            }
             
             if(viewId === 'view-sec-admin-panel') { window.loadAdminPanel(); adminPanelLiveInterval = setInterval(window.loadAdminPanel, 4000); }
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
@@ -1179,6 +1188,48 @@
             if(!error) { alert("Registration Processing Success!"); switchAppView('view-login'); } else { alert(error.message); }
         };
 
+        /* ⚡ HIGH-END 60s DYNAMIC RE-SEND CONTROLLER LOOP (Screenshot `23699_4.jpg`) */
+        window.handleSendOTP = async function(type) {
+            const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
+            if(!email) { alert("Please enter a valid Email ID."); return; }
+
+            const targetBtn = document.getElementById(type === 'reg' ? 'btn-get-otp-reg' : 'btn-get-otp-forgot');
+            
+            const { error } = await _supabase.auth.signInWithOtp({ email });
+            if(!error) {
+                alert("Verification Code Transmitted!");
+                
+                let timeRemaining = 60;
+                targetBtn.disabled = true;
+                targetBtn.style.opacity = "0.6";
+                targetBtn.style.cursor = "not-allowed";
+                targetBtn.innerText = `${timeRemaining}s`;
+
+                let countdownTimer = setInterval(() => {
+                    timeRemaining--;
+                    targetBtn.innerText = `${timeRemaining}s`;
+
+                    if(timeRemaining <= 0) {
+                        clearInterval(countdownTimer);
+                        targetBtn.disabled = false;
+                        targetBtn.style.opacity = "1";
+                        targetBtn.style.cursor = "pointer";
+                        targetBtn.innerText = "Resend OTP";
+                    }
+                }, 1000);
+
+            } else {
+                alert(error.message);
+            }
+        };
+
+        window.handleVerifyOTP = async function(type) {
+            const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
+            const token = document.getElementById(type === 'reg' ? 'otp-code-reg' : 'otp-code-forgot').value.trim();
+            const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
+            if(!error) { isEmailVerified = true; document.getElementById(`badge-verified-${type}`).style.display="inline-flex"; } else { alert(error.message); }
+        };
+
         window.handleOAuthLogin = async function(provider) {
             const targetBtn = document.querySelector(`.social-btn-box[onclick*="${provider}"]`);
             if(targetBtn) {
@@ -1235,23 +1286,6 @@
                 else if(low.includes("experience") || low.includes("work")) reply = "Suraj counts industrial loops: Invoice SAP Executive at Polyhose, and Store Data at Hettich. 💼";
                 appendVisualChatBubble("Live Chat AI", reply, false);
             }, 800);
-        };
-
-        window.handleSendOTP = async function(type) {
-            const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
-            const { error } = await _supabase.auth.signInWithOtp({ email });
-            if(!error) alert("Verification Code Transmitted!"); else alert(error.message);
-        };
-        window.handleVerifyOTP = async function(type) {
-            const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
-            const token = document.getElementById(type === 'reg' ? 'otp-code-reg' : 'otp-code-forgot').value.trim();
-            const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
-            if(!error) { isEmailVerified = true; document.getElementById(`badge-verified-${type}`).style.display="inline-flex"; } else { alert(error.message); }
-        };
-        window.handleResetPasswordSubmit = async function() {
-            const password = document.getElementById('forgot-password').value;
-            const { error } = await _supabase.auth.updateUser({ password });
-            if(!error) { alert("Credentials reset success!"); switchAppView('view-login'); } else { alert(error.message); }
         };
 
         function initTechStack3DWorkspace() {
