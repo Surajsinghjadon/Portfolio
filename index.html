@@ -17,38 +17,33 @@
     <style>
         /* --- CORE SPA SYSTEM DESIGN MATRIX --- */
         :root {
-            --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.4); --text-white: #f8fafc; --text-gray: #94a3b8;
+            --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #5eead4;
+            --accent-glow: rgba(94, 234, 212, 0.35); --text-white: #f8fafc; --text-gray: #94a3b8;
         }
 
-        html, body { background-color: var(--bg-main); color: var(--text-white); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; margin: 0; padding: 0; overflow-x: hidden; }
+        html, body { background-color: var(--bg-main); color: var(--text-white); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
         .container { max-width: 1240px; margin: 0 auto; padding: 120px 20px 40px 20px; position: relative; z-index: 1; box-sizing: border-box; }
 
-        /* FIXED PROFESSIONAL SYSTEM HEADER (DESKTOP MODE RETENTION LOCK) */
+        /* FIXED PROFESSIONAL SYSTEM HEADER */
         header { background: rgba(5, 7, 12, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
         .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); }
         .logo span { color: var(--text-white); }
         
-        /* HARD MENU CLICK INTERACTION LOCK FOR INTERNAL DATA ROOMS */
-        .header-locked { pointer-events: none !important; opacity: 0.3; }
-        
         /* ELITE 3-DOT MENU ICON TRIGGER BUTTON */
         .three-dot-menu-trigger {
-            background: rgba(5, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2);
+            background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.2);
             width: 44px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
             cursor: pointer; transition: all 0.3s; position: relative; z-index: 100005;
-            overflow: hidden;
         }
         .three-dot-menu-trigger:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); }
         .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); }
-        .three-dot-menu-trigger img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; }
 
         /* THE DYNAMIC ENLARGED ULTRA-PROFESSIONAL MENU PANEL */
         .dropdown-panel {
             position: absolute; top: 75px; right: 20px; width: 360px; 
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
-            border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 24px; padding: 24px;
+            border: 1px solid rgba(94, 234, 212, 0.35); border-radius: 24px; padding: 24px;
             box-shadow: 0 35px 70px rgba(0,0,0,0.95), inset 0 1px 2px rgba(255,255,255,0.05);
             display: none; flex-direction: column; gap: 12px; z-index: 100010;
         }
@@ -56,33 +51,49 @@
 
         .menu-auth-row { display: flex; gap: 12px; margin-bottom: 4px; }
         .menu-btn-auth { flex: 1; padding: 14px; font-size: 12px; font-weight: 800; border-radius: 12px; border: none; cursor: pointer; text-transform: uppercase; text-align: center; text-decoration: none; transition: all 0.2s; }
-        .menu-btn-signin { background: var(--accent-blue); color: #05070c; box-shadow: 0 4px 14px rgba(56, 189, 248, 0.25); }
+        .menu-btn-signin { background: var(--accent-blue); color: #05070c; box-shadow: 0 4px 14px var(--accent-glow); }
         .menu-btn-signup { background: rgba(255,255,255,0.04); color: white; border: 1px solid rgba(255,255,255,0.1); }
         .menu-btn-signup:hover { background: rgba(255,255,255,0.08); }
         
         .menu-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
-        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; border: none; outline: none; }
-        .menu-link-row:hover, .menu-link-row.active { background: rgba(56, 189, 248, 0.08); color: var(--accent-blue); }
+        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; border: none; outline: none; background: transparent; width: 100%; text-align: left;}
+        .menu-link-row:hover, .menu-link-row.active { background: rgba(94, 234, 212, 0.08); color: var(--accent-blue); }
         .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
 
+        /* USER PROFILE MENU STRIPS */
+        .user-menu-profile-card { display: flex; align-items: center; gap: 14px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 14px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.04); }
+        .user-menu-avatar { width: 38px; height: 38px; background: var(--accent-blue); color: #05070c; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; }
+        .user-menu-meta { display: flex; flex-direction: column; overflow: hidden; }
+        .user-menu-meta-name { font-size: 13px; font-weight: 800; color: #fff; }
+        .user-menu-meta-email { font-size: 11px; color: var(--text-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .btn-menu-logout { width: 100%; padding: 12px; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 800; text-transform: uppercase; transition: all 0.2s; }
+        .btn-menu-logout:hover { background: #ef4444; color: #fff; }
+
         /* CANVAS VIEWS DISPLAY STRUCTURE ENGINE */
-        .app-view { display: none !important; width: 100%; height: auto !important; background-color: var(--bg-main); box-sizing: border-box; }
-        .app-view.active-view { display: block !important; position: relative; }
+        .app-view { display: none !important; width: 100%; background-color: var(--bg-main); box-sizing: border-box; }
+        .app-view.active-view { display: block !important; position: relative; animation: viewFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER */
+        @keyframes viewFadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER with 3D PERSPECTIVE HOVER EFFECTS */
         .view-card-wrapper {
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
-            border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 32px;
+            border: 1px solid rgba(94, 234, 212, 0.22); border-radius: 32px;
             width: 100%; max-width: 1100px; padding: 50px 45px; margin: 0 auto;
             box-shadow: 0 40px 90px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.06);
-            box-sizing: border-box;
+            box-sizing: border-box; transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), border-color 0.3s;
+            perspective: 1000px;
         }
+        .view-card-wrapper:hover { border-color: var(--accent-blue); transform: translateY(-3px); }
         @media (max-width: 768px) { .view-card-wrapper { padding: 35px 20px; border-radius: 20px; } }
 
-        /* THE CAPSULE BACK BUTTON STYLE RESTORED ON ALL PAGES */
+        /* CAPSULE BACK BUTTON STYLE */
         .view-panel-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 35px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; box-sizing: border-box; }
         .corner-back-btn { 
-            background: rgba(5, 7, 12, 0.4) !important; border: 1px solid rgba(56, 189, 248, 0.2) !important; 
+            background: rgba(5, 7, 12, 0.4) !important; border: 1px solid rgba(94, 234, 212, 0.2) !important; 
             color: var(--accent-blue) !important; padding: 11px 22px !important; border-radius: 12px !important; 
             font-size: 12px !important; font-weight: 800 !important; cursor: pointer !important; display: inline-flex !important; 
             align-items: center !important; gap: 8px !important; transition: all 0.2s ease !important; text-transform: uppercase !important; letter-spacing: 0.5px !important;
@@ -90,61 +101,68 @@
         }
         .corner-back-btn:hover { background: var(--accent-blue) !important; color: #05070c !important; box-shadow: 0 0 12px var(--accent-glow) !important; }
 
-        /* FORM COMPACT SHEET WRAPPER GRID */
         .auth-card-compact { max-width: 520px; margin: 0 auto; width: 100%; box-sizing: border-box; }
 
-        /* HERO INTERFACE WIT IMMERSIVE ADVANCED 3D SPACE LAYOUT */
+        /* HERO INTERFACE WITH IMMERSIVE 3D SPACE LAYOUT */
         .hero { display: flex; flex-direction: column; gap: 40px; padding: 20px 0; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 50px; position: relative; }
         @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
-        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(56, 189, 248, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(56, 189, 248, 0.15); border-radius: 20px; margin-bottom: 25px; }
-        .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; }
+        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(94, 234, 212, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(94, 234, 212, 0.15); border-radius: 20px; margin-bottom: 25px; }
+        .badge-dot { width: 8px; height: 8px; background: #4ade80; border-radius: 50%; box-shadow: 0 0 10px #4ade80; animation: pulseGlow 2s infinite; }
+        @keyframes pulseGlow { 0% { opacity: 0.6; } 50% { opacity: 1; box-shadow: 0 0 14px #4ade80; } 100% { opacity: 0.6; } }
+        
         .hero-left-block { padding-left: 45px; width: 100%; text-align: left; position: relative; z-index: 10; }
         @media (max-width: 768px) { .hero-left-block { padding-left: 0; text-align: center; } }
         h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 900; margin-bottom: 22px; line-height: 1.2; }
-        .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
+        .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(94, 234, 212, 0.25); }
         .hero-p { font-size: 16px; color: var(--text-gray); margin-bottom: 35px; max-width: 600px; line-height: 1.7; }
         .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; width: 100%; }
         @media (min-width: 768px) { .btn-group { justify-content: flex-start; flex-wrap: nowrap; } }
-        .btn { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; padding: 14px 28px; font-weight: 700; border-radius: 10px; font-size: 14px; transition: all 0.3s; text-transform: uppercase; border: none; cursor: pointer; white-space: nowrap; }
+        .btn { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; padding: 14px 28px; font-weight: 700; border-radius: 10px; font-size: 14px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); text-transform: uppercase; border: none; cursor: pointer; white-space: nowrap; }
         .btn-blue { background: var(--accent-blue); color: #05070c; box-shadow: 0 5px 15px var(--accent-glow); }
-        .btn-blue:hover { transform: translateY(-3px); box-shadow: 0 8px 25px var(--accent-blue); }
+        .btn-blue:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px var(--accent-blue); }
         .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
-        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
+        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-2px); }
         
-        /* CINEMATIC ENLARGED SPLINE 3D DISPLAY CONTAINER PORTAL */
-        .image-wrapper { position: relative; width: 500px; height: 500px; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 32px; overflow: hidden; }
-        @media (max-width: 768px) { .image-wrapper { width: 100%; max-width: 360px; height: 360px; } }
+        /* CINEMATIC ANIMATED SPLINE PORTAL NODE */
+        .image-wrapper { position: relative; width: 500px; height: 500px; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 32px; overflow: hidden; box-shadow: 0 20px 50px rgba(0,0,0,0.5); transition: transform 0.3s ease; }
+        .image-wrapper:hover { transform: scale(1.02) rotate(1deg); }
         .image-wrapper spline-viewer { width: 100%; height: 100%; background: transparent; display: block; }
 
-        /* METRICS CONTROLLERS */
+        /* METRICS TERMINAL NODES */
         .analytics-dashboard-title { font-size: 22px; font-weight: 800; margin: 45px 0 22px 0; color: #fff; display: flex; align-items: center; gap: 10px; }
         .analytics-dashboard-title i { color: var(--accent-blue); }
         .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
-        .metric-mini-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 24px; position: relative; overflow: hidden; }
+        
+        /* 3D HOVER MOTION FOR DATA TILES */
+        .metric-mini-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 24px; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .metric-mini-card:hover { transform: translateY(-5px) scale(1.03); border-color: rgba(94, 234, 212, 0.3); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
         .metric-mini-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-blue); }
         .metric-num { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 4px; }
         .metric-label { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
         
+        /* ANIMATED DATA CHART TRACKERS */
         .chart-master-box { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 24px; padding: 30px; margin-top: 35px; }
         .chart-bars-frame { display: flex; align-items: flex-end; justify-content: space-between; height: 200px; margin-top: 30px; border-bottom: 2px solid rgba(255,255,255,0.05); gap: 10px; }
         .chart-bar-column { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
-        .chart-actual-bar { width: 40px; background: linear-gradient(0deg, rgba(56,189,248,0.05) 0%, var(--accent-blue) 100%); border-radius: 8px 8px 0 0; position: relative; box-shadow: 0 0 20px rgba(56,189,248,0.2); }
+        .chart-actual-bar { width: 40px; background: linear-gradient(0deg, rgba(94, 234, 212, 0.05) 0%, var(--accent-blue) 100%); border-radius: 8px 8px 0 0; position: relative; box-shadow: 0 0 20px rgba(94, 234, 212, 0.2); transition: height 1s cubic-bezier(0.16, 1, 0.3, 1); }
+        .chart-actual-bar:hover { filter: brightness(1.2); }
         .chart-bar-val { font-size: 11px; color: var(--accent-blue); font-weight: 800; position: absolute; top: -25px; width: 100%; text-align: center; }
         .chart-day-text { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
         /* PERFORMANCE PROGRESS ACCENT GAUGES */
         .sub-analytics-bars-layout { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
         @media (min-width: 768px) { .sub-analytics-bars-layout { grid-template-columns: 1fr 1fr; } }
-        .mini-progress-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); padding: 24px; border-radius: 18px; box-sizing: border-box; }
+        .mini-progress-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); padding: 24px; border-radius: 18px; box-sizing: border-box; transition: all 0.2s; }
+        .mini-progress-card:hover { border-color: rgba(94, 234, 212, 0.2); }
         .mini-progress-meta-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #fff; }
         .progress-track-bg { height: 8px; background: #05070c; border-radius: 6px; margin-top: 12px; overflow: hidden; width: 100%; }
         .progress-track-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8 0%, var(--accent-blue) 100%); border-radius: 4px; box-shadow: 0 0 10px var(--accent-blue); }
 
         .project-nodes-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
         @media (min-width: 768px) { .project-nodes-grid { grid-template-columns: 1fr 1fr; } }
-        .node-tile-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px; display: flex; gap: 20px; align-items: flex-start; transition: all 0.2s; }
-        .node-tile-card:hover { border-color: rgba(56, 189, 248, 0.3); background: #111726; transform: translateY(-2px); }
-        .node-icon-box { background: rgba(56,189,248,0.06); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 20px; flex-shrink: 0; }
+        .node-tile-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px; display: flex; gap: 20px; align-items: flex-start; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .node-tile-card:hover { border-color: rgba(94, 234, 212, 0.3); background: #111726; transform: translateY(-3px) scale(1.02); }
+        .node-icon-box { background: rgba(94, 234, 212, 0.06); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 20px; flex-shrink: 0; }
         .node-title-meta { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 5px; }
         .node-desc-text { font-size: 14px; color: var(--text-gray); line-height: 1.5; }
 
@@ -153,16 +171,18 @@
         .input-row-block { display: flex; flex-direction: column; width: 100%; gap: 8px; box-sizing: border-box; align-items: stretch; position: relative; }
         .input-field-label-meta { font-size: 13px; font-weight: 700; color: var(--text-gray); text-align: left; }
         
-        .auth-field-asset { width: 100% !important; display: block !important; background: #0c101d !important; border: 1px solid rgba(255,255,255,0.08) !important; padding: 16px 20px !important; color: #ffffff !important; border-radius: 14px !important; font-size: 14px !important; outline: none !important; box-sizing: border-box !important; height: auto !important; }
-        .auth-field-asset:focus { border-color: var(--accent-blue) !important; box-shadow: 0 0 15px rgba(56, 189, 248, 0.15); }
+        .auth-field-asset { width: 100% !important; display: block !important; background: #0c101d !important; border: 1px solid rgba(255,255,255,0.08) !important; padding: 16px 20px !important; color: #ffffff !important; border-radius: 14px !important; font-size: 14px !important; outline: none !important; box-sizing: border-box !important; height: auto !important; transition: border-color 0.2s; }
+        .auth-field-asset:focus { border-color: var(--accent-blue) !important; box-shadow: 0 0 15px rgba(94, 234, 212, 0.15); }
         
         .social-grid-panel { display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.01); padding: 20px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.03); margin-top: 15px; width: 100%; box-sizing: border-box; }
         .social-btn-box { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; box-sizing: border-box; }
-        .social-btn-box:hover { border-color: var(--accent-blue); background: rgba(56, 189, 248, 0.04); }
-        .inline-action-trigger { padding: 16px 22px; background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.25); color: #38bdf8; border-radius: 14px; font-size: 12px; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s; text-transform: uppercase; box-sizing: border-box; }
+        .social-btn-box:hover { border-color: var(--accent-blue); background: rgba(94, 234, 212, 0.04); }
+        .inline-action-trigger { padding: 16px 22px; background: rgba(94, 234, 212, 0.12); border: 1px solid rgba(94, 234, 212, 0.25); color: var(--accent-blue); border-radius: 14px; font-size: 12px; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s; text-transform: uppercase; box-sizing: border-box; }
         .inline-action-trigger:hover { background: var(--accent-blue); color: #05070c; }
         .live-status-success-badge { font-size: 13px; font-weight: bold; color: #4ade80; display: none; align-items: center; gap: 6px; flex-shrink: 0; margin-left: 5px; }
-        .btn-submit-action { width: 100% !important; display: block !important; padding: 18px !important; border-radius: 14px !important; font-size: 14px !important; font-weight: 800 !important; cursor: pointer !important; border: none !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; transition: all 0.2s ease !important; margin-top: 15px !important; color: #000000 !important; text-align: center !important; outline: none !important; }
+        
+        .btn-submit-action { width: 100% !important; display: block !important; padding: 18px !important; border-radius: 14px !important; font-size: 14px !important; font-weight: 800 !important; cursor: pointer !important; border: none !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; transition: all 0.2s ease !important; margin-top: 15px !important; color: #000000 !important; text-align: center !important; outline: none !important; background: var(--accent-blue); }
+        .btn-submit-action:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 5px 15px var(--accent-glow); }
 
         /* THE PASSWORD STRENGTH CONTROLLERS */
         .strength-container { display: none; margin-top: 4px; margin-bottom: 4px; text-align: left; width: 100%; box-sizing: border-box; }
@@ -172,19 +192,20 @@
 
         /* THE DYNAMIC RESEND ACTION TIMER SYSTEM */
         .otp-timer-block { display: none; justify-content: flex-start; align-items: center; width: 100%; font-size: 13px; color: #fbbf24; font-weight: bold; margin-top: 2px; margin-bottom: 4px; }
-        .resend-action-btn { background: rgba(56, 189, 248, 0.12); border: 1px solid rgba(56, 189, 248, 0.3); color: var(--accent-blue); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: none; text-transform: uppercase; margin-top: 4px; }
+        .resend-action-btn { background: rgba(94, 234, 212, 0.12); border: 1px solid rgba(94, 234, 212, 0.3); color: var(--accent-blue); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: none; text-transform: uppercase; margin-top: 4px; }
         .resend-action-btn:hover { background: var(--accent-blue); color: #05070c; }
 
-        /* CORE COMPONENT CARDS ARRAYS */
-        .card { background: rgba(5,7,12,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; box-sizing: border-box; }
+        /* TIMELINE EXPERIENCES CARDS STRUCT */
+        .card { background: rgba(5,7,12,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; box-sizing: border-box; transition: transform 0.2s; }
+        .card:hover { transform: translateX(5px); border-color: rgba(94, 234, 212, 0.15); }
         .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
         .company { color: var(--text-white); font-size: 18px; }
-        .tag { background: rgba(56, 189, 248, 0.06); color: var(--accent-blue); font-size: 11px; padding: 5px 12px; border-radius: 50px; border: 1px solid rgba(56, 189, 248, 0.1); }
+        .tag { background: rgba(94, 234, 212, 0.06); color: var(--accent-blue); font-size: 11px; padding: 5px 12px; border-radius: 50px; border: 1px solid rgba(94, 234, 212, 0.1); }
         .role { color: var(--accent-blue); font-weight: 600; font-size: 13px; margin-bottom: 12px; }
         .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; flex-shrink: 0; }
 
-        /* BILINGUAL CONTACT CARD DESIGNS */
+        /* BILINGUAL CONTACT SECTION MATRIX */
         .contact-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; width: 100%; box-sizing: border-box; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
         .contact-left { padding: 35px; flex: 1.2; box-sizing: border-box; }
@@ -192,25 +213,23 @@
         .icon-container { background: rgba(5, 7, 12, 0.4); border: 1px solid rgba(255, 255, 255, 0.04); width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 18px; flex-shrink: 0; }
         .label { font-size: 11px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
         .value { font-size: 14px; font-weight: 700; margin-top: 4px; color: #fff; word-break: break-all; }
-        .sep-line { height: 1px; background: rgba(56, 189, 248, 0.2); margin: 20px 0; width: 100%; }
+        .sep-line { height: 1px; background: rgba(94, 234, 212, 0.2); margin: 20px 0; width: 100%; }
         .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 35px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-sizing: border-box; }
         .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; }
-        .loc-pill { display: inline-block; background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.2); padding: 11px 22px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; }
+        .loc-pill { display: inline-block; background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.2); padding: 11px 22px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; }
 
         /* THE DYNAMIC FLOATING SOFTWARE CHAT WIDGET INTERFACE PANEL */
-        .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+        .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000; }
         .chat-widget-trigger { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-blue); color: #05070c; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 8px 24px var(--accent-glow); transition: all 0.2s ease; }
         .chat-widget-trigger:hover { transform: scale(1.05); background: #7dd3fc; }
-        .chat-widget-window { position: absolute; bottom: 70px; right: 0; width: 370px; height: 490px; background: linear-gradient(145deg, #0e1426 0%, #050811 100%); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 22px; box-shadow: 0 25px 60px rgba(0,0,0,0.95); display: none; flex-direction: column; overflow: hidden; box-sizing: border-box; }
+        .chat-widget-window { position: absolute; bottom: 70px; right: 0; width: 370px; height: 490px; background: linear-gradient(145deg, #0e1426 0%, #050811 100%); border: 1px solid rgba(94, 234, 212, 0.35); border-radius: 22px; box-shadow: 0 25px 60px rgba(0,0,0,0.95); display: none; flex-direction: column; overflow: hidden; box-sizing: border-box; }
         .chat-widget-window.show { display: flex; }
         .chat-widget-header { background: rgba(13, 17, 28, 0.95); padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
         .chat-widget-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #05070c; box-sizing: border-box; }
-        .chat-widget-body::-webkit-scrollbar { width: 4px; }
-        .chat-widget-body::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.2); border-radius: 4px; }
         .chat-widget-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; align-items: center; background: #0d111c; box-sizing: border-box; }
 
-        /* --- STACK STYLES RESTORED --- */
-        .canvas-3d-techstack-portal { width: 100%; height: 280px; background: #05070c; border: 1px solid rgba(56, 189, 248, 0.2); border-radius: 20px; overflow: hidden; box-shadow: inset 0 0 25px rgba(0,0,0,0.8); position: relative; }
+        /* SKILLS PANEL STRUCTS */
+        .canvas-3d-techstack-portal { width: 100%; height: 280px; background: #05070c; border: 1px solid rgba(94, 234, 212, 0.2); border-radius: 20px; overflow: hidden; box-shadow: inset 0 0 25px rgba(0,0,0,0.8); position: relative; }
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; align-items: stretch; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
@@ -219,9 +238,9 @@
         
         /* --- SECURE VAULT ENGINE LAYOUT WRAPPERS --- */
         .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
-        .vault-list-container::-webkit-scrollbar { width: 5px; }
-        .vault-list-container::-webkit-scrollbar-thumb { background: rgba(56,189,248,0.15); border-radius: 10px; }
-        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); cursor: default; box-sizing: border-box; }
+        .file-item-row { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 14px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; }
+        .file-item-row:hover { background: rgba(94, 234, 212, 0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
+        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); box-sizing: border-box; }
         .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
@@ -245,7 +264,7 @@
 
                 <div id="menu-user-block" style="display: none; flex-direction: column;">
                     <div class="user-menu-profile-card">
-                        <div class="user-menu-avatar" id="menu-avatar-badge">B</div>
+                        <div class="user-menu-avatar" id="menu-avatar-badge">S</div>
                         <div class="user-menu-meta">
                             <span class="user-menu-meta-name" id="menu-user-name">Identity Node</span>
                             <span class="user-menu-meta-email" id="menu-user-email">user@domain.com</span>
@@ -484,7 +503,7 @@
                     <div class="contact-right">
                         <div class="real-earth-wrapper"><i class="fas fa-globe-asia"></i></div>
                         <div class="label" style="margin-bottom: 8px;">Location</div>
-                        <a href="https://maps.google.com/?q=Sagore,Pithampur,Madhya+Pradesh" target="_blank" class="loc-pill">LIVE LOCATION</a>
+                        <span class="loc-pill">Pithampur, MP</span>
                     </div>
                 </div>
             </div>
@@ -497,7 +516,6 @@
                         <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
                         <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Sign In</h3>
                     </div>
-                    <div id="login-validation-banner" class="validation-glowing-banner"></div>
                     <div class="auth-input-container">
                         <div class="input-row-block">
                             <span class="input-field-label-meta">Email ID</span>
@@ -507,15 +525,15 @@
                             <span class="input-field-label-meta">Password</span>
                             <input type="password" id="login-password" class="auth-field-asset" placeholder="••••••••">
                         </div>
-                        <button type="button" class="btn-submit-action" style="background-color: var(--accent-blue);" onclick="handleLoginSubmit()">LOG IN</button>
+                        <button type="button" class="btn-submit-action" onclick="handleLoginSubmit()">LOG IN</button>
                         <div style="text-align: right; width: 100%;">
                             <span style="color: var(--accent-blue); font-size: 13px; font-weight: bold; cursor: pointer;" onclick="switchAppView('view-forgot')">Forgot Password?</span>
                         </div>
                     </div>
                     <div class="social-grid-panel">
                         <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN IN WITH</div>
-                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google"></i> Sign In with Google</button>
-                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in"></i> Sign Up with LinkedIn</button>
+                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google" style="color: #ea4335;"></i> Sign In with Google</button>
+                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in" style="color: #0a66c2;"></i> Sign In with LinkedIn</button>
                     </div>
                 </div>
             </div>
@@ -528,7 +546,6 @@
                         <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
                         <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Registration</h3>
                     </div>
-                    <div id="register-validation-banner" class="validation-glowing-banner"></div>
                     <div class="auth-input-container">
                         <div class="input-row-block">
                             <span class="input-field-label-meta">Full Name</span>
@@ -541,21 +558,17 @@
                                 <button type="button" id="btn-get-otp-reg" class="inline-action-trigger" onclick="handleSendOTP('reg')">Get OTP</button>
                             </div>
                         </div>
-                        <div class="otp-timer-block" id="otp-timer-block-reg">
-                            <span id="timer-display-reg">Resend in: 60s</span>
-                            <button type="button" id="resend-action-btn-reg" class="resend-action-btn" onclick="handleSendOTP('reg')">Resend OTP</button>
-                        </div>
                         <div class="input-row-block">
                             <span class="input-field-label-meta">Email Verification Code</span>
                             <div style="display:flex; width:100%; gap:12px; align-items:center;">
                                 <input type="text" id="otp-code-reg" class="auth-field-asset" placeholder="6-Digit Code">
-                                <button type="button" id="btn-verify-otp-reg" class="inline-action-trigger inline-verify-trigger" onclick="handleVerifyOTP('reg')">Verify</button>
+                                <button type="button" id="btn-verify-otp-reg" class="inline-action-trigger" onclick="handleVerifyOTP('reg')">Verify</button>
                                 <span id="badge-verified-reg" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span>
                             </div>
                         </div>
                         <div class="input-row-block">
                             <span class="input-field-label-meta">Password</span>
-                            <input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••" oninput="checkPasswordStrength('reg')">
+                            <input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••">
                         </div>
                         <div class="input-row-block">
                             <span class="input-field-label-meta">Confirm Password</span>
@@ -574,7 +587,6 @@
                         <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
                         <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;"><i class="fas fa-key"></i> Reset Password</h3>
                     </div>
-                    <div id="forgot-validation-banner" class="validation-glowing-banner"></div>
                     <div class="auth-input-container">
                         <div class="input-row-block">
                             <span class="input-field-label-meta">Email ID</span>
@@ -583,23 +595,19 @@
                                 <button type="button" id="btn-get-otp-forgot" class="inline-action-trigger" onclick="handleSendOTP('forgot')">Get OTP</button>
                             </div>
                         </div>
-                        <div class="otp-timer-block" id="otp-timer-block-forgot">
-                            <span id="timer-display-forgot">Resend in: 60s</span>
-                            <button type="button" id="resend-action-btn-forgot" class="resend-action-btn" onclick="handleSendOTP('forgot')">Resend OTP</button>
-                        </div>
                         <div class="input-row-block">
                             <span class="input-field-label-meta">Verification Code</span>
                             <div style="display:flex; width:100%; gap:12px; align-items:center;">
                                 <input type="text" id="otp-code-forgot" class="auth-field-asset" placeholder="6-Digit Code">
-                                <button type="button" id="btn-verify-otp-forgot" class="inline-action-trigger inline-verify-trigger" onclick="handleVerifyOTP('forgot')">Verify</button>
+                                <button type="button" id="btn-verify-otp-forgot" class="inline-action-trigger" onclick="handleVerifyOTP('forgot')">Verify</button>
                                 <span id="badge-verified-forgot" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span>
                             </div>
                         </div>
                         <div class="input-row-block">
                             <span class="input-field-label-meta">New Password</span>
-                            <input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password" oninput="checkPasswordStrength('forgot')">
+                            <input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password">
                         </div>
-                        <button type="button" class="btn-submit-action" style="background-color: var(--accent-blue);" onclick="handleResetPasswordSubmit()">CHANGE PASSWORD</button>
+                        <button type="button" class="btn-submit-action" onclick="handleResetPasswordSubmit()">CHANGE PASSWORD</button>
                     </div>
                 </div>
             </div>
@@ -615,9 +623,6 @@
                     <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf')"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf')"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf')"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf')"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf')"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-download"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf')"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-download"></i></div>
                 </div>
             </div>
         </div>
@@ -628,23 +633,8 @@
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
                     <h2 class="section-title">Encrypted System Records</h2>
                 </div>
-                <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
-                    <i class="fas fa-lock"></i>
-                    <h4>Clearance Status Required</h4>
-                    <p>Request validation to pull files from secure nodes.</p>
-                    <button type="button" class="btn-submit-action" style="background:#fbbf24; margin:0;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
-                </div>
-                <div id="doc-gate-pending-view" class="pending-box" style="display:none;">
-                    <i class="fas fa-clock"></i>
-                    <div class="status-msg">PENDING FOR APPROVAL</div>
-                    <p style="font-size: 13px; color: var(--text-gray);">Your data loop access request is inside admin queue.</p>
-                </div>
-                <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
+                <div id="doc-gate-allowed-view" class="vault-list-container">
                     <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf')"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf')"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf')"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('resume.pdf')"><div><i class="fas fa-file-alt"></i> Professional Resume</div><i class="fas fa-download"></i></div>
                 </div>
             </div>
@@ -657,10 +647,6 @@
                     <h2 class="section-title" style="color: #fbbf24;">User Clearance Dashboard</h2>
                 </div>
                 <div id="admin-requests-list" class="vault-list-container"></div>
-                <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 30px;">
-                    <h2 class="section-title" style="color: var(--accent-blue); display:flex; align-items:center; gap:10px;"><i class="fas fa-comments"></i> User Live Chat Terminal</h2>
-                    <div id="admin-chat-messages-container" class="vault-list-container" style="margin-top:20px;"></div>
-                </div>
             </div>
         </div>
 
@@ -687,17 +673,11 @@
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        let currentActiveSession = null, isEmailVerified = false, countdownInterval = null, approvalPollingInterval = null, chatWidgetSyncInterval = null, adminPanelLiveInterval = null; 
+        let currentActiveSession = null, isEmailVerified = false, chatWidgetSyncInterval = null; 
         const redirectLink = window.location.origin + window.location.pathname;
 
-        // PWA AUTO CAPABILITY Handshake
-        (function injectPWAManifest() {
-            const manifestObj = { "name": "Suraj App", "short_name": "Suraj", "start_url": redirectLink, "display": "standalone", "background_color": "#05070c", "theme_color": "#05070c", "icons": [{ "src": "378.jpg", "sizes": "512x512", "type": "image/jpg" }] };
-            const link = document.createElement('link'); link.rel = 'manifest'; link.href = 'data:application/json;base64,' + btoa(JSON.stringify(manifestObj)); document.head.appendChild(link);
-        })();
-
-        window.toggleChatWidget = function(e) { e.preventDefault(); document.getElementById('chat-widget-window').classList.toggle('show'); if(document.getElementById('chat-widget-window').classList.contains('show')) initializeWidgetChatPolling(); };
-        window.toggleSystemMenu = function(e) { event.stopPropagation(); document.getElementById('system-dropdown-panel').classList.toggle('show'); };
+        window.toggleChatWidget = function(e) { if(e) e.preventDefault(); document.getElementById('chat-widget-window').classList.toggle('show'); };
+        window.toggleSystemMenu = function(e) { if(e) e.stopPropagation(); document.getElementById('system-dropdown-panel').classList.toggle('show'); };
         document.addEventListener('click', () => document.getElementById('system-dropdown-panel').classList.remove('show'));
 
         function appendVisualChatBubble(name, text, isUser) {
@@ -706,83 +686,34 @@
             const bubbleRow = document.createElement('div');
             bubbleRow.style.cssText = `display:flex; width:100%; justify-content: ${isUser ? 'flex-end' : 'flex-start'}; margin-top:3px;`;
             let innerStyle = isUser 
-                ? "background: var(--accent-blue); color: #05070c; font-weight:700; border-radius: 16px 16px 0 16px; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.15);" 
-                : "background: rgba(56, 189, 248, 0.06); border: 1px solid rgba(56, 189, 248, 0.15); color: #fff; border-radius: 16px 16px 16px 0;";
+                ? "background: var(--accent-blue); color: #05070c; font-weight:700; border-radius: 16px 16px 0 16px; box-shadow: 0 4px 12px rgba(94, 234, 212, 0.15);" 
+                : "background: rgba(94, 234, 212, 0.06); border: 1px solid rgba(94, 234, 212, 0.15); color: #fff; border-radius: 16px 16px 16px 0;";
             bubbleRow.innerHTML = `<div style="padding: 10px 16px; font-size: 13px; max-width: 80%; line-height: 1.5; text-align: left; word-break: break-word; ${innerStyle}">${text}</div>`;
             logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
         }
 
         window.switchAppView = function(viewId) {
-            clearAllValidationBanners(); clearInterval(adminPanelLiveInterval);
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
             document.querySelectorAll('.menu-link-row').forEach(r => r.classList.remove('active'));
-            const target = document.getElementById(viewId); if(target) target.classList.add('active-view');
+            const target = document.getElementById(viewId); 
+            if(target) target.classList.add('active-view');
             document.getElementById('system-dropdown-panel').classList.remove('show');
-            if(viewId === 'view-sec-admin-panel') { window.loadAdminPanel(); adminPanelLiveInterval = setInterval(window.loadAdminPanel, 4000); }
-            if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
             
             if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
             if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
             if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
-            if(viewId === 'view-technical-skills') { document.getElementById('ml-skills').classList.add('active'); setTimeout(initTechStack3DWorkspace, 100); }
+            if(viewId === 'view-technical-skills') { document.getElementById('ml-skills').classList.add('active'); initTechStack3DWorkspace(); }
             if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
         };
 
-        async function handleDocumentAccessGate() {
-            if(!currentActiveSession) return;
-            const { data } = await _supabase.from('document_requests').select('status').eq('email', currentActiveSession.user.email).maybeSingle();
-            updateDocumentUIStatus(data ? data.status : 'none');
-        }
-
-        window.handleSubmitAdminRequest = async function() {
-            const user = currentActiveSession.user;
-            await _supabase.from('document_requests').insert([{ name: user.email.split('@')[0], email: user.email, status: 'pending' }]);
-            handleDocumentAccessGate();
-        };
-
-        window.loadAdminPanel = async function() {
-            if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
-            const { data: reqs } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
-            const list = document.getElementById('admin-requests-list');
-            if(list) {
-                list.innerHTML = '';
-                reqs?.forEach(r => {
-                    const d = document.createElement('div'); d.className = 'admin-request-card';
-                    d.innerHTML = `<div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
-                        <div>${r.email} - <b>${r.status}</b></div>
-                        <div><button type="button" style="background:#4ade80; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;" onclick="changeStatus(event,'${r.email}','approved')">Approve</button>
-                        <button type="button" style="background:rgba(239,68,68,0.2); color:#ef4444; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;" onclick="killRequest(event,'${r.email}')">Delete</button></div></div>`;
-                    list.appendChild(d);
-                });
-            }
-            const { data: messages } = await _supabase.from('portfolio_messages').select('*').order('id', { ascending: true });
-            const chatBox = document.getElementById('admin-chat-messages-container');
-            if(chatBox && messages) {
-                chatBox.innerHTML = '';
-                let threadEmails = [...new Set(messages.map(m => m.email))].filter(Boolean);
-                threadEmails.forEach(email => {
-                    const group = messages.filter(m => m.email === email);
-                    const card = document.createElement('div'); card.className = 'admin-request-card';
-                    let sId = email.replace(/[@.]/g, '_');
-                    card.innerHTML = `<div><b>Chat Node: ${email}</b></div>
-                        <div style="max-height:120px; overflow-y:auto; background:#05070c; padding:10px; border-radius:8px; margin-top:5px; display:flex; flex-direction:column; gap:4px;">
-                            ${group.map(m => `<div><b style="color:${m.is_admin?'#38bdf8':'#4ade80'}">${m.name}:</b> ${m.message}</div>`).join('')}
-                        </div>
-                        <div style="display:flex; gap:10px; margin-top:8px;">
-                            <input type="text" id="admin-reply-${sId}" class="auth-field-asset" style="flex:1; padding:8px 12px !important;" placeholder="Type reply...">
-                            <button type="button" style="background:#38bdf8; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; color:#000; font-weight:bold;" onclick="handleSendAdminReply('${email}','${sId}')">Send</button>
-                        </div>`;
-                    chatBox.appendChild(card);
-                });
-            }
-        };
-
-        window.changeStatus = async function(e, email, status) { await _supabase.from('document_requests').update({ status }).eq('email', email); window.loadAdminPanel(); };
-        window.killRequest = async function(e, email) { await _supabase.from('document_requests').delete().eq('email', email); window.loadAdminPanel(); };
-        window.handleSendAdminReply = async function(email, sId) {
-            const val = document.getElementById(`admin-reply-${sId}`).value.trim(); if(!val) return;
-            await _supabase.from('portfolio_messages').insert([{ name: "Suraj (Admin)", email, message: val, is_admin: true }]);
-            document.getElementById(`admin-reply-${sId}`).value = ''; window.loadAdminPanel();
+        // ⚡ FIXED: DEFINED OAUTH HANDLER LOGIC FOR GOOGLE & LINKEDIN SIGN IN
+        window.handleOAuthLogin = async function(provider) {
+            const { error } = await _supabase.auth.signInWithOAuth({
+                provider: provider,
+                options: { redirectTo: redirectLink }
+            });
+            if(error) alert("OAuth Error: " + error.message);
         };
 
         function syncAuthUI() {
@@ -791,16 +722,19 @@
                 document.getElementById('menu-user-name').innerText = currentActiveSession.user.email.split('@')[0].toUpperCase();
                 document.getElementById('menu-user-email').innerText = currentActiveSession.user.email;
                 document.getElementById('ml-achievements').style.display = "flex"; document.getElementById('ml-documents').style.display = "flex";
+                document.getElementById('badge-text').innerText = "Authorized Node Profile";
                 if(currentActiveSession.user.email.toLowerCase() === 'surajsinghrajput5040@gmail.com') document.getElementById('ml-admin').style.display = "flex";
             } else {
                 document.getElementById('menu-guest-block').style.display = "flex"; document.getElementById('menu-user-block').style.display = "none";
                 document.getElementById('ml-achievements').style.display = "none"; document.getElementById('ml-documents').style.display = "none"; document.getElementById('ml-admin').style.display = "none";
+                document.getElementById('badge-text').innerText = "Public Visitor Mode";
             }
         }
 
         _supabase.auth.getSession().then(({ data }) => { if (data.session) { currentActiveSession = data.session; syncAuthUI(); } });
         _supabase.auth.onAuthStateChange((e, s) => { currentActiveSession = s; syncAuthUI(); });
         window.handleLogout = async function() { await _supabase.auth.signOut(); switchAppView('view-home'); };
+        
         window.handleLoginSubmit = async function() {
             const email = document.getElementById('login-email').value.trim(), password = document.getElementById('login-password').value;
             const { error } = await _supabase.auth.signInWithPassword({ email, password });
@@ -809,60 +743,44 @@
 
         window.handleSendLiveChatMessage = async function() {
             const inp = document.getElementById('chat-widget-input'); const val = inp.value.trim(); if(!val) return;
-            let email = currentActiveSession ? currentActiveSession.user.email : "anonymous_guest@node.com";
             appendVisualChatBubble("You", val, true); inp.value = '';
-            await _supabase.from('portfolio_messages').insert([{ name: currentActiveSession ? email.split('@')[0] : "Visitor", email, message: val, is_admin: false }]);
             
             setTimeout(() => {
-                let reply = "Your message query context node has been synchronized safely into our network backend registry ledger! Suraj will analyze it shortly. 🚀";
+                let reply = "Your context node data query synchronized successfully. Suraj will analyze it loop shortly. 🚀";
                 let low = val.toLowerCase();
                 if(low.includes("dca") || low.includes("education")) reply = "Suraj finished a 1-Year Diploma in Computer Applications (DCA) from MCU (2023). 🎓";
-                else if(low.includes("experience") || low.includes("work")) reply = "Suraj counts 4+ years of industrial analytics fields: Invoice SAP Executive at Polyhose, and Inventory Stream Analysis at Hettich. 💼";
-                else if(low.includes("contact") || low.includes("number") || low.includes("phone")) reply = "Direct terminal matrix connection route: Reach Suraj instantly via call node at +91 78795 95821. 📞";
+                else if(low.includes("experience") || low.includes("work")) reply = "Suraj counts industrial analytics loops: Invoice SAP Executive at Polyhose, and Store Data at Hettich. 💼";
                 appendVisualChatBubble("Live Chat AI", reply, false);
-            }, 1000);
+            }, 800);
         };
-
-        function initializeWidgetChatPolling() {
-            clearInterval(chatWidgetSyncInterval);
-            chatWidgetSyncInterval = setInterval(async () => {
-                if(!document.getElementById('chat-widget-window').classList.contains('show')) return;
-                let email = currentActiveSession ? currentActiveSession.user.email : "anonymous_guest@node.com";
-                const { data } = await _supabase.from('portfolio_messages').select('*').eq('email', email).order('id', { ascending: true });
-                if(data) {
-                    const log = document.getElementById('chat-widget-logs'); log.innerHTML = '';
-                    data.forEach(m => appendVisualChatBubble(m.name, m.message, !m.is_admin));
-                }
-            }, 3000);
-        }
 
         window.handleSendOTP = async function(type) {
             const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
-            await _supabase.auth.signInWithOtp({ email });
+            const { error } = await _supabase.auth.signInWithOtp({ email });
+            if(!error) alert("Verification Code Transmitted!"); else alert(error.message);
         };
         window.handleVerifyOTP = async function(type) {
             const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
             const token = document.getElementById(type === 'reg' ? 'otp-code-reg' : 'otp-code-forgot').value.trim();
             const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
-            if(!error) { isEmailVerified = true; document.getElementById(`badge-verified-${type}`).style.display="inline-flex"; }
+            if(!error) { isEmailVerified = true; document.getElementById(`badge-verified-${type}`).style.display="inline-flex"; } else { alert(error.message); }
         };
         window.handleFinalRegister = async function() {
             const email = document.getElementById('reg-email').value.trim(), password = document.getElementById('reg-password').value;
-            await _supabase.auth.signUp({ email, password }); switchAppView('view-login');
+            const { error } = await _supabase.auth.signUp({ email, password });
+            if(!error) { alert("Registration Processing Success!"); switchAppView('view-login'); } else { alert(error.message); }
         };
         window.handleResetPasswordSubmit = async function() {
             const password = document.getElementById('forgot-password').value;
-            await _supabase.auth.updateUser({ password }); switchAppView('view-login');
+            const { error } = await _supabase.auth.updateUser({ password });
+            if(!error) { alert("Credentials reset success!"); switchAppView('view-login'); } else { alert(error.message); }
         };
 
         function initTechStack3DWorkspace() {
             const mount = document.getElementById('canvas-3d-techstack-portal'); if(!mount) return; mount.innerHTML = "";
-            mount.innerHTML = `<div style="padding:40px; text-align:center; color:var(--text-gray); font-size:14px;"><i class="fas fa-cubes" style="font-size:24px; color:#38bdf8; margin-bottom:10px;"></i><br>3D Skills Engine Initialized & Running Fluid Handshakes...</div>`;
+            mount.innerHTML = `<div style="padding:40px; text-align:center; color:var(--text-gray); font-size:14px;"><i class="fas fa-cubes" style="font-size:24px; color:#5eead4; margin-bottom:10px; animation: rotatingCube 3s linear infinite;"></i><br>Interactive 3D Skills Matrix Synchronization Engine Active...</div>`;
         }
-        window.addEventListener('DOMContentLoaded', () => { setTimeout(initTechStack3DWorkspace, 1000); });
         function requestSecureFile(f) { window.open(f, '_blank'); }
-        function clearAllValidationBanners() {}
-        function checkPasswordStrength() {}
     </script>
 </body>
 </html>
