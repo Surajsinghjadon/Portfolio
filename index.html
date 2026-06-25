@@ -17,14 +17,26 @@
     <style>
         /* --- CORE SPA SYSTEM DESIGN MATRIX --- */
         :root {
-            --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #5eead4;
+            --bg-main: #05070c; --bg-card: rgba(13, 17, 28, 0.88); --accent-blue: #5eead4;
             --accent-glow: rgba(94, 234, 212, 0.25); --text-white: #f8fafc; --text-gray: #94a3b8;
         }
 
         html, body { background-color: var(--bg-main); color: var(--text-white); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
         .container { max-width: 1240px; margin: 0 auto; padding: 120px 20px 40px 20px; position: relative; z-index: 5; box-sizing: border-box; }
 
-        /* HOLOGRAPHIC BOOT PRELOADER CANVAS */
+        /* ⚡ REAL HARDWARE-ACCELERATED 3D PERSPECTIVE HORIZON GRID BACKGROUND Plain */
+        .bg-matrix-layer { 
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+            pointer-events: none; z-index: -1; perspective: 1000px; overflow: hidden; opacity: 0.25;
+        }
+        .bg-matrix-stream { 
+            position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; 
+            background-image: linear-gradient(rgba(94, 234, 212, 0.15) 1.5px, transparent 1px), linear-gradient(90deg, rgba(94, 234, 212, 0.15) 1.5px, transparent 1px); 
+            background-size: 50px 50px; transform: rotateX(60deg); animation: endless3DGridMove 12s linear infinite;
+        }
+        @keyframes endless3DGridMove { from { background-position-y: 0px; } to { background-position-y: 600px; } }
+
+        /* ⚡ HOLOGRAPHIC BOOT PRELOADER CANVAS */
         #cyber-boot-preloader {
             position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
             background: #05070c; z-index: 999999; display: flex; flex-direction: column; 
@@ -41,48 +53,19 @@
         @keyframes bootType { from { width: 0; } to { width: 100%; } }
         @keyframes cursorFlash { from, to { border-right-color: transparent; } 50% { border-right-color: var(--accent-blue); } }
 
-        /* ⚡ ULTIMATE HIGH-END 3D PERSPECTIVE GRID BACKGROUND MATRIX SHIFT */
-        .bg-matrix-layer { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-            pointer-events: none; z-index: 2; perspective: 360px; overflow: hidden; opacity: 0.18;
-        }
-        .bg-matrix-stream { 
-            position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; 
-            background-image: linear-gradient(rgba(94, 234, 212, 0.15) 1.5px, transparent 1px), linear-gradient(90deg, rgba(94, 234, 212, 0.15) 1.5px, transparent 1px); 
-            background-size: 45px 44px; transform: rotateX(65deg); transform-origin: center center;
-            animation: endless3DGridMove 14s linear infinite;
-        }
-        @keyframes endless3DGridMove { 
-            from { background-position-y: 0px; } 
-            to { background-position-y: 616px; } 
-        }
-
-        /* FIXED PROFESSIONAL SYSTEM HEADER */
-        header { background: rgba(5, 7, 12, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
+        /* FIXED SYSTEM HEADER */
+        header { background: rgba(5, 7, 12, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255, 255, 255, 0.05); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
         .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); transition: transform 0.3s; }
         .logo:hover { transform: scale(1.03); }
         .logo span { color: var(--text-white); }
         
-        /* ELITE 3-DOT MENU ICON TRIGGER BUTTON */
-        .three-dot-menu-trigger {
-            background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.2);
-            width: 44px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; z-index: 100005;
-        }
+        .three-dot-menu-trigger { background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.2); width: 44px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; z-index: 100005; }
         .three-dot-menu-trigger:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: rotate(90deg); }
         .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); }
 
-        /* THE DYNAMIC ENLARGED ULTRA-PROFESSIONAL MENU PANEL */
-        .dropdown-panel {
-            position: absolute; top: 75px; right: 20px; width: 360px; 
-            background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
-            border: 1px solid rgba(94, 234, 212, 0.35); border-radius: 24px; padding: 24px;
-            box-shadow: 0 35px 70px rgba(0,0,0,0.95), inset 0 1px 2px rgba(255,255,255,0.05);
-            display: none; flex-direction: column; gap: 12px; z-index: 100010; transition: all 0.3s;
-        }
-        .dropdown-panel.show { display: flex; animation: panelPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        @keyframes panelPop { from { opacity: 0; transform: translateY(-10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        .dropdown-panel { position: absolute; top: 75px; right: 20px; width: 360px; background: rgba(13, 17, 28, 0.98); border: 1px solid rgba(94, 234, 212, 0.35); border-radius: 24px; padding: 24px; box-shadow: 0 35px 70px rgba(0,0,0,0.95); display: none; flex-direction: column; gap: 12px; z-index: 100010; transition: all 0.3s; }
+        .dropdown-panel.show { display: flex; }
 
         .menu-auth-row { display: flex; gap: 12px; margin-bottom: 4px; }
         .menu-btn-auth { flex: 1; padding: 14px; font-size: 12px; font-weight: 800; border-radius: 12px; border: none; cursor: pointer; text-transform: uppercase; text-align: center; text-decoration: none; transition: all 0.2s; }
@@ -95,23 +78,17 @@
         .menu-link-row:hover, .menu-link-row.active { background: rgba(94, 234, 212, 0.08); color: var(--accent-blue); }
         .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
 
-        /* USER PROFILE MENU STRIPS WITHOUT STATIC SLOTS */
         .user-menu-profile-card { display: flex; align-items: center; gap: 14px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 14px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.04); }
-        .user-menu-avatar { width: 38px; height: 38px; background: rgba(94, 234, 212, 0.1); color: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; border: 1px solid rgba(94, 234, 212, 0.3); text-shadow: 0 0 5px var(--accent-glow); }
+        .user-menu-avatar { width: 38px; height: 38px; background: rgba(94, 234, 212, 0.1); color: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; border: 1px solid rgba(94, 234, 212, 0.3); }
         .user-menu-meta { display: flex; flex-direction: column; overflow: hidden; }
         .user-menu-meta-name { font-size: 13px; font-weight: 800; color: #fff; }
         .user-menu-meta-email { font-size: 11px; color: var(--text-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .btn-menu-logout { width: 100%; padding: 12px; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 800; text-transform: uppercase; transition: all 0.2s; }
         .btn-menu-logout:hover { background: #ef4444; color: #fff; }
 
-        /* CANVAS VIEWS ENGINE */
-        .app-view { display: none !important; width: 100%; background-color: var(--bg-main); box-sizing: border-box; }
-        .app-view.active-view { display: block !important; position: relative; animation: viewFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-
-        /* THE CARD VIEW WRAPPER */
+        /* THE CARD GLOBAL VIEW WRAPPER */
         .view-card-wrapper {
-            background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
-            border: 1px solid rgba(94, 234, 212, 0.22); border-radius: 32px;
+            background: var(--bg-card); border: 1px solid rgba(94, 234, 212, 0.15); border-radius: 32px;
             width: 100%; max-width: 1100px; padding: 50px 45px; margin: 0 auto;
             box-shadow: 0 40px 90px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.06);
             box-sizing: border-box; transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
@@ -120,8 +97,6 @@
         .view-card-wrapper:hover { border-color: var(--accent-blue); transform: translateY(-3px); box-shadow: 0 45px 100px rgba(94, 234, 212, 0.08); }
         @media (max-width: 768px) { .view-card-wrapper { padding: 35px 20px; border-radius: 20px; } }
 
-        /* CAPSULE BACK LINK LAYER LOCKS */
-        .view-panel-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 35px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; box-sizing: border-box; }
         .corner-back-btn { 
             background: rgba(5, 7, 12, 0.6) !important; border: 1px solid rgba(94, 234, 212, 0.3) !important; 
             color: var(--accent-blue) !important; padding: 11px 22px !important; border-radius: 12px !important; 
@@ -132,11 +107,9 @@
         }
         .corner-back-btn:hover { background: var(--accent-blue) !important; color: #05070c !important; box-shadow: 0 0 15px var(--accent-glow) !important; transform: translateY(-1px); }
 
-        /* HERO MATRIX WRAPPER */
+        /* HERO LAYOUT SYSTEMS */
         .hero { display: flex; flex-direction: column; gap: 40px; padding: 20px 0; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 50px; position: relative; }
         @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
-        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(94, 234, 212, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(94, 234, 212, 0.15); border-radius: 20px; margin-bottom: 25px; }
-        
         .hero-left-block { padding-left: 45px; width: 100%; text-align: left; position: relative; z-index: 10; }
         @media (max-width: 768px) { .hero-left-block { padding-left: 0; text-align: center; } }
         h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 900; margin-bottom: 22px; line-height: 1.2; }
@@ -144,183 +117,74 @@
         .hero-p { font-size: 16px; color: var(--text-gray); margin-bottom: 35px; max-width: 600px; line-height: 1.7; }
         .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; width: 100%; }
         @media (min-width: 768px) { .btn-group { justify-content: flex-start; flex-wrap: nowrap; } }
-        .btn { display: inline-flex; align-items: center; gap: 9px; text-decoration: none; padding: 14px 28px; font-weight: 700; border-radius: 10px; font-size: 14px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); text-transform: uppercase; border: none; cursor: pointer; white-space: nowrap; }
-        .btn-blue { background: var(--accent-blue); color: #05070c; box-shadow: 0 5px 15px var(--accent-glow); }
-        .btn-blue:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 25px var(--accent-blue); }
-        .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
-        .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-2px); }
         
-        /* THE DYNAMIC 3D HOLOGRAM MATRIX VIEW ENGINE */
         .image-wrapper { position: relative; width: 100%; max-width: 480px; height: 400px; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 32px; overflow: hidden; background: rgba(13, 17, 28, 0.6); border: 1px solid rgba(94, 234, 212, 0.25); box-shadow: 0 35px 75px rgba(0,0,0,0.8); transform: perspective(800px) rotateY(-8deg) rotateX(4deg); }
-        .image-wrapper:hover { transform: perspective(800px) rotateY(2deg) rotateX(1deg) scale(1.02); border-color: var(--accent-blue); box-shadow: 0 40px 90px rgba(94, 234, 212, 0.15); }
         .hologram-chart-container { display: flex; align-items: flex-end; justify-content: center; gap: 24px; width: 100%; height: 75%; padding: 0 40px; box-sizing: border-box; }
         .hologram-bar { width: 38px; height: 20px; background: linear-gradient(0deg, rgba(5, 7, 12, 0.8) 0%, var(--accent-blue) 100%); border-radius: 8px 8px 0 0; position: relative; box-shadow: 0 0 30px var(--accent-glow); }
-        .hologram-bar::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); }
         .hologram-bar-1 { animation: advancedChartGrow1 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
         .hologram-bar-2 { animation: advancedChartGrow2 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
         .hologram-bar-3 { animation: advancedChartGrow3 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
         .hologram-bar-4 { animation: advancedChartGrow4 3.0s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
-        @keyframes advancedChartGrow1 { from { height: 20%; filter: hue-rotate(0deg); } to { height: 90%; filter: hue-rotate(45deg); } }
+        @keyframes advancedChartGrow1 { from { height: 20%; } to { height: 90%; } }
         @keyframes advancedChartGrow2 { from { height: 50%; } to { height: 100%; } }
         @keyframes advancedChartGrow3 { from { height: 30%; } to { height: 75%; } }
-        @keyframes advancedChartGrow4 { from { height: 40%; filter: brightness(1.3); } to { height: 95%; filter: brightness(0.8); } }
+        @keyframes advancedChartGrow4 { from { height: 40%; } to { height: 95%; } }
         .hologram-grid-lines { position: absolute; width: 100%; height: 100%; top: 0; left: 0; background: linear-gradient(rgba(94, 234, 212, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(94, 234, 212, 0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
-
-        /* REAL SECURE SQL CODES BINDINGS INTERFACES Lookups */
         .hologram-text-layer { position: absolute; top: 25px; left: 25px; font-family: monospace; font-size: 11px; color: var(--accent-blue); text-shadow: 0 0 8px var(--accent-glow); pointer-events: none; display: flex; flex-direction: column; gap: 4px; z-index: 10; text-align: left; }
-        .holo-pulse-tag { font-weight: 800; letter-spacing: 0.5px; color: #fff; animation: textBlink 1.4s infinite alternate; }
+        .holo-pulse-tag { font-weight: 800; color: #fff; animation: textBlink 1.4s infinite alternate; }
         @keyframes textBlink { from { opacity: 0.4; } to { opacity: 1; } }
 
-        /* ANALYTICS CHARTS FRAME LOGISTICS */
-        .analytics-dashboard-title { font-size: 22px; font-weight: 800; margin: 45px 0 22px 0; color: #fff; display: flex; align-items: center; gap: 10px; }
-        .analytics-dashboard-title i { color: var(--accent-blue); }
-        .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
-        
-        .metric-mini-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 24px; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .metric-mini-card:hover { transform: translateY(-5px) scale(1.02); border-color: rgba(94, 234, 212, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
-        .metric-mini-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-blue); }
-        .metric-num { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 4px; }
-        .metric-label { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
-        
-        .chart-master-box { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 24px; padding: 30px; margin-top: 35px; }
-        .chart-bars-frame { display: flex; align-items: flex-end; justify-content: space-between; height: 200px; margin-top: 30px; border-bottom: 2px solid rgba(255,255,255,0.05); gap: 10px; }
-        .chart-bar-column { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
-        .chart-actual-bar { width: 40px; background: linear-gradient(0deg, rgba(94, 234, 212, 0.05) 0%, var(--accent-blue) 100%); border-radius: 8px 8px 0 0; position: relative; box-shadow: 0 0 20px rgba(94, 234, 212, 0.2); transition: all 0.4s; }
-        .chart-actual-bar:hover { filter: brightness(1.2); transform: scaleY(1.04); }
-        .chart-bar-val { font-size: 11px; color: var(--accent-blue); font-weight: 800; position: absolute; top: -25px; width: 100%; text-align: center; }
-        .chart-day-text { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-        /* 4 DOMAIN DATA MATRIX METERS CHARTS */
+        /* ANALYTICS TERMINALS LAYOUT */
         .advanced-charts-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
-        .cyber-chart-card { background: var(--bg-card); border: 1px solid rgba(94, 234, 212, 0.12); border-radius: 20px; padding: 20px; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; transition: all 0.3s ease; }
+        .cyber-chart-card { background: var(--bg-card); border: 1px solid rgba(94, 234, 212, 0.12); border-radius: 20px; padding: 20px; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between; }
         .cyber-chart-card:hover { border-color: var(--accent-blue); transform: translateY(-4px); box-shadow: 0 15px 35px rgba(94, 234, 212, 0.08); }
         .cyber-render-viewport { height: 130px; width: 100%; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: rgba(5,7,12,0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); }
         
-        /* Chart 1 System Nodes: Relational Query Line Parsing */
         .sql-matrix-viewport { display: flex; flex-direction: column; gap: 8px; width: 100%; padding: 15px; box-sizing: border-box; }
         .sql-lane-row { height: 14px; background: rgba(255,255,255,0.02); border-radius: 4px; position: relative; overflow: hidden; border-left: 3px solid var(--accent-blue); }
         .sql-lane-row::after { content: ''; position: absolute; top: 0; left: -30%; width: 40px; height: 100%; background: linear-gradient(90deg, transparent, var(--accent-blue), transparent); animation: queryScanLine 1.8s linear infinite; }
         .lane-2::after { animation-delay: 0.5s; } .lane-3::after { animation-delay: 1.1s; }
         @keyframes queryScanLine { 0% { left: -30%; } 100% { left: 130%; } }
 
-        /* Chart 2 System Nodes: SAP Ledger Tracking Block Chains */
         .ledger-stream-viewport { display: flex; gap: 12px; width: 200%; position: absolute; left: 0; animation: blockScrollStream 6s linear infinite; padding: 0 10px; }
-        .ledger-data-chunk { width: 44px; height: 44px; background: rgba(94, 234, 212, 0.05); border: 1px solid rgba(94, 234, 212, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 14px; box-shadow: 0 0 10px rgba(94,234,212,0.05); }
+        .ledger-data-chunk { width: 44px; height: 44px; background: rgba(94, 234, 212, 0.05); border: 1px solid rgba(94, 234, 212, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 14px; }
         @keyframes blockScrollStream { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-        /* Chart 3 System Nodes: Relational Index Node Networks Mapping */
         .topology-node-matrix { width: 100%; height: 100%; position: relative; }
         .topo-vector-dot { position: absolute; width: 8px; height: 8px; background: #fff; border-radius: 50%; box-shadow: 0 0 12px var(--accent-blue); animation: topoPulse 1.2s infinite alternate; }
-        .tp-1 { top: 25px; left: 25%; animation-delay: 0.2s; }
-        .tp-2 { top: 80px; left: 55%; animation-delay: 0.7s; }
-        .tp-3 { top: 40px; left: 75%; animation-delay: 0.4s; }
+        .tp-1 { top: 25px; left: 25%; animation-delay: 0.2s; } .tp-2 { top: 80px; left: 55%; animation-delay: 0.7s; } .tp-3 { top: 40px; left: 75%; animation-delay: 0.4s; }
         @keyframes topoPulse { from { opacity: 0.2; transform: scale(0.8); } to { opacity: 1; transform: scale(1.2); } }
 
-        /* Chart 4 System Nodes: DCA Compute Load Stems Arrays */
         .dca-compute-viewport { display: flex; width: 100%; height: 100%; align-items: flex-end; justify-content: space-around; padding: 15px; box-sizing: border-box; }
         .dca-cluster-pill { width: 12px; background: var(--accent-blue); border-radius: 4px; box-shadow: 0 0 15px var(--accent-glow); animation: dcaClusterScale 1.6s infinite alternate ease-in-out; }
         .pill-b1 { animation-delay: 0.2s; } .pill-b2 { animation-delay: 0.8s; } .pill-b3 { animation-delay: 0.4s; }
         @keyframes dcaClusterScale { from { height: 15%; } to { height: 85%; } }
 
-        /* PERFORMANCE PERFORMANCE INDICATORS */
+        .chart-bars-frame { display: flex; align-items: flex-end; justify-content: space-between; height: 200px; margin-top: 30px; border-bottom: 2px solid rgba(255,255,255,0.05); gap: 10px; }
+        .chart-bar-column { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
+        .chart-actual-bar { width: 40px; background: linear-gradient(0deg, rgba(94, 234, 212, 0.05) 0%, var(--accent-blue) 100%); border-radius: 8px 8px 0 0; position: relative; box-shadow: 0 0 20px rgba(94, 234, 212, 0.2); transition: all 0.4s; }
+        .chart-actual-bar:hover { filter: brightness(1.2); transform: scaleY(1.04); }
+        .chart-bar-val { font-size: 11px; color: var(--accent-blue); font-weight: 800; position: absolute; top: -25px; width: 100%; text-align: center; }
+        .chart-day-text { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; text-align: center; width: 100%; }
+
         .sub-analytics-bars-layout { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
         @media (min-width: 768px) { .sub-analytics-bars-layout { grid-template-columns: 1fr 1fr; } }
         .mini-progress-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); padding: 24px; border-radius: 18px; box-sizing: border-box; transition: all 0.3s; }
-        .mini-progress-card:hover { transform: translateX(4px); border-color: rgba(94, 234, 212, 0.15); }
         .mini-progress-meta-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #fff; }
         .progress-track-bg { height: 8px; background: #05070c; border-radius: 6px; margin-top: 12px; overflow: hidden; width: 100%; position: relative; }
         .progress-track-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8 0%, var(--accent-blue) 100%); border-radius: 4px; box-shadow: 0 0 10px var(--accent-blue); }
         .progress-track-bg::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 30px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: laserScan 2s linear infinite; }
         @keyframes laserScan { 0% { left: -10%; } 100% { left: 110%; } }
 
-        @keyframes cyberChatFloat {
-            0% { transform: translateY(0) rotateX(3deg); filter: drop-shadow(0 0 10px rgba(94, 234, 212, 0.2)); }
-            50% { transform: translateY(-6px) rotateX(-3deg); filter: drop-shadow(0 0 25px var(--accent-glow)) brightness(1.15); }
-            100% { transform: translateY(0) rotateX(3deg); filter: drop-shadow(0 0 10px rgba(94, 234, 212, 0.2)); }
-        }
-
         .project-nodes-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
         @media (min-width: 768px) { .project-nodes-grid { grid-template-columns: 1fr 1fr; } }
-        .node-tile-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px; display: flex; gap: 20px; align-items: flex-start; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-        .node-tile-card:hover { border-color: rgba(94, 234, 212, 0.3); background: #111726; transform: translateY(-2px); }
+        .node-tile-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px; display: flex; gap: 20px; align-items: flex-start; transition: all 0.3s; }
+        .node-tile-card:hover { border-color: rgba(94, 234, 212, 0.3); background: #111726; }
         .node-icon-box { background: rgba(94, 234, 212, 0.06); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 20px; flex-shrink: 0; }
         .node-title-meta { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 5px; }
         .node-desc-text { font-size: 14px; color: var(--text-gray); line-height: 1.5; }
 
-        /* FIELD INPUT FRAME SYSTEMS */
-        .auth-input-container { display: flex; flex-direction: column; width: 100%; gap: 18px; margin-top: 10px; box-sizing: border-box; }
-        .input-row-block { display: flex; flex-direction: column; width: 100%; gap: 8px; box-sizing: border-box; align-items: stretch; position: relative; }
-        .input-field-label-meta { font-size: 13px; font-weight: 700; color: var(--text-gray); text-align: left; }
-        
-        .auth-field-asset { width: 100% !important; display: block !important; background: #0c101d !important; border: 1px solid rgba(255,255,255,0.08) !important; padding: 16px 20px !important; color: #ffffff !important; border-radius: 14px !important; font-size: 14px !important; outline: none !important; box-sizing: border-box !important; height: auto !important; transition: border-color 0.2s; }
-        .auth-field-asset:focus { border-color: var(--accent-blue) !important; box-shadow: 0 0 15px rgba(94, 234, 212, 0.15); }
-        
-        .social-grid-panel { display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.01); padding: 20px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.03); margin-top: 15px; width: 100%; box-sizing: border-box; position: relative; z-index: 50; }
-        .social-btn-box { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; box-sizing: border-box; position: relative !important; z-index: 9999 !important; pointer-events: auto !important; -webkit-tap-highlight-color: rgba(94,234,212,0.2); }
-        .social-btn-box:hover { border-color: var(--accent-blue); background: rgba(94, 234, 212, 0.04); transform: translateY(-1px); }
-        .inline-action-trigger { padding: 16px 22px; background: rgba(94, 234, 212, 0.12); border: 1px solid rgba(94, 234, 212, 0.25); color: var(--accent-blue); border-radius: 14px; font-size: 12px; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s; text-transform: uppercase; box-sizing: border-box; }
-        .inline-action-trigger:hover { background: var(--accent-blue); color: #05070c; }
-        .live-status-success-badge { font-size: 13px; font-weight: bold; color: #4ade80; display: none; align-items: center; gap: 6px; flex-shrink: 0; margin-left: 5px; }
-        
-        .btn-submit-action { width: 100% !important; display: block !important; padding: 18px !important; border-radius: 14px !important; font-size: 14px !important; font-weight: 800 !important; cursor: pointer !important; border: none !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; transition: all 0.2s ease !important; margin-top: 15px !important; color: #000000 !important; text-align: center !important; outline: none !important; background: var(--accent-blue); position: relative; z-index: 999; pointer-events: auto !important; }
-        .btn-submit-action:hover { filter: brightness(1.1); transform: translateY(-2px); box-shadow: 0 5px 15px var(--accent-glow); }
-
-        /* LIVE ANIMATED PASSWORD STRENGTH MATRIX INDICATOR */
-        .strength-container { display: none; flex-direction: column; gap: 6px; margin-top: 6px; width: 100%; box-sizing: border-box; transition: all 0.3s ease; }
-        .strength-bar-bg { height: 6px; background: #05070c; border-radius: 4px; overflow: hidden; width: 100%; position: relative; }
-        .strength-bar { height: 100%; width: 0%; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s; border-radius: 4px; }
-        .strength-text { font-size: 12px; font-weight: 700; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
-
-        /* RETRY VERIFICATIONS TIMERS MODULES */
-        .otp-timer-block { display: none; justify-content: flex-start; align-items: center; width: 100%; font-size: 13px; color: #fbbf24; font-weight: bold; margin-top: 2px; margin-bottom: 4px; }
-        .resend-action-btn { background: rgba(94, 234, 212, 0.12); border: 1px solid rgba(94, 234, 212, 0.3); color: var(--accent-blue); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: none; text-transform: uppercase; margin-top: 4px; }
-        .resend-action-btn:hover { background: var(--accent-blue); color: #05070c; }
-
-        /* COMPONENT TIMELINE BLOCK MATRICES */
-        .card { background: rgba(5,7,12,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; box-sizing: border-box; transition: transform 0.2s, border-color 0.2s; }
-        .card:hover { transform: translateX(5px); border-color: rgba(94, 234, 212, 0.15); }
-        .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
-        .company { color: var(--text-white); font-size: 18px; }
-        .tag { background: rgba(94, 234, 212, 0.06); color: var(--accent-blue); font-size: 11px; padding: 5px 12px; border-radius: 50px; border: 1px solid rgba(94, 234, 212, 0.1); }
-        .role { color: var(--accent-blue); font-weight: 600; font-size: 13px; margin-bottom: 12px; }
-        .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
-        .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; flex-shrink: 0; }
-
-        /* CONTACT LAYOUT CARDS CONFIGS */
-        .contact-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; width: 100%; box-sizing: border-box; }
-        @media (min-width: 768px) { .contact-box { flex-direction: row; } }
-        .contact-left { padding: 35px; flex: 1.2; box-sizing: border-box; }
-        .contact-left-row { display: flex; align-items: center; gap: 18px; }
-        .icon-container { background: rgba(5, 7, 12, 0.4); border: 1px solid rgba(255, 255, 255, 0.04); width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 18px; flex-shrink: 0; }
-        .label { font-size: 11px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
-        .value { font-size: 14px; font-weight: 700; margin-top: 4px; color: #fff; word-break: break-all; }
-        .sep-line { height: 1px; background: rgba(94, 234, 212, 0.2); margin: 20px 0; width: 100%; }
-        .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 35px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-sizing: border-box; }
-        .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; transition: transform 0.3s; }
-        .real-earth-wrapper:hover { transform: rotate(45deg) scale(1.05); }
-        .loc-pill { display: inline-block; background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.25); padding: 12px 24px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
-        .loc-pill:hover { background: var(--accent-blue); color: #05070c; box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-2px); }
-
-        /* THE DYNAMIC FLOATING SOFTWARE CHAT WIDGET INTERFACES PANEL */
-        .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000; }
-        .chat-widget-trigger { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-blue); color: #05070c; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 8px 24px var(--accent-glow); transition: all 0.2s ease; }
-        .chat-widget-trigger:hover { transform: scale(1.05); background: #7dd3fc; }
-        .chat-widget-window { position: absolute; bottom: 70px; right: 0; width: 370px; height: 490px; background: linear-gradient(145deg, #0e1426 0%, #050811 100%); border: 1px solid rgba(94, 234, 212, 0.35); border-radius: 22px; box-shadow: 0 25px 60px rgba(0,0,0,0.95); display: none; flex-direction: column; overflow: hidden; box-sizing: border-box; }
-        .chat-widget-window.show { display: flex; }
-        .chat-widget-header { background: rgba(13, 17, 28, 0.95); padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
-        .chat-widget-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #05070c; box-sizing: border-box; }
-        .chat-widget-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; align-items: center; background: #0d111c; box-sizing: border-box; }
-
-        /* SKILLS PANEL CONFIGURATION CONTROLLERS */
-        .canvas-3d-techstack-portal { width: 100%; height: auto !important; min-height: 280px; background: #05070c; border: 1px solid rgba(94, 234, 212, 0.2); border-radius: 20px; overflow: hidden; box-shadow: inset 0 0 25px rgba(0,0,0,0.8); position: relative; }
-        .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; align-items: stretch; }
-        @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
-        .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
-        
-        /* SECURE VAULT ENGINE REGISTRIES LAYOUTS */
-        .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
-        
-        /* ⚡ RE-DESIGNED VAULT FILE ITEM RECORD CARD (FIXED FOR Screenshot `23697.jpg`) */
+        /* ⚡ PREMIUM GLASS CARD ITEM FOR SECURE RECORDS AND VAULT TILES */
         .file-item-row { 
             background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(94, 234, 212, 0.12); 
             border-radius: 16px; padding: 20px 24px; display: flex; justify-content: space-between; 
@@ -336,68 +200,98 @@
         .file-item-row > i { font-size: 14px; color: var(--text-gray); transition: color 0.2s; }
         .file-item-row:hover > i { color: var(--accent-blue); }
 
-        /* RADARS CLOCKS ROTATION BASES */
-        .pending-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(251,191,36,0.2); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+        /* AUTH FIELDS AND MATRIX CONFIGS */
+        .auth-input-container { display: flex; flex-direction: column; width: 100%; gap: 18px; margin-top: 10px; box-sizing: border-box; }
+        .input-row-block { display: flex; flex-direction: column; width: 100%; gap: 8px; box-sizing: border-box; align-items: stretch; position: relative; }
+        .input-field-label-meta { font-size: 13px; font-weight: 700; color: var(--text-gray); text-align: left; }
+        .auth-field-asset { width: 100% !important; display: block !important; background: #0c101d !important; border: 1px solid rgba(255,255,255,0.08) !important; padding: 16px 20px !important; color: #ffffff !important; border-radius: 14px !important; font-size: 14px !important; outline: none !important; box-sizing: border-box !important; height: auto !important; transition: border-color 0.2s; }
+        .auth-field-asset:focus { border-color: var(--accent-blue) !important; box-shadow: 0 0 15px rgba(94, 234, 212, 0.15); }
+        
+        .social-btn-box { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; box-sizing: border-box; position: relative !important; z-index: 9999 !important; pointer-events: auto !important; }
+        .social-btn-box:hover { border-color: var(--accent-blue); background: rgba(94, 234, 212, 0.04); transform: translateY(-1px); }
+        .btn-submit-action { width: 100% !important; display: block !important; padding: 18px !important; border-radius: 14px !important; font-size: 14px !important; font-weight: 800 !important; cursor: pointer !important; border: none !important; text-transform: uppercase; letter-spacing: 0.5px !important; transition: all 0.2s ease !important; margin-top: 15px !important; color: #000000 !important; text-align: center !important; outline: none !important; background: var(--accent-blue); position: relative; z-index: 999; pointer-events: auto !important; }
+
+        .strength-container { display: none; flex-direction: column; gap: 6px; margin-top: 6px; width: 100%; box-sizing: border-box; }
+        .strength-bar-bg { height: 6px; background: #05070c; border-radius: 4px; overflow: hidden; width: 100%; }
+        .strength-bar { height: 100%; width: 0%; transition: width 0.4s ease, background-color 0.3s; border-radius: 4px; }
+        .strength-text { font-size: 12px; font-weight: 700; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* CONTACTS SYSTEM MAP MATRIX RULES */
+        .contact-box { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; width: 100%; box-sizing: border-box; }
+        @media (min-width: 768px) { .contact-box { flex-direction: row; } }
+        .contact-left { padding: 35px; flex: 1.2; box-sizing: border-box; }
+        .contact-left-row { display: flex; align-items: center; gap: 18px; }
+        .icon-container { background: rgba(5, 7, 12, 0.4); border: 1px solid rgba(255, 255, 255, 0.04); width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 18px; flex-shrink: 0; }
+        .label { font-size: 11px; text-transform: uppercase; color: var(--text-gray); font-weight: 700; letter-spacing: 1px; }
+        .value { font-size: 14px; font-weight: 700; margin-top: 4px; color: #fff; word-break: break-all; }
+        .sep-line { height: 1px; background: rgba(94, 234, 212, 0.2); margin: 20px 0; width: 100%; }
+        .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 35px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-sizing: border-box; }
+        .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; }
+        .loc-pill { display: inline-block; background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.25); padding: 12px 24px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; transition: all 0.2s ease; }
+        .loc-pill:hover { background: var(--accent-blue); color: #05070c; box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-2px); }
+
+        /* ADMINISTRATIVE PANELS LOCKS DESIGN TILES */
+        .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; }
+        .admin-user-info { display: flex; align-items: center; gap: 14px; overflow: hidden; }
+        .admin-avatar-mini { width: 40px; height: 40px; background: rgba(94, 234, 212, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; border: 1px solid rgba(94, 234, 212, 0.2); }
+        .admin-user-meta-block { display: flex; flex-direction: column; overflow: hidden; }
+        .admin-user-name { font-size: 14px; font-weight: 700; color: #fff; text-transform: uppercase; }
+        .admin-user-email { font-size: 12px; color: var(--text-gray); }
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; text-transform: uppercase; }
+        .badge-pending { background: rgba(251, 191, 36, 0.1); color: #fbbf24; border: 1px solid rgba(251,191,36,0.2); }
+        .badge-approved { background: rgba(74, 222, 128, 0.1); color: #4ade80; border: 1px solid rgba(74,222,128,0.2); }
+        .admin-btn-group { display: flex; gap: 8px; align-items: center; position: relative; z-index: 100; }
+        .admin-act-btn { border: none; padding: 8px 14px; font-size: 12px; font-weight: 800; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; height: 34px; box-sizing: border-box; }
+        .btn-approve { background: var(--accent-blue); color: #05070c; }
+        .btn-delete { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.25); }
+        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; }
+
+        .pending-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(251,191,36,0.2); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; }
         .pending-box i.fa-clock { color: #fbbf24; font-size: 38px; margin-bottom: 16px; animation: dynamicClockSpin 3s linear infinite; }
         @keyframes dynamicClockSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-        .status-msg { font-size: 16px; font-weight: 800; color: #fbbf24; margin-bottom: 5px; }
-        .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
-        .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
 
-        /* SYSTEM DATA TILES BLOCK INTERACT MATRIX */
-        .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.3s; position: relative; }
-        .admin-request-tile:hover { border-color: rgba(94, 234, 212, 0.3); background: rgba(255,255,255,0.04); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
-        .admin-user-info { display: flex; align-items: center; gap: 14px; overflow: hidden; }
-        .admin-avatar-mini { width: 40px; height: 40px; background: rgba(94, 234, 212, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; flex-shrink: 0; border: 1px solid rgba(94, 234, 212, 0.2); }
-        .admin-user-meta-block { display: flex; flex-direction: column; overflow: hidden; }
-        .admin-user-name { font-size: 14px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
-        .admin-user-email { font-size: 12px; color: var(--text-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .admin-actions-block { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
-        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid transparent; }
-        .badge-pending { background: rgba(251, 191, 36, 0.1); color: #fbbf24; border-color: rgba(251, 191, 36, 0.2); }
-        .badge-approved { background: rgba(74, 222, 128, 0.1); color: #4ade80; border-color: rgba(74, 222, 128, 0.2); box-shadow: 0 0 10px rgba(74, 222, 128, 0.15); }
-        
-        .admin-btn-group { display: flex; gap: 8px; align-items: center; position: relative; z-index: 100; }
-        .admin-act-btn { border: none; padding: 8px 14px; font-size: 12px; font-weight: 800; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; height: 34px; box-sizing: border-box; position: relative; z-index: 105; }
-        .btn-approve { background: var(--accent-blue); color: #05070c; }
-        .btn-approve:hover { filter: brightness(1.1); transform: translateY(-1px); }
-        .btn-delete { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.25); }
-        .btn-delete:hover { background: #ef4444; color: #fff; transform: translateY(-1px); }
-        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); box-sizing: border-box; transition: transform 0.3s; }
-        .admin-request-card:hover { border-color: rgba(94, 234, 212, 0.2); }
+        @keyframes cyberChatFloat {
+            0% { transform: translateY(0) rotateX(3deg); filter: drop-shadow(0 0 10px rgba(94, 234, 212, 0.2)); }
+            50% { transform: translateY(-6px) rotateX(-3deg); filter: drop-shadow(0 0 25px var(--accent-glow)) brightness(1.15); }
+            100% { transform: translateY(0) rotateX(3deg); filter: drop-shadow(0 0 10px rgba(94, 234, 212, 0.2)); }
+        }
 
-        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
+        /* FLOATING PACKS CHAT COMPONENT STYLES */
+        .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000; }
+        .chat-widget-trigger { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-blue); color: #05070c; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 8px 24px var(--accent-glow); }
+        .chat-widget-window { position: absolute; bottom: 70px; right: 0; width: 370px; height: 490px; background: rgba(13, 17, 28, 0.98); border: 1px solid rgba(94, 234, 212, 0.35); border-radius: 22px; box-shadow: 0 25px 60px rgba(0,0,0,0.95); display: none; flex-direction: column; overflow: hidden; box-sizing: border-box; }
+        .chat-widget-window.show { display: flex; }
+        .chat-widget-header { background: rgba(13, 17, 28, 0.95); padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        .chat-widget-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #05070c; box-sizing: border-box; }
+        .chat-widget-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; align-items: center; background: #0d111c; box-sizing: border-box; }
+
+        footer { display: none; } /* ⚡ FOOTER REMOVED ACCORDING TO USER REQUIREMENT */
     </style>
 </head>
 <body>
 
-    <!-- REAL INTRO HOLOGRAPHIC PRELOADER -->
     <div id="cyber-boot-preloader">
         <div class="boot-terminal-box">
-            <div class="boot-line bl-1">&gt; INITIALIZING SQL ENGINE...</div>
-            <div class="boot-line bl-2">&gt; SYNCING COGNITIVE LEDGER...</div>
-            <div class="boot-line bl-3">&gt; PARSING LEDGER CLUSTERS...</div>
-            <div class="boot-line bl-4">&gt; SURAJ_NODE: ACCESS GRANTED</div>
+            <div class="boot-line bl-1">> INITIALIZING SQL ENGINE...</div>
+            <div class="boot-line bl-2">> SYNCING COGNITIVE LEDGER...</div>
+            <div class="boot-line bl-3">> PARSING LEDGER CLUSTERS...</div>
+            <div class="boot-line bl-4">> SURAJ_NODE: ACCESS GRANTED</div>
         </div>
     </div>
 
-    <!-- ⚡ NEW REAL DYNAMIC SCROLL HARDWARE-ACCELERATED 3D VANISHING MATRIX LAYER GRID -->
     <div class="bg-matrix-layer"><div class="bg-matrix-stream"></div></div>
 
     <header id="main-header">
         <div class="nav-container">
             <a href="javascript:void(0)" onclick="switchAppView('view-home')" class="logo">Suraj Singh <span>Jadon</span></a>
-            
             <div class="three-dot-menu-trigger" id="three-dot-trigger" onclick="toggleSystemMenu(event)">
                 <i class="fas fa-ellipsis-v" id="three-dot-icon"></i>
             </div>
-
             <div class="dropdown-panel" id="system-dropdown-panel" onclick="event.stopPropagation();">
                 <div class="menu-auth-row" id="menu-guest-block">
                     <button type="button" class="menu-btn-auth menu-btn-signin" onclick="switchAppView('view-login')">Sign In</button>
                     <button type="button" class="menu-btn-auth menu-btn-signup" onclick="switchAppView('view-register')">Sign Up</button>
                 </div>
-
                 <div id="menu-user-block" style="display: none; flex-direction: column;">
                     <div class="user-menu-profile-card">
                         <div class="user-menu-avatar" id="menu-avatar-badge">S</div>
@@ -408,16 +302,13 @@
                     </div>
                     <button type="button" class="btn-menu-logout" onclick="handleLogout()">Log Out</button>
                 </div>
-
                 <div class="menu-divider"></div>
-
                 <div class="menu-link-row active" id="ml-home" onclick="switchAppView('view-home')"><i class="fas fa-home"></i> Home</div>
                 <div class="menu-link-row" id="ml-exp" onclick="switchAppView('view-experience')"><i class="fas fa-briefcase"></i> Experience</div>
                 <div class="menu-link-row" id="ml-edu" onclick="switchAppView('view-user-edu')"><i class="fas fa-graduation-cap"></i> Education</div>
                 <div class="menu-link-row" id="ml-skills" onclick="switchAppView('view-technical-skills')"><i class="fas fa-tools"></i> Technical Skills</div>
                 <div class="menu-link-row" id="ml-contact" onclick="switchAppView('view-user-contact')"><i class="fas fa-envelope"></i> Contact Info</div>
                 <div class="menu-link-row" id="ml-chatbot-trigger-menu" onclick="toggleChatWidget(event)"><i class="fas fa-robot" style="color: var(--accent-blue);"></i> Live Chat AI</div>
-                
                 <div class="menu-link-row" id="ml-achievements" style="display: none;" onclick="switchAppView('view-sec-vault-achievements')"><i class="fas fa-award" style="color: #fbbf24;"></i> Achievements</div>
                 <div class="menu-link-row" id="ml-documents" style="display: none;" onclick="switchAppView('view-sec-vault-documents')"><i class="fas fa-file-invoice" style="color: #38bdf8;"></i> Gated Documents</div>
                 <div class="menu-link-row" id="ml-admin" style="display: none;" onclick="switchAppView('view-sec-admin-panel')"><i class="fas fa-user-shield" style="color: #4ade80;"></i> Admin Console</div>
@@ -427,7 +318,6 @@
 
     <div class="container">
 
-        <!-- HOME VIEW -->
         <div id="view-home" class="app-view active-view">
             <div class="hero">
                 <div class="hero-left-block">
@@ -442,7 +332,6 @@
                     </div>
                 </div>
                 <div>
-                    <!-- MOTION LAYERED 3D NEON CHARTS -->
                     <div class="image-wrapper">
                         <div class="hologram-text-layer">
                             <span class="holo-pulse-tag"><i class="fas fa-database"></i> SQL_ANALYTICS: LOADED</span>
@@ -463,7 +352,6 @@
             <div class="analytics-dashboard-title">
                 <i class="fas fa-chart-pie"></i> Operational Insights & Analytics Snapshot
             </div>
-            
             <div class="analytics-grid">
                 <div class="metric-mini-card">
                     <div class="metric-num">12,450+</div>
@@ -482,125 +370,34 @@
             <div class="chart-master-box">
                 <div style="font-size:14px; font-weight:700; color:#fff;"><i class="fas fa-chart-bar" style="color:var(--accent-blue); margin-right:8px;"></i> Enterprise Data Volume Trend By Node</div>
                 <div class="chart-bars-frame">
-                    <div class="chart-bar-column">
-                        <div class="chart-actual-bar" style="height: 85%;">
-                            <div class="chart-bar-val">1 Year</div>
-                        </div>
-                        <div class="chart-day-text">Polyhose (SAP)</div>
-                    </div>
-                    <div class="chart-bar-column">
-                        <div class="chart-actual-bar" style="height: 60%;">
-                            <div class="chart-bar-val">1 Year</div>
-                        </div>
-                        <div class="chart-day-text">Hettich (Store Data)</div>
-                    </div>
-                    <div class="chart-bar-column">
-                        <div class="chart-actual-bar" style="height: 100%;">
-                            <div class="chart-bar-val">2 Year</div>
-                        </div>
-                        <div class="chart-day-text">Rahul Precision</div>
-                    </div>
-                    <div class="chart-bar-column">
-                        <div class="chart-actual-bar" style="height: 45%;">
-                            <div class="chart-bar-val">DCA</div>
-                        </div>
-                        <div class="chart-day-text">MCU Technical</div>
-                    </div>
+                    <div class="chart-bar-column"><div class="chart-actual-bar" style="height: 85%;"><div class="chart-bar-val">1 Year</div></div><div class="chart-day-text">Polyhose (SAP)</div></div>
+                    <div class="chart-bar-column"><div class="chart-actual-bar" style="height: 60%;"><div class="chart-bar-val">1 Year</div></div><div class="chart-day-text">Hettich (Store Data)</div></div>
+                    <div class="chart-bar-column"><div class="chart-actual-bar" style="height: 100%;"><div class="chart-bar-val">2 Year</div></div><div class="chart-day-text">Rahul Precision</div></div>
+                    <div class="chart-bar-column"><div class="chart-actual-bar" style="height: 45%;"><div class="chart-bar-val">DCA</div></div><div class="chart-day-text">MCU Technical</div></div>
                 </div>
             </div>
 
-            <!-- PREDICTIVE ARCHITECTURE SECTION WITH UN-DUPLICATED METRIC LAYOUT NODES -->
             <div class="analytics-dashboard-title" style="margin-top:50px;">
                 <i class="fas fa-cubes"></i> Predictive Data Stream Architecture Clusters
             </div>
             <div class="advanced-charts-matrix">
-                <div class="cyber-chart-card">
-                    <div class="cyber-render-viewport">
-                        <div class="sql-matrix-viewport">
-                            <div class="sql-lane-row lane-1"></div>
-                            <div class="sql-lane-row lane-2"></div>
-                            <div class="sql-lane-row lane-3"></div>
-                        </div>
-                    </div>
-                    <div class="metric-label" style="padding-top:10px; font-size:11px;">SQL Query Execution Loop</div>
-                </div>
-                <div class="cyber-chart-card">
-                    <div class="cyber-render-viewport">
-                        <div class="ledger-stream-viewport">
-                            <div class="ledger-data-chunk"><i class="fas fa-file-invoice"></i></div>
-                            <div class="ledger-data-chunk"><i class="fas fa-check-double"></i></div>
-                            <div class="ledger-data-chunk"><i class="fas fa-server"></i></div>
-                            <div class="ledger-data-chunk"><i class="fas fa-receipt"></i></div>
-                        </div>
-                    </div>
-                    <div class="metric-label" style="padding-top:10px; font-size:11px;">SAP Ledger Audit Stream</div>
-                </div>
-                <div class="cyber-chart-card">
-                    <div class="cyber-render-viewport">
-                        <div class="topology-node-matrix">
-                            <div class="topo-vector-dot tp-1"></div>
-                            <div class="topo-vector-dot tp-2"></div>
-                            <div class="topo-vector-dot tp-3"></div>
-                        </div>
-                    </div>
-                    <div class="metric-label" style="padding-top:10px; font-size:11px;">Relational Index Topology</div>
-                </div>
-                <div class="cyber-chart-card">
-                    <div class="cyber-render-viewport">
-                        <div class="dca-compute-viewport">
-                            <div class="dca-cluster-pill pill-b1"></div>
-                            <div class="dca-cluster-pill pill-b2"></div>
-                            <div class="dca-cluster-pill pill-b3"></div>
-                        </div>
-                    </div>
-                    <div class="metric-label" style="padding-top:10px; font-size:11px;">DCA Algorithmic Compute Delta</div>
-                </div>
+                <div class="cyber-chart-card"><div class="cyber-render-viewport"><div class="sql-matrix-viewport"><div class="sql-lane-row lane-1"></div><div class="sql-lane-row lane-2"></div><div class="sql-lane-row lane-3"></div></div></div><div class="metric-label" style="padding-top:10px; font-size:11px;">SQL Query Execution Loop</div></div>
+                <div class="cyber-chart-card"><div class="cyber-render-viewport"><div class="ledger-stream-viewport"><div class="ledger-data-chunk"><i class="fas fa-file-invoice"></i></div><div class="ledger-data-chunk"><i class="fas fa-check-double"></i></div><div class="ledger-data-chunk"><i class="fas fa-server"></i></div><div class="ledger-data-chunk"><i class="fas fa-receipt"></i></div></div></div><div class="metric-label" style="padding-top:10px; font-size:11px;">SAP Ledger Audit Stream</div></div>
+                <div class="cyber-chart-card"><div class="cyber-render-viewport"><div class="topology-node-matrix"><div class="topo-vector-dot tp-1"></div><div class="topo-vector-dot tp-2"></div><div class="topo-vector-dot tp-3"></div></div></div><div class="metric-label" style="padding-top:10px; font-size:11px;">Relational Index Topology</div></div>
+                <div class="cyber-chart-card"><div class="cyber-render-viewport"><div class="dca-compute-viewport"><div class="dca-cluster-pill pill-b1"></div><div class="dca-cluster-pill pill-b2"></div><div class="dca-cluster-pill pill-b3"></div></div></div><div class="metric-label" style="padding-top:10px; font-size:11px;">DCA Algorithmic Compute Delta</div></div>
             </div>
 
             <div class="analytics-dashboard-title" style="margin-top:50px;">
                 <i class="fas fa-tasks"></i> Operational Engine Performance Meters
             </div>
             <div class="sub-analytics-bars-layout">
-                <div class="mini-progress-card">
-                    <div class="mini-progress-meta-row"><span>SAP Invoice Processing Load</span><span>88% Efficiency</span></div>
-                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 88%;"></div></div>
-                </div>
-                <div class="mini-progress-card">
-                    <div class="mini-progress-meta-row"><span>Log Validation Stream Clock</span><span>99.9% Integrity</span></div>
-                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 99.9%;"></div></div>
-                </div>
-                <div class="mini-progress-card">
-                    <div class="mini-progress-meta-row"><span>Database Parse Latency Meter</span><span>0.04ms Core Rate</span></div>
-                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 94%;"></div></div>
-                </div>
-                <div class="mini-progress-card">
-                    <div class="mini-progress-meta-row"><span>Analytical Metric Validation</span><span>96% Sync Flow</span></div>
-                    <div class="progress-track-bg"><div class="progress-track-fill" style="width: 96%;"></div></div>
-                </div>
-            </div>
-
-            <div class="analytics-dashboard-title" style="margin-top:50px;">
-                <i class="fas fa-network-wired"></i> Core Infrastructure & Processing Nodes
-            </div>
-            <div class="project-nodes-grid">
-                <div class="node-tile-card">
-                    <div class="node-icon-box"><i class="fas fa-file-invoice-dollar"></i></div>
-                    <div>
-                        <div class="node-title-meta">SAP Transaction Ledger Node</div>
-                        <div class="node-desc-text">Processes bulk commercial log indexes inside secure corporate database environments with deep transaction audit controls.</div>
-                    </div>
-                </div>
-                <div class="node-tile-card">
-                    <div class="node-icon-box"><i class="fas fa-boxes"></i></div>
-                    <div>
-                        <div class="node-title-meta">Inventory Trend Analytics</div>
-                        <div class="node-desc-text">Advanced multi-tier storage logging, tracking data catalog parsers, stock flow trends, and precision material log checks.</div>
-                    </div>
-                </div>
+                <div class="mini-progress-card"><div class="mini-progress-meta-row"><span>SAP Invoice Processing Load</span><span>88% Efficiency</span></div><div class="progress-track-bg"><div class="progress-track-fill" style="width: 88%;"></div></div></div>
+                <div class="mini-progress-card"><div class="mini-progress-meta-row"><span>Log Validation Stream Clock</span><span>99.9% Integrity</span></div><div class="progress-track-bg"><div class="progress-track-fill" style="width: 99.9%;"></div></div></div>
+                <div class="mini-progress-card"><div class="mini-progress-meta-row"><span>Database Parse Latency Meter</span><span>0.04ms Core Rate</span></div><div class="progress-track-bg"><div class="progress-track-fill" style="width: 94%;"></div></div></div>
+                <div class="mini-progress-card"><div class="mini-progress-meta-row"><span>Analytical Metric Validation</span><span>96% Sync Flow</span></div><div class="progress-track-bg"><div class="progress-track-fill" style="width: 96%;"></div></div></div>
             </div>
         </div>
 
-        <!-- EXPERIENCE VIEW -->
         <div id="view-experience" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -625,7 +422,6 @@
             </div>
         </div>
 
-        <!-- EDUCATION VIEW -->
         <div id="view-user-edu" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -647,7 +443,6 @@
             </div>
         </div>
 
-        <!-- SKILLS VIEW -->
         <div id="view-technical-skills" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -662,11 +457,11 @@
                     <div>
                         <div class="sub-title">COMMUNICATION PERFORMANCE METERS</div>
                         <div class="meters-vertical-aligner" style="display: flex; flex-direction: column; gap: 20px; perspective: 1000px;">
-                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
+                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);">
                                 <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-language" style="color:var(--accent-blue); margin-right:8px;"></i>Hindi (Native)</span><span style="color:var(--accent-blue);">100%</span></div>
                                 <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 100%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                             </div>
-                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(15px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
+                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);">
                                 <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-globe" style="color:var(--accent-blue); margin-right:8px;"></i>English (Professional)</span><span style="color:var(--accent-blue);">75%</span></div>
                                 <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 75%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                             </div>
@@ -676,7 +471,6 @@
             </div>
         </div>
 
-        <!-- CONTACT VIEW -->
         <div id="view-user-contact" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -687,18 +481,12 @@
                     <div class="contact-left">
                         <div class="contact-left-row">
                             <div class="icon-container"><i class="fas fa-envelope"></i></div>
-                            <div>
-                                <div class="label">Email Address</div>
-                                <div class="value">surajsinghrajput5040@gmail.com</div>
-                            </div>
+                            <div><div class="label">Email Address</div><div class="value">surajsinghrajput5040@gmail.com</div></div>
                         </div>
                         <div class="sep-line"></div>
                         <div class="contact-left-row">
                             <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
-                            <div>
-                                <div class="label">Contact Number</div>
-                                <div class="value">+91 78795 95821</div>
-                            </div>
+                            <div><div class="label">Contact Number</div><div class="value">+91 78795 95821</div></div>
                         </div>
                     </div>
                     <div class="contact-right">
@@ -710,7 +498,6 @@
             </div>
         </div>
 
-        <!-- LOGIN VIEW -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -719,21 +506,12 @@
                         <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Sign In</h3>
                     </div>
                     <div class="auth-input-container">
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Email ID</span>
-                            <input type="email" id="login-email" class="auth-field-asset" placeholder="example@domain.com">
-                        </div>
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Password</span>
-                            <input type="password" id="login-password" class="auth-field-asset" placeholder="••••••••">
-                        </div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Email ID</span><input type="email" id="login-email" class="auth-field-asset" placeholder="example@domain.com"></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Password</span><input type="password" id="login-password" class="auth-field-asset" placeholder="••••••••"></div>
                         <button type="button" class="btn-submit-action" onclick="handleLoginSubmit()">LOG IN</button>
-                        <div style="text-align: right; width: 100%;">
-                            <span style="color: var(--accent-blue); font-size: 13px; font-weight: bold; cursor: pointer;" onclick="switchAppView('view-forgot')">Forgot Password?</span>
-                        </div>
+                        <div style="text-align: right; width: 100%;"><span style="color: var(--accent-blue); font-size: 13px; font-weight: bold; cursor: pointer;" onclick="switchAppView('view-forgot')">Forgot Password?</span></div>
                     </div>
                     <div class="social-grid-panel">
-                        <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN IN WITH</div>
                         <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google" style="color: #ea4335;"></i> Sign In with Google</button>
                         <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in" style="color: #0a66c2;"></i> Sign In with LinkedIn</button>
                     </div>
@@ -741,7 +519,6 @@
             </div>
         </div>
 
-        <!-- REGISTER VIEW -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -750,44 +527,17 @@
                         <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Registration</h3>
                     </div>
                     <div class="auth-input-container">
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Full Name</span>
-                            <input type="text" id="reg-fullname" class="auth-field-asset" placeholder="Your Name">
-                        </div>
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Email ID</span>
-                            <div style="display:flex; width:100%; gap:12px; align-items:center;">
-                                <input type="email" id="reg-email" class="auth-field-asset" placeholder="example@domain.com">
-                                <button type="button" id="btn-get-otp-reg" class="inline-action-trigger" onclick="handleSendOTP('reg')">Get OTP</button>
-                            </div>
-                        </div>
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Email Verification Code</span>
-                            <div style="display:flex; width:100%; gap:12px; align-items:center;">
-                                <input type="text" id="otp-code-reg" class="auth-field-asset" placeholder="6-Digit Code">
-                                <button type="button" id="btn-verify-otp-reg" class="inline-action-trigger" onclick="handleVerifyOTP('reg')">Verify</button>
-                                <span id="badge-verified-reg" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span>
-                            </div>
-                        </div>
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Password</span>
-                            <input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••" oninput="checkPasswordStrength(this.value, 'reg')">
-                            <div class="strength-container" id="strength-container-reg">
-                                <div class="strength-bar-bg"><div class="strength-bar" id="strength-bar-reg"></div></div>
-                                <span class="strength-text" id="strength-text-reg">Strength Node</span>
-                            </div>
-                        </div>
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Confirm Password</span>
-                            <input type="password" id="reg-confirm-password" class="auth-field-asset" placeholder="••••••••">
-                        </div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Full Name</span><input type="text" id="reg-fullname" class="auth-field-asset" placeholder="Your Name"></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Email ID</span><div style="display:flex; width:100%; gap:12px; align-items:center;"><input type="email" id="reg-email" class="auth-field-asset" placeholder="example@domain.com"><button type="button" id="btn-get-otp-reg" class="inline-action-trigger" onclick="handleSendOTP('reg')">Get OTP</button></div></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Email Verification Code</span><div style="display:flex; width:100%; gap:12px; align-items:center;"><input type="text" id="otp-code-reg" class="auth-field-asset" placeholder="6-Digit Code"><button type="button" id="btn-verify-otp-reg" class="inline-action-trigger" onclick="handleVerifyOTP('reg')">Verify</button><span id="badge-verified-reg" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span></div></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Password</span><input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••" oninput="checkPasswordStrength(this.value, 'reg')"><div class="strength-container" id="strength-container-reg"><div class="strength-bar-bg"><div class="strength-bar" id="strength-bar-reg"></div></div><span class="strength-text" id="strength-text-reg">Strength Node</span></div></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Confirm Password</span><input type="password" id="reg-confirm-password" class="auth-field-asset" placeholder="••••••••"></div>
                         <button type="button" class="btn-submit-action" style="background-color: #4ade80;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- FORGOT PASSWORD VIEW -->
         <div id="view-forgot" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -796,36 +546,15 @@
                         <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;"><i class="fas fa-key"></i> Reset Password</h3>
                     </div>
                     <div class="auth-input-container">
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Email ID</span>
-                            <div style="display:flex; width:100%; gap:12px; align-items:center;">
-                                <input type="email" id="forgot-email" class="auth-field-asset" placeholder="example@domain.com">
-                                <button type="button" id="btn-get-otp-forgot" class="inline-action-trigger" onclick="handleSendOTP('forgot')">Get OTP</button>
-                            </div>
-                        </div>
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">Verification Code</span>
-                            <div style="display:flex; width:100%; gap:12px; align-items:center;">
-                                <input type="text" id="otp-code-forgot" class="auth-field-asset" placeholder="6-Digit Code">
-                                <button type="button" id="btn-verify-otp-forgot" class="inline-action-trigger inline-verify-trigger" onclick="handleVerifyOTP('forgot')">Verify</button>
-                                <span id="badge-verified-forgot" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span>
-                            </div>
-                        </div>
-                        <div class="input-row-block">
-                            <span class="input-field-label-meta">New Password</span>
-                            <input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password" oninput="checkPasswordStrength(this.value, 'forgot')">
-                            <div class="strength-container" id="strength-container-forgot">
-                                <div class="strength-bar-bg"><div class="strength-bar" id="strength-bar-forgot"></div></div>
-                                <span class="strength-text" id="strength-text-forgot">Strength Node</span>
-                            </div>
-                        </div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Email ID</span><div style="display:flex; width:100%; gap:12px; align-items:center;"><input type="email" id="forgot-email" class="auth-field-asset" placeholder="example@domain.com"><button type="button" id="btn-get-otp-forgot" class="inline-action-trigger" onclick="handleSendOTP('forgot')">Get OTP</button></div></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Verification Code</span><div style="display:flex; width:100%; gap:12px; align-items:center;"><input type="text" id="otp-code-forgot" class="auth-field-asset" placeholder="6-Digit Code"><button type="button" id="btn-verify-otp-forgot" class="inline-action-trigger" onclick="handleVerifyOTP('forgot')">Verify</button><span id="badge-verified-forgot" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span></div></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">New Password</span><input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password" oninput="checkPasswordStrength(this.value, 'forgot')"><div class="strength-container" id="strength-container-forgot"><div class="strength-bar-bg"><div class="strength-bar" id="strength-bar-forgot"></div></div><span class="strength-text" id="strength-text-forgot">Strength Node</span></div></div>
                         <button type="button" class="btn-submit-action" onclick="handleResetPasswordSubmit()">CHANGE PASSWORD</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- SECURE VAULT VIEWS -->
         <div id="view-sec-vault-achievements" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -849,21 +578,12 @@
                     <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
                     <h2 class="section-title">Encrypted System Records</h2>
                 </div>
-                
-                <!-- Security Gate Requests Forms -->
                 <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
-                    <i class="fas fa-lock"></i>
-                    <h4>Clearance Status Required</h4>
-                    <p>Request validation to pull files from secure nodes.</p>
-                    <button type="button" class="btn-submit-action" style="background:#fbbf24; margin:0;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
+                    <i class="fas fa-lock"></i><h4>Clearance Status Required</h4><p>Request validation to pull files from secure nodes.</p><button type="button" class="btn-submit-action" style="background:#fbbf24; margin:0;" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
                 </div>
                 <div id="doc-gate-pending-view" class="pending-box" style="display:none;">
-                    <i class="fas fa-clock"></i>
-                    <div class="status-msg">PENDING FOR APPROVAL</div>
-                    <p style="font-size: 13px; color: var(--text-gray);">Your data loop access request is inside admin queue.</p>
+                    <i class="fas fa-clock"></i><div class="status-msg">PENDING FOR APPROVAL</div><p style="font-size: 13px; color: var(--text-gray);">Your data loop access request is inside admin queue.</p>
                 </div>
-
-                <!-- ⚡ FIXED PREMIUM CARDS LAYOUT ARRAYS FOR ENCRYPTED RECORDS (Screenshot `23697.jpg`) -->
                 <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
                     <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf', true)"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('resume.pdf', true)"><div><i class="fas fa-file-alt"></i> Professional Resume</div><i class="fas fa-download"></i></div>
@@ -882,7 +602,6 @@
                     <h2 class="section-title" style="color: #fbbf24;">User Clearance Dashboard</h2>
                 </div>
                 <div id="admin-requests-list" class="vault-list-container"></div>
-                
                 <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 30px;">
                     <h2 class="section-title" style="color: var(--accent-blue); display:flex; align-items:center; gap:10px;"><i class="fas fa-comments"></i> User Live Chat Terminal</h2>
                     <div id="admin-chat-messages-container" class="vault-list-container" style="margin-top:20px;"></div>
@@ -892,14 +611,10 @@
 
     </div>
 
-    <!-- FLOATING CHAT WIDGET -->
     <div class="floating-chat-widget" onclick="event.stopPropagation();">
         <div class="chat-widget-trigger" onclick="toggleChatWidget(event)"><i class="fas fa-comments"></i></div>
         <div class="chat-widget-window" id="chat-widget-window">
-            <div class="chat-widget-header">
-                <span style="font-weight:800; font-size:13px; color:#fff;">Live Chat AI Assistant</span>
-                <div onclick="toggleChatWidget(event)" style="cursor:pointer; color:var(--text-gray);"><i class="fas fa-times"></i></div>
-            </div>
+            <div class="chat-widget-header"><span style="font-weight:800; font-size:13px; color:#fff;">Live Chat AI Assistant</span><div onclick="toggleChatWidget(event)" style="cursor:pointer; color:var(--text-gray);"><i class="fas fa-times"></i></div></div>
             <div class="chat-widget-body" id="chat-widget-logs"></div>
             <div class="chat-widget-footer">
                 <textarea id="chat-widget-input" style="flex:1; background:#05070c; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; color:#fff; font-size:13px; resize:none; height:42px; outline:none;" placeholder="Type message block..."></textarea>
@@ -907,8 +622,6 @@
             </div>
         </div>
     </div>
-
-    <footer><p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p></footer>
 
     <script>
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
@@ -920,11 +633,7 @@
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 const loader = document.getElementById('cyber-boot-preloader');
-                if(loader) {
-                    loader.style.transition = 'opacity 0.4s ease';
-                    loader.style.opacity = '0';
-                    setTimeout(() => loader.style.display = 'none', 400);
-                }
+                if(loader) { loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 400); }
             }, 1600);
         });
 
@@ -933,13 +642,10 @@
         document.addEventListener('click', () => document.getElementById('system-dropdown-panel').classList.remove('show'));
 
         function appendVisualChatBubble(name, text, isUser) {
-            const logsContainer = document.getElementById('chat-widget-logs');
-            if(!logsContainer) return;
+            const logsContainer = document.getElementById('chat-widget-logs'); if(!logsContainer) return;
             const bubbleRow = document.createElement('div');
             bubbleRow.style.cssText = `display:flex; width:100%; justify-content: ${isUser ? 'flex-end' : 'flex-start'}; margin-top:3px;`;
-            let innerStyle = isUser 
-                ? "background: var(--accent-blue); color: #05070c; font-weight:700; border-radius: 16px 16px 0 16px; box-shadow: 0 4px 12px rgba(94, 234, 212, 0.15);" 
-                : "background: rgba(94, 234, 212, 0.06); border: 1px solid rgba(94, 234, 212, 0.15); color: #fff; border-radius: 16px 16px 16px 0;";
+            let innerStyle = isUser ? "background: var(--accent-blue); color: #05070c; font-weight:700; border-radius: 16px 16px 0 16px;" : "background: rgba(94, 234, 212, 0.06); border: 1px solid rgba(94, 234, 212, 0.15); color: #fff; border-radius: 16px 16px 16px 0;";
             bubbleRow.innerHTML = `<div style="padding: 10px 16px; font-size: 13px; max-width: 80%; line-height: 1.5; text-align: left; word-break: break-word; ${innerStyle}">${text}</div>`;
             logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
         }
@@ -949,13 +655,11 @@
             document.getElementById('system-dropdown-panel').classList.remove('show');
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
             document.querySelectorAll('.menu-link-row').forEach(r => r.classList.remove('active'));
-            
-            const target = document.getElementById(viewId); 
-            if(target) target.classList.add('active-view');
+            const target = document.getElementById(viewId); if(target) target.classList.add('active-view');
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            
             if(viewId === 'view-sec-admin-panel') { window.loadAdminPanel(); adminPanelLiveInterval = setInterval(window.loadAdminPanel, 4000); }
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
+            if(viewId === 'ml-' + viewId.replace('view-', '')) { document.getElementById('ml-' + viewId.replace('view-', '')).classList.add('active'); }
             if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
             if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
             if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
@@ -964,27 +668,16 @@
         };
 
         window.requestSecureFile = async function(file, isDocument = false) {
-            if (!currentActiveSession) {
-                alert("🔒 Access Denied: Please Sign In to verify credentials.");
-                switchAppView('view-login');
-                return;
-            }
+            if (!currentActiveSession) { alert("🔒 Access Denied: Please Sign In to verify credentials."); switchAppView('view-login'); return; }
             if (isDocument) {
-                const { data } = await _supabase.from('document_requests')
-                    .select('status')
-                    .eq('email', currentActiveSession.user.email)
-                    .maybeSingle();
-                if (!data || data.status !== 'approved') {
-                    alert("🚫 Access Denied: Clearances pending on administrative loops.");
-                    return;
-                }
+                const { data } = await _supabase.from('document_requests').select('status').eq('email', currentActiveSession.user.email).maybeSingle();
+                if (!data || data.status !== 'approved') { alert("🚫 Access Denied: Clearances pending on administrative loops."); return; }
             }
             window.open(file, '_blank');
         };
 
         window.loadAdminPanel = async function() {
             if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
-            
             try {
                 const { data: reqs } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
                 const list = document.getElementById('admin-requests-list');
@@ -993,30 +686,13 @@
                     reqs?.forEach(r => {
                         const d = document.createElement('div'); d.className = 'admin-request-tile';
                         const userNameStr = r.name ? r.name.toUpperCase() : r.email.split('@')[0].toUpperCase();
-                        const badgeClass = r.status === 'approved' ? 'badge-approved' : 'badge-pending';
-                        
-                        d.innerHTML = `
-                            <div class="admin-user-info">
-                                <div class="admin-avatar-mini"><i class="fas fa-user-shield"></i></div>
-                                <div class="admin-user-meta-block">
-                                    <div class="admin-user-name">${userNameStr}</div>
-                                    <div class="admin-user-email">${r.email}</div>
-                                </div>
-                            </div>
-                            <div class="admin-actions-block">
-                                <span class="status-badge ${badgeClass}">${r.status}</span>
-                                <div class="admin-btn-group">
-                                    ${r.status !== 'approved' ? `<button type="button" class="admin-act-btn btn-approve" onclick="changeStatus(event,'${r.email}','approved')"><i class="fas fa-check"></i> Approve</button>` : ''}
-                                    <button type="button" class="admin-act-btn btn-delete" onclick="killRequest(event,'${r.email}')"><i class="fas fa-trash"></i> Delete</button>
-                                </div>
-                            </div>`;
+                        d.innerHTML = `<div class="admin-user-info"><div class="admin-avatar-mini"><i class="fas fa-user-shield"></i></div><div class="admin-user-meta-block"><div class="admin-user-name">${userNameStr}</div><div class="admin-user-email">${r.email}</div></div></div><div class="admin-actions-block"><span class="status-badge ${r.status==='approved'?'badge-approved':'badge-pending'}">${r.status}</span><div class="admin-btn-group">${r.status!=='approved'?`<button type="button" class="admin-act-btn btn-approve" onclick="changeStatus(event,'${r.email}','approved')">Approve</button>`:''}<button type="button" class="admin-act-btn btn-delete" onclick="killRequest(event,'${r.email}')">Delete</button></div></div>`;
                         list.appendChild(d);
                     });
                 }
-            } catch(e) { console.error("Req Err:", e); }
-
+            } catch(e) {}
             try {
-                const { data: messages, error: err } = await _supabase.from('portfolio_messages').select('*').order('id', { ascending: true });
+                const { data: messages } = await _supabase.from('portfolio_messages').select('*').order('id', { ascending: true });
                 const chatBox = document.getElementById('admin-chat-messages-container');
                 if(chatBox) {
                     chatBox.innerHTML = '';
@@ -1026,118 +702,41 @@
                             const group = messages.filter(m => m.email === email);
                             const card = document.createElement('div'); card.className = 'admin-request-card';
                             let sId = email.replace(/[@.]/g, '_');
-                            card.innerHTML = `<div><b>Chat Node: ${email}</b></div>
-                                <div style="max-height:120px; overflow-y:auto; background:#05070c; padding:10px; border-radius:8px; margin-top:5px; display:flex; flex-direction:column; gap:4px;">
-                                    ${group.map(m => `<div><b style="color:${m.is_admin?'#5eead4':'#4ade80'}">${m.name}:</b> ${m.message}</div>`).join('')}
-                                </div>
-                                <div style="display:flex; gap:10px; margin-top:8px;">
-                                    <input type="text" id="admin-reply-${sId}" class="auth-field-asset" style="flex:1; padding:8px 12px !important;" placeholder="Type reply...">
-                                    <button type="button" style="background:#5eead4; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; color:#000; font-weight:bold;" onclick="handleSendAdminReply(event,'${email}','${sId}')">Send</button>
-                                </div>`;
+                            card.innerHTML = `<div><b>Chat Node: ${email}</b></div><div style="max-height:120px; overflow-y:auto; background:#05070c; padding:10px; border-radius:8px; margin-top:5px; display:flex; flex-direction:column; gap:4px;">${group.map(m=>`<div><b style="color:${m.is_admin?'#5eead4':'#4ade80'}">${m.name}:</b> ${m.message}</div>`).join('')}</div><div style="display:flex; gap:10px; margin-top:8px;"><input type="text" id="admin-reply-${sId}" class="auth-field-asset" style="flex:1; padding:8px 12px !important;" placeholder="Type reply..."><button type="button" style="background:#5eead4; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; color:#000; font-weight:bold;" onclick="handleSendAdminReply(event,'${email}','${sId}')">Send</button></div>`;
                             chatBox.appendChild(card);
                         });
                     } else {
-                        chatBox.innerHTML = `
-                            <div style="padding: 45px 20px; text-align: center; background: rgba(94, 234, 212, 0.01); border: 1px dashed rgba(94, 234, 212, 0.15); border-radius: 20px;">
-                                <div style="animation: cyberChatFloat 3s ease-in-out infinite; display: inline-block;">
-                                    <i class="fas fa-network-wired" style="font-size: 38px; color: var(--accent-blue); text-shadow: 0 0 25px var(--accent-glow); margin-bottom: 15px;"></i>
-                                </div>
-                                <h4 style="font-size: 14px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px 0; text-shadow: 0 0 8px var(--accent-glow);">Awaiting Data Transmission</h4>
-                                <p style="font-size: 12px; color: var(--text-gray); max-width: 320px; margin: 0 auto; line-height: 1.6;">Active Chat Stream Core is Standby. Ready to index incoming packets from client validation blocks.</p>
-                            </div>`;
+                        chatBox.innerHTML = `<div style="padding: 45px 20px; text-align: center; background: rgba(94, 234, 212, 0.01); border: 1px dashed rgba(94, 234, 212, 0.15); border-radius: 20px;"><div style="animation: cyberChatFloat 3s ease-in-out infinite; display: inline-block;"><i class="fas fa-network-wired" style="font-size: 38px; color: var(--accent-blue); text-shadow: 0 0 25px var(--accent-glow); margin-bottom: 15px;"></i></div><h4 style="font-size: 14px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px 0;">Awaiting Data Transmission</h4><p style="font-size: 12px; color: var(--text-gray); max-width: 320px; margin: 0 auto; line-height: 1.6;">Active Chat Stream Core is Standby. Ready to index incoming packets from client validation blocks.</p></div>`;
                     }
                 }
-            } catch(e) { console.error("Chat Thread Err:", e); }
+            } catch(e) {}
         };
 
-        window.changeStatus = async function(e, email, status) { 
-            if(e) { e.preventDefault(); e.stopPropagation(); }
-            await _supabase.from('document_requests').update({ status }).eq('email', email); 
-            window.loadAdminPanel(); 
-        };
-        window.killRequest = async function(e, email) { 
-            if(e) { e.preventDefault(); e.stopPropagation(); }
-            await _supabase.from('document_requests').delete().eq('email', email); 
-            window.loadAdminPanel(); 
-        };
-        window.handleSendAdminReply = async function(e, email, sId) {
-            if(e) { e.preventDefault(); e.stopPropagation(); }
-            const val = document.getElementById(`admin-reply-${sId}`).value.trim(); if(!val) return;
-            await _supabase.from('portfolio_messages').insert([{ name: "Suraj (Admin)", email, message: val, is_admin: true }]);
-            document.getElementById(`admin-reply-${sId}`).value = ''; window.loadAdminPanel();
-        };
-
-        window.checkPasswordStrength = function(val, type) {
-            const container = document.getElementById(`strength-container-${type}`);
-            const bar = document.getElementById(`strength-bar-${type}`);
-            const text = document.getElementById(`strength-text-${type}`);
-            if(!container || !bar || !text) return;
-
-            if(!val) { container.style.display = 'none'; return; }
-            container.style.display = 'flex';
-
-            let score = 0;
-            if(val.length >= 6) score++;
-            if(val.length >= 10) score++;
-            if(/[A-Z]/.test(val) && /[0-9]/.test(val)) score++;
-            if(/[^A-Za-z0-9]/.test(val)) score++;
-
-            if(score <= 1) {
-                bar.style.width = '25%'; bar.style.backgroundColor = '#ef4444';
-                text.innerText = '🚨 Weak Node Matrix'; text.style.color = '#ef4444';
-            } else if(score === 2 || score === 3) {
-                bar.style.width = '60%'; bar.style.backgroundColor = '#fbbf24';
-                text.innerText = '⚡ Medium Node Protection'; text.style.color = '#fbbf24';
-            } else {
-                bar.style.width = '100%'; bar.style.backgroundColor = '#4ade80';
-                text.innerText = '✅ Strong Shield Synchronized'; text.style.color = '#4ade80';
-            }
-        };
+        window.changeStatus = async function(e, email, status) { if(e) { e.preventDefault(); e.stopPropagation(); } await _supabase.from('document_requests').update({ status }).eq('email', email); window.loadAdminPanel(); };
+        window.killRequest = async function(e, email) { if(e) { e.preventDefault(); e.stopPropagation(); } await _supabase.from('document_requests').delete().eq('email', email); window.loadAdminPanel(); };
+        window.handleSendAdminReply = async function(e, email, sId) { if(e) { e.preventDefault(); e.stopPropagation(); } const val = document.getElementById(`admin-reply-${sId}`).value.trim(); if(!val) return; await _supabase.from('portfolio_messages').insert([{ name: "Suraj (Admin)", email, message: val, is_admin: true }]); document.getElementById(`admin-reply-${sId}`).value = ''; window.loadAdminPanel(); };
 
         function updateDocumentUIStatus(status) {
-            const form = document.getElementById('doc-gate-form-view');
-            const pending = document.getElementById('doc-gate-pending-view');
-            const allowed = document.getElementById('doc-gate-allowed-view');
-            if(!form || !pending || !allowed) return;
-
-            form.style.display = 'none'; pending.style.display = 'none'; allowed.style.display = 'none';
-            if (status === 'approved') allowed.style.display = 'block';
-            else if (status === 'pending') pending.style.display = 'block';
-            else form.style.display = 'block';
+            const form = document.getElementById('doc-gate-form-view'), pending = document.getElementById('doc-gate-pending-view'), allowed = document.getElementById('doc-gate-allowed-view');
+            if(!form || !pending || !allowed) return; form.style.display = 'none'; pending.style.display = 'none'; allowed.style.display = 'none';
+            if (status === 'approved') allowed.style.display = 'block'; else if (status === 'pending') pending.style.display = 'block'; else form.style.display = 'block';
         }
 
-        async function handleDocumentAccessGate() {
-            if(!currentActiveSession) return;
-            const { data } = await _supabase.from('document_requests').select('status').eq('email', currentActiveSession.user.email).maybeSingle();
-            updateDocumentUIStatus(data ? data.status : 'none');
-        }
+        async function handleDocumentAccessGate() { if(!currentActiveSession) return; const { data } = await _supabase.from('document_requests').select('status').eq('email', currentActiveSession.user.email).maybeSingle(); updateDocumentUIStatus(data ? data.status : 'none'); }
+        window.handleSubmitAdminRequest = async function() { if(!currentActiveSession) return; const user = currentActiveSession.user; await _supabase.from('document_requests').insert([{ name: user.email.split('@')[0], email: user.email, status: 'pending' }]); handleDocumentAccessGate(); };
 
-        window.handleSubmitAdminRequest = async function() {
-            if(!currentActiveSession) return;
-            const user = currentActiveSession.user;
-            await _supabase.from('document_requests').insert([{ name: user.email.split('@')[0], email: user.email, status: 'pending' }]);
-            handleDocumentAccessGate();
+        window.checkPasswordStrength = function(val, type) {
+            const container = document.getElementById(`strength-container-${type}`), bar = document.getElementById(`strength-bar-${type}`), text = document.getElementById(`strength-text-${type}`);
+            if(!container || !bar || !text) return; if(!val) { container.style.display = 'none'; return; } container.style.display = 'flex';
+            let score = 0; if(val.length >= 6) score++; if(val.length >= 10) score++; if(/[A-Z]/.test(val) && /[0-9]/.test(val)) score++; if(/[^A-Za-z0-9]/.test(val)) score++;
+            if(score <= 1) { bar.style.width = '25%'; bar.style.backgroundColor = '#ef4444'; text.innerText = '🚨 Weak Node Matrix'; text.style.color = '#ef4444'; }
+            else if(score === 2 || score === 3) { bar.style.width = '60%'; bar.style.backgroundColor = '#fbbf24'; text.innerText = '⚡ Medium Node Protection'; text.style.color = '#fbbf24'; }
+            else { bar.style.width = '100%'; bar.style.backgroundColor = '#4ade80'; text.innerText = '✅ Strong Shield Synchronized'; text.style.color = '#4ade80'; }
         };
 
         window.handleOAuthLogin = async function(provider) {
-            const targetBtn = document.querySelector(`.social-btn-box[onclick*="${provider}"]`);
-            if(targetBtn) {
-                targetBtn.style.opacity = '0.7';
-                targetBtn.innerHTML = `<i class="fas fa-spinner fa-spin" style="color: #5eead4;"></i> Handshaking Secure Node Matrix...`;
-            }
-            const { error } = await _supabase.auth.signInWithOAuth({
-                provider: provider,
-                options: { redirectTo: redirectLink }
-            });
-            if(error) {
-                alert("OAuth Error: " + error.message);
-                if(targetBtn) {
-                    targetBtn.style.opacity = '1';
-                    targetBtn.innerHTML = provider === 'google' 
-                        ? `<i class="fab fa-google" style="color: #ea4335;"></i> Sign In with Google`
-                        : `<i class="fab fa-linkedin-in" style="color: #0a66c2;"></i> Sign In with LinkedIn`;
-                }
-            }
+            const { error } = await _supabase.auth.signInWithOAuth({ provider: provider, options: { redirectTo: redirectLink } });
+            if(error) alert("OAuth Error: " + error.message);
         };
 
         function syncAuthUI() {
@@ -1151,7 +750,7 @@
             } else {
                 document.getElementById('menu-guest-block').style.display = "flex"; document.getElementById('menu-user-block').style.display = "none";
                 document.getElementById('ml-achievements').style.display = "none"; document.getElementById('ml-documents').style.display = "none"; document.getElementById('ml-admin').style.display = "none";
-                document.getElementById('badge-text').innerText = "Public Visitor Mode";
+                document.getElementById('badge-text').innerText = "Public Visitor Mode"; updateDocumentUIStatus('none');
             }
         }
 
@@ -1168,19 +767,12 @@
         window.handleSendLiveChatMessage = async function() {
             const inp = document.getElementById('chat-widget-input'); const val = inp.value.trim(); if(!val) return;
             appendVisualChatBubble("You", val, true); inp.value = '';
-            setTimeout(() => {
-                let reply = "Your context query registry has synchronized. Suraj will analyze it soon. 🚀";
-                let low = val.toLowerCase();
-                if(low.includes("dca") || low.includes("education")) reply = "Suraj finished a 1-Year Diploma in Computer Applications (DCA) from MCU (2023). 🎓";
-                else if(low.includes("experience") || low.includes("work")) reply = "Suraj counts industrial loops: Invoice SAP Executive at Polyhose, and Store Data at Hettich. 💼";
-                appendVisualChatBubble("Live Chat AI", reply, false);
-            }, 800);
+            await _supabase.from('portfolio_messages').insert([{ name: currentActiveSession ? currentActiveSession.user.email.split('@')[0] : "Visitor", email: currentActiveSession ? currentActiveSession.user.email : "anonymous_guest@node.com", message: val, is_admin: false }]);
         };
 
         window.handleSendOTP = async function(type) {
             const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
-            const { error } = await _supabase.auth.signInWithOtp({ email });
-            if(!error) alert("Verification Code Transmitted!"); else alert(error.message);
+            const { error } = await _supabase.auth.signInWithOtp({ email }); if(!error) alert("Code Transmitted!"); else alert(error.message);
         };
         window.handleVerifyOTP = async function(type) {
             const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
@@ -1188,34 +780,18 @@
             const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
             if(!error) { isEmailVerified = true; document.getElementById(`badge-verified-${type}`).style.display="inline-flex"; } else { alert(error.message); }
         };
-        window.handleFinalRegister = async function() {
+        window.handleFinalRegister = function() {
             const email = document.getElementById('reg-email').value.trim(), password = document.getElementById('reg-password').value;
-            const { error } = await _supabase.auth.signUp({ email, password });
-            if(!error) { alert("Registration Processing Success!"); switchAppView('view-login'); } else { alert(error.message); }
+            _supabase.auth.signUp({ email, password }).then(({error}) => { if(!error) switchAppView('view-login'); else alert(error.message); });
         };
-        window.handleResetPasswordSubmit = async function() {
+        window.handleResetPasswordSubmit = function() {
             const password = document.getElementById('forgot-password').value;
-            const { error } = await _supabase.auth.updateUser({ password });
-            if(!error) { alert("Credentials reset success!"); switchAppView('view-login'); } else { alert(error.message); }
+            _supabase.auth.updateUser({ password }).then(({error}) => { if(!error) switchAppView('view-login'); else alert(error.message); });
         };
 
         function initTechStack3DWorkspace() {
             const mount = document.getElementById('canvas-3d-techstack-portal'); if(!mount) return; mount.innerHTML = "";
-            mount.innerHTML = `
-                <div style="padding: 24px; display: grid; grid-template-columns: 1fr; gap: 20px; height: 100%; box-sizing: border-box; perspective: 1000px;">
-                    <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);">
-                        <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-layer-group" style="color:var(--accent-blue); margin-right:8px;"></i>SAP Systems Log Processing</span><span style="color:var(--accent-blue);">92%</span></div>
-                        <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 92%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
-                    </div>
-                    <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);">
-                        <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-database" style="color:var(--accent-blue); margin-right:8px;"></i>SQL Advanced Database Audits</span><span style="color:var(--accent-blue);">85%</span></div>
-                        <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 85%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
-                    </div>
-                    <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);">
-                        <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-network-wired" style="color:var(--accent-blue); margin-right:8px;"></i>Data Parsing Architecture</span><span style="color:var(--accent-blue);">88%</span></div>
-                        <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 88%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
-                    </div>
-                </div>`;
+            mount.innerHTML = `<div style="padding: 24px; display: grid; grid-template-columns: 1fr; gap: 20px; height: 100%; box-sizing: border-box; perspective: 1000px;"><div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);"><div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-layer-group" style="color:var(--accent-blue); margin-right:8px;"></i>SAP Systems Log Processing</span><span style="color:var(--accent-blue);">92%</span></div><div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 92%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div></div><div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);"><div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-database" style="color:var(--accent-blue); margin-right:8px;"></i>SQL Advanced Database Audits</span><span style="color:var(--accent-blue);">85%</span></div><div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 85%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div></div><div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);"><div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-network-wired" style="color:var(--accent-blue); margin-right:8px;"></i>Data Parsing Architecture</span><span style="color:var(--accent-blue);">88%</span></div><div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 88%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div></div></div>`;
         }
     </script>
 </body>
