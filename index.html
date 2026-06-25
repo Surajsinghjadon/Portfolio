@@ -245,7 +245,7 @@
         .pending-box i { color: #fbbf24; font-size: 38px; margin-bottom: 16px; }
         .status-msg { font-size: 16px; font-weight: 800; color: #fbbf24; margin-bottom: 5px; }
 
-        /* ⚡ PREMIUM DASHBOARD CUSTOM STYLES ADDED */
+        /* PREMIUM RE DESIGNED HOVER BLOCKS */
         .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.2s; }
         .admin-request-tile:hover { border-color: rgba(94, 234, 212, 0.2); background: rgba(255,255,255,0.04); }
         .admin-user-info { display: flex; align-items: center; gap: 14px; overflow: hidden; }
@@ -258,11 +258,12 @@
         .badge-pending { background: rgba(251, 191, 36, 0.1); color: #fbbf24; border-color: rgba(251, 191, 36, 0.2); }
         .badge-approved { background: rgba(74, 222, 128, 0.1); color: #4ade80; border-color: rgba(74, 222, 128, 0.2); box-shadow: 0 0 10px rgba(74, 222, 128, 0.15); }
         .admin-btn-group { display: flex; gap: 8px; align-items: center; }
-        .admin-act-btn { border: none; padding: 8px 14px; font-size: 12px; font-weight: 800; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; height: 34px; box-sizing: border-box; }
+        .admin-act-btn { border: none; padding: 8px 14px; font-size: 12px; font-weight: 800; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; height: 34px; box-sizing: border-box; z-index: 10; }
         .btn-approve { background: var(--accent-blue); color: #05070c; }
         .btn-approve:hover { filter: brightness(1.1); transform: translateY(-1px); }
         .btn-delete { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.25); }
         .btn-delete:hover { background: #ef4444; color: #fff; transform: translateY(-1px); }
+        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); box-sizing: border-box; }
 
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
     </style>
@@ -750,6 +751,7 @@
             logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
         }
 
+        // 🎯 FIXED SWITCH VIEW LOGIC COMPILATION ERROR
         window.switchAppView = function(viewId) {
             clearInterval(adminPanelLiveInterval);
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
@@ -763,7 +765,7 @@
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
             if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
             if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
-            if(viewId === 'view-user-edu').classList.add('active');
+            if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
             if(viewId === 'view-technical-skills') { document.getElementById('ml-skills').classList.add('active'); initTechStack3DWorkspace(); }
             if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
         };
@@ -787,7 +789,6 @@
             window.open(file, '_blank');
         };
 
-        // 🎯 FIXED MASTER ADMIN PANEL LAYOUT & PREVENTED EVENT BUBBLING INTERCEPTIONS
         window.loadAdminPanel = async function() {
             if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
             const { data: reqs } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
@@ -839,7 +840,6 @@
             }
         };
 
-        // 🔒 FIXED CLICK PROPAGATION HANDLERS
         window.changeStatus = async function(e, email, status) { 
             if(e) { e.preventDefault(); e.stopPropagation(); }
             await _supabase.from('document_requests').update({ status }).eq('email', email); 
