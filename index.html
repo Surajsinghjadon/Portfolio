@@ -50,7 +50,7 @@
             transform-style: preserve-3d; transition: all 0.3s;
         }
         .dropdown-panel.show { display: flex; animation: panelPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        @keyframes panelPop { from { opacity: 0; transform: translateY(-10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @gradient panelPop { from { opacity: 0; transform: translateY(-10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
         .menu-auth-row { display: flex; gap: 12px; margin-bottom: 4px; }
         .menu-btn-auth { flex: 1; padding: 14px; font-size: 12px; font-weight: 800; border-radius: 12px; border: none; cursor: pointer; text-transform: uppercase; text-align: center; text-decoration: none; transition: all 0.2s; }
@@ -74,23 +74,23 @@
 
         /* CANVAS VIEWS DISPLAY STRUCTURE ENGINE */
         .app-view { display: none !important; width: 100%; background-color: var(--bg-main); box-sizing: border-box; }
-        .app-view.active-view { display: block !important; position: relative; animation: viewFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        .app-view.active-view { display: block !important; position: relative; animation: viewFadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
         @keyframes viewFadeIn {
-            from { opacity: 0; transform: translateY(20px) rotateX(-5deg); }
-            to { opacity: 1; transform: translateY(0) rotateX(0deg); }
+            from { opacity: 0; transform: translateY(30px) scale(0.98) rotateX(-4deg); }
+            to { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
         }
 
-        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER */
+        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER with Real 3D Layering */
         .view-card-wrapper {
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
             border: 1px solid rgba(94, 234, 212, 0.22); border-radius: 32px;
             width: 100%; max-width: 1100px; padding: 50px 45px; margin: 0 auto;
             box-shadow: 0 40px 90px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.06);
-            box-sizing: border-box; transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, box-shadow 0.3s;
+            box-sizing: border-box; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s;
             perspective: 1000px; transform-style: preserve-3d;
         }
-        .view-card-wrapper:hover { border-color: var(--accent-blue); transform: translateY(-4px) scale(1.005); box-shadow: 0 45px 100px rgba(94, 234, 212, 0.08); }
+        .view-card-wrapper:hover { border-color: var(--accent-blue); transform: translateY(-5px) rotateY(1deg) rotateX(1deg); box-shadow: 0 50px 110px rgba(94, 234, 212, 0.09); }
         @media (max-width: 768px) { .view-card-wrapper { padding: 35px 20px; border-radius: 20px; } }
 
         /* CAPSULE BACK BUTTON STYLE */
@@ -124,7 +124,7 @@
         .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
         .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-2px); }
         
-        /* ⚡ DYNAMIC ADVANCED 3D HOLOGRAM MATRIX CHART COMPONENT */
+        /* DYNAMIC ADVANCED 3D HOLOGRAM MATRIX CHART COMPONENT */
         .image-wrapper { position: relative; width: 100%; max-width: 480px; height: 400px; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 32px; overflow: hidden; background: rgba(13, 17, 28, 0.6); border: 1px solid rgba(94, 234, 212, 0.25); box-shadow: 0 35px 75px rgba(0,0,0,0.8), inset 0 0 30px rgba(94, 234, 212, 0.05); transition: all 0.4s ease; transform-style: preserve-3d; transform: perspective(800px) rotateY(-8deg) rotateX(4deg); }
         .image-wrapper:hover { transform: perspective(800px) rotateY(2deg) rotateX(1deg) scale(1.02); border-color: var(--accent-blue); box-shadow: 0 40px 90px rgba(94, 234, 212, 0.15); }
         .hologram-chart-container { display: flex; align-items: flex-end; justify-content: center; gap: 24px; width: 100%; height: 75%; padding: 0 40px; box-sizing: border-box; transform: translateZ(30px); }
@@ -166,8 +166,12 @@
         .mini-progress-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); padding: 24px; border-radius: 18px; box-sizing: border-box; transition: all 0.3s; }
         .mini-progress-card:hover { transform: translateX(4px); border-color: rgba(94, 234, 212, 0.15); }
         .mini-progress-meta-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #fff; }
-        .progress-track-bg { height: 8px; background: #05070c; border-radius: 6px; margin-top: 12px; overflow: hidden; width: 100%; }
+        .progress-track-bg { height: 8px; background: #05070c; border-radius: 6px; margin-top: 12px; overflow: hidden; width: 100%; position: relative; }
         .progress-track-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8 0%, var(--accent-blue) 100%); border-radius: 4px; box-shadow: 0 0 10px var(--accent-blue); }
+
+        /* ⚡ IMMERSIVE 3D FLOATING LASER LINE FOR MATRIX METERS */
+        .progress-track-bg::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 30px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: laserScan 2s linear infinite; }
+        @keyframes laserScan { 0% { left: -10%; } 100% { left: 110%; } }
 
         .project-nodes-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
         @media (min-width: 768px) { .project-nodes-grid { grid-template-columns: 1fr 1fr; } }
@@ -216,7 +220,7 @@
         .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; flex-shrink: 0; }
 
-        /* CLEAN MONOLINGUAL CONTACT CARD DESIGN (HINDI TEXT COMPLETELY REMOVED) */
+        /* CLEAN MONOLINGUAL CONTACT CARD DESIGN */
         .contact-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; width: 100%; box-sizing: border-box; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
         .contact-left { padding: 35px; flex: 1.2; box-sizing: border-box; }
@@ -229,7 +233,6 @@
         .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; transition: transform 0.3s; }
         .real-earth-wrapper:hover { transform: rotate(45deg) scale(1.05); }
         
-        /* FIXED HOVER MAPS REDIRECT DEPLOYMENT PILL */
         .loc-pill { display: inline-block; background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.25); padding: 12px 24px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .loc-pill:hover { background: var(--accent-blue); color: #05070c; box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-2px); }
 
@@ -243,7 +246,7 @@
         .chat-widget-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #05070c; box-sizing: border-box; }
         .chat-widget-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; align-items: center; background: #0d111c; box-sizing: border-box; }
 
-        /* SKILLS INTEGRATED GRID MATRIX CONTROLLERS */
+        /* SKILLS PANEL CONFIGURATION WRAPPERS */
         .canvas-3d-techstack-portal { width: 100%; height: auto !important; min-height: 280px; background: #05070c; border: 1px solid rgba(94, 234, 212, 0.2); border-radius: 20px; overflow: hidden; box-shadow: inset 0 0 25px rgba(0,0,0,0.8); position: relative; }
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; align-items: stretch; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
@@ -251,7 +254,7 @@
         .meters-vertical-aligner { display: flex; flex-direction: column; gap: 15px; width: 100%; box-sizing: border-box; }
         .lang-item { font-size: 13px; font-weight: 600; background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); padding: 18px; border-radius: 14px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; height: 85px; }
         
-        /* --- SECURE VAULT ENGINE LAYOUT WRAPPERS --- */
+        /* SECURE VAULT ENGINE LAYOUT WRAPPERS */
         .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
         .file-item-row { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 14px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; }
         .file-item-row:hover { background: rgba(94, 234, 212, 0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
@@ -264,9 +267,9 @@
         .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
 
-        /* ADMIN TILES SYSTEM MATRIX CONFIGURATION */
-        .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.2s; position: relative; }
-        .admin-request-tile:hover { border-color: rgba(94, 234, 212, 0.2); background: rgba(255,255,255,0.04); }
+        /* ⚡ PREMIUM RE-DESIGNED HOVER BLOCKS WITH 3D POP FOR ENTIRE ADMIN MODULE */
+        .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
+        .admin-request-tile:hover { border-color: rgba(94, 234, 212, 0.3); background: rgba(255,255,255,0.04); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
         .admin-user-info { display: flex; align-items: center; gap: 14px; overflow: hidden; }
         .admin-avatar-mini { width: 40px; height: 40px; background: rgba(94, 234, 212, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; flex-shrink: 0; border: 1px solid rgba(94, 234, 212, 0.2); }
         .admin-user-meta-block { display: flex; flex-direction: column; overflow: hidden; }
@@ -277,14 +280,14 @@
         .badge-pending { background: rgba(251, 191, 36, 0.1); color: #fbbf24; border-color: rgba(251, 191, 36, 0.2); }
         .badge-approved { background: rgba(74, 222, 128, 0.1); color: #4ade80; border-color: rgba(74, 222, 128, 0.2); box-shadow: 0 0 10px rgba(74, 222, 128, 0.15); }
         
-        /* BUTTON LOCK CONTAINMENTS FOR PREVENTING EVENT BUUBLES */
         .admin-btn-group { display: flex; gap: 8px; align-items: center; position: relative; z-index: 100; }
         .admin-act-btn { border: none; padding: 8px 14px; font-size: 12px; font-weight: 800; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; height: 34px; box-sizing: border-box; position: relative; z-index: 105; }
         .btn-approve { background: var(--accent-blue); color: #05070c; }
         .btn-approve:hover { filter: brightness(1.1); transform: translateY(-1px); }
         .btn-delete { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.25); }
         .btn-delete:hover { background: #ef4444; color: #fff; transform: translateY(-1px); }
-        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); box-sizing: border-box; }
+        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); box-sizing: border-box; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .admin-request-card:hover { transform: translateY(-2px); border-color: rgba(94, 234, 212, 0.2); }
 
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
     </style>
@@ -349,7 +352,7 @@
                     </div>
                 </div>
                 <div>
-                    <!-- ⚡ ENRICHED MULTI-LAYERED ACTIVE 3D COGNITIVE CHART TERMINAL -->
+                    <!-- MOTION LAYERED 3D NEON CHARTS -->
                     <div class="image-wrapper">
                         <div class="hologram-grid-lines"></div>
                         <div class="hologram-chart-container">
@@ -558,7 +561,6 @@
                     <div class="contact-right">
                         <div class="real-earth-wrapper"><i class="fas fa-map-marked-alt"></i></div>
                         <div class="label" style="margin-bottom: 8px;">Location Matrix</div>
-                        <!-- ⚡ FIXED MAP LINK DIRECTION ENGINE ROUTES -->
                         <a href="https://maps.google.com/?q=Sagore,Pithampur,Madhya+Pradesh" target="_blank" class="loc-pill">REDIRECT MAPS</a>
                     </div>
                 </div>
@@ -825,55 +827,68 @@
             window.open(file, '_blank');
         };
 
+        // 🎯 SAFE LIVE CHAT AI DATA INJECTOR NODE (TRY-CATCH SAFE RESILIENT TERMINAL BINDING)
         window.loadAdminPanel = async function() {
             if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
-            const { data: reqs } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
-            const list = document.getElementById('admin-requests-list');
-            if(list) {
-                list.innerHTML = '';
-                reqs?.forEach(r => {
-                    const d = document.createElement('div'); d.className = 'admin-request-tile';
-                    const userNameStr = r.name ? r.name.toUpperCase() : r.email.split('@')[0].toUpperCase();
-                    const badgeClass = r.status === 'approved' ? 'badge-approved' : 'badge-pending';
-                    
-                    d.innerHTML = `
-                        <div class="admin-user-info">
-                            <div class="admin-avatar-mini"><i class="fas fa-user-shield"></i></div>
-                            <div class="admin-user-meta-block">
-                                <div class="admin-user-name">${userNameStr}</div>
-                                <div class="admin-user-email">${r.email}</div>
+            
+            // Render Requests
+            try {
+                const { data: reqs } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
+                const list = document.getElementById('admin-requests-list');
+                if(list) {
+                    list.innerHTML = '';
+                    reqs?.forEach(r => {
+                        const d = document.createElement('div'); d.className = 'admin-request-tile';
+                        const userNameStr = r.name ? r.name.toUpperCase() : r.email.split('@')[0].toUpperCase();
+                        const badgeClass = r.status === 'approved' ? 'badge-approved' : 'badge-pending';
+                        
+                        d.innerHTML = `
+                            <div class="admin-user-info">
+                                <div class="admin-avatar-mini"><i class="fas fa-user-shield"></i></div>
+                                <div class="admin-user-meta-block">
+                                    <div class="admin-user-name">${userNameStr}</div>
+                                    <div class="admin-user-email">${r.email}</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="admin-actions-block">
-                            <span class="status-badge ${badgeClass}">${r.status}</span>
-                            <div class="admin-btn-group">
-                                ${r.status !== 'approved' ? `<button type="button" class="admin-act-btn btn-approve" onclick="changeStatus(event,'${r.email}','approved')"><i class="fas fa-check"></i> Approve</button>` : ''}
-                                <button type="button" class="admin-act-btn btn-delete" onclick="killRequest(event,'${r.email}')"><i class="fas fa-trash"></i> Delete</button>
-                            </div>
-                        </div>`;
-                    list.appendChild(d);
-                });
-            }
-            const { data: messages } = await _supabase.from('portfolio_messages').select('*').order('id', { ascending: true });
-            const chatBox = document.getElementById('admin-chat-messages-container');
-            if(chatBox && messages) {
-                chatBox.innerHTML = '';
-                let threadEmails = [...new Set(messages.map(m => m.email))].filter(Boolean);
-                threadEmails.forEach(email => {
-                    const group = messages.filter(m => m.email === email);
-                    const card = document.createElement('div'); card.className = 'admin-request-card';
-                    let sId = email.replace(/[@.]/g, '_');
-                    card.innerHTML = `<div><b>Chat Node: ${email}</b></div>
-                        <div style="max-height:120px; overflow-y:auto; background:#05070c; padding:10px; border-radius:8px; margin-top:5px; display:flex; flex-direction:column; gap:4px;">
-                            ${group.map(m => `<div><b style="color:${m.is_admin?'#5eead4':'#4ade80'}">${m.name}:</b> ${m.message}</div>`).join('')}
-                        </div>
-                        <div style="display:flex; gap:10px; margin-top:8px;">
-                            <input type="text" id="admin-reply-${sId}" class="auth-field-asset" style="flex:1; padding:8px 12px !important;" placeholder="Type reply...">
-                            <button type="button" style="background:#5eead4; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; color:#000; font-weight:bold;" onclick="handleSendAdminReply(event,'${email}','${sId}')">Send</button>
-                        </div>`;
-                    chatBox.appendChild(card);
-                });
-            }
+                            <div class="admin-actions-block">
+                                <span class="status-badge ${badgeClass}">${r.status}</span>
+                                <div class="admin-btn-group">
+                                    ${r.status !== 'approved' ? `<button type="button" class="admin-act-btn btn-approve" onclick="changeStatus(event,'${r.email}','approved')"><i class="fas fa-check"></i> Approve</button>` : ''}
+                                    <button type="button" class="admin-act-btn btn-delete" onclick="killRequest(event,'${r.email}')"><i class="fas fa-trash"></i> Delete</button>
+                                </div>
+                            </div>`;
+                        list.appendChild(d);
+                    });
+                }
+            } catch(e) { console.error("Req Err:", e); }
+
+            // ⚡ FIXED CHAT SYSTEM PIPELINE: Robust selection with explicit string key generation
+            try {
+                const { data: messages, error: err } = await _supabase.from('portfolio_messages').select('*').order('id', { ascending: true });
+                const chatBox = document.getElementById('admin-chat-messages-container');
+                if(chatBox) {
+                    chatBox.innerHTML = '';
+                    if(messages && messages.length > 0) {
+                        let threadEmails = [...new Set(messages.map(m => m.email))].filter(Boolean);
+                        threadEmails.forEach(email => {
+                            const group = messages.filter(m => m.email === email);
+                            const card = document.createElement('div'); card.className = 'admin-request-card';
+                            let sId = email.replace(/[@.]/g, '_');
+                            card.innerHTML = `<div><b>Chat Node: ${email}</b></div>
+                                <div style="max-height:120px; overflow-y:auto; background:#05070c; padding:10px; border-radius:8px; margin-top:5px; display:flex; flex-direction:column; gap:4px;">
+                                    ${group.map(m => `<div><b style="color:${m.is_admin?'#5eead4':'#4ade80'}">${m.name}:</b> ${m.message}</div>`).join('')}
+                                </div>
+                                <div style="display:flex; gap:10px; margin-top:8px;">
+                                    <input type="text" id="admin-reply-${sId}" class="auth-field-asset" style="flex:1; padding:8px 12px !important;" placeholder="Type reply...">
+                                    <button type="button" style="background:#5eead4; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; color:#000; font-weight:bold;" onclick="handleSendAdminReply(event,'${email}','${sId}')">Send</button>
+                                </div>`;
+                            chatBox.appendChild(card);
+                        });
+                    } else {
+                        chatBox.innerHTML = `<div style="padding:20px; text-align:center; color:var(--text-gray); font-size:13px;"><i class="fas fa-comment-slash" style="font-size:20px; color:rgba(255,255,255,0.15); margin-bottom:6px;"></i><br>No live chat transmission packages received.</div>`;
+                    }
+                }
+            } catch(e) { console.error("Chat Thread Err:", e); }
         };
 
         window.changeStatus = async function(e, email, status) { 
@@ -1012,22 +1027,22 @@
             if(!error) { alert("Credentials reset success!"); switchAppView('view-login'); } else { alert(error.message); }
         };
 
-        // ⚡ ACTIVE 3D TECHNOLOGICAL EXPERTISE METERS POPULATOR SYSTEM
+        // ⚡ HIGH-END 3D CYBER ISOMETRIC TECH MATRIX OVERHAUL FOR SKILLS
         function initTechStack3DWorkspace() {
             const mount = document.getElementById('canvas-3d-techstack-portal'); if(!mount) return; mount.innerHTML = "";
             mount.innerHTML = `
-                <div style="padding: 24px; display: grid; grid-template-columns: 1fr; gap: 16px; height: 100%; box-sizing: border-box;">
-                    <div class="mini-progress-card" style="background: rgba(255,255,255,0.01); padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02);">
-                        <div class="mini-progress-meta-row"><span>SAP Systems Log Processing</span><span>92%</span></div>
-                        <div class="progress-track-bg"><div class="progress-track-fill" style="width: 92%;"></div></div>
+                <div style="padding: 24px; display: grid; grid-template-columns: 1fr; gap: 20px; height: 100%; box-sizing: border-box; perspective: 1000px;">
+                    <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(10px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);">
+                        <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-layer-group" style="color:var(--accent-blue); margin-right:8px;"></i>SAP Systems Log Processing</span><span style="color:var(--accent-blue);">92%</span></div>
+                        <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 92%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                     </div>
-                    <div class="mini-progress-card" style="background: rgba(255,255,255,0.01); padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02);">
-                        <div class="mini-progress-meta-row"><span>SQL Advanced Database Audits</span><span>85%</span></div>
-                        <div class="progress-track-bg"><div class="progress-track-fill" style="width: 85%;"></div></div>
+                    <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(15px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);">
+                        <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-database" style="color:var(--accent-blue); margin-right:8px;"></i>SQL Advanced Database Audits</span><span style="color:var(--accent-blue);">85%</span></div>
+                        <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 85%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                     </div>
-                    <div class="mini-progress-card" style="background: rgba(255,255,255,0.01); padding: 14px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.02);">
-                        <div class="mini-progress-meta-row"><span>Data Parsing Architecture</span><span>88%</span></div>
-                        <div class="progress-track-bg"><div class="progress-track-fill" style="width: 88%;"></div></div>
+                    <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(20px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);">
+                        <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-network-wired" style="color:var(--accent-blue); margin-right:8px;"></i>Data Parsing Architecture</span><span style="color:var(--accent-blue);">88%</span></div>
+                        <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 88%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                     </div>
                 </div>
             `;
