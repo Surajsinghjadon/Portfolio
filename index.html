@@ -239,12 +239,31 @@
         .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
         .file-item-row { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 14px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; }
         .file-item-row:hover { background: rgba(94, 234, 212, 0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
-        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); box-sizing: border-box; }
         .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
         .pending-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(251,191,36,0.2); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .pending-box i { color: #fbbf24; font-size: 38px; margin-bottom: 16px; }
         .status-msg { font-size: 16px; font-weight: 800; color: #fbbf24; margin-bottom: 5px; }
+
+        /* ⚡ PREMIUM DASHBOARD CUSTOM STYLES ADDED */
+        .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.2s; }
+        .admin-request-tile:hover { border-color: rgba(94, 234, 212, 0.2); background: rgba(255,255,255,0.04); }
+        .admin-user-info { display: flex; align-items: center; gap: 14px; overflow: hidden; }
+        .admin-avatar-mini { width: 40px; height: 40px; background: rgba(94, 234, 212, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; flex-shrink: 0; border: 1px solid rgba(94, 234, 212, 0.2); }
+        .admin-user-meta-block { display: flex; flex-direction: column; overflow: hidden; }
+        .admin-user-name { font-size: 14px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; }
+        .admin-user-email { font-size: 12px; color: var(--text-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .admin-actions-block { display: flex; align-items: center; gap: 15px; flex-shrink: 0; }
+        .status-badge { padding: 5px 12px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid transparent; }
+        .badge-pending { background: rgba(251, 191, 36, 0.1); color: #fbbf24; border-color: rgba(251, 191, 36, 0.2); }
+        .badge-approved { background: rgba(74, 222, 128, 0.1); color: #4ade80; border-color: rgba(74, 222, 128, 0.2); box-shadow: 0 0 10px rgba(74, 222, 128, 0.15); }
+        .admin-btn-group { display: flex; gap: 8px; align-items: center; }
+        .admin-act-btn { border: none; padding: 8px 14px; font-size: 12px; font-weight: 800; border-radius: 8px; cursor: pointer; transition: all 0.2s; display: inline-flex; align-items: center; gap: 6px; text-transform: uppercase; height: 34px; box-sizing: border-box; }
+        .btn-approve { background: var(--accent-blue); color: #05070c; }
+        .btn-approve:hover { filter: brightness(1.1); transform: translateY(-1px); }
+        .btn-delete { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.25); }
+        .btn-delete:hover { background: #ef4444; color: #fff; transform: translateY(-1px); }
+
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
     </style>
 </head>
@@ -631,12 +650,12 @@
                     <h2 class="section-title">Achievements & Verifications</h2>
                 </div>
                 <div class="vault-list-container">
-                    <div class="file-item-row" onclick="requestSecureFile('Data_Analytics_with_AI.pdf', false)"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_SQL.pdf', false)"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('ChatGPT_for_Everyone.pdf', false)"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf', false)"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf', false)"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf', false)"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf', false)"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Intro_to_Generative_AI.pdf', false)"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt"></i></div>
-                    <div class="file-item-row" onclick="requestSecureFile('Intro_to_Prompt_Engineering.pdf', false)"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf', false)"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf', false)"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt"></i></div>
                 </div>
             </div>
         </div>
@@ -673,7 +692,6 @@
             </div>
         </div>
 
-        <!-- 🎯 FIXED REQUEST SYSTEM: Re-injected full request layout blocks along with Chat Terminal node -->
         <div id="view-sec-admin-panel" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -732,7 +750,6 @@
             logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
         }
 
-        // 🎯 RESTORED LIFECYCLE FOR ADMIN PANEL POLLING IN VIEW CHANGE ROUTING
         window.switchAppView = function(viewId) {
             clearInterval(adminPanelLiveInterval);
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
@@ -746,7 +763,7 @@
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
             if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
             if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
-            if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
+            if(viewId === 'view-user-edu').classList.add('active');
             if(viewId === 'view-technical-skills') { document.getElementById('ml-skills').classList.add('active'); initTechStack3DWorkspace(); }
             if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
         };
@@ -770,7 +787,7 @@
             window.open(file, '_blank');
         };
 
-        // 🎯 RESTORED MASTER ADMIN CONTROLLERS LOOP
+        // 🎯 FIXED MASTER ADMIN PANEL LAYOUT & PREVENTED EVENT BUBBLING INTERCEPTIONS
         window.loadAdminPanel = async function() {
             if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
             const { data: reqs } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
@@ -778,11 +795,25 @@
             if(list) {
                 list.innerHTML = '';
                 reqs?.forEach(r => {
-                    const d = document.createElement('div'); d.className = 'admin-request-card';
-                    d.innerHTML = `<div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
-                        <div>${r.email} - <b>${r.status}</b></div>
-                        <div><button type="button" style="background:#4ade80; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; color:#000; font-weight:bold; margin-right:5px;" onclick="changeStatus(event,'${r.email}','approved')">Approve</button>
-                        <button type="button" style="background:rgba(239,68,68,0.2); color:#ef4444; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;" onclick="killRequest(event,'${r.email}')">Delete</button></div></div>`;
+                    const d = document.createElement('div'); d.className = 'admin-request-tile';
+                    const userNameStr = r.name ? r.name.toUpperCase() : r.email.split('@')[0].toUpperCase();
+                    const badgeClass = r.status === 'approved' ? 'badge-approved' : 'badge-pending';
+                    
+                    d.innerHTML = `
+                        <div class="admin-user-info">
+                            <div class="admin-avatar-mini"><i class="fas fa-user-shield"></i></div>
+                            <div class="admin-user-meta-block">
+                                <div class="admin-user-name">${userNameStr}</div>
+                                <div class="admin-user-email">${r.email}</div>
+                            </div>
+                        </div>
+                        <div class="admin-actions-block">
+                            <span class="status-badge ${badgeClass}">${r.status}</span>
+                            <div class="admin-btn-group">
+                                ${r.status !== 'approved' ? `<button type="button" class="admin-act-btn btn-approve" onclick="changeStatus(event,'${r.email}','approved')"><i class="fas fa-check"></i> Approve</button>` : ''}
+                                <button type="button" class="admin-act-btn btn-delete" onclick="killRequest(event,'${r.email}')"><i class="fas fa-trash"></i> Delete</button>
+                            </div>
+                        </div>`;
                     list.appendChild(d);
                 });
             }
@@ -801,16 +832,26 @@
                         </div>
                         <div style="display:flex; gap:10px; margin-top:8px;">
                             <input type="text" id="admin-reply-${sId}" class="auth-field-asset" style="flex:1; padding:8px 12px !important;" placeholder="Type reply...">
-                            <button type="button" style="background:#5eead4; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; color:#000; font-weight:bold;" onclick="handleSendAdminReply('${email}','${sId}')">Send</button>
+                            <button type="button" style="background:#5eead4; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; color:#000; font-weight:bold;" onclick="handleSendAdminReply(event,'${email}','${sId}')">Send</button>
                         </div>`;
                     chatBox.appendChild(card);
                 });
             }
         };
 
-        window.changeStatus = async function(e, email, status) { await _supabase.from('document_requests').update({ status }).eq('email', email); window.loadAdminPanel(); };
-        window.killRequest = async function(e, email) { await _supabase.from('document_requests').delete().eq('email', email); window.loadAdminPanel(); };
-        window.handleSendAdminReply = async function(email, sId) {
+        // 🔒 FIXED CLICK PROPAGATION HANDLERS
+        window.changeStatus = async function(e, email, status) { 
+            if(e) { e.preventDefault(); e.stopPropagation(); }
+            await _supabase.from('document_requests').update({ status }).eq('email', email); 
+            window.loadAdminPanel(); 
+        };
+        window.killRequest = async function(e, email) { 
+            if(e) { e.preventDefault(); e.stopPropagation(); }
+            await _supabase.from('document_requests').delete().eq('email', email); 
+            window.loadAdminPanel(); 
+        };
+        window.handleSendAdminReply = async function(e, email, sId) {
+            if(e) { e.preventDefault(); e.stopPropagation(); }
             const val = document.getElementById(`admin-reply-${sId}`).value.trim(); if(!val) return;
             await _supabase.from('portfolio_messages').insert([{ name: "Suraj (Admin)", email, message: val, is_admin: true }]);
             document.getElementById(`admin-reply-${sId}`).value = ''; window.loadAdminPanel();
