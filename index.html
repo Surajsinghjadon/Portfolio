@@ -293,6 +293,7 @@
 
     <div class="container">
 
+        <!-- HOME VIEW -->
         <div id="view-home" class="app-view active-view">
             <div class="hero">
                 <div class="hero-left-block">
@@ -405,6 +406,7 @@
             </div>
         </div>
 
+        <!-- EXPERIENCE VIEW -->
         <div id="view-experience" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -429,6 +431,7 @@
             </div>
         </div>
 
+        <!-- EDUCATION VIEW -->
         <div id="view-user-edu" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -450,6 +453,7 @@
             </div>
         </div>
 
+        <!-- SKILLS VIEW -->
         <div id="view-technical-skills" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -478,6 +482,7 @@
             </div>
         </div>
 
+        <!-- CONTACT VIEW -->
         <div id="view-user-contact" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -511,6 +516,7 @@
             </div>
         </div>
 
+        <!-- LOGIN VIEW -->
         <div id="view-login" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -541,6 +547,7 @@
             </div>
         </div>
 
+        <!-- REGISTER VIEW -->
         <div id="view-register" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -582,6 +589,7 @@
             </div>
         </div>
 
+        <!-- FORGOT PASSWORD VIEW -->
         <div id="view-forgot" class="app-view">
             <div class="view-card-wrapper">
                 <div class="auth-card-compact">
@@ -601,7 +609,7 @@
                             <span class="input-field-label-meta">Verification Code</span>
                             <div style="display:flex; width:100%; gap:12px; align-items:center;">
                                 <input type="text" id="otp-code-forgot" class="auth-field-asset" placeholder="6-Digit Code">
-                                <button type="button" id="btn-verify-otp-forgot" class="inline-action-trigger" onclick="handleVerifyOTP('forgot')">Verify</button>
+                                <button type="button" id="btn-verify-otp-forgot" class="inline-action-trigger inline-verify-trigger" onclick="handleVerifyOTP('forgot')">Verify</button>
                                 <span id="badge-verified-forgot" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span>
                             </div>
                         </div>
@@ -615,6 +623,7 @@
             </div>
         </div>
 
+        <!-- SECURE VAULT VIEWS -->
         <div id="view-sec-vault-achievements" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -639,6 +648,7 @@
                     <h2 class="section-title">Encrypted System Records</h2>
                 </div>
                 
+                <!-- Security Gate Requests Forms -->
                 <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
                     <i class="fas fa-lock"></i>
                     <h4>Clearance Status Required</h4>
@@ -651,6 +661,7 @@
                     <p style="font-size: 13px; color: var(--text-gray);">Your data loop access request is inside admin queue.</p>
                 </div>
 
+                <!-- Secure List View -->
                 <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
                     <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf', true)"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download"></i></div>
                     <div class="file-item-row" onclick="requestSecureFile('resume.pdf', true)"><div><i class="fas fa-file-alt"></i> Professional Resume</div><i class="fas fa-download"></i></div>
@@ -662,6 +673,7 @@
             </div>
         </div>
 
+        <!-- 🎯 FIXED REQUEST SYSTEM: Re-injected full request layout blocks along with Chat Terminal node -->
         <div id="view-sec-admin-panel" class="app-view">
             <div class="view-card-wrapper">
                 <div class="view-panel-header">
@@ -669,11 +681,17 @@
                     <h2 class="section-title" style="color: #fbbf24;">User Clearance Dashboard</h2>
                 </div>
                 <div id="admin-requests-list" class="vault-list-container"></div>
+                
+                <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 30px;">
+                    <h2 class="section-title" style="color: var(--accent-blue); display:flex; align-items:center; gap:10px;"><i class="fas fa-comments"></i> User Live Chat Terminal</h2>
+                    <div id="admin-chat-messages-container" class="vault-list-container" style="margin-top:20px;"></div>
+                </div>
             </div>
         </div>
 
     </div>
 
+    <!-- FLOATING CHAT WIDGET -->
     <div class="floating-chat-widget" onclick="event.stopPropagation();">
         <div class="chat-widget-trigger" onclick="toggleChatWidget(event)"><i class="fas fa-comments"></i></div>
         <div class="chat-widget-window" id="chat-widget-window">
@@ -695,7 +713,7 @@
         const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
         const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
         const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-        let currentActiveSession = null, isEmailVerified = false; 
+        let currentActiveSession = null, isEmailVerified = false, adminPanelLiveInterval = null; 
         const redirectLink = window.location.origin + window.location.pathname;
 
         window.toggleChatWidget = function(e) { if(e) e.preventDefault(); document.getElementById('chat-widget-window').classList.toggle('show'); };
@@ -714,7 +732,9 @@
             logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
         }
 
+        // 🎯 RESTORED LIFECYCLE FOR ADMIN PANEL POLLING IN VIEW CHANGE ROUTING
         window.switchAppView = function(viewId) {
+            clearInterval(adminPanelLiveInterval);
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
             document.querySelectorAll('.menu-link-row').forEach(r => r.classList.remove('active'));
             const target = document.getElementById(viewId); 
@@ -722,6 +742,7 @@
             document.getElementById('system-dropdown-panel').classList.remove('show');
             window.scrollTo({ top: 0, behavior: 'smooth' });
             
+            if(viewId === 'view-sec-admin-panel') { window.loadAdminPanel(); adminPanelLiveInterval = setInterval(window.loadAdminPanel, 4000); }
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
             if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
             if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
@@ -730,10 +751,9 @@
             if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
         };
 
-        // 🔒 FIXED SECURITY ENGINE Handshaking
         window.requestSecureFile = async function(file, isDocument = false) {
             if (!currentActiveSession) {
-                alert("🔒 Access Denied: Please Sign In to verify credentials and pull nodes.");
+                alert("🔒 Access Denied: Please Sign In to verify credentials.");
                 switchAppView('view-login');
                 return;
             }
@@ -750,24 +770,62 @@
             window.open(file, '_blank');
         };
 
-        // 🎯 DYNAMIC VIEW INTERFACE STATUS TOGGLE
+        // 🎯 RESTORED MASTER ADMIN CONTROLLERS LOOP
+        window.loadAdminPanel = async function() {
+            if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
+            const { data: reqs } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
+            const list = document.getElementById('admin-requests-list');
+            if(list) {
+                list.innerHTML = '';
+                reqs?.forEach(r => {
+                    const d = document.createElement('div'); d.className = 'admin-request-card';
+                    d.innerHTML = `<div style="display:flex; justify-content:space-between; width:100%; align-items:center;">
+                        <div>${r.email} - <b>${r.status}</b></div>
+                        <div><button type="button" style="background:#4ade80; border:none; padding:8px 16px; border-radius:6px; cursor:pointer; color:#000; font-weight:bold; margin-right:5px;" onclick="changeStatus(event,'${r.email}','approved')">Approve</button>
+                        <button type="button" style="background:rgba(239,68,68,0.2); color:#ef4444; border:none; padding:8px 16px; border-radius:6px; cursor:pointer;" onclick="killRequest(event,'${r.email}')">Delete</button></div></div>`;
+                    list.appendChild(d);
+                });
+            }
+            const { data: messages } = await _supabase.from('portfolio_messages').select('*').order('id', { ascending: true });
+            const chatBox = document.getElementById('admin-chat-messages-container');
+            if(chatBox && messages) {
+                chatBox.innerHTML = '';
+                let threadEmails = [...new Set(messages.map(m => m.email))].filter(Boolean);
+                threadEmails.forEach(email => {
+                    const group = messages.filter(m => m.email === email);
+                    const card = document.createElement('div'); card.className = 'admin-request-card';
+                    let sId = email.replace(/[@.]/g, '_');
+                    card.innerHTML = `<div><b>Chat Node: ${email}</b></div>
+                        <div style="max-height:120px; overflow-y:auto; background:#05070c; padding:10px; border-radius:8px; margin-top:5px; display:flex; flex-direction:column; gap:4px;">
+                            ${group.map(m => `<div><b style="color:${m.is_admin?'#5eead4':'#4ade80'}">${m.name}:</b> ${m.message}</div>`).join('')}
+                        </div>
+                        <div style="display:flex; gap:10px; margin-top:8px;">
+                            <input type="text" id="admin-reply-${sId}" class="auth-field-asset" style="flex:1; padding:8px 12px !important;" placeholder="Type reply...">
+                            <button type="button" style="background:#5eead4; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; color:#000; font-weight:bold;" onclick="handleSendAdminReply('${email}','${sId}')">Send</button>
+                        </div>`;
+                    chatBox.appendChild(card);
+                });
+            }
+        };
+
+        window.changeStatus = async function(e, email, status) { await _supabase.from('document_requests').update({ status }).eq('email', email); window.loadAdminPanel(); };
+        window.killRequest = async function(e, email) { await _supabase.from('document_requests').delete().eq('email', email); window.loadAdminPanel(); };
+        window.handleSendAdminReply = async function(email, sId) {
+            const val = document.getElementById(`admin-reply-${sId}`).value.trim(); if(!val) return;
+            await _supabase.from('portfolio_messages').insert([{ name: "Suraj (Admin)", email, message: val, is_admin: true }]);
+            document.getElementById(`admin-reply-${sId}`).value = ''; window.loadAdminPanel();
+        };
+
         function updateDocumentUIStatus(status) {
             const formView = document.getElementById('doc-gate-form-view');
             const pendingView = document.getElementById('doc-gate-pending-view');
             const allowedView = document.getElementById('doc-gate-allowed-view');
             if(!formView || !pendingView || !allowedView) return;
 
-            formView.style.display = 'none';
-            pendingView.style.display = 'none';
-            allowedView.style.display = 'none';
-
-            if (status === 'approved') {
-                allowedView.style.display = 'block';
-            } else if (status === 'pending') {
-                pendingView.style.display = 'block';
-            } else {
-                formView.style.display = 'block';
-            }
+            formView.style.display = 'none'; pendingView.style.display = 'none'; allowedView.style.display = 'none';
+            if (status === 'approved') allowedView.style.display = 'block';
+            else if (status === 'pending') pendingView.style.display = 'block';
+            else formView.style.display = 'block';
         }
 
         async function handleDocumentAccessGate() {
