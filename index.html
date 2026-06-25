@@ -50,7 +50,7 @@
             transform-style: preserve-3d; transition: all 0.3s;
         }
         .dropdown-panel.show { display: flex; animation: panelPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
-        @gradient panelPop { from { opacity: 0; transform: translateY(-10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
+        @keyframes panelPop { from { opacity: 0; transform: translateY(-10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
         .menu-auth-row { display: flex; gap: 12px; margin-bottom: 4px; }
         .menu-btn-auth { flex: 1; padding: 14px; font-size: 12px; font-weight: 800; border-radius: 12px; border: none; cursor: pointer; text-transform: uppercase; text-align: center; text-decoration: none; transition: all 0.2s; }
@@ -81,7 +81,7 @@
             to { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
         }
 
-        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER with Real 3D Layering */
+        /* GRAND EXECUTIVE SYSTEM CARDS WRAPPER */
         .view-card-wrapper {
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
             border: 1px solid rgba(94, 234, 212, 0.22); border-radius: 32px;
@@ -100,7 +100,7 @@
             color: var(--accent-blue) !important; padding: 11px 22px !important; border-radius: 12px !important; 
             font-size: 12px !important; font-weight: 800 !important; cursor: pointer !important; display: inline-flex !important; 
             align-items: center !important; gap: 8px !important; transition: all 0.2s ease !important; text-transform: uppercase !important; letter-spacing: 0.5px !important;
-            width: max-content !important; box-sizing: border-box !important; height: auto !important; outline: none !important;
+            width: max-content !important; box-sizing: border-box !important; height: auto !important; outline: none !important; position: relative; z-index: 500;
         }
         .corner-back-btn:hover { background: var(--accent-blue) !important; color: #05070c !important; box-shadow: 0 0 12px var(--accent-glow) !important; transform: scale(1.02); }
 
@@ -169,7 +169,7 @@
         .progress-track-bg { height: 8px; background: #05070c; border-radius: 6px; margin-top: 12px; overflow: hidden; width: 100%; position: relative; }
         .progress-track-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8 0%, var(--accent-blue) 100%); border-radius: 4px; box-shadow: 0 0 10px var(--accent-blue); }
 
-        /* ⚡ IMMERSIVE 3D FLOATING LASER LINE FOR MATRIX METERS */
+        /* IMMERSIVE 3D FLOATING LASER LINE FOR MATRIX METERS */
         .progress-track-bg::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 30px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: laserScan 2s linear infinite; }
         @keyframes laserScan { 0% { left: -10%; } 100% { left: 110%; } }
 
@@ -251,8 +251,6 @@
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; align-items: stretch; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
-        .meters-vertical-aligner { display: flex; flex-direction: column; gap: 15px; width: 100%; box-sizing: border-box; }
-        .lang-item { font-size: 13px; font-weight: 600; background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); padding: 18px; border-radius: 14px; box-sizing: border-box; display: flex; flex-direction: column; justify-content: center; height: 85px; }
         
         /* SECURE VAULT ENGINE LAYOUT WRAPPERS */
         .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
@@ -267,7 +265,7 @@
         .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
 
-        /* ⚡ PREMIUM RE-DESIGNED HOVER BLOCKS WITH 3D POP FOR ENTIRE ADMIN MODULE */
+        /* PREMIUM RE-DESIGNED HOVER BLOCKS WITH 3D POP FOR ENTIRE ADMIN MODULE */
         .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; }
         .admin-request-tile:hover { border-color: rgba(94, 234, 212, 0.3); background: rgba(255,255,255,0.04); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
         .admin-user-info { display: flex; align-items: center; gap: 14px; overflow: hidden; }
@@ -518,14 +516,15 @@
                     </div>
                     <div>
                         <div class="sub-title">COMMUNICATION PERFORMANCE METERS</div>
-                        <div class="meters-vertical-aligner">
-                            <div class="lang-item">
-                                <div style="display:flex; justify-content:space-between; width: 100%;"><span>Hindi (Native)</span><span>100%</span></div>
-                                <div class="progress-track-bg"><div class="progress-track-fill" style="width: 100%;"></div></div>
+                        <!-- ⚡ UPGRADED RIGHT SIDE METERS TO MATCH 3D PERSPECTIVE GLOW LOGIC CARDS -->
+                        <div class="meters-vertical-aligner" style="display: flex; flex-direction: column; gap: 20px; perspective: 1000px;">
+                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(10px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
+                                <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-language" style="color:var(--accent-blue); margin-right:8px;"></i>Hindi (Native)</span><span style="color:var(--accent-blue);">100%</span></div>
+                                <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 100%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                             </div>
-                            <div class="lang-item">
-                                <div style="display:flex; justify-content:space-between; width: 100%;"><span>English (Professional)</span><span>75%</span></div>
-                                <div class="progress-track-bg"><div class="progress-track-fill" style="width: 75%;"></div></div>
+                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(15px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
+                                <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-globe" style="color:var(--accent-blue); margin-right:8px;"></i>English (Professional)</span><span style="color:var(--accent-blue);">75%</span></div>
+                                <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 75%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                             </div>
                         </div>
                     </div>
@@ -790,6 +789,7 @@
             logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
         }
 
+        // 🎯 FIXED SYNTAX COMPILATION EXTENSION (BACK BUTTONS RESTORED GLOBAL EDGE LIFECYCLE)
         window.switchAppView = function(viewId) {
             clearInterval(adminPanelLiveInterval);
             document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
@@ -803,7 +803,7 @@
             if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
             if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
             if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
-            if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
+            if(viewId === 'view-user-edu') { document.getElementById('ml-edu').classList.add('active'); }
             if(viewId === 'view-technical-skills') { document.getElementById('ml-skills').classList.add('active'); initTechStack3DWorkspace(); }
             if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
         };
@@ -827,11 +827,9 @@
             window.open(file, '_blank');
         };
 
-        // 🎯 SAFE LIVE CHAT AI DATA INJECTOR NODE (TRY-CATCH SAFE RESILIENT TERMINAL BINDING)
         window.loadAdminPanel = async function() {
             if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
             
-            // Render Requests
             try {
                 const { data: reqs } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
                 const list = document.getElementById('admin-requests-list');
@@ -862,7 +860,6 @@
                 }
             } catch(e) { console.error("Req Err:", e); }
 
-            // ⚡ FIXED CHAT SYSTEM PIPELINE: Robust selection with explicit string key generation
             try {
                 const { data: messages, error: err } = await _supabase.from('portfolio_messages').select('*').order('id', { ascending: true });
                 const chatBox = document.getElementById('admin-chat-messages-container');
@@ -936,15 +933,15 @@
         };
 
         function updateDocumentUIStatus(status) {
-            const formView = document.getElementById('doc-gate-form-view');
-            const pendingView = document.getElementById('doc-gate-pending-view');
-            const allowedView = document.getElementById('doc-gate-allowed-view');
-            if(!formView || !pendingView || !allowedView) return;
+            const form = document.getElementById('doc-gate-form-view');
+            const pending = document.getElementById('doc-gate-pending-view');
+            const allowed = document.getElementById('doc-gate-allowed-view');
+            if(!form || !pending || !allowed) return;
 
-            formView.style.display = 'none'; pendingView.style.display = 'none'; allowedView.style.display = 'none';
-            if (status === 'approved') allowedView.style.display = 'block';
-            else if (status === 'pending') pendingView.style.display = 'block';
-            else formView.style.display = 'block';
+            form.style.display = 'none'; pending.style.display = 'none'; allowed.style.display = 'none';
+            if (status === 'approved') allowed.style.display = 'block';
+            else if (status === 'pending') pending.style.display = 'block';
+            else form.style.display = 'block';
         }
 
         async function handleDocumentAccessGate() {
@@ -1027,7 +1024,6 @@
             if(!error) { alert("Credentials reset success!"); switchAppView('view-login'); } else { alert(error.message); }
         };
 
-        // ⚡ HIGH-END 3D CYBER ISOMETRIC TECH MATRIX OVERHAUL FOR SKILLS
         function initTechStack3DWorkspace() {
             const mount = document.getElementById('canvas-3d-techstack-portal'); if(!mount) return; mount.innerHTML = "";
             mount.innerHTML = `
