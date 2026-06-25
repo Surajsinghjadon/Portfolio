@@ -75,12 +75,9 @@
         .app-view { display: none !important; width: 100%; background-color: var(--bg-main); box-sizing: border-box; }
         .app-view.active-view { display: block !important; position: relative; animation: viewFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
         
-        @keyframes viewFadeIn {
-            from { opacity: 0; transform: translateY(15px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes viewFadeIn { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
-        /* ⚡ SOLID MOBILE CARD WRAPPER: Removed perspective contexts that hijack coords clicks on touch viewports */
+        /* SOLID CHIP LAYOUT PACKS */
         .view-card-wrapper {
             background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
             border: 1px solid rgba(94, 234, 212, 0.22); border-radius: 32px;
@@ -92,7 +89,7 @@
         .view-card-wrapper:hover { border-color: var(--accent-blue); transform: translateY(-3px); box-shadow: 0 45px 100px rgba(94, 234, 212, 0.08); }
         @media (max-width: 768px) { .view-card-wrapper { padding: 35px 20px; border-radius: 20px; } }
 
-        /* CAPSULE BACK BUTTON STYLE (FIXED Coordinate alignment) */
+        /* BACK CAPSULE LAYER LOCK HANDSHAKES */
         .view-panel-header { display: flex; flex-direction: column; align-start: flex-start; gap: 15px; margin-bottom: 35px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; box-sizing: border-box; }
         .corner-back-btn { 
             background: rgba(5, 7, 12, 0.6) !important; border: 1px solid rgba(94, 234, 212, 0.3) !important; 
@@ -124,9 +121,8 @@
         .btn-outline { background: transparent; color: var(--text-white); border: 1px solid rgba(255,255,255,0.1); }
         .btn-outline:hover { background: rgba(255,255,255,0.05); border-color: var(--accent-blue); color: var(--accent-blue); transform: translateY(-2px); }
         
-        /* DYNAMIC ADVANCED 3D HOLOGRAM MATRIX CHART COMPONENT */
-        .image-wrapper { position: relative; width: 100%; max-width: 480px; height: 400px; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 32px; overflow: hidden; background: rgba(13, 17, 28, 0.6); border: 1px solid rgba(94, 234, 212, 0.25); box-shadow: 0 35px 75px rgba(0,0,0,0.8), inset 0 0 30px rgba(94, 234, 212, 0.05); transition: all 0.4s ease; transform: perspective(800px) rotateY(-8deg) rotateX(4deg); }
-        .image-wrapper:hover { transform: perspective(800px) rotateY(2deg) rotateX(1deg) scale(1.02); border-color: var(--accent-blue); box-shadow: 0 40px 90px rgba(94, 234, 212, 0.15); }
+        /* ⚡ 3D CHART PORTAL DESIGN & TEXT PACK LAYERS */
+        .image-wrapper { position: relative; width: 100%; max-width: 480px; height: 400px; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 32px; overflow: hidden; background: rgba(13, 17, 28, 0.6); border: 1px solid rgba(94, 234, 212, 0.25); box-shadow: 0 35px 75px rgba(0,0,0,0.8); transform: perspective(800px) rotateY(-8deg) rotateX(4deg); }
         .hologram-chart-container { display: flex; align-items: flex-end; justify-content: center; gap: 24px; width: 100%; height: 75%; padding: 0 40px; box-sizing: border-box; }
         .hologram-bar { width: 38px; height: 20px; background: linear-gradient(0deg, rgba(5, 7, 12, 0.8) 0%, var(--accent-blue) 100%); border-radius: 8px 8px 0 0; position: relative; box-shadow: 0 0 30px var(--accent-glow); }
         .hologram-bar::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent); }
@@ -140,7 +136,12 @@
         @keyframes advancedChartGrow4 { from { height: 40%; filter: brightness(1.3); } to { height: 95%; filter: brightness(0.8); } }
         .hologram-grid-lines { position: absolute; width: 100%; height: 100%; top: 0; left: 0; background: linear-gradient(rgba(94, 234, 212, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(94, 234, 212, 0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
 
-        /* METRICS TERMINAL NODES WITH HOVER OVERLAYS */
+        /* ⚡ HIGH-TECH FLOATING TEXT INSIDE 3D ANIMATION PORTAL */
+        .hologram-text-layer { position: absolute; top: 25px; left: 25px; font-family: monospace; font-size: 11px; color: var(--accent-blue); text-shadow: 0 0 8px var(--accent-glow); pointer-events: none; display: flex; flex-direction: column; gap: 4px; z-index: 10; text-align: left; }
+        .holo-pulse-tag { font-weight: 800; letter-spacing: 1px; animation: textBlink 1.4s infinite alternate; }
+        @keyframes textBlink { from { opacity: 0.4; } to { opacity: 1; } }
+
+        /* METRICS TERMINAL HOVERS */
         .analytics-dashboard-title { font-size: 22px; font-weight: 800; margin: 45px 0 22px 0; color: #fff; display: flex; align-items: center; gap: 10px; }
         .analytics-dashboard-title i { color: var(--accent-blue); }
         .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
@@ -151,7 +152,6 @@
         .metric-num { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 4px; }
         .metric-label { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
         
-        /* DATA TILES & CHARTS REGISTRY DISPLAY */
         .chart-master-box { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 24px; padding: 30px; margin-top: 35px; }
         .chart-bars-frame { display: flex; align-items: flex-end; justify-content: space-between; height: 200px; margin-top: 30px; border-bottom: 2px solid rgba(255,255,255,0.05); gap: 10px; }
         .chart-bar-column { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
@@ -160,7 +160,40 @@
         .chart-bar-val { font-size: 11px; color: var(--accent-blue); font-weight: 800; position: absolute; top: -25px; width: 100%; text-align: center; }
         .chart-day-text { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-        /* PERFORMANCE PROGRESS ACCENT GAUGES */
+        /* ⚡ STYLES PACK FOR THE 4 NEW DATA CHART PATTERNS */
+        .advanced-charts-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
+        .cyber-chart-card { background: var(--bg-card); border: 1px solid rgba(94, 234, 212, 0.12); border-radius: 20px; padding: 20px; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between; position: relative; overflow: hidden; transition: all 0.3s ease; }
+        .cyber-chart-card:hover { border-color: var(--accent-blue); transform: translateY(-4px); box-shadow: 0 15px 35px rgba(94, 234, 212, 0.08); }
+        .cyber-render-viewport { height: 130px; width: 100%; position: relative; display: flex; align-items: flex-end; justify-content: center; overflow: hidden; background: rgba(5,7,12,0.5); border-radius: 12px; border: 1px solid rgba(255,255,255,0.02); }
+        
+        .wave-cluster-layout { display: flex; width: 100%; height: 100%; align-items: flex-end; justify-content: space-between; padding: 10px; box-sizing: border-box; }
+        .wave-node-slice { flex: 1; margin: 0 2px; background: linear-gradient(0deg, rgba(94,234,212,0.05), var(--accent-blue)); border-radius: 3px 3px 0 0; box-shadow: 0 0 12px var(--accent-glow); }
+        .wave-slice-1 { animation: genericScaleWave 1.4s ease-in-out infinite alternate; }
+        .wave-slice-2 { animation: genericScaleWave 1.9s ease-in-out infinite alternate-reverse; }
+        .wave-slice-3 { animation: genericScaleWave 1.6s ease-in-out infinite alternate; }
+        .wave-slice-4 { animation: genericScaleWave 2.1s ease-in-out infinite alternate-reverse; }
+        @keyframes genericScaleWave { from { height: 15%; } to { height: 95%; } }
+
+        .radar-spinning-ring { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 85px; height: 85px; border: 2px dashed var(--accent-blue); border-radius: 50%; box-shadow: 0 0 15px var(--accent-glow); animation: globalRadarRotation 3.5s linear infinite; }
+        @keyframes globalRadarRotation { from { transform: translate(-50%, -50%) rotate(0deg); } to { transform: translate(-50%, -50%) rotate(360deg); } }
+        .radar-blip-pulse { position: absolute; width: 8px; height: 8px; background: #fff; border-radius: 50%; box-shadow: 0 0 12px var(--accent-blue); top: 12px; left: 12px; animation: targetBlink 0.8s infinite alternate; }
+        @keyframes targetBlink { from { opacity: 0.3; } to { opacity: 1; } }
+
+        .scatter-pack-box { width: 100%; height: 100%; position: relative; }
+        .scatter-packet-dot { position: absolute; width: 6px; height: 6px; background: var(--accent-blue); border-radius: 50%; box-shadow: 0 0 10px var(--accent-blue); }
+        .dot-node-1 { top: 30px; left: 25%; animation: floatNodeY 2.2s infinite alternate; }
+        .dot-node-2 { top: 70px; left: 55%; animation: floatNodeY 1.8s infinite alternate-reverse; }
+        .dot-node-3 { top: 45px; left: 80%; animation: floatNodeY 2.6s infinite alternate; }
+        @keyframes floatNodeY { from { transform: translateY(0); } to { transform: translateY(-25px); } }
+
+        .bi-flow-frame { display: flex; width: 100%; height: 100%; align-items: center; justify-content: space-around; }
+        .flow-delta-bar { width: 14px; background: var(--accent-blue); border-radius: 4px; box-shadow: 0 0 12px var(--accent-glow); }
+        .f-bar-1 { animation: dualScaleFlow 1.7s infinite alternate; }
+        .f-bar-2 { animation: dualScaleFlow 2.3s infinite alternate-reverse; }
+        .f-bar-3 { animation: dualScaleFlow 1.9s infinite alternate; }
+        @keyframes dualScaleFlow { from { height: 20px; } to { height: 90px; } }
+
+        /* METERS PERFORMANCE SETUPS */
         .sub-analytics-bars-layout { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
         @media (min-width: 768px) { .sub-analytics-bars-layout { grid-template-columns: 1fr 1fr; } }
         .mini-progress-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); padding: 24px; border-radius: 18px; box-sizing: border-box; transition: all 0.3s; }
@@ -168,12 +201,9 @@
         .mini-progress-meta-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #fff; }
         .progress-track-bg { height: 8px; background: #05070c; border-radius: 6px; margin-top: 12px; overflow: hidden; width: 100%; position: relative; }
         .progress-track-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8 0%, var(--accent-blue) 100%); border-radius: 4px; box-shadow: 0 0 10px var(--accent-blue); }
-
-        /* IMMERSIVE 3D FLOATING LASER LINE FOR MATRIX METERS */
         .progress-track-bg::after { content: ''; position: absolute; top: 0; left: 0; height: 100%; width: 30px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent); animation: laserScan 2s linear infinite; }
         @keyframes laserScan { 0% { left: -10%; } 100% { left: 110%; } }
 
-        /* CYBER INTERACTIVE FLOATING ANIMATION KEYFRAME REGISTRY */
         @keyframes cyberChatFloat {
             0% { transform: translateY(0) rotateX(3deg); filter: drop-shadow(0 0 10px rgba(94, 234, 212, 0.2)); }
             50% { transform: translateY(-6px) rotateX(-3deg); filter: drop-shadow(0 0 25px var(--accent-glow)) brightness(1.15); }
@@ -197,12 +227,7 @@
         .auth-field-asset:focus { border-color: var(--accent-blue) !important; box-shadow: 0 0 15px rgba(94, 234, 212, 0.15); }
         
         .social-grid-panel { display: flex; flex-direction: column; gap: 12px; background: rgba(255,255,255,0.01); padding: 20px; border-radius: 18px; border: 1px solid rgba(255,255,255,0.03); margin-top: 15px; width: 100%; box-sizing: border-box; position: relative; z-index: 50; }
-        
-        /* ⚡ SOCIAL BUTTON MATRIX TOUCH OVERRIDE: Added strict pointer-events and clear coordinate mapping */
-        .social-btn-box { 
-            display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; box-sizing: border-box;
-            position: relative !important; z-index: 9999 !important; pointer-events: auto !important; -webkit-tap-highlight-color: rgba(94,234,212,0.2);
-        }
+        .social-btn-box { display: flex; width: 100%; color: white; border: 1px solid rgba(255,255,255,0.05); padding: 15px; border-radius: 14px; font-size: 14px; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 12px; background: #0c101d; transition: all 0.2s; box-sizing: border-box; position: relative !important; z-index: 9999 !important; pointer-events: auto !important; -webkit-tap-highlight-color: rgba(94,234,212,0.2); }
         .social-btn-box:hover { border-color: var(--accent-blue); background: rgba(94, 234, 212, 0.04); transform: translateY(-1px); }
         .inline-action-trigger { padding: 16px 22px; background: rgba(94, 234, 212, 0.12); border: 1px solid rgba(94, 234, 212, 0.25); color: var(--accent-blue); border-radius: 14px; font-size: 12px; font-weight: 800; cursor: pointer; flex-shrink: 0; transition: all 0.2s; text-transform: uppercase; box-sizing: border-box; }
         .inline-action-trigger:hover { background: var(--accent-blue); color: #05070c; }
@@ -217,12 +242,12 @@
         .strength-bar { height: 100%; width: 0%; transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s; border-radius: 4px; }
         .strength-text { font-size: 12px; font-weight: 700; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.5px; transition: color 0.3s; }
 
-        /* THE DYNAMIC RESEND ACTION TIMER SYSTEM */
+        /* RESEND VERIFICATIONS UNITS */
         .otp-timer-block { display: none; justify-content: flex-start; align-items: center; width: 100%; font-size: 13px; color: #fbbf24; font-weight: bold; margin-top: 2px; margin-bottom: 4px; }
         .resend-action-btn { background: rgba(94, 234, 212, 0.12); border: 1px solid rgba(94, 234, 212, 0.3); color: var(--accent-blue); padding: 8px 16px; border-radius: 10px; font-size: 12px; font-weight: 800; cursor: pointer; display: none; text-transform: uppercase; margin-top: 4px; }
         .resend-action-btn:hover { background: var(--accent-blue); color: #05070c; }
 
-        /* TIMELINE EXPERIENCES CARDS STRUCT */
+        /* PORTFOLIO EXPERIENCES CONFIGS */
         .card { background: rgba(5,7,12,0.4); padding: 25px; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.04); margin-bottom: 20px; box-sizing: border-box; transition: transform 0.2s, border-color 0.2s; }
         .card:hover { transform: translateX(5px); border-color: rgba(94, 234, 212, 0.15); }
         .card-top { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 8px; flex-wrap: wrap; gap: 10px; align-items: center; }
@@ -232,7 +257,7 @@
         .desc-line { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; color: var(--text-gray); margin-bottom: 8px; }
         .desc-line i { color: var(--accent-blue); margin-top: 3px; font-size: 12px; flex-shrink: 0; }
 
-        /* CLEAN MONOLINGUAL CONTACT CARD DESIGN */
+        /* CONTACTS FORM PANEL SETUPS */
         .contact-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(255, 255, 255, 0.04); border-radius: 24px; display: flex; flex-direction: column; overflow: hidden; width: 100%; box-sizing: border-box; }
         @media (min-width: 768px) { .contact-box { flex-direction: row; } }
         .contact-left { padding: 35px; flex: 1.2; box-sizing: border-box; }
@@ -244,11 +269,10 @@
         .contact-right { background: #080a12; border-left: 1px solid rgba(255, 255, 255, 0.02); padding: 35px; flex: 0.8; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; box-sizing: border-box; }
         .real-earth-wrapper { width: 90px; height: 90px; background: var(--accent-blue); margin-bottom: 18px; border-radius: 50%; box-shadow: 0 0 30px var(--accent-glow); display: flex; align-items: center; justify-content: center; font-size: 36px; color: #05070c; transition: transform 0.3s; }
         .real-earth-wrapper:hover { transform: rotate(45deg) scale(1.05); }
-        
         .loc-pill { display: inline-block; background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.25); padding: 12px 24px; border-radius: 50px; font-size: 11px; font-weight: 800; color: var(--accent-blue); text-decoration: none; cursor: pointer; text-transform: uppercase; transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1); }
         .loc-pill:hover { background: var(--accent-blue); color: #05070c; box-shadow: 0 0 15px var(--accent-glow); transform: translateY(-2px); }
 
-        /* THE DYNAMIC FLOATING SOFTWARE CHAT WIDGET INTERFACE PANEL */
+        /* FLOATING CHATS ASSISTANTS CHANNELS */
         .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000; }
         .chat-widget-trigger { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-blue); color: #05070c; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 8px 24px var(--accent-glow); transition: all 0.2s ease; }
         .chat-widget-trigger:hover { transform: scale(1.05); background: #7dd3fc; }
@@ -258,18 +282,18 @@
         .chat-widget-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #05070c; box-sizing: border-box; }
         .chat-widget-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; align-items: center; background: #0d111c; box-sizing: border-box; }
 
-        /* SKILLS PANEL CONFIGURATION WRAPPERS */
+        /* SKILLS INTEGRATED GRAPH MATRIX */
         .canvas-3d-techstack-portal { width: 100%; height: auto !important; min-height: 280px; background: #05070c; border: 1px solid rgba(94, 234, 212, 0.2); border-radius: 20px; overflow: hidden; box-shadow: inset 0 0 25px rgba(0,0,0,0.8); position: relative; }
         .skills-grid { display: grid; grid-template-columns: 1fr; gap: 30px; margin-top: 15px; width: 100%; box-sizing: border-box; align-items: stretch; }
         @media (min-width: 768px) { .skills-grid { grid-template-columns: 1fr 1fr; } }
         .sub-title { color: var(--accent-blue); font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 1.5px; }
         
-        /* SECURE VAULT ENGINE LAYOUT WRAPPERS */
+        /* VAULT ENTRIES PANEL CONSTRAINTS */
         .vault-list-container { display: flex; flex-direction: column; gap: 16px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 6px; box-sizing: border-box; }
         .file-item-row { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.04); border-radius: 14px; padding: 18px 22px; display: flex; justify-content: space-between; align-items: center; cursor: pointer; transition: all 0.2s; }
         .file-item-row:hover { background: rgba(94, 234, 212, 0.05); border-color: var(--accent-blue); color: var(--accent-blue); }
         
-        /* WATCH ROTATION ANIMATION SYSTEM */
+        /* RADARS PULSES RE-DEFINITIONS */
         .pending-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(251,191,36,0.2); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
         .pending-box i.fa-clock { color: #fbbf24; font-size: 38px; margin-bottom: 16px; animation: dynamicClockSpin 3s linear infinite; }
         @keyframes dynamicClockSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
@@ -277,7 +301,7 @@
         .admin-form-box { background: rgba(5,7,12,0.4); border: 1px solid rgba(245,158,11,0.15); padding: 35px; border-radius: 24px; text-align: center; width: 100%; max-width: 580px; margin: 0 auto; box-sizing: border-box; }
         .admin-form-box i { color: #f59e0b; font-size: 38px; margin-bottom: 16px; }
 
-        /* PREMIUM RE-DESIGNED HOVER BLOCKS WITH FOR ENTIRE ADMIN MODULE */
+        /* SYSTEM DATA TILES INTERACTION NODES */
         .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 16px 20px; border-radius: 16px; margin-bottom: 12px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.3s; position: relative; }
         .admin-request-tile:hover { border-color: rgba(94, 234, 212, 0.3); background: rgba(255,255,255,0.04); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
         .admin-user-info { display: flex; align-items: center; gap: 14px; overflow: hidden; }
@@ -297,7 +321,7 @@
         .btn-delete { background: rgba(239, 68, 68, 0.15); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.25); }
         .btn-delete:hover { background: #ef4444; color: #fff; transform: translateY(-1px); }
         .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; box-shadow: 0 6px 18px rgba(0,0,0,0.3); box-sizing: border-box; transition: transform 0.3s; }
-        .admin-request-card:hover { transform: translateY(-2px); border-color: rgba(94, 234, 212, 0.2); }
+        .admin-request-card:hover { border-color: rgba(94, 234, 212, 0.2); }
 
         footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; }
     </style>
@@ -362,8 +386,13 @@
                     </div>
                 </div>
                 <div>
-                    <!-- MOTION LAYERED 3D NEON CHARTS -->
+                    <!-- ⚡ 3D ANIMATION HERO WRAPPER WITH EMBEDDED TEXT METRICS LAYER -->
                     <div class="image-wrapper">
+                        <div class="hologram-text-layer">
+                            <span class="holo-pulse-tag"><i class="fas fa-terminal"></i> SYSTEM_CORE: ACTIVE</span>
+                            <span>PACKETS: INDEXING_LOOP</span>
+                            <span>LATENCY: 0.04ms_SYNC</span>
+                        </div>
                         <div class="hologram-grid-lines"></div>
                         <div class="hologram-chart-container">
                             <div class="hologram-bar hologram-bar-1"></div>
@@ -421,6 +450,50 @@
                         </div>
                         <div class="chart-day-text">MCU Technical</div>
                     </div>
+                </div>
+            </div>
+
+            <!-- ⚡ NEW ADDED SECTION: 4 ADVANCED 3D CHART PATTERNS TO EXTEND THE WEBSITE -->
+            <div class="analytics-dashboard-title" style="margin-top:50px;">
+                <i class="fas fa-cubes"></i> Predictive Data Stream Architecture Clusters
+            </div>
+            <div class="advanced-charts-matrix">
+                <div class="cyber-chart-card">
+                    <div class="cyber-render-viewport">
+                        <div class="wave-cluster-layout">
+                            <div class="wave-node-slice wave-slice-1"></div>
+                            <div class="wave-node-slice wave-slice-2"></div>
+                            <div class="wave-node-slice wave-slice-3"></div>
+                            <div class="wave-node-slice wave-slice-4"></div>
+                        </div>
+                    </div>
+                    <div class="metric-label" style="padding-top:10px; font-size:11px;">Spectral Cluster Wave</div>
+                </div>
+                <div class="cyber-chart-card">
+                    <div class="cyber-render-viewport">
+                        <div class="radar-spinning-ring"><div class="radar-blip-pulse"></div></div>
+                    </div>
+                    <div class="metric-label" style="padding-top:10px; font-size:11px;">Quantum Radar Node</div>
+                </div>
+                <div class="cyber-chart-card">
+                    <div class="cyber-render-viewport">
+                        <div class="scatter-pack-box">
+                            <div class="scatter-packet-dot dot-node-1"></div>
+                            <div class="scatter-packet-dot dot-node-2"></div>
+                            <div class="scatter-packet-dot dot-node-3"></div>
+                        </div>
+                    </div>
+                    <div class="metric-label" style="padding-top:10px; font-size:11px;">Matrix Scatter Matrix</div>
+                </div>
+                <div class="cyber-chart-card">
+                    <div class="cyber-render-viewport">
+                        <div class="bi-flow-frame">
+                            <div class="flow-delta-bar f-bar-1"></div>
+                            <div class="flow-delta-bar f-bar-2"></div>
+                            <div class="flow-delta-bar f-bar-3"></div>
+                        </div>
+                    </div>
+                    <div class="metric-label" style="padding-top:10px; font-size:11px;">Bi-Directional Flow Delta</div>
                 </div>
             </div>
 
@@ -529,11 +602,11 @@
                     <div>
                         <div class="sub-title">COMMUNICATION PERFORMANCE METERS</div>
                         <div class="meters-vertical-aligner" style="display: flex; flex-direction: column; gap: 20px; perspective: 1000px;">
-                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(10px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
+                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
                                 <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-language" style="color:var(--accent-blue); margin-right:8px;"></i>Hindi (Native)</span><span style="color:var(--accent-blue);">100%</span></div>
                                 <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 100%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                             </div>
-                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(15px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
+                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
                                 <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-globe" style="color:var(--accent-blue); margin-right:8px;"></i>English (Professional)</span><span style="color:var(--accent-blue);">75%</span></div>
                                 <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 75%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
                             </div>
@@ -800,7 +873,6 @@
             logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
         }
 
-        // 🎯 MASTER VIEWS ROUTER: Clean termination guarantees state isolation across contexts
         window.switchAppView = function(viewId) {
             clearInterval(adminPanelLiveInterval);
             document.getElementById('system-dropdown-panel').classList.remove('show');
@@ -976,7 +1048,6 @@
             handleDocumentAccessGate();
         };
 
-        // ⚡ UPGRADED TIMEOUT INTEGRITY SYSTEM FOR INSTANT OAUTH CAPTURING KEYS
         window.handleOAuthLogin = async function(provider) {
             const targetBtn = document.querySelector(`.social-btn-box[onclick*="${provider}"]`);
             if(targetBtn) {
