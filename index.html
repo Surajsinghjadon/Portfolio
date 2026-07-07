@@ -3,438 +3,959 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suraj Singh Jadon - Portfolio</title>
+    <title>Suraj Singh Jadon - 3D Corporate Ecosystem</title>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://unpkg.com/@splinetool/viewer@1.0.86/build/spline-viewer.js" type="module"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <meta name="theme-color" content="#05070c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="378.jpg">
+
     <style>
-        /* --- GLOBAL THEME & FONTS (Exactly like your screenshots) --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            background-color: #030712;
-            color: #9ca3af;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            padding: 16px;
-        }
-        .container {
-            max-width: 600px; /* Mobile responsive layout matching screenshot width */
-            margin: 0 auto;
+        /* --- CORE SPA SYSTEM DESIGN MATRIX --- */
+        :root {
+            --bg-main: #05070c; --bg-card: #0d111c; --accent-blue: #5eead4;
+            --accent-glow: rgba(94, 234, 212, 0.25); --text-white: #f8fafc; --text-gray: #94a3b8;
         }
 
-        /* --- THE CRITICAL FIX: VIEW SWITCHING STATE --- */
-        .view-node {
-            display: none; /* Sab hidden rahega default me */
+        html, body { background-color: var(--bg-main); color: var(--text-white); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; min-height: 100vh; margin: 0; padding: 0; overflow-x: hidden; scroll-behavior: smooth; }
+        .container { max-width: 1240px; margin: 0 auto; padding: 120px 20px 40px 20px; position: relative; z-index: 5; box-sizing: border-box; }
+
+        /* HOLOGRAPHIC BOOT PRELOADER CANVAS */
+        #cyber-boot-preloader {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+            background: #05070c; z-index: 999999; display: flex; flex-direction: column; 
+            align-items: center; justify-content: center; font-family: monospace; font-size: 13px; color: var(--accent-blue);
+            transition: opacity 0.4s ease, visibility 0.4s;
         }
-        .view-node.active-node {
-            display: block; /* Sirf active section dikhega */
+        .boot-terminal-box { width: 290px; text-align: left; display: flex; flex-direction: column; gap: 6px; text-shadow: 0 0 8px var(--accent-glow); }
+        .boot-line { overflow: hidden; white-space: nowrap; border-right: 2px solid transparent; width: 0; }
+        .bl-1 { animation: bootType 0.3s steps(30) forwards; }
+        .bl-2 { animation: bootType 0.3s steps(30) 0.3s forwards; }
+        .bl-3 { animation: bootType 0.3s steps(30) 0.6s forwards; }
+        .bl-4 { animation: bootType 0.2s steps(10) 0.9s forwards, cursorFlash 0.5s step-end infinite; border-right-color: var(--accent-blue); font-weight: bold; color: #fff; }
+        
+        @keyframes bootType { from { width: 0; } to { width: 100%; } }
+        @keyframes cursorFlash { from, to { border-right-color: transparent; } 50% { border-right-color: var(--accent-blue); } }
+
+        /* ULTIMATE HIGH-END 3D PERSPECTIVE GRID BACKGROUND STABILIZED PACK */
+        .bg-matrix-layer { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            pointer-events: none; z-index: 2; perspective: 360px; overflow: hidden; opacity: 0.18;
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
+            transform: translate3d(0,0,0); -webkit-transform: translate3d(0,0,0);
+        }
+        .bg-matrix-stream { 
+            position: absolute; width: 200%; height: 200%; top: -50%; left: -50%; 
+            background-image: linear-gradient(rgba(94, 234, 212, 0.15) 1.5px, transparent 1px), linear-gradient(90deg, rgba(94, 234, 212, 0.15) 1.5px, transparent 1px); 
+            background-size: 45px 44px; transform: rotateX(65deg); transform-origin: center center;
+            animation: endless3DGridMove 14s linear infinite;
+            backface-visibility: hidden; -webkit-backface-visibility: hidden;
+            will-change: transform;
+        }
+        @keyframes endless3DGridMove { 
+            from { background-position-y: 0px; } 
+            to { background-position-y: 616px; } 
         }
 
-        /* --- TYPOGRAPHY & COLORS --- */
-        .brand-name {
-            color: #2dd4bf; /* Mint/Teal color from image */
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 4px;
+        /* FIXED PROFESSIONAL SYSTEM HEADER */
+        header { background: rgba(5, 7, 12, 0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255, 255, 255, 0.03); padding: 18px 0; position: fixed; top: 0; left: 0; width: 100%; z-index: 100000; }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; max-width: 1240px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 22px; font-weight: bold; color: var(--accent-blue); text-decoration: none; text-shadow: 0 0 10px var(--accent-glow); transition: transform 0.3s; }
+        .logo:hover { transform: scale(1.03); }
+        .logo span { color: var(--text-white); }
+        
+        /* ELITE 3-DOT MENU ICON TRIGGER BUTTON */
+        .three-dot-menu-trigger {
+            background: rgba(94, 234, 212, 0.08); border: 1px solid rgba(94, 234, 212, 0.2);
+            width: 44px; height: 42px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            cursor: pointer; transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1); position: relative; z-index: 100005 !important; pointer-events: auto !important;
         }
-        .text-white {
-            color: #ffffff;
-        }
-        .accent-teal {
-            color: #2dd4bf;
-        }
-        .section-title {
-            color: #ffffff;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin: 24px 0 12px 0;
-        }
+        .three-dot-menu-trigger:hover { border-color: var(--accent-blue); box-shadow: 0 0 15px var(--accent-glow); transform: rotate(90deg); }
+        .three-dot-menu-trigger i { font-size: 20px; color: var(--accent-blue); pointer-events: none; }
 
-        /* --- FORM FIELDS & INPUTS --- */
-        .form-group {
-            margin-bottom: 12px;
+        /* THE DYNAMIC ENLARGED ULTRA-PROFESSIONAL MENU PANEL */
+        .dropdown-panel {
+            position: absolute; top: 75px; right: 20px; width: 360px; 
+            background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
+            border: 1px solid rgba(94, 234, 212, 0.35); border-radius: 24px; padding: 24px;
+            box-shadow: 0 35px 70px rgba(0,0,0,0.95), inset 0 1px 2px rgba(255,255,255,0.05);
+            display: none; flex-direction: column; gap: 12px; z-index: 100010; transition: all 0.3s;
         }
-        label {
-            display: block;
-            color: #ffffff;
-            font-size: 0.85rem;
-            margin-bottom: 4px;
-        }
-        input {
-            width: 100%;
-            background-color: #ffffff;
-            color: #000000;
-            border: 1px solid #d1d5db;
-            padding: 6px 10px;
-            font-size: 0.9rem;
-            outline: none;
-        }
+        .dropdown-panel.show { display: flex !important; animation: panelPop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+        @keyframes panelPop { from { opacity: 0; transform: translateY(-10px) scale(0.95); } to { opacity: 1; transform: translateY(0) scale(1); } }
 
-        /* --- BUTTONS STYLING --- */
-        button {
-            background-color: #2dd4bf;
-            color: #030712;
-            border: none;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: inline-block;
-            margin-top: 4px;
+        .menu-auth-row { display: flex; gap: 12px; margin-bottom: 4px; }
+        
+        /* ⚡ 100% UNIFIED INTERFACE BUTTON SYSTEM ARCHITECTURE (Fixed Typo Loops) */
+        .btn, .btn-submit-action, .inline-action-trigger, .admin-act-btn, .corner-back-btn, .loc-pill, .social-btn-box {
+            display: inline-flex !important; align-items: center !important; justify-content: center !important; gap: 8px !important;
+            padding: 12px 24px !important; font-size: 13px !important; font-weight: 800 !important; font-family: -apple-system, sans-serif !important;
+            text-transform: uppercase !important; letter-spacing: 0.5px !important; border-radius: 12px !important; cursor: pointer !important;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important; text-decoration: none !important; box-sizing: border-box !important;
+            position: relative !important; z-index: 999 !important; pointer-events: auto !important; outline: none !important;
+            transform: perspective(200px) translateZ(0px);
+            background: var(--accent-blue); color: #05070c; border: 1px solid var(--accent-blue);
+            box-shadow: 0 4px 15px var(--accent-glow); width: auto;
         }
-        button.btn-back {
-            background-color: #030712;
-            color: #2dd4bf;
-            border: 1px solid #2dd4bf;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            margin: 8px 0;
-        }
-        button.btn-black {
-            background-color: #0f172a;
-            color: #ffffff;
-            border: 1px solid #1e293b;
-            text-transform: none;
-        }
-        button.btn-google {
-            background-color: #ef4444;
-            color: white;
-            text-transform: none;
-            border-radius: 4px;
-        }
-
-        /* --- DASHBOARD METRICS & LISTS --- */
-        .badge-node {
-            background-color: #064e3b;
-            color: #34d399;
-            font-size: 0.7rem;
-            padding: 4px 12px;
-            border-radius: 12px;
-            display: inline-block;
-            margin-bottom: 16px;
-        }
-        .hero-title {
-            color: #ffffff;
-            font-size: 2rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 16px;
-        }
-        .hero-desc {
-            font-size: 0.9rem;
-            line-height: 1.5;
-            color: #9ca3af;
-            margin-bottom: 20px;
-        }
-        .flex-buttons {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
+        .btn:hover, .btn-submit-action:hover, .inline-action-trigger:hover, .admin-act-btn:hover, .corner-back-btn:hover, .loc-pill:hover, .social-btn-box:hover {
+            transform: perspective(200px) translateZ(8px) translateY(-2px) !important;
+            box-shadow: 0 8px 25px rgba(94, 234, 212, 0.45) !important; filter: brightness(1.1);
         }
         
-        /* Metric Box Grid */
-        .metric-box {
-            background-color: #0b1329;
-            border-left: 3px solid #2dd4bf;
-            padding: 16px;
-            border-radius: 6px;
-            margin-bottom: 12px;
-        }
-        .metric-val {
-            color: #ffffff;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-        .metric-lbl {
-            font-size: 0.7rem;
-            color: #9ca3af;
-            margin-top: 4px;
-            letter-spacing: 0.5px;
-        }
+        .menu-btn-signin { background: var(--accent-blue) !important; color: #05070c !important; width: 100% !important; }
+        .menu-btn-signup, .social-btn-box { background: rgba(255,255,255,0.04) !important; color: #fff !important; border-color: rgba(255,255,255,0.15) !important; width: 100% !important; }
+        .btn-outline { background: transparent !important; color: #fff !important; border-color: rgba(255,255,255,0.2) !important; }
+        .btn-delete { background: rgba(239, 68, 68, 0.2) !important; color: #ef4444 !important; border-color: #ef4444 !important; box-shadow: 0 4px 12px rgba(239, 68, 68, 0.15) !important; }
+        .btn-delete:hover { box-shadow: 0 8px 20px rgba(239, 68, 68, 0.35) !important; var(--accent-blue): #ef4444; }
+        .corner-back-btn, .btn-outline:hover { background: rgba(5, 7, 12, 0.6) !important; color: var(--accent-blue) !important; border-color: var(--accent-blue) !important; }
 
-        /* Chart/Trend Node Grid */
-        .chart-panel {
-            background-color: #0b1329;
-            border: 1px solid #1e293b;
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 24px;
-        }
-        .bar-container {
-            display: flex;
-            justify-content: space-around;
-            align-items: flex-end;
-            height: 100px;
-            margin-bottom: 10px;
-        }
-        .bar-col {
-            text-align: center;
-            width: 22%;
-        }
-        .bar-fill {
-            background: linear-gradient(to top, #047857, #2dd4bf);
-            width: 24px;
-            margin: 0 auto 6px auto;
-            border-radius: 2px 2px 0 0;
-        }
-        .bar-meta {
-            font-size: 0.65rem;
-            color: #2dd4bf;
-        }
-        .bar-title {
-            font-size: 0.65rem;
-            color: #9ca3af;
-            white-space: nowrap;
-        }
+        .menu-divider { height: 1px; background: rgba(255,255,255,0.08); margin: 6px 0; }
+        .menu-link-row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; color: var(--text-gray); font-size: 14px; font-weight: 700; text-decoration: none; border-radius: 12px; cursor: pointer; transition: all 0.2s ease; border: none; outline: none; background: transparent; width: 100%; text-align: left;}
+        .menu-link-row:hover, .menu-link-row.active { background: rgba(94, 234, 212, 0.08); color: var(--accent-blue); }
+        .menu-link-row i { width: 22px; text-align: center; font-size: 16px; }
 
-        /* List Items Row */
-        .list-container {
-            margin-bottom: 24px;
-        }
-        .list-item {
-            background-color: #070d19;
-            border: 1px solid #111827;
-            padding: 14px 16px;
-            border-radius: 6px;
-            margin-bottom: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: #9ca3af;
-            font-size: 0.85rem;
-        }
-        .list-item a {
-            color: #9ca3af;
-            text-decoration: none;
-        }
+        .user-menu-profile-card { display: flex; align-items: center; gap: 14px; padding: 12px; background: rgba(255,255,255,0.02); border-radius: 14px; margin-bottom: 8px; border: 1px solid rgba(255,255,255,0.04); }
+        .user-menu-avatar { width: 38px; height: 38px; background: rgba(94, 234, 212, 0.1); color: var(--accent-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 14px; border: 1px solid rgba(94, 234, 212, 0.3); text-shadow: 0 0 5px var(--accent-glow); }
+        .user-menu-meta { display: flex; flex-direction: column; overflow: hidden; }
+        .user-menu-meta-name { font-size: 13px; font-weight: 800; color: #fff; }
+        .user-menu-meta-email { font-size: 11px; color: var(--text-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .btn-menu-logout { width: 100%; padding: 12px; background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.2); border-radius: 10px; cursor: pointer; font-size: 12px; font-weight: 800; text-transform: uppercase; transition: all 0.2s; }
 
-        /* Verification Indicator */
-        .verify-row {
-            display: flex;
-            align-items: center;
-            gap: 8px;
+        /* ⚡ REAL SPA ROUTING ENGINE HIDDEN CHANNELS (Restored Protection Loop) */
+        .app-view { display: none !important; width: 100%; background-color: var(--bg-main); box-sizing: border-box; }
+        .app-view.active-view { display: block !important; position: relative; animation: viewFadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+        @keyframes viewFadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* THE CARD VIEW WRAPPER */
+        .view-card-wrapper {
+            background: linear-gradient(145deg, #0e1426 0%, #050811 100%) !important;
+            border: 1px solid rgba(94, 234, 212, 0.22) !important; border-radius: 32px !important;
+            width: 100%; max-width: 1100px; padding: 50px 45px; margin: 0 auto;
+            box-shadow: 0 40px 90px rgba(0, 0, 0, 0.9), inset 0 1px 2px rgba(255, 255, 255, 0.06) !important;
+            box-sizing: border-box; transition: transform 0.3s ease, border-color 0.3s, box-shadow 0.3s;
+            position: relative; z-index: 5; display: block !important;
         }
-        .verified-text {
-            color: #ffffff;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+        .view-card-wrapper:hover { border-color: var(--accent-blue); transform: translateY(-3px); box-shadow: 0 45px 100px rgba(94, 234, 212, 0.08); }
+        @media (max-width: 768px) { .view-card-wrapper { padding: 35px 20px; border-radius: 20px; } }
+
+        .view-panel-header { display: flex; flex-direction: column; align-items: flex-start; gap: 15px; margin-bottom: 35px; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.06); padding-bottom: 20px; box-sizing: border-box; }
+        .section-title { font-size: 24px; font-weight: 800; color: #fff; margin: 0; text-transform: uppercase; letter-spacing: 0.5px; }
+
+        /* HERO MATRIX WRAPPER */
+        .hero { display: flex; flex-direction: column; gap: 40px; padding: 20px 0; align-items: center; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.03); padding-bottom: 50px; position: relative; }
+        @media (min-width: 768px) { .hero { flex-direction: row; text-align: left; } .hero > div { flex: 1; } }
+        .badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(94, 234, 212, 0.05); color: var(--accent-blue); font-size: 11px; font-weight: 600; padding: 6px 14px; border: 1px solid rgba(94, 234, 212, 0.15); border-radius: 20px; margin-bottom: 25px; }
+        
+        .hero-left-block { padding-left: 45px; width: 100%; text-align: left; position: relative; z-index: 10; }
+        @media (max-width: 768px) { .hero-left-block { padding-left: 0; text-align: center; } }
+        h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 900; margin-bottom: 22px; line-height: 1.2; }
+        .highlight { color: var(--accent-blue); text-shadow: 0 0 15px rgba(94, 234, 212, 0.25); }
+        .hero-p { font-size: 16px; color: var(--text-gray); margin-bottom: 35px; max-width: 600px; line-height: 1.7; }
+        .btn-group { display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; width: 100%; }
+        @media (min-width: 768px) { .btn-group { justify-content: flex-start; flex-wrap: nowrap; } }
+        
+        .image-wrapper { position: relative; width: 100%; max-width: 480px; height: 400px; margin: 0 auto; display: flex; align-items: center; justify-content: center; border-radius: 32px; overflow: hidden; background: rgba(13, 17, 28, 0.6); border: 1px solid rgba(94, 234, 212, 0.25); box-shadow: 0 35px 75px rgba(0,0,0,0.8); transform: perspective(800px) rotateY(-8deg) rotateX(4deg); }
+        .hologram-chart-container { display: flex; align-items: flex-end; justify-content: center; gap: 24px; width: 100%; height: 75%; padding: 0 40px; box-sizing: border-box; }
+        .hologram-bar { width: 38px; height: 20px; background: linear-gradient(0deg, rgba(5, 7, 12, 0.8) 0%, var(--accent-blue) 100%); border-radius: 8px 8px 0 0; position: relative; box-shadow: 0 0 30px var(--accent-glow); }
+        .hologram-bar-1 { animation: advancedChartGrow1 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+        .hologram-bar-2 { animation: advancedChartGrow2 2.6s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+        .hologram-bar-3 { animation: advancedChartGrow3 2.0s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+        .hologram-bar-4 { animation: advancedChartGrow4 3.0s cubic-bezier(0.4, 0, 0.2, 1) infinite alternate; }
+        @keyframes advancedChartGrow1 { from { height: 20%; filter: hue-rotate(0deg); } to { height: 90%; filter: hue-rotate(45deg); } }
+        @keyframes advancedChartGrow2 { from { height: 50%; } to { height: 100%; } }
+        @keyframes advancedChartGrow3 { from { height: 30%; } to { height: 75%; } }
+        @keyframes advancedChartGrow4 { from { height: 40%; filter: brightness(1.3); } to { height: 95%; filter: brightness(0.8); } }
+        .hologram-grid-lines { position: absolute; width: 100%; height: 100%; top: 0; left: 0; background: linear-gradient(rgba(94, 234, 212, 0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(94, 234, 212, 0.04) 1px, transparent 1px); background-size: 24px 24px; pointer-events: none; }
+        .hologram-text-layer { position: absolute; top: 25px; left: 25px; font-family: monospace; font-size: 11px; color: var(--accent-blue); text-shadow: 0 0 8px var(--accent-glow); pointer-events: none; display: flex; flex-direction: column; gap: 4px; z-index: 10; text-align: left; }
+        .holo-pulse-tag { font-weight: 800; letter-spacing: 0.5px; color: #fff; animation: textBlink 1.4s infinite alternate; }
+
+        /* ANALYTICS CHARTS MATRIX SYSTEM */
+        .analytics-dashboard-title { font-size: 22px; font-weight: 800; margin: 45px 0 22px 0; color: #fff; display: flex; align-items: center; gap: 10px; }
+        .analytics-dashboard-title i { color: var(--accent-blue); }
+        .analytics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
+        
+        .metric-mini-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 20px; padding: 24px; position: relative; overflow: hidden; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .metric-mini-card:hover { transform: translateY(-5px) scale(1.02); border-color: rgba(94, 234, 212, 0.3); box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+        .metric-mini-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: var(--accent-blue); }
+        .metric-num { font-size: 32px; font-weight: 800; color: #fff; margin-bottom: 4px; }
+        .metric-label { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
+        
+        .chart-master-box { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); border-radius: 24px; padding: 30px; margin-top: 35px; }
+        .chart-bars-frame { display: flex; align-items: flex-end; justify-content: space-between; height: 200px; margin-top: 30px; border-bottom: 2px solid rgba(255,255,255,0.05); gap: 10px; }
+        .chart-bar-column { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
+        .chart-actual-bar { width: 40px; background: linear-gradient(0deg, rgba(94, 234, 212, 0.05) 0%, var(--accent-blue) 100%) !important; border-radius: 8px 8px 0 0; position: relative; box-shadow: 0 0 20px rgba(94, 234, 212, 0.2); transition: all 0.4s; min-height: 20px; }
+        .chart-actual-bar:hover { filter: brightness(1.2); transform: scaleY(1.04); }
+        .chart-bar-val { font-size: 11px; color: var(--accent-blue); font-weight: 800; position: absolute; top: -25px; width: 100%; text-align: center; }
+        .chart-day-text { font-size: 12px; color: var(--text-gray); font-weight: 700; text-transform: uppercase; text-align: center; width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+        .advanced-charts-matrix { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 24px; margin-top: 20px; }
+        .cyber-chart-card { background: var(--bg-card); border: 1px solid rgba(94, 234, 212, 0.12); border-radius: 20px; padding: 20px; min-height: 240px; display: flex; flex-direction: column; justify-content: space-between; }
+        .cyber-chart-card:hover { border-color: var(--accent-blue); transform: translateY(-4px); box-shadow: 0 15px 35px rgba(94, 234, 212, 0.08); }
+        .cyber-render-viewport { height: 130px; width: 100%; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: rgba(5,7,12,0.6); border-radius: 12px; border: 1px solid rgba(255,255,255,0.03); }
+        
+        .sql-matrix-viewport { display: flex; flex-direction: column; gap: 8px; width: 100%; padding: 15px; box-sizing: border-box; }
+        .sql-lane-row { height: 14px; background: rgba(255,255,255,0.02); border-radius: 4px; position: relative; overflow: hidden; border-left: 3px solid var(--accent-blue); }
+        .sql-lane-row::after { content: ''; position: absolute; top: 0; left: -30%; width: 40px; height: 100%; background: linear-gradient(90deg, transparent, var(--accent-blue), transparent); animation: queryScanLine 1.8s linear infinite; }
+        @keyframes queryScanLine { 0% { left: -30%; } 100% { left: 130%; } }
+
+        .ledger-stream-viewport { display: flex; gap: 12px; width: 200%; position: absolute; left: 0; animation: blockScrollStream 6s linear infinite; padding: 0 10px; }
+        .ledger-data-chunk { width: 44px; height: 44px; background: rgba(94, 234, 212, 0.05); border: 1px solid rgba(94, 234, 212, 0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 14px; box-shadow: 0 0 10px rgba(94,234,212,0.05); }
+
+        .sub-analytics-bars-layout { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
+        @media (min-width: 768px) { .sub-analytics-bars-layout { grid-template-columns: 1fr 1fr; } }
+        .mini-progress-card { background: var(--bg-card); border: 1px solid rgba(255,255,255,0.03); padding: 24px; border-radius: 18px; box-sizing: border-box; transition: all 0.3s; }
+        .mini-progress-card:hover { transform: translateX(4px); border-color: rgba(94, 234, 212, 0.15); }
+        .mini-progress-meta-row { display: flex; justify-content: space-between; font-size: 13px; font-weight: 700; color: #fff; }
+        .progress-track-bg { height: 8px; background: #05070c; border-radius: 6px; margin-top: 12px; overflow: hidden; width: 100%; position: relative; }
+        .progress-track-fill { height: 100%; background: linear-gradient(90deg, #1d4ed8 0%, var(--accent-blue) 100%); border-radius: 4px; box-shadow: 0 0 10px var(--accent-blue); }
+
+        .project-nodes-grid { display: grid; grid-template-columns: 1fr; gap: 24px; margin-top: 25px; }
+        @media (min-width: 768px) { .project-nodes-grid { grid-template-columns: 1fr 1fr; } }
+        .node-tile-card { background: var(--bg-card); border: 1px solid rgba(255, 255, 255, 0.03); border-radius: 20px; padding: 25px; display: flex; gap: 20px; align-items: flex-start; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        .node-tile-card:hover { border-color: rgba(94, 234, 212, 0.3); background: #111726; transform: translateY(-2px); }
+        .node-icon-box { background: rgba(94, 234, 212, 0.06); width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 20px; flex-shrink: 0; }
+        .node-title-meta { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+        .node-desc-text { font-size: 14px; color: var(--text-gray); line-height: 1.5; }
+
+        /* ⚡ DYNAMIC RESPONSIVE CYBER CARD PACKS (Fixed `28727.jpg`) */
+        .card { 
+            background: var(--bg-card) !important; padding: 25px !important; border-radius: 18px !important; 
+            border: 1px solid rgba(94, 234, 212, 0.15) !important; margin-bottom: 20px !important; box-sizing: border-box !important; 
+            transition: all 0.3s ease !important; display: flex !important; flex-direction: column !important; gap: 6px !important;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4), inset 0 0 12px rgba(255,255,255,0.02) !important;
         }
+        .card:hover { border-color: var(--accent-blue) !important; transform: translateY(-3px) scale(1.01) !important; box-shadow: 0 15px 30px rgba(94,234,212,0.1) !important; }
+        .card-top { display: flex !important; justify-content: space-between !important; font-weight: 800 !important; font-size: 16px !important; color: #fff !important; align-items: center !important; width: 100% !important; border-bottom: 1px solid rgba(255,255,255,0.05) !important; padding-bottom: 10px !important; margin-bottom: 8px !important;}
+        .company { color: #fff !important; font-size: 17px !important; font-weight: 800 !important; }
+        .tag { background: rgba(94, 234, 212, 0.08) !important; color: var(--accent-blue) !important; font-size: 11px !important; padding: 5px 12px !important; border-radius: 50px !important; border: 1px solid rgba(94, 234, 212, 0.2) !important; font-weight: 700 !important;}
+        .role { color: var(--accent-blue) !important; font-weight: 700 !important; font-size: 14px !important; text-transform: uppercase !important; letter-spacing: 0.5px !important; margin-bottom: 4px !important; text-align: left !important;}
+        .desc-line { display: flex !important; align-items: flex-start !important; gap: 10px !important; font-size: 13px !important; color: var(--text-gray) !important; line-height: 1.6 !important; text-align: left !important;}
+        .desc-line i { color: var(--accent-blue) !important; margin-top: 4px !important; font-size: 12px !important; }
+
+        /* ⚡ FILE ITEM CARD OVERLAYS VAULT BLOCK (Fixed `28721.jpg`) */
+        .vault-list-container { display: flex; flex-direction: column; gap: 14px; width: 100%; max-height: 480px; overflow-y: auto; padding-right: 4px; box-sizing: border-box; }
+        .file-item-row { 
+            background: rgba(13, 17, 28, 0.6) !important; border: 1px solid rgba(94, 234, 212, 0.15) !important; 
+            border-radius: 16px !important; padding: 18px 24px !important; display: flex !important; 
+            justify-content: space-between !important; align-items: center !important; cursor: pointer !important; 
+            transition: all 0.3s ease !important; margin-bottom: 8px !important; width: 100% !important; box-sizing: border-box !important;
+        }
+        .file-item-row:hover { background: rgba(94, 234, 212, 0.08) !important; border-color: var(--accent-blue) !important; transform: translateX(4px); }
+        .file-item-row div { display: flex; align-items: center; gap: 14px; font-size: 14px; font-weight: 700; color: #fff; }
+
+        /* ⚡ ADMIN QUEUE NODES DESIGN SHEET (Fixed `28725.jpg`) */
+        .admin-request-tile { display: flex; justify-content: space-between; align-items: center; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 18px 22px; border-radius: 16px; margin-bottom: 14px; gap: 15px; width: 100%; box-sizing: border-box; transition: all 0.2s; position: relative; }
+        .admin-request-tile:hover { border-color: rgba(94, 234, 212, 0.25); background: rgba(255,255,255,0.04); }
+        .admin-user-info { display: flex; align-items: center; gap: 14px; overflow: hidden; }
+        .admin-avatar-mini { width: 42px; height: 42px; background: rgba(94, 234, 212, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--accent-blue); font-size: 16px; flex-shrink: 0; border: 1px solid rgba(94, 234, 212, 0.2); }
+        .admin-user-meta-block { display: flex; flex-direction: column; overflow: hidden; text-align: left; }
+        .admin-user-name { font-size: 14px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px; }
+        .admin-user-email { font-size: 12px; color: var(--text-gray); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .admin-actions-block { display: flex; align-items: center; gap: 16px; flex-shrink: 0; }
+        
+        .status-badge { padding: 6px 14px; border-radius: 20px; font-size: 11px; font-weight: 800; letter-spacing: 0.5px; text-transform: uppercase; border: 1px solid transparent; }
+        .badge-pending { background: rgba(251, 191, 36, 0.1); color: #fbbf24; border-color: rgba(251, 191, 36, 0.2); }
+        .badge-approved { background: rgba(74, 222, 128, 0.1); color: #4ade80; border-color: rgba(74, 222, 128, 0.2); }
+        .admin-request-card { display: flex; flex-direction: column; align-items: stretch; gap: 16px; padding: 24px; background: rgba(5,7,12,0.5); border: 1px solid rgba(255, 255, 255, 0.06); border-radius: 22px; color: #e2e8f0; }
+
+        /* 3D PASSWORD PASSWORD COMPLEXITY GRAPH SYSTEM */
+        .strength-container { 
+            display: none; flex-direction: column; gap: 8px; margin-top: 12px; width: 100%; box-sizing: border-box; 
+            background: #111726 !important; padding: 14px !important; border-radius: 14px !important; 
+            border: 1px solid rgba(94, 234, 212, 0.3) !important; box-shadow: 0 10px 25px rgba(0,0,0,0.5), inset 0 0 15px rgba(94,234,212,0.05) !important;
+            transform: perspective(500px) rotateX(4deg) !important;
+        }
+        .strength-bar-bg { height: 8px; background: #05070c; border-radius: 4px; overflow: hidden; width: 100%; border: 1px solid rgba(255,255,255,0.05); }
+        .strength-bar { height: 100%; width: 0%; transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.3s; border-radius: 4px; box-shadow: 0 0 10px currentColor; }
+
+        /* CLEARANCE DISPATCH MODULES */
+        .pending-box { background: rgba(13, 17, 28, 0.6) !important; border: 1px solid rgba(94, 234, 212, 0.3) !important; padding: 40px 30px !important; border-radius: 24px !important; text-align: center !important; width: 100% !important; max-width: 580px !important; margin: 20px auto !important; box-shadow: 0 15px 40px rgba(0,0,0,0.6) !important; }
+        .pending-box i.fa-clock { color: #fbbf24 !important; font-size: 38px !important; margin-bottom: 18px !important; display: inline-block !important; animation: dynamicClockSpin 3s linear infinite !important; }
+        .admin-form-box { background: rgba(13, 17, 28, 0.6) !important; border: 1px solid rgba(245,158,11,0.25) !important; padding: 40px 30px !important; border-radius: 24px !important; text-align: center !important; width: 100% !important; max-width: 580px !important; margin: 20px auto !important; box-shadow: 0 15px 40px rgba(0,0,0,0.6) !important; }
+        .admin-form-box i { color: #f59e0b !important; font-size: 36px !important; margin-bottom: 16px !important; display: inline-block !important; }
+
+        /* FLOATING CHAT WIDGET STACK */
+        .floating-chat-widget { position: fixed; bottom: 25px; right: 25px; z-index: 200000 !important; display: block !important; }
+        .chat-widget-trigger { width: 56px; height: 56px; border-radius: 50%; background: var(--accent-blue); color: #05070c; display: flex; align-items: center; justify-content: center; font-size: 22px; cursor: pointer; box-shadow: 0 8px 24px var(--accent-glow); }
+        .chat-widget-window { position: absolute; bottom: 70px; right: 0; width: 370px; height: 490px; background: linear-gradient(145deg, #0e1426 0%, #050811 100%); border: 1px solid var(--accent-blue); border-radius: 22px; box-shadow: 0 25px 60px rgba(0,0,0,0.95); display: none; flex-direction: column; overflow: hidden; box-sizing: border-box; }
+        .chat-widget-window.show { display: flex !important; }
+        .chat-widget-header { background: rgba(13, 17, 28, 0.95); padding: 14px 18px; border-bottom: 1px solid rgba(255,255,255,0.05); display: flex; justify-content: space-between; align-items: center; box-sizing: border-box; }
+        .chat-widget-body { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background: #05070c; box-sizing: border-box; }
+        .chat-widget-footer { padding: 12px; border-top: 1px solid rgba(255,255,255,0.05); display: flex; gap: 10px; align-items: center; background: #0d111c; box-sizing: border-box; }
+
+        /* ⚡ HIGH-END 3D CYBER TOAST NOTIFICATION CONTAINER - CENTER CONFIGURE SYSTEM */
+        #cyber-toast-container { position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 2000000; display: flex; flex-direction: column; gap: 12px; pointer-events: none; align-items: center; width: calc(100% - 40px); max-width: 420px; }
+        .cyber-toast {
+            background: linear-gradient(145deg, #0e1426 0%, #050811 100%);
+            border: 2px solid var(--accent-blue); box-shadow: 0 25px 60px rgba(0,0,0,0.95), 0 0 30px var(--accent-glow), inset 0 0 15px rgba(94, 234, 212, 0.1);
+            color: #fff; padding: 20px 30px; border-radius: 20px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 15px; font-weight: 800;
+            display: flex; align-items: center; gap: 14px; pointer-events: auto; width: 100%; box-sizing: border-box; text-align: center; justify-content: center;
+            transform: perspective(600px) rotateX(-20deg) scale(0.8); opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.4s ease;
+        }
+        .cyber-toast.show { transform: perspective(600px) rotateX(0deg) scale(1); opacity: 1; }
+        .cyber-toast.fade-out { transform: perspective(600px) rotateX(20deg) scale(0.8); opacity: 0; }
+
+        /* REAL GLOBAL FOOTER */
+        footer { padding: 40px 0; text-align: center; color: var(--text-gray); font-size: 11px; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 60px; position: relative; z-index: 10; opacity: 0.65; display: block; }
     </style>
 </head>
 <body>
 
-<div class="container">
+    <div id="cyber-toast-container"></div>
 
-    <!-- ==================== VIEW 1: DASHBOARD NODE (28730.jpg) ==================== -->
-    <div id="view-dashboard" class="view-node active-node">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-            <div>
-                <div class="brand-name">Suraj Singh Jadon</div>
-                <div style="font-size: 0.75rem; color: #6b7280;">surajsinghrajput5040@gmail.com</div>
-                <div style="font-size: 0.75rem; color: #6b7280; margin-top: 2px;">+91 78795 95821</div>
-            </div>
-            <button onclick="switchView('view-auth-gate')">⚙ AUTH GATE</button>
-        </div>
-
-        <div style="margin-top: 24px;">
-            <div class="badge-node">Authorized Node Profile</div>
-            <h1 class="hero-title">Specializing in<br><span class="accent-teal">Data Excellence.</span></h1>
-            <p class="hero-desc">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
-        </div>
-
-        <div class="flex-buttons">
-            <button class="btn-black">✉ GET IN TOUCH</button>
-            <button class="btn-black">in LINKEDIN</button>
-        </div>
-
-        <div class="section-title">🌐 Operational Insights & Analytics Snapshot</div>
-        <div class="metric-box">
-            <div class="metric-val">12,450+</div>
-            <div class="metric-lbl">SAP INVOICE LOGS AUDITED</div>
-        </div>
-        <div class="metric-box">
-            <div class="metric-val">99.94%</div>
-            <div class="metric-lbl">DATA PARSE ACCURACY LOOP</div>
-        </div>
-        <div class="metric-box">
-            <div class="metric-val">4+ Years</div>
-            <div class="metric-lbl">COMBINED OPERATIONAL SPAN</div>
-        </div>
-
-        <div class="section-title">📊 Enterprise Data Volume Trend By Node</div>
-        <div class="chart-panel">
-            <div class="bar-container">
-                <div class="bar-col">
-                    <div class="bar-meta">1 Year</div>
-                    <div class="bar-fill" style="height: 35px;"></div>
-                </div>
-                <div class="bar-col">
-                    <div class="bar-meta">1 Year</div>
-                    <div class="bar-fill" style="height: 35px;"></div>
-                </div>
-                <div class="bar-col">
-                    <div class="bar-meta">2 Year</div>
-                    <div class="bar-fill" style="height: 75px;"></div>
-                </div>
-                <div class="bar-col">
-                    <div class="bar-meta">DCA</div>
-                    <div class="bar-fill" style="height: 25px;"></div>
-                </div>
-            </div>
-            <div style="display: flex; justify-content: space-between; text-align: center;">
-                <div class="bar-title" style="width: 22%;">POLYHOSE (SAP)</div>
-                <div class="bar-title" style="width: 22%;">HETTICH (STORE DATA)</div>
-                <div class="bar-title" style="width: 22%;">RAHUL PRECISION</div>
-                <div class="bar-title" style="width: 22%;">MCU TECHNICAL</div>
-            </div>
-        </div>
-
-        <div class="section-title">🧬 Predictive Data Stream Architecture Clusters</div>
-        <div class="chart-panel" style="min-height: 200px;">
-            <div style="font-size: 0.75rem; color: #2dd4bf; margin-bottom: 8px;">SQL QUERY EXECUTION LOOP</div>
-            <div style="font-size: 0.75rem; color: #2dd4bf; margin-bottom: 8px;">SAP LEDGER AUDIT STREAM</div>
-            <div style="font-size: 0.75rem; color: #2dd4bf; margin-bottom: 8px;">RELATIONAL INDEX TOPOLOGY</div>
-            <div style="font-size: 0.75rem; color: #2dd4bf; margin-bottom: 8px;">DCA ALGORITHMIC COMPUTE DELTA</div>
+    <div id="cyber-boot-preloader">
+        <div class="boot-terminal-box">
+            <div class="boot-line bl-1">&gt; INITIALIZING SQL ENGINE...</div>
+            <div class="boot-line bl-2">&gt; SYNCING COGNITIVE LEDGER...</div>
+            <div class="boot-line bl-3">&gt; PARSING LEDGER CLUSTERS...</div>
+            <div class="boot-line bl-4">&gt; SURAJ_NODE: ACCESS GRANTED</div>
         </div>
     </div>
 
+    <div class="bg-matrix-layer"><div class="bg-matrix-stream"></div></div>
 
-    <!-- ==================== VIEW 2: AUTH CONFIG GATEWAY (28729.jpg Elements) ==================== -->
-    <div id="view-auth-gate" class="view-node">
-        <div class="brand-name">Suraj Singh Jadon</div>
-        <div style="font-size: 0.8rem; color: #6b7280;">surajsinghrajput5040@gmail.com</div>
-        <div style="font-size: 0.8rem; color: #6b7280;">+91 78795 95821</div>
-        
-        <div style="margin: 12px 0;">
-            <div style="font-size: 0.85rem; color: #ffffff; margin-bottom: 4px;">Location Matrix</div>
-            <button style="border-radius: 4px;">REDIRECT MAPS</button>
-        </div>
+    <header id="main-header">
+        <div class="nav-container">
+            <a href="javascript:void(0)" onclick="switchAppView('view-home')" class="logo">Suraj Singh <span>Jadon</span></a>
+            
+            <div class="three-dot-menu-trigger" id="three-dot-trigger" onclick="toggleSystemMenu(event)">
+                <i class="fas fa-ellipsis-v" id="three-dot-icon"></i>
+            </div>
 
-        <button class="btn-back" onclick="switchView('view-dashboard')">← BACK</button>
+            <div class="dropdown-panel" id="system-dropdown-panel" onclick="event.stopPropagation();">
+                <div class="menu-auth-row" id="menu-guest-block">
+                    <button type="button" class="menu-btn-auth menu-btn-signin" onclick="switchAppView('view-login')">Sign In</button>
+                    <button type="button" class="menu-btn-auth menu-btn-signup" onclick="switchAppView('view-register')">Sign Up</button>
+                </div>
 
-        <!-- --- ACCOUNT SIGN IN --- -->
-        <div class="section-title" style="margin-top: 16px;">Account Sign In</div>
-        <div class="form-group">
-            <label>Email ID</label>
-            <input type="email" placeholder="example@domain.com">
-        </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" placeholder="********">
-        </div>
-        <button style="border-radius: 4px;">LOG IN</button>
-        <div style="font-size: 0.8rem; color: #2dd4bf; text-align: right; margin-top: -25px; cursor: pointer;">Forgot Password?</div>
+                <div id="menu-user-block" style="display: none; flex-direction: column;">
+                    <div class="user-menu-profile-card">
+                        <div class="user-menu-avatar" id="menu-avatar-badge">S</div>
+                        <div class="user-menu-meta">
+                            <span class="user-menu-meta-name" id="menu-user-name">Identity Node</span>
+                            <span class="user-menu-meta-email" id="menu-user-email">user@domain.com</span>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-menu-logout" onclick="handleLogout()">Log Out</button>
+                </div>
 
-        <div style="margin: 20px 0; text-align: center; font-size: 0.75rem; color: #6b7280;">SIGN IN WITH</div>
-        <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-            <button class="btn-google">G Sign In with Google</button>
-            <button class="btn-black" style="font-size: 0.8rem; padding: 6px 12px;">in Sign In with LinkedIn</button>
-        </div>
+                <div class="menu-divider"></div>
 
-        <!-- --- ACCOUNT REGISTRATION --- -->
-        <div class="section-title">Account Registration</div>
-        <div class="form-group">
-            <label>Full Name</label>
-            <input type="text" placeholder="Your Name">
-        </div>
-        <div class="form-group">
-            <label>Email ID</label>
-            <input type="email" placeholder="example@domain.com">
-            <button style="border-radius: 4px; margin-top: 6px;">GET OTP</button>
-        </div>
-        <div class="form-group">
-            <label>Email Verification Code</label>
-            <div class="verify-row">
-                <input type="text" placeholder="6-Digit Code" style="width: 60%;">
-                <button style="border-radius: 4px; margin-top: 0;">VERIFY</button>
-                <div class="verified-text">● Verified</div>
+                <div class="menu-link-row active" id="ml-home" onclick="switchAppView('view-home')"><i class="fas fa-home"></i> Home</div>
+                <div class="menu-link-row" id="ml-exp" onclick="switchAppView('view-experience')"><i class="fas fa-briefcase"></i> Experience</div>
+                <div class="menu-link-row" id="ml-edu" onclick="switchAppView('view-user-edu')"><i class="fas fa-graduation-cap"></i> Education</div>
+                <div class="menu-link-row" id="ml-skills" onclick="switchAppView('view-technical-skills')"><i class="fas fa-tools"></i> Technical Skills</div>
+                <div class="menu-link-row" id="ml-contact" onclick="switchAppView('view-user-contact')"><i class="fas fa-envelope"></i> Contact Info</div>
+                <div class="menu-link-row" id="ml-chatbot-trigger-menu" onclick="toggleChatWidget(event)"><i class="fas fa-robot" style="color: var(--accent-blue);"></i> Live Chat AI</div>
+                
+                <div class="menu-link-row" id="ml-achievements" style="display: none;" onclick="switchAppView('view-sec-vault-achievements')"><i class="fas fa-award" style="color: #fbbf24;"></i> Achievements</div>
+                <div class="menu-link-row" id="ml-documents" style="display: none;" onclick="switchAppView('view-sec-vault-documents')"><i class="fas fa-file-invoice" style="color: #38bdf8;"></i> Gated Documents</div>
+                <div class="menu-link-row" id="ml-admin" style="display: none;" onclick="switchAppView('view-sec-admin-panel')"><i class="fas fa-user-shield" style="color: #4ade80;"></i> Admin Console</div>
             </div>
         </div>
-        <div class="form-group">
-            <label>Password</label>
-            <input type="password" placeholder="********">
-        </div>
-        <div class="form-group">
-            <label>Confirm Password</label>
-            <input type="password" placeholder="********">
-        </div>
-        <button style="background-color: #22c55e; color: #ffffff; border-radius: 4px;">CREATE ACCOUNT</button>
+    </header>
 
+    <div class="container">
 
-        <!-- --- RESET PASSWORD --- -->
-        <div class="section-title" style="display: flex; align-items: center; gap: 6px;">🔑 Reset Password</div>
-        <div class="form-group">
-            <label>Email ID</label>
-            <input type="email" placeholder="example@domain.com">
-            <button style="border-radius: 4px; margin-top: 6px;">GET OTP</button>
-        </div>
-        <div class="form-group">
-            <label>Verification Code</label>
-            <div class="verify-row">
-                <input type="text" placeholder="6-Digit Code" style="width: 60%;">
-                <button style="border-radius: 4px; margin-top: 0;">VERIFY</button>
-                <div class="verified-text">● Verified</div>
+        <!-- HOME VIEW -->
+        <div id="view-home" class="app-view active-view">
+            <div class="hero">
+                <div class="hero-left-block">
+                    <div class="badge" id="auth-status-badge">
+                        <div class="badge-dot" id="status-dot"></div> <span id="badge-text">Public Visitor Mode</span>
+                    </div>
+                    <h1>Specializing in <br><span class="highlight">Data Excellence.</span></h1>
+                    <p class="hero-p">Data Analyst & Computer Professional focused on high-speed information infrastructure, SAP validation, database trends, and enterprise log management.</p>
+                    <div class="btn-group">
+                        <button type="button" onclick="switchAppView('view-user-contact')" class="btn btn-blue"><i class="fas fa-envelope"></i> GET IN TOUCH</button>
+                        <a href="https://www.linkedin.com/in/suraj-singh-jadon-bb320a274" target="_blank" class="btn btn-outline"><i class="fab fa-linkedin-in"></i> LINKEDIN</a>
+                    </div>
+                </div>
+                <div>
+                    <div class="image-wrapper">
+                        <div class="hologram-text-layer">
+                            <span class="holo-pulse-tag"><i class="fas fa-database"></i> SQL_ANALYTICS: LOADED</span>
+                            <span>SELECT * FROM sap_invoice_ledger;</span>
+                            <span>STATUS: PARSING... [99.94% OK]</span>
+                        </div>
+                        <div class="hologram-grid-lines"></div>
+                        <div class="hologram-chart-container">
+                            <div class="hologram-bar hologram-bar-1"></div>
+                            <div class="hologram-bar hologram-bar-2"></div>
+                            <div class="hologram-bar hologram-bar-3"></div>
+                            <div class="hologram-bar hologram-bar-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="analytics-dashboard-title"><i class="fas fa-chart-pie"></i> Operational Insights & Analytics Snapshot</div>
+            <div class="analytics-grid">
+                <div class="metric-mini-card"><div class="metric-num">12,450+</div><div class="metric-label">SAP Invoice Logs Audited</div></div>
+                <div class="metric-mini-card"><div class="metric-num">99.94%</div><div class="metric-label">Data Parse Accuracy Loop</div></div>
+                <div class="metric-mini-card"><div class="metric-num">4+ Years</div><div class="metric-label">Combined Operational Span</div></div>
+            </div>
+
+            <div class="chart-master-box">
+                <div style="font-size:14px; font-weight:700; color:#fff;"><i class="fas fa-chart-bar" style="color:var(--accent-blue); margin-right:8px;"></i> Enterprise Data Volume Trend By Node</div>
+                <div class="chart-bars-frame">
+                    <div class="chart-bar-column"><div class="chart-actual-bar" style="height: 85%;"><div class="chart-bar-val">1 Year</div></div><div class="chart-day-text">Polyhose (SAP)</div></div>
+                    <div class="chart-bar-column"><div class="chart-actual-bar" style="height: 60%;"><div class="chart-bar-val">1 Year</div></div><div class="chart-day-text">Hettich (Store Data)</div></div>
+                    <div class="chart-bar-column"><div class="chart-actual-bar" style="height: 100%;"><div class="chart-bar-val">2 Year</div></div><div class="chart-day-text">Rahul Precision</div></div>
+                    <div class="chart-bar-column"><div class="chart-actual-bar" style="height: 45%;"><div class="chart-bar-val">DCA</div></div><div class="chart-day-text">MCU Technical</div></div>
+                </div>
+            </div>
+
+            <div class="analytics-dashboard-title" style="margin-top:50px;"><i class="fas fa-cubes"></i> Predictive Data Stream Architecture Clusters</div>
+            <div class="advanced-charts-matrix">
+                <div class="cyber-chart-card"><div class="cyber-render-viewport"><div class="sql-matrix-viewport"><div class="sql-lane-row lane-1"></div><div class="sql-lane-row lane-2"></div><div class="sql-lane-row lane-3"></div></div></div><div class="metric-label" style="padding-top:10px; font-size:11px;">SQL Query Execution Loop</div></div>
+                <div class="cyber-chart-card"><div class="cyber-render-viewport"><div class="ledger-stream-viewport"><div class="ledger-data-chunk"><i class="fas fa-file-invoice"></i></div><div class="ledger-data-chunk"><i class="fas fa-check-double"></i></div><div class="ledger-data-chunk"><i class="fas fa-server"></i></div><div class="ledger-data-chunk"><i class="fas fa-receipt"></i></div></div></div><div class="metric-label" style="padding-top:10px; font-size:11px;">SAP Ledger Audit Stream</div></div>
+                <div class="cyber-chart-card"><div class="cyber-render-viewport"><div class="topology-node-matrix"><div class="topo-vector-dot tp-1"></div><div class="topo-vector-dot tp-2"></div><div class="topo-vector-dot tp-3"></div></div></div><div class="metric-label" style="padding-top:10px; font-size:11px;">Relational Index Topology</div></div>
+                <div class="cyber-chart-card"><div class="cyber-render-viewport"><div class="dca-compute-viewport"><div class="dca-cluster-pill pill-b1"></div><div class="dca-cluster-pill pill-b2"></div><div class="dca-cluster-pill pill-b3"></div></div></div><div class="metric-label" style="padding-top:10px; font-size:11px;">DCA Algorithmic Compute Delta</div></div>
+            </div>
+
+            <div class="analytics-dashboard-title" style="margin-top:50px;"><i class="fas fa-tasks"></i> Operational Engine Performance Meters</div>
+            <div class="sub-analytics-bars-layout">
+                <div class="mini-progress-card"><div class="mini-progress-meta-row"><span>SAP Invoice Processing Load</span><span>88% Efficiency</span></div><div class="progress-track-bg"><div class="progress-track-fill" style="width: 88%;"></div></div></div>
+                <div class="mini-progress-card"><div class="mini-progress-meta-row"><span>Log Validation Stream Clock</span><span>99.9% Integrity</span></div><div class="progress-track-bg"><div class="progress-track-fill" style="width: 99.9%;"></div></div></div>
+                <div class="mini-progress-card"><div class="mini-progress-meta-row"><span>Database Parse Latency Meter</span><span>0.04ms Core Rate</span></div><div class="progress-track-bg"><div class="progress-track-fill" style="width: 94%;"></div></div></div>
+                <div class="mini-progress-card"><div class="mini-progress-meta-row"><span>Analytical Metric Validation</span><span>96% Sync Flow</span></div><div class="progress-track-bg"><div class="progress-track-fill" style="width: 96%;"></div></div></div>
+            </div>
+
+            <div class="analytics-dashboard-title" style="margin-top:50px;"><i class="fas fa-network-wired"></i> Core Infrastructure & Processing Nodes</div>
+            <div class="project-nodes-grid">
+                <div class="node-tile-card">
+                    <div class="node-icon-box"><i class="fas fa-file-invoice-dollar"></i></div>
+                    <div><div class="node-title-meta">SAP Transaction Ledger Node</div><div class="node-desc-text">Processes bulk commercial log indexes inside secure corporate database environments with deep transaction audit controls.</div></div>
+                </div>
+                <div class="node-tile-card">
+                    <div class="node-icon-box"><i class="fas fa-boxes"></i></div>
+                    <div><div class="node-title-meta">Inventory Trend Analytics</div><div class="node-desc-text">Advanced multi-tier storage logging, tracking data catalog catalogs, stock flow trends, and precision material log checks.</div></div>
+                </div>
             </div>
         </div>
-        <div class="form-group">
-            <label>New Password</label>
-            <input type="password" placeholder="New Password">
-            <div style="font-size: 0.75rem; color: #9ca3af; margin-top: 4px;">Strength Node</div>
+
+        <!-- EXPERIENCE VIEW -->
+        <div id="view-experience" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2 class="section-title">Professional Journey</h2>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">Polyhose India Private Limited</span><span class="tag">Current • 1 Year</span></div>
+                    <div class="role">Invoice SAP Executive</div>
+                    <div class="desc-line"><i class="fas fa-check"></i> <span>Overseeing high-volume invoice processing inside corporate SAP environment log structures.</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">Hettich</span><span class="tag">1 Year</span></div>
+                    <div class="role">Store Data Analysis Operations</div>
+                    <div class="desc-line"><i class="fas fa-check"></i> <span>Managed analytical validation, stock parsing, and inventory logs in database catalogs.</span></div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">Rahul Precision Work Pvt Ltd</span><span class="tag">2 Years</span></div>
+                    <div class="role">Machine Operator</div>
+                    <div class="desc-line"><i class="fas fa-check"></i> <span>Managed industrial machine system calibrations and automated equipment logs.</span></div>
+                </div>
+            </div>
         </div>
-        <button style="border-radius: 4px;">CHANGE PASSWORD</button>
 
-
-        <!-- --- ACHIEVEMENTS & VERIFICATIONS --- -->
-        <div class="section-title">Achievements & Verifications</div>
-        <div class="list-container">
-            <div class="list-item"><span>Data Analytics with AI</span><a href="#">🗎</a></div>
-            <div class="list-item"><span>Introduction to SQL</span><a href="#">🗎</a></div>
-            <div class="list-item"><span>ChatGPT for Everyone</span><a href="#">🗎</a></div>
-            <div class="list-item"><span>Generative AI for Beginners</span><a href="#">🗎</a></div>
-            <div class="list-item"><span>Intro to Generative AI</span><a href="#">🗎</a></div>
-            <div class="list-item"><span>intro to Prompt Engineering</span><a href="#">🗎</a></div>
+        <!-- EDUCATION VIEW -->
+        <div id="view-user-edu" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2 class="section-title">Education Details</h2>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">Diploma in Computer Applications (DCA)</span><span class="tag">2023</span></div>
+                    <div class="desc-line" style="margin-top: 10px;"><i class="fas fa-graduation-cap"></i> Makhanlal Chaturvedi University (1 Year) • Technical Specialization</div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">12th Grade</span><span class="tag">2022</span></div>
+                    <div class="desc-line" style="margin-top: 10px;"><i class="fas fa-school"></i> Madhya Pradesh State Open Board</div>
+                </div>
+                <div class="card">
+                    <div class="card-top"><span class="company">10th Grade</span><span class="tag">2020</span></div>
+                    <div class="desc-line" style="margin-top: 10px;"><i class="fas fa-school"></i> Madhya Pradesh Board</div>
+                </div>
+            </div>
         </div>
 
+        <!-- SKILLS VIEW -->
+        <div id="view-technical-skills" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2 class="section-title">Technical Expertise</h2>
+                </div>
+                <div class="skills-grid">
+                    <div>
+                        <div class="sub-title">DATA ANALYTICS TIMELINE STRUCTURE</div>
+                        <div id="canvas-3d-techstack-portal" class="canvas-3d-techstack-portal"></div>
+                    </div>
+                    <div>
+                        <div class="sub-title">COMMUNICATION PERFORMANCE METERS</div>
+                        <div class="meters-vertical-aligner" style="display: flex; flex-direction: column; gap: 20px; perspective: 1000px;">
+                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
+                                <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-language" style="color:var(--accent-blue); margin-right:8px;"></i>Hindi (Native)</span><span style="color:var(--accent-blue);">100%</span></div>
+                                <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 100%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
+                            </div>
+                            <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); transform: translateZ(15px); box-shadow: inset 0 0 15px rgba(94,234,212,0.05); transition: all 0.3s;">
+                                <div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-globe" style="color:var(--accent-blue); margin-right:8px;"></i>English (Professional)</span><span style="color:var(--accent-blue);">75%</span></div>
+                                <div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 75%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-        <!-- --- ENCRYPTED SYSTEM RECORDS --- -->
-        <div class="section-title">Encrypted System Records</div>
-        <div class="list-container">
-            <div class="list-item"><span>DCA Main Diploma</span><a href="#">📥</a></div>
-            <div class="list-item"><span>Professional Resume</span><a href="#">📥</a></div>
-            <div class="list-item"><span>DCA 1st Semester Marksheet</span><a href="#">📥</a></div>
+        <!-- CONTACT VIEW -->
+        <div id="view-user-contact" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2 class="section-title">Get In Touch</h2>
+                </div>
+                <div class="contact-box">
+                    <div class="contact-left">
+                        <div class="contact-left-row">
+                            <div class="icon-container"><i class="fas fa-envelope"></i></div>
+                            <div><div class="label">Email Address</div><div class="value">surajsinghrajput5040@gmail.com</div></div>
+                        </div>
+                        <div class="sep-line"></div>
+                        <div class="contact-left-row">
+                            <div class="icon-container"><i class="fas fa-phone-alt"></i></div>
+                            <div><div class="label">Contact Number</div><div class="value">+91 78795 95821</div></div>
+                        </div>
+                    </div>
+                    <div class="contact-right">
+                        <div class="real-earth-wrapper"><i class="fas fa-map-marked-alt"></i></div>
+                        <div class="label" style="margin-bottom: 8px;">Location Matrix</div>
+                        <button type="button" class="loc-pill" onclick="window.open('https://maps.google.com/?q=Sagore,Pithampur,Madhya+Pradesh','_blank')">REDIRECT MAPS</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LOGIN VIEW -->
+        <div id="view-login" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="auth-card-compact">
+                    <div class="view-panel-header">
+                        <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                        <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Sign In</h3>
+                    </div>
+                    <div class="auth-input-container">
+                        <div class="input-row-block"><span class="input-field-label-meta">Email ID</span><input type="email" id="login-email" class="auth-field-asset" placeholder="example@domain.com"></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Password</span><input type="password" id="login-password" class="auth-field-asset" placeholder="••••••••"></div>
+                        <button type="button" class="btn-submit-action" onclick="handleLoginSubmit()">LOG IN</button>
+                        <div style="text-align: right; width: 100%;"><span style="color: var(--accent-blue); font-size: 13px; font-weight: bold; cursor: pointer;" onclick="switchAppView('view-forgot')">Forgot Password?</span></div>
+                    </div>
+                    <div class="social-grid-panel">
+                        <div style="color: var(--text-gray); font-size: 12px; font-weight: 700; text-align: center; margin-bottom: 5px;">SIGN IN WITH</div>
+                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('google')"><i class="fab fa-google" style="color: #ea4335;"></i> Sign In with Google</button>
+                        <button type="button" class="social-btn-box" onclick="handleOAuthLogin('linkedin_oidc')"><i class="fab fa-linkedin-in" style="color: #0a66c2;"></i> Sign In with LinkedIn</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- REGISTER VIEW -->
+        <div id="view-register" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="auth-card-compact">
+                    <div class="view-panel-header">
+                        <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                        <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;">Account Registration</h3>
+                    </div>
+                    <div class="auth-input-container">
+                        <div class="input-row-block"><span class="input-field-label-meta">Full Name</span><input type="text" id="reg-fullname" class="auth-field-asset" placeholder="Your Name"></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Email ID</span><div style="display:flex; width:100%; gap:12px; align-items:center;"><input type="email" id="reg-email" class="auth-field-asset" placeholder="example@domain.com"><button type="button" id="btn-get-otp-reg" class="inline-action-trigger" onclick="handleSendOTP('reg')">Get OTP</button></div></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Email Verification Code</span><div style="display:flex; width:100%; gap:12px; align-items:center;"><input type="text" id="otp-code-reg" class="auth-field-asset" placeholder="6-Digit Code"><button type="button" id="btn-verify-otp-reg" class="inline-action-trigger" onclick="handleVerifyOTP('reg')">Verify</button><span id="badge-verified-reg" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span></div></div>
+                        
+                        <div class="input-row-block"><span class="input-field-label-meta">Password</span><input type="password" id="reg-password" class="auth-field-asset" placeholder="••••••••" oninput="validateSignupPasswords()"></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Confirm Password</span><input type="password" id="reg-confirm-password" class="auth-field-asset" placeholder="••••••••" oninput="validateSignupPasswords()"></div>
+                        
+                        <div class="strength-container" id="signup-strength-panel">
+                            <div class="strength-bar-bg"><div class="strength-bar" id="signup-strength-bar"></div></div>
+                            <span class="strength-text" id="signup-strength-text"></span>
+                        </div>
+                        
+                        <button type="button" class="btn-submit-action" style="background-color: #4ade80 !important;" onclick="handleFinalRegister()">CREATE ACCOUNT</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FORGOT PASSWORD VIEW -->
+        <div id="view-forgot" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="auth-card-compact">
+                    <div class="view-panel-header">
+                        <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                        <h3 style="font-size:22px; font-weight:800; color:#fff; margin:0;"><i class="fas fa-key"></i> Reset Password</h3>
+                    </div>
+                    <div class="auth-input-container">
+                        <div class="input-row-block"><span class="input-field-label-meta">Email ID</span><div style="display:flex; width:100%; gap:12px; align-items:center;"><input type="email" id="forgot-email" class="auth-field-asset" placeholder="example@domain.com"><button type="button" id="btn-get-otp-forgot" class="inline-action-trigger" onclick="handleSendOTP('forgot')">Get OTP</button></div></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">Verification Code</span><div style="display:flex; width:100%; gap:12px; align-items:center;"><input type="text" id="otp-code-forgot" class="auth-field-asset" placeholder="6-Digit Code"><button type="button" id="btn-verify-otp-forgot" class="inline-action-trigger inline-verify-trigger" onclick="handleVerifyOTP('forgot')">Verify</button><span id="badge-verified-forgot" class="live-status-success-badge"><i class="fas fa-check-circle"></i> Verified</span></div></div>
+                        <div class="input-row-block"><span class="input-field-label-meta">New Password</span><input type="password" id="forgot-password" class="auth-field-asset" placeholder="New Password" oninput="checkPasswordStrength(this.value, 'forgot')"><div class="strength-container" id="strength-container-forgot"><div class="strength-bar-bg"><div class="strength-bar" id="strength-bar-forgot"></div></div><span class="strength-text" id="strength-text-forgot">Strength Node</span></div></div>
+                        <button type="button" class="btn-submit-action" onclick="handleResetPasswordSubmit()">CHANGE PASSWORD</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECURE VAULT VIEWS -->
+        <div id="view-sec-vault-achievements" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2 class="section-title">Achievements & Verifications</h2>
+                </div>
+                <div class="vault-list-container">
+                    <div class="file-item-row" onclick="requestSecureFile('Data Analytics with AI_certificate.pdf', false)"><div><i class="fas fa-certificate"></i> Data Analytics with AI</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction to SQL_certificate.pdf', false)"><div><i class="fas fa-certificate"></i> Introduction to SQL</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('ChatGPT for Everyone_certificate.pdf', false)"><div><i class="fas fa-certificate"></i> ChatGPT for Everyone</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Generative_AI_for_Beginners.pdf', false)"><div><i class="fas fa-certificate"></i> Generative AI for Beginners</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Generative_AI_Studio.pdf', false)"><div><i class="fas fa-certificate"></i> Intro to Generative AI</div><i class="fas fa-external-link-alt"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('Introduction_to_Prompt_Engineering.pdf', false)"><div><i class="fas fa-certificate"></i> Intro to Prompt Engineering</div><i class="fas fa-external-link-alt"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-sec-vault-documents" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2 class="section-title">Encrypted System Records</h2>
+                </div>
+                
+                <div id="doc-gate-form-view" style="display:none;" class="admin-form-box">
+                    <i class="fas fa-lock"></i>
+                    <h4>Clearance Status Required</h4>
+                    <p>Request validation to pull files from secure nodes.</p>
+                    <button type="button" class="btn-submit-action" onclick="handleSubmitAdminRequest()">Send Clearance Request</button>
+                </div>
+                
+                <div id="doc-gate-pending-view" class="pending-box" style="display:none;">
+                    <i class="fas fa-clock"></i>
+                    <div class="status-msg">PENDING FOR APPROVAL</div>
+                    <p style="font-size: 13px; color: var(--text-gray); margin: 0;">Your data loop access request is inside admin queue.</p>
+                </div>
+                
+                <div id="doc-gate-allowed-view" style="display:none;" class="vault-list-container">
+                    <div class="file-item-row" onclick="requestSecureFile('dca_diploma.pdf', true)"><div><i class="fas fa-file-pdf"></i> DCA Main Diploma</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('resume.pdf', true)"><div><i class="fas fa-file-alt"></i> Professional Resume</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('dca_1Sam.pdf', true)"><div><i class="fas fa-file-pdf"></i> DCA 1st Semester Marksheet</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('dca_2Sam.pdf', true)"><div><i class="fas fa-file-pdf"></i> DCA 2nd Semester Marksheet</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('12th_marksheet.pdf', true)"><div><i class="fas fa-file-pdf"></i> 12th Class Marksheet</div><i class="fas fa-download"></i></div>
+                    <div class="file-item-row" onclick="requestSecureFile('10th_marksheet.pdf', true)"><div><i class="fas fa-file-pdf"></i> 10th Class Marksheet</div><i class="fas fa-download"></i></div>
+                </div>
+            </div>
+        </div>
+
+        <div id="view-sec-admin-panel" class="app-view">
+            <div class="view-card-wrapper">
+                <div class="view-panel-header">
+                    <button type="button" class="corner-back-btn" onclick="switchAppView('view-home')"><i class="fas fa-arrow-left"></i> Back</button>
+                    <h2 class="section-title" style="color: #fbbf24;">User Clearance Dashboard</h2>
+                </div>
+                <div id="admin-requests-list" class="vault-list-container"></div>
+                <div style="margin-top: 40px; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 30px;">
+                    <h2 class="section-title" style="color: var(--accent-blue); display:flex; align-items:center; gap:10px;"><i class="fas fa-comments"></i> User Live Chat Terminal</h2>
+                    <div id="admin-chat-messages-container" class="vault-list-container" style="margin-top:20px;"></div>
+                </div>
+            </div>
         </div>
 
     </div>
 
-</div>
+    <!-- FLOATING CHAT WIDGET -->
+    <div class="floating-chat-widget" onclick="event.stopPropagation();">
+        <div class="chat-widget-trigger" onclick="toggleChatWidget(event)"><i class="fas fa-comments"></i></div>
+        <div class="chat-widget-window" id="chat-widget-window">
+            <div class="chat-widget-header">
+                <span style="font-weight:800; font-size:13px; color:#fff;">Live Chat AI Assistant</span>
+                <div onclick="toggleChatWidget(event)" style="cursor:pointer; color:var(--text-gray);"><i class="fas fa-times"></i></div>
+            </div>
+            <div class="chat-widget-body" id="chat-widget-logs"></div>
+            <div class="chat-widget-footer">
+                <textarea id="chat-widget-input" style="flex:1; background:#05070c; border:1px solid rgba(255,255,255,0.08); border-radius:12px; padding:12px; color:#fff; font-size:13px; resize:none; height:42px; outline:none;" placeholder="Type message block..."></textarea>
+                <button type="button" class="inline-action-trigger" style="width:42px !important; height:42px !important; padding:0 !important;" onclick="handleSendLiveChatMessage()"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
 
-<!-- ==================== CONTROLLER LOGIC ==================== -->
-<script>
-    function switchView(targetViewId) {
-        // Sabhi main panels ko fetch karo
-        const allViews = document.querySelectorAll('.view-node');
-        
-        // Pehle sabse active class hatao
-        allViews.forEach(view => {
-            view.classList.remove('active-node');
+    <footer id="global-system-footer"><p>© 2026 Suraj Singh Jadon. All Rights Reserved. Powered by Secure Cloud Infrastructure.</p></footer>
+
+    <script>
+        const SUPABASE_URL = "https://ypoxybmhdpxmxcmiimjf.supabase.co"; 
+        const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inlwb3h5Ym1oZHB4bXhjbWlpbWpmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMDgwODYsImV4cCI6MjA5NjY4NDA4Nn0.OBdL4w8AvR0Baagm6WixNfLGEwxSvlE6SWdDEC5vPG4";
+        const _supabase = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        let currentActiveSession = null, isEmailVerified = false, adminPanelLiveInterval = null; 
+        const redirectLink = window.location.origin + window.location.pathname;
+
+        function showCyberNotification(message) {
+            const container = document.getElementById('cyber-toast-container'); if(!container) return;
+            const toast = document.createElement('div'); toast.className = 'cyber-toast';
+            toast.innerHTML = `<i class="fas fa-shield-alt" style="color:var(--accent-blue); text-shadow: 0 0 8px var(--accent-blue);"></i> <span>${message}</span>`;
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 50);
+            setTimeout(() => { toast.classList.add('fade-out'); toast.classList.remove('show'); setTimeout(() => toast.remove(), 400); }, 3000);
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            try {
+                _supabase.auth.getSession().then(({ data, error }) => { 
+                    if (!error && data && data.session) { currentActiveSession = data.session; syncAuthUI(); } 
+                }).catch(err => console.log("Handshake stable."));
+            } catch(e) {}
+            setTimeout(() => {
+                const loader = document.getElementById('cyber-boot-preloader');
+                if(loader) { loader.style.transition = 'opacity 0.4s ease'; loader.style.opacity = '0'; setTimeout(() => loader.style.display = 'none', 400); }
+            }, 1600);
         });
 
-        // Jo view id pass ki hai use block mode me laao
-        const targetView = document.getElementById(targetViewId);
-        if (targetView) {
-            targetView.classList.add('active-node');
-            window.scrollTo({ top: 0, behavior: 'smooth' }); // Interface change par scroll to top
-        } else {
-            console.error("View identification failure for: " + targetViewId);
-        }
-    }
-</script>
+        window.toggleSystemMenu = function(e) { 
+            if(e) e.stopPropagation(); 
+            const panel = document.getElementById('system-dropdown-panel');
+            if(panel) panel.classList.toggle('show');
+        };
+        window.toggleChatWidget = function(e) { if(e) e.preventDefault(); document.getElementById('chat-widget-window').classList.toggle('show'); };
+        document.addEventListener('click', () => { const panel = document.getElementById('system-dropdown-panel'); if(panel) panel.classList.remove('show'); });
 
+        function appendVisualChatBubble(name, text, isUser) {
+            const logsContainer = document.getElementById('chat-widget-logs'); if(!logsContainer) return;
+            const bubbleRow = document.createElement('div'); bubbleRow.style.cssText = `display:flex; width:100%; justify-content: ${isUser ? 'flex-end' : 'flex-start'}; margin-top:3px;`;
+            let innerStyle = isUser ? "background: var(--accent-blue); color: #05070c; font-weight:700; border-radius: 16px 16px 0 16px; box-shadow: 0 4px 12px rgba(94, 234, 212, 0.15);" : "background: rgba(94, 234, 212, 0.06); border: 1px solid rgba(94, 234, 212, 0.15); color: #fff; border-radius: 16px 16px 16px 0;";
+            bubbleRow.innerHTML = `<div style="padding: 10px 16px; font-size: 13px; max-width: 80%; line-height: 1.5; text-align: left; word-break: break-word; ${innerStyle}">${text}</div>`;
+            logsContainer.appendChild(bubbleRow); logsContainer.scrollTop = logsContainer.scrollHeight;
+        }
+
+        window.switchAppView = function(viewId) {
+            clearInterval(adminPanelLiveInterval);
+            const panel = document.getElementById('system-dropdown-panel'); if(panel) panel.classList.remove('show');
+            document.querySelectorAll('.app-view').forEach(v => v.classList.remove('active-view'));
+            document.querySelectorAll('.menu-link-row').forEach(r => r.classList.remove('active'));
+            
+            const target = document.getElementById(viewId); if(target) target.classList.add('active-view');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const footer = document.getElementById('global-system-footer');
+            if(footer) { if(viewId === 'view-home') { footer.style.setProperty('display', 'block', 'important'); } else { footer.style.setProperty('display', 'none', 'important'); } }
+            
+            if(viewId === 'view-sec-admin-panel') { window.loadAdminPanel(); adminPanelLiveInterval = setInterval(window.loadAdminPanel, 4000); }
+            if(viewId === 'view-sec-vault-documents') handleDocumentAccessGate();
+            if(viewId === 'view-home') document.getElementById('ml-home').classList.add('active');
+            if(viewId === 'view-experience') document.getElementById('ml-exp').classList.add('active');
+            if(viewId === 'view-user-edu') document.getElementById('ml-edu').classList.add('active');
+            if(viewId === 'view-technical-skills') { document.getElementById('ml-skills').classList.add('active'); initTechStack3DWorkspace(); }
+            if(viewId === 'view-user-contact') document.getElementById('ml-contact').classList.add('active');
+        };
+
+        window.requestSecureFile = async function(file, isDocument = false) {
+            if (!currentActiveSession) { showCyberNotification("🔒 Access Denied: Please Sign In."); switchAppView('view-login'); return; }
+            if (isDocument) {
+                try {
+                    const { data, error } = await _supabase.from('document_requests').select('status').eq('email', currentActiveSession.user.email).maybeSingle();
+                    if (error || !data || data.status !== 'approved') { showCyberNotification("🚫 Access Denied: Clearances pending."); return; }
+                } catch(e) { showCyberNotification("❌ Server Handshake Error"); return; }
+            }
+            window.open(file, '_blank');
+        };
+
+        window.loadAdminPanel = async function() {
+            if(!currentActiveSession || currentActiveSession.user.email.toLowerCase() !== 'surajsinghrajput5040@gmail.com') return;
+            try {
+                const { data: reqs } = await _supabase.from('document_requests').select('*').order('id', { ascending: false });
+                const list = document.getElementById('admin-requests-list');
+                if(list) {
+                    list.innerHTML = '';
+                    reqs?.forEach(r => {
+                        const d = document.createElement('div'); d.className = 'admin-request-tile';
+                        const userNameStr = r.name ? r.name.toUpperCase() : r.email.split('@')[0].toUpperCase();
+                        const badgeClass = r.status === 'approved' ? 'badge-approved' : 'badge-pending';
+                        d.innerHTML = `
+                            <div class="admin-user-info">
+                                <div class="admin-avatar-mini"><i class="fas fa-user-shield"></i></div>
+                                <div class="admin-user-meta-block">
+                                    <div class="admin-user-name">${userNameStr}</div>
+                                    <div class="admin-user-email">${r.email}</div>
+                                </div>
+                            </div>
+                            <div class="admin-actions-block">
+                                <span class="status-badge ${badgeClass}">${r.status}</span>
+                                <div class="admin-btn-group">
+                                    ${r.status !== 'approved' ? `<button type="button" class="admin-act-btn btn-approve" onclick="changeStatus(event,'${r.email}','approved')">Approve</button>` : ''}
+                                    <button type="button" class="admin-act-btn btn-delete" onclick="killRequest(event,'${r.email}')">Delete</button>
+                                </div>
+                            </div>`;
+                        list.appendChild(d);
+                    });
+                }
+            } catch(e) {}
+
+            try {
+                const { data: messages } = await _supabase.from('portfolio_messages').select('*').order('id', { ascending: true });
+                const chatBox = document.getElementById('admin-chat-messages-container');
+                if(chatBox) {
+                    chatBox.innerHTML = '';
+                    if(messages && messages.length > 0) {
+                        let threadEmails = [...new Set(messages.map(m => m.email))].filter(Boolean);
+                        threadEmails.forEach(email => {
+                            const group = messages.filter(m => m.email === email);
+                            const card = document.createElement('div'); card.className = 'admin-request-card';
+                            let sId = email.replace(/[@.]/g, '_');
+                            card.innerHTML = `<div><b>Chat Node: ${email}</b></div><div style="max-height:120px; overflow-y:auto; background:#05070c; padding:10px; border-radius:8px; margin-top:5px; display:flex; flex-direction:column; gap:4px;">${group.map(m => `<div><b style="color:${m.is_admin?'#5eead4':'#4ade80'}">${m.name}:</b> ${m.message}</div>`).join('')}</div><div style="display:flex; gap:10px; margin-top:8px;"><input type="text" id="admin-reply-${sId}" class="auth-field-asset" style="flex:1; padding:8px 12px !important;" placeholder="Type reply..."><button type="button" class="admin-act-btn btn-approve" style="height:38px !important;" onclick="handleSendAdminReply(event,'${email}','${sId}')">Send</button></div>`;
+                            chatBox.appendChild(card);
+                        });
+                    } else {
+                        chatBox.innerHTML = `<div style="padding: 45px 20px; text-align: center; background: rgba(94, 234, 212, 0.01); border: 1px dashed rgba(94, 234, 212, 0.15); border-radius: 20px;"><div style="animation: cyberChatFloat 3s ease-in-out infinite; display: inline-block;"><i class="fas fa-network-wired" style="font-size: 38px; color: var(--accent-blue); text-shadow: 0 0 25px var(--accent-glow); margin-bottom: 15px;"></i></div><h4 style="font-size: 14px; font-weight: 800; color: #fff; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 6px 0;">Awaiting Data Transmission</h4><p style="font-size: 12px; color: var(--text-gray); max-width: 320px; margin: 0 auto; line-height: 1.6;">Active Chat Stream Core is Standby. Ready to index incoming packets from client validation blocks.</p></div>`;
+                    }
+                }
+            } catch(e) {}
+        };
+
+        window.changeStatus = async function(e, email, status) { if(e) { e.preventDefault(); e.stopPropagation(); } try { await _supabase.from('document_requests').update({ status }).eq('email', email); window.loadAdminPanel(); } catch(err){} };
+        window.killRequest = async function(e, email) { if(e) { e.preventDefault(); e.stopPropagation(); } try { await _supabase.from('document_requests').delete().eq('email', email); window.loadAdminPanel(); } catch(err){} };
+        window.handleSendAdminReply = async function(e, email, sId) { if(e) { e.preventDefault(); e.stopPropagation(); } const val = document.getElementById(`admin-reply-${sId}`).value.trim(); if(!val) return; try { await _supabase.from('portfolio_messages').insert([{ name: "Suraj (Admin)", email, message: val, is_admin: true }]); document.getElementById(`admin-reply-${sId}`).value = ''; window.loadAdminPanel(); } catch(err){} };
+
+        function updateDocumentUIStatus(status) {
+            const form = document.getElementById('doc-gate-form-view'), pending = document.getElementById('doc-gate-pending-view'), allowed = document.getElementById('doc-gate-allowed-view');
+            if(!form || !pending || !allowed) return; form.style.display = 'none'; pending.style.display = 'none'; allowed.style.display = 'none';
+            if (status === 'approved') allowed.style.display = 'block'; else if (status === 'pending') pending.style.display = 'block'; else form.style.display = 'block';
+        }
+
+        async function handleDocumentAccessGate() { if(!currentActiveSession) return; try { const { data } = await _supabase.from('document_requests').select('status').eq('email', currentActiveSession.user.email).maybeSingle(); updateDocumentUIStatus(data ? data.status : 'none'); } catch(e){} }
+        window.handleSubmitAdminRequest = async function() { if(!currentActiveSession) return; const user = currentActiveSession.user; try { await _supabase.from('document_requests').insert([{ name: user.email.split('@')[0], email: user.email, status: 'pending' }]); handleDocumentAccessGate(); } catch(e){} };
+
+        window.checkPasswordStrength = function(val, type) {
+            const container = document.getElementById(`strength-container-${type}`), bar = document.getElementById(`strength-bar-${type}`), text = document.getElementById(`strength-text-${type}`);
+            if(!container || !bar || !text) return; if(!val) { container.style.setProperty('display', 'none', 'important'); return; } container.style.setProperty('display', 'flex', 'important');
+            let score = 0; if(val.length >= 6) score++; if(val.length >= 10) score++; if(/[A-Z]/.test(val) && /[0-9]/.test(val)) score++; if(/[^A-Za-z0-9]/.test(val)) score++;
+            if(score <= 1) { bar.style.width = '25%'; bar.style.backgroundColor = '#ef4444'; text.innerText = '🚨 Weak Node Matrix'; text.style.color = '#ef4444'; }
+            else if(score === 2 || score === 3) { bar.style.width = '60%'; bar.style.backgroundColor = '#fbbf24'; text.innerText = '⚡ Medium Node Protection'; text.style.color = '#fbbf24'; }
+            else { bar.style.width = '100%'; bar.style.backgroundColor = '#4ade80'; text.innerText = '✅ Strong Shield Synchronized'; text.style.color = '#4ade80'; }
+        };
+
+        window.validateSignupPasswords = function() {
+            const p = document.getElementById('reg-password').value, cp = document.getElementById('reg-confirm-password').value;
+            const panel = document.getElementById('signup-strength-panel'), bar = document.getElementById('signup-strength-bar'), text = document.getElementById('signup-strength-text');
+            if(!p) { panel.style.setProperty('display', 'none', 'important'); return; } panel.style.setProperty('display', 'flex', 'important');
+            let score = 0; if(p.length >= 6) score++; if(p.length >= 10) score++; if(/[A-Z]/.test(p) && /[0-9]/.test(p)) score++; if(/[^A-Za-z0-9]/.test(p)) score++;
+            let matchStatus = cp ? (p === cp ? " | <span style='color:#4ade80;'>✅ MATCH PASSED</span>" : " | <span style='color:#ef4444;'>❌ MISMATCHED ERROR</span>") : "";
+            if(score <= 1) { bar.style.width = '25%'; bar.style.backgroundColor = '#ef4444'; text.innerHTML = `<span style="color:#ef4444;">🚨 WEAK MATRIX BLOCK${matchStatus}</span>`; }
+            else if(score === 2 || score === 3) { bar.style.width = '60%'; bar.style.backgroundColor = '#fbbf24'; text.innerHTML = `<span style="color:#fbbf24;">⚡ MEDIUM SHIELD${matchStatus}</span>`; }
+            else { bar.style.width = '100%'; bar.style.backgroundColor = '#4ade80'; text.innerHTML = `<span style="color:#4ade80;">✅ ELITE SHIELD SYNCED${matchStatus}</span>`; }
+        };
+
+        window.handleFinalRegister = async function() {
+            const email = document.getElementById('reg-email').value.trim(), password = document.getElementById('reg-password').value, confirmPassword = document.getElementById('reg-confirm-password').value;
+            if(password !== confirmPassword) { showCyberNotification("❌ Mismatch Error: Passwords do not match!"); return; }
+            let score = 0; if(password.length >= 6) score++; if(password.length >= 10) score++; if(/[A-Z]/.test(password) && /[0-9]/.test(password)) score++; if(/[^A-Za-z0-9]/.test(password)) score++;
+            if(score <= 1) { showCyberNotification("🚫 Aborted: Weak password matrix!"); return; }
+            try {
+                const { error = null } = await _supabase.auth.signUp({ email, password });
+                if(!error) { showCyberNotification("🎉 Registration Successful"); setTimeout(() => switchAppView('view-login'), 1200); } else { showCyberNotification("❌ " + error.message); }
+            } catch(e) { showCyberNotification("❌ Connection Timeout: Is Database Server Paused?"); }
+        };
+
+        window.handleLoginSubmit = async function() {
+            const email = document.getElementById('login-email').value.trim(), password = document.getElementById('login-password').value;
+            try {
+                const { error } = await _supabase.auth.signInWithPassword({ email, password });
+                if(!error) { showCyberNotification("🔑 Sign In Successful"); setTimeout(() => switchAppView('view-home'), 1200); } else { showCyberNotification("❌ " + error.message); }
+            } catch(e) { showCyberNotification("❌ Network Loop Error: Unpause Supabase Server Dashboard First!"); }
+        };
+
+        window.handleSendOTP = async function(type) {
+            const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
+            if(!email) { showCyberNotification("🚨 Enter a valid Email ID."); return; }
+            const targetBtn = document.getElementById(type === 'reg' ? 'btn-get-otp-reg' : 'btn-get-otp-forgot');
+            try {
+                const { error } = await _supabase.auth.signInWithOtp({ email });
+                if(!error) {
+                    showCyberNotification("🚀 Verification Code Send Successful");
+                    let timeRemaining = 60;
+                    targetBtn.disabled = true; targetBtn.style.opacity = "0.6"; targetBtn.style.cursor = "not-allowed"; targetBtn.innerText = `${timeRemaining}s`;
+                    let countdownTimer = setInterval(() => {
+                        timeRemaining--; targetBtn.innerText = `${timeRemaining}s`;
+                        if(timeRemaining <= 0) { clearInterval(countdownTimer); targetBtn.disabled = false; targetBtn.style.opacity = "1"; targetBtn.style.cursor = "pointer"; targetBtn.innerText = "Resend OTP"; }
+                    }, 1000);
+                } else { showCyberNotification("❌ " + error.message); }
+            } catch(e) { showCyberNotification("❌ Server Error: Activate Database Project Node."); }
+        };
+
+        window.handleVerifyOTP = async function(type) {
+            const email = document.getElementById(type === 'reg' ? 'reg-email' : 'forgot-email').value.trim();
+            const token = document.getElementById(type === 'reg' ? 'otp-code-reg' : 'otp-code-forgot').value.trim();
+            try {
+                const { error } = await _supabase.auth.verifyOtp({ email, token, type: 'email' });
+                if(!error) { isEmailVerified = true; document.getElementById(`badge-verified-${type}`).style.display="inline-flex"; showCyberNotification("✅ Node Verified!"); } else { showCyberNotification("❌ Verification Failed"); }
+            } catch(e) { showCyberNotification("❌ Packet Handshake Dropped"); }
+        };
+
+        window.handleOAuthLogin = async function(provider) { 
+            try {
+                const { error } = await _supabase.auth.signInWithOAuth({ provider: provider, options: { redirectTo: redirectLink } }); 
+                if(error) showCyberNotification("❌ OAuth Handshake Failed"); 
+            } catch(e){ showCyberNotification("❌ OAuth Loop Timeout"); }
+        };
+
+        function syncAuthUI() {
+            if(currentActiveSession) {
+                document.getElementById('menu-guest-block').style.display = "none"; document.getElementById('menu-user-block').style.display = "flex";
+                document.getElementById('menu-user-name').innerText = currentActiveSession.user.email.split('@')[0].toUpperCase();
+                document.getElementById('menu-user-email').innerText = currentActiveSession.user.email;
+                document.getElementById('ml-achievements').style.display = "flex"; document.getElementById('ml-documents').style.display = "flex";
+                document.getElementById('badge-text').innerText = "Authorized Node Profile";
+                if(currentActiveSession.user.email.toLowerCase() === 'surajsinghrajput5040@gmail.com') document.getElementById('ml-admin').style.display = "flex";
+            } else {
+                document.getElementById('menu-guest-block').style.display = "flex"; document.getElementById('menu-user-block').style.display = "none";
+                document.getElementById('ml-achievements').style.display = "none"; document.getElementById('ml-documents').style.display = "none"; document.getElementById('ml-admin').style.display = "none";
+                document.getElementById('badge-text').innerText = "Public Visitor Mode";
+            }
+        }
+
+        try { _supabase.auth.onAuthStateChange((e, s) => { currentActiveSession = s; syncAuthUI(); }); } catch(err) {}
+        window.handleLogout = async function() { try { await _supabase.auth.signOut(); } catch(e){} switchAppView('view-home'); };
+
+        window.handleSendLiveChatMessage = async function() {
+            const inp = document.getElementById('chat-widget-input'); const val = inp.value.trim(); if(!val) return;
+            appendVisualChatBubble("You", val, true); inp.value = '';
+            setTimeout(() => {
+                let reply = "Your context query registry has synchronized. Suraj will analyze it soon. 🚀";
+                let low = val.toLowerCase();
+                if(low.includes("dca") || low.includes("education")) reply = "Suraj finished a 1-Year Diploma in Computer Applications (DCA) from MCU (2023). 🎓";
+                else if(low.includes("experience") || low.includes("work")) reply = "Suraj counts industrial loops: Invoice SAP Executive at Polyhose, and Store Data at Hettich. 💼";
+                appendVisualChatBubble("Live Chat AI", reply, false);
+            }, 800);
+        };
+
+        window.handleResetPasswordSubmit = async function() {
+            const password = document.getElementById('forgot-password').value;
+            try {
+                const { error } = await _supabase.auth.updateUser({ password });
+                if(!error) { showCyberNotification("✅ Password Update Successful"); switchAppView('view-login'); } else { showCyberNotification("❌ Update Error"); }
+            } catch(e) { showCyberNotification("❌ Loop Execution Terminated"); }
+        };
+
+        function initTechStack3DWorkspace() {
+            const mount = document.getElementById('canvas-3d-techstack-portal'); if(!mount) return; mount.innerHTML = "";
+            mount.innerHTML = `
+                <div style="padding: 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; height: auto; box-sizing: border-box; perspective: 1000px;">
+                    <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);"><div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-layer-group" style="color:var(--accent-blue); margin-right:8px;"></i>SAP Systems Log Processing</span><span style="color:var(--accent-blue);">92%</span></div><div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 92%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div></div>
+                    <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);"><div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-database" style="color:var(--accent-blue); margin-right:8px;"></i>SQL Advanced Database Audits</span><span style="color:var(--accent-blue);">85%</span></div><div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 85%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div></div>
+                    <div class="mini-progress-card" style="background: rgba(94, 234, 212, 0.02); padding: 18px; border-radius: 16px; border: 1px solid rgba(94, 234, 212, 0.12); box-shadow: inset 0 0 15px rgba(94,234,212,0.05);"><div class="mini-progress-meta-row" style="font-weight:800; letter-spacing:0.5px;"><span style="color:#fff;"><i class="fas fa-network-wired" style="color:var(--accent-blue); margin-right:8px;"></i>Data Parsing Architecture</span><span style="color:var(--accent-blue);">88%</span></div><div class="progress-track-bg" style="height:10px; background:#05070c; border-radius:10px; overflow:hidden; margin-top:12px;"><div class="progress-track-fill" style="width: 88%; height:100%; background:linear-gradient(90deg, #0284c7, var(--accent-blue));"></div></div></div>
+                </div>`;
+        }
+    </script>
 </body>
 </html>
